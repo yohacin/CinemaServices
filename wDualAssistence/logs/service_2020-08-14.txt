@@ -1,0 +1,106 @@
+2020-08-14 08:49:40,810 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 08:51:25,534 [7] ERROR WebServices Business.Security.Usuario - System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.Single[TSource](IQueryable`1 source)
+   at Business.Security.Usuario.Login(String usuario, String contrasena) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 215 
+2020-08-14 09:17:38,141 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 09:18:15,536 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 09:19:26,252 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 09:22:08,169 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 09:22:37,812 [6] ERROR WebServices Business.Security.Usuario - System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.Single[TSource](IQueryable`1 source)
+   at Business.Security.Usuario.Login(String usuario, String contrasena) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 215 
+2020-08-14 09:22:58,792 [7] ERROR WebServices Business.Security.Usuario - System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.Single[TSource](IQueryable`1 source)
+   at Business.Security.Usuario.Login(String usuario, String contrasena) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 215 
+2020-08-14 09:23:13,229 [7] ERROR WebServices Business.Security.Usuario - System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.Single[TSource](IQueryable`1 source)
+   at Business.Security.Usuario.Login(String usuario, String contrasena) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 215 
+2020-08-14 09:23:47,227 [7] ERROR WebServices Business.Security.Usuario - System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.Single[TSource](IQueryable`1 source)
+   at Business.Security.Usuario.Login(String usuario, String contrasena) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 215 
+2020-08-14 09:23:59,615 [7] ERROR WebServices Business.Security.Usuario - System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.Single[TSource](IQueryable`1 source)
+   at Business.Security.Usuario.Login(String usuario, String contrasena) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 215 
+2020-08-14 09:24:39,730 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 09:25:07,545 [6] ERROR WebServices Business.Security.Usuario - System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.Single[TSource](IQueryable`1 source)
+   at Business.Security.Usuario.Login(String usuario, String contrasena) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 215 
+2020-08-14 09:27:16,965 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 10:26:25,514 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 11:39:59,547 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 11:44:48,155 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 15:30:23,806 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 16:23:32,322 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 16:34:42,006 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 16:37:00,688 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 16:39:12,208 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 16:45:58,824 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 16:50:46,788 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 18:02:00,191 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 18:07:55,542 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 18:12:45,554 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 18:24:45,463 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-14 18:50:27,768 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 

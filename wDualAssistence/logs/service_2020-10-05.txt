@@ -1,0 +1,152 @@
+2020-10-05 15:13:58,834 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-10-05 15:14:18,669 [1] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 15:14:19,063 [1] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 15:15:19,648 [6] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 15:15:19,661 [6] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 15:16:20,043 [6] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 15:16:20,052 [6] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 15:19:42,149 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-10-05 15:19:56,955 [1] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 15:19:57,140 [1] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 15:20:57,458 [7] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 15:20:57,469 [7] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 15:22:55,299 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-10-05 15:23:05,712 [1] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 15:23:05,891 [1] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 15:24:06,310 [12] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 15:24:06,322 [12] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 15:25:06,591 [12] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 15:25:06,601 [12] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 15:26:07,055 [12] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 15:26:07,077 [12] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 15:27:07,401 [12] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 15:27:07,422 [12] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 15:28:07,732 [37] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 15:28:07,789 [37] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 15:29:08,101 [37] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 15:29:08,109 [37] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 15:30:08,449 [37] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 15:30:08,488 [37] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 15:31:08,811 [37] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 15:31:08,817 [37] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 15:32:09,617 [37] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 15:32:09,628 [37] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 15:33:10,052 [37] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 15:33:10,061 [37] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 15:34:10,900 [37] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 15:34:10,913 [37] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 15:35:11,232 [37] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 15:35:11,245 [37] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 16:01:14,122 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-10-05 16:01:40,544 [1] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 16:01:41,038 [1] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 16:02:41,538 [4] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 16:02:41,570 [4] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 16:03:43,268 [21] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 16:03:43,302 [21] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 16:04:43,740 [4] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 16:04:43,753 [4] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 19:02:40,794 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-10-05 19:02:53,519 [1] ERROR WebServices Business.Public.Empleado - System.InvalidCastException: Column is null
+   at Npgsql.NpgsqlDefaultDataReader.GetFieldValue[T](Int32 column) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDefaultDataReader.cs:line 141
+   at lambda_method(Closure , DbDataReader )
+   at Microsoft.EntityFrameworkCore.Storage.Internal.TypedRelationalValueBufferFactory.Create(DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.Empleado.listarEmpleadosSinMarcacionRegistrada(DateTime pFecha) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 394 
+2020-10-05 19:02:53,674 [1] ERROR WebServices wDualAssistence.Controllers.WorkerController - Error al ejecutar los TURNOS EMPLEADOS. 
+2020-10-05 19:02:53,772 [1] ERROR WebServices Business.Public.Empleado - System.InvalidCastException: Column is null
+   at Npgsql.NpgsqlDefaultDataReader.GetFieldValue[T](Int32 column) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDefaultDataReader.cs:line 141
+   at lambda_method(Closure , DbDataReader )
+   at Microsoft.EntityFrameworkCore.Storage.Internal.TypedRelationalValueBufferFactory.Create(DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.Empleado.listarEmpleadosSinMarcacionRegistrada(DateTime pFecha) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 394 
+2020-10-05 19:02:53,827 [1] ERROR WebServices wDualAssistence.Controllers.WorkerController - Error al ejecutar los TURNOS EMPLEADOS. 
+2020-10-05 19:02:53,972 [1] ERROR WebServices Business.Public.Empleado - System.InvalidCastException: Column is null
+   at Npgsql.NpgsqlDefaultDataReader.GetFieldValue[T](Int32 column) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDefaultDataReader.cs:line 141
+   at lambda_method(Closure , DbDataReader )
+   at Microsoft.EntityFrameworkCore.Storage.Internal.TypedRelationalValueBufferFactory.Create(DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.Empleado.listarEmpleadosSinMarcacionRegistrada(DateTime pFecha) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 394 
+2020-10-05 19:02:54,145 [1] ERROR WebServices wDualAssistence.Controllers.WorkerController - Error al ejecutar los TURNOS EMPLEADOS. 
+2020-10-05 19:02:54,597 [1] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 19:03:41,854 [10] ERROR WebServices Business.Public.Empleado - System.InvalidCastException: Column is null
+   at Npgsql.NpgsqlDefaultDataReader.GetFieldValue[T](Int32 column) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDefaultDataReader.cs:line 141
+   at lambda_method(Closure , DbDataReader )
+   at Microsoft.EntityFrameworkCore.Storage.Internal.TypedRelationalValueBufferFactory.Create(DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.Empleado.GetLista() in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 213 
+2020-10-05 19:03:41,996 [10] ERROR WebServices wDualAssistence.Controllers.EmpleadoController - System.InvalidCastException: Column is null
+   at Business.Public.Empleado.GetLista() in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 226
+   at wDualAssistence.Controllers.EmpleadoController.Get(ODataQueryOptions`1 queryOptions) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\EmpleadoController.cs:line 53 
+2020-10-05 19:03:55,097 [22] ERROR WebServices Business.Public.Empleado - System.InvalidCastException: Column is null
+   at Npgsql.NpgsqlDefaultDataReader.GetFieldValue[T](Int32 column) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDefaultDataReader.cs:line 141
+   at lambda_method(Closure , DbDataReader )
+   at Microsoft.EntityFrameworkCore.Storage.Internal.TypedRelationalValueBufferFactory.Create(DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.Empleado.listarEmpleadosSinMarcacionRegistrada(DateTime pFecha) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 394 
+2020-10-05 19:03:55,137 [22] ERROR WebServices wDualAssistence.Controllers.WorkerController - Error al ejecutar los TURNOS EMPLEADOS. 
+2020-10-05 19:03:55,246 [22] ERROR WebServices Business.Public.Empleado - System.InvalidCastException: Column is null
+   at Npgsql.NpgsqlDefaultDataReader.GetFieldValue[T](Int32 column) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDefaultDataReader.cs:line 141
+   at lambda_method(Closure , DbDataReader )
+   at Microsoft.EntityFrameworkCore.Storage.Internal.TypedRelationalValueBufferFactory.Create(DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.Empleado.listarEmpleadosSinMarcacionRegistrada(DateTime pFecha) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 394 
+2020-10-05 19:03:55,362 [22] ERROR WebServices wDualAssistence.Controllers.WorkerController - Error al ejecutar los TURNOS EMPLEADOS. 
+2020-10-05 19:03:55,455 [22] ERROR WebServices Business.Public.Empleado - System.InvalidCastException: Column is null
+   at Npgsql.NpgsqlDefaultDataReader.GetFieldValue[T](Int32 column) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDefaultDataReader.cs:line 141
+   at lambda_method(Closure , DbDataReader )
+   at Microsoft.EntityFrameworkCore.Storage.Internal.TypedRelationalValueBufferFactory.Create(DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.Empleado.listarEmpleadosSinMarcacionRegistrada(DateTime pFecha) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 394 
+2020-10-05 19:03:55,504 [22] ERROR WebServices wDualAssistence.Controllers.WorkerController - Error al ejecutar los TURNOS EMPLEADOS. 
+2020-10-05 19:03:55,520 [22] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 19:04:56,271 [9] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 19:04:56,280 [9] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 19:05:56,652 [9] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 19:05:56,664 [9] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 19:06:57,011 [9] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 19:06:57,031 [9] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-05 19:07:57,378 [9] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-05 19:07:57,392 [9] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 

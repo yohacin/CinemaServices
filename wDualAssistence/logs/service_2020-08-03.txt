@@ -1,0 +1,27 @@
+2020-08-03 08:29:48,494 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-03 09:44:38,709 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-03 09:46:05,054 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-03 11:36:01,061 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-03 11:36:18,603 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-03 11:38:25,579 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-03 11:39:51,649 [15] ERROR WebServices wDualAssistence.Controllers.CategoriaTareaController - System.Exception: Ya existe un categoria registrada con el mismo nombre !
+   at wDualAssistence.Controllers.CategoriaTareaController.Post(CategoriaTareaViewModel vCategoriaTareaViewModel) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\CategoriaTareaController.cs:line 99 
+2020-08-03 11:41:43,887 [11] ERROR WebServices wDualAssistence.Controllers.CategoriaTareaController - System.Exception: Ya existe un categoria registrada con el mismo nombre !
+   at wDualAssistence.Controllers.CategoriaTareaController.Post(CategoriaTareaViewModel vCategoriaTareaViewModel) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\CategoriaTareaController.cs:line 99 
+2020-08-03 11:52:36,277 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-03 11:56:13,032 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-03 11:58:18,174 [7] ERROR WebServices wDualAssistence.Controllers.TareaController - System.Exception: Ya existe una tarea registrada con el mismo nombre !
+   at wDualAssistence.Controllers.TareaController.Post(TareaViewModel vTareaViewModel) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\TareaController.cs:line 99 
+2020-08-03 11:58:23,875 [7] ERROR WebServices wDualAssistence.Controllers.TareaController - System.Exception: Ya existe una tarea registrada con el mismo nombre !
+   at wDualAssistence.Controllers.TareaController.Post(TareaViewModel vTareaViewModel) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\TareaController.cs:line 99 
+2020-08-03 12:00:40,813 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-03 12:01:54,796 [9] ERROR WebServices wDualAssistence.Controllers.TareaController - System.Exception: Debe seleccionar la categoria de la tarea !
+   at wDualAssistence.Controllers.TareaController.Post(TareaViewModel vTareaViewModel) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\TareaController.cs:line 100 
+2020-08-03 12:02:00,092 [14] ERROR WebServices wDualAssistence.Controllers.TareaController - System.Exception: Ya existe una tarea registrada con el mismo nombre !
+   at wDualAssistence.Controllers.TareaController.Post(TareaViewModel vTareaViewModel) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\TareaController.cs:line 109 
+2020-08-03 16:11:12,615 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-03 16:58:37,727 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-03 18:21:27,132 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-03 18:32:17,313 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-03 18:46:22,998 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-03 19:10:56,373 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 

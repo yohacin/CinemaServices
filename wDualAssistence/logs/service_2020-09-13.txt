@@ -1,0 +1,2 @@
+2020-09-13 19:21:17,447 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-13 19:22:00,815 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 

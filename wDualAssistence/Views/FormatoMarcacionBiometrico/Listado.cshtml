@@ -1,0 +1,147 @@
+﻿@{
+    ViewData["Title"] = "Formatos de Marcación Biométrico";
+    ViewData["Navbar-Title"] = "Recursos > Formatos de Marcación Biométrico";
+
+
+    List<object> operators = new List<object>();
+    operators.Add(new { value = "contains", text = "contains" });
+}
+@model wDualAssistence.Models.FormatoMarcacionBiometricoViewModel;
+
+@section Styles {
+    <style>
+        .spanIcon {
+            border-radius: 5px;
+            border-style: solid;
+            border-color: white;
+        }
+    </style>
+}
+
+<div class="content-wrapper">
+    <div class="content">
+        <div class="panel panel-default">
+            <div class="panel-heading heading-primary">
+                <span class="capa_btn info">
+                    <button type="submit" class="btn btn-base crear" onclick="Crear()">
+                        <span class="fa span-button info"></span>
+                        <p class="text-button-primary">Crear</p>
+                    </button>
+                </span>
+            </div>
+            <div class="panel-body">
+                <section class="content-body">
+                    <ejs-grid id="Grid" created="onCreateGrid" allowPaging="true" allowFiltering="true" locale="es" gridLines="Both">
+                        <e-grid-filterSettings type="Menu" mode="OnEnter" operators="@(new { stringOperator = operators })"></e-grid-filterSettings>
+                        <e-grid-pagesettings enableQueryString="true" pageSize="10"></e-grid-pagesettings>
+                        <e-grid-columns>
+                            <e-grid-column field="id" isPrimaryKey="true" visible="false"></e-grid-column>
+                            <e-grid-column field="nombre" headerText="NOMBRE" type="string" headerTextAlign="Center" textAlign="Left" width="100"></e-grid-column>
+                            <e-grid-column field="col_cod_biometrico" headerText="COLUMNA COD. BIOMETRICO" type="string" headerTextAlign="Center" textAlign="Left" width="80"></e-grid-column>
+                            <e-grid-column field="col_fecha_hora_entrada" headerText="COLUMNA FECHA Y HORA ENTRADA" type="string" headerTextAlign="Center" textAlign="Left" width="100"></e-grid-column>
+                            <e-grid-column field="col_fecha_hora_salida" headerText="COLUMNA FECHA Y HORA SALIDA" type="string" headerTextAlign="Center" textAlign="Left" width="100"></e-grid-column>
+                            <e-grid-column headerTextAlign="Center" textAlign="Center" template="#menuContextual" width="30" allowFiltering="false"></e-grid-column>
+                        </e-grid-columns>
+                    </ejs-grid>
+                </section>
+                <!--  -------------------- PASO DE PARAMETRO POST ----------------- -->
+                <form id="formPasoParametro" action='@Url.Action("Crear", "FormatoMarcacionBiometrico")' method="POST">
+                    <input type="hidden" id="id" name="id" value="0">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a id="modalELiminar" href="@Url.Action("MostrarModalEliminar", "Modal")" data-toggle="modal" data-target="#modalBusqueda" hidden></a>
+
+
+<partial name="_SeccionModal" />
+
+<ejs-contextmenu id="contextmenu" items="Model.menuItems" select="ejecutarAccion"></ejs-contextmenu>
+
+<script type="text/x-template" id="menuContextual">
+    <button class="boton-accion" onclick="abrirContextMenu(event, ${id})">
+        <i class="fa fa-list-ul"></i>
+    </button>
+</script>
+
+<script>
+
+    var oGrid;
+    var id_parametro = 0;
+
+    function onCreateGrid() {
+        oGrid = document.getElementById('Grid').ej2_instances[0];
+    }
+
+    $(document).ready(function () {
+
+        //DataSource
+        oGrid.dataSource = new ej.data.DataManager({
+            url: "@Url.Action("FormatoMarcacionBiometrico", "oData")?$orderby=id%20desc",
+            adaptor: new ej.data.ODataV4Adaptor(),
+            crossDomain: true,
+            offline: false
+        });
+
+
+    });
+
+    function Crear() {
+        var form = document.getElementById('formPasoParametro');
+        document.getElementById('id').value = 0;
+        form.submit();
+    }
+
+    function ejecutarAccion(args) {
+        switch (args.item.id) {
+            case "0": // Nada
+                break;
+            case "1": // Editar
+                var form = document.getElementById('formPasoParametro');
+                document.getElementById('id').value = id_parametro;
+                form.submit();
+                break;
+            case "2": // Eliminar
+                document.getElementById("modalELiminar").click();
+                break;
+            default:
+        }
+    }
+
+    function abrirContextMenu(ev, id) {
+        id_parametro = id;
+        let x = ev.pageX;
+        let y = ev.pageY;
+        let contextMenuObj = document.getElementById("contextmenu").ej2_instances[0];
+        contextMenuObj.open(y, x);
+    }
+
+    function accionEliminar() {
+        $.ajax({
+            type: "DELETE",
+            url: '@Url.Action("Delete", "FormatoMarcacionBiometrico")',
+            data: { id: id_parametro },
+            success: function (response) {
+            if (response.transaccion) {
+                mensajeV1("Formato eliminado", msgOk);
+                var grid = document.getElementById("Grid").ej2_instances[0];
+                grid.refresh();
+            } else {
+                let mensajeError = response.mensaje || "Error al eliminar el formato.";
+                mensajeV1(mensajeError, msgError);
+            }
+        },
+            error: function () {
+                mensajeV1(errorServidor, msgError);
+            }
+        });
+    }
+
+</script>
+
+@section Scripts {
+
+}
+

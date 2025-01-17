@@ -1,0 +1,124 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+    Layout = "";
+}
+
+<style>
+
+    body {
+      background-color: #D9A708;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%)
+
+    }
+
+    .circle {
+      width: 20px;
+      height: 20px;
+      background-color: #FFF;
+      border-radius: 50%;
+      margin: 0 auto;
+      box-shadow: 0 0 1px rgba(0,0,0,.3)
+    }
+
+    .line {
+      content: '';
+      display: block;
+      height: 200px;
+      width: 2px;
+      background-color: #FFF;
+      margin: 0 auto;
+      transform-origin: center;
+      animation: animate 3s linear infinite;
+    }
+
+    .banner {
+        width: 270px;
+        height: 90px;
+        margin-left: 112px;
+        background-color: #FFF;
+        transform-origin: top;
+        animation: animate 2.9s linear infinite;
+        border-radius: 15px;
+        box-shadow: 8px 8px #a52a2a;
+       
+    }
+
+
+
+    h1 {
+        text-align: center;
+        font-size: 6em;
+        margin: 0;
+        padding: 0;
+        line-height: 90px;
+        color: #D9A708;
+        text-shadow: 3px 6px #202020;
+        cursor: pointer;
+    }
+
+    h2 {
+      color: #FFF
+    }
+
+    @@keyframes animate {
+      0% {
+        transform: rotate(-2deg);
+      }
+      50% {
+
+        transform: rotate(2deg);
+
+      }
+      100% {
+
+        transform: rotate(-2deg);
+
+      }
+    }
+
+
+</style>
+
+<div class="center">
+  
+    <div class="circle">
+
+    </div>
+
+    <div class="line">
+
+    </div>
+
+    <div class="banner">
+        <h1 onclick="redirigir()" title="Volver...">
+           @Model.RequestId
+        </h1>
+    </div>
+
+
+    @if (Model.ShowRequestId)
+    {
+    <h2>
+        @Model.ErrorMessage
+    </h2>
+        
+    }
+</div>
+
+<script>
+    function redirigir() {
+        window.location.href = "/Home/Index";
+    }
+</script>
+
+

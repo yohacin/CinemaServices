@@ -1,0 +1,105 @@
+﻿@{
+    ViewData["Title"] = "Recursos";
+    ViewData["Navbar-Title"] = "Recursos > Engagements > Log";
+
+    List<object> operators = new List<object>();
+    operators.Add(new { value = "contains", text = "contains" });
+    //var formatoFecha = new { type = "datetime", format = "dd-MMM-yyyy" };
+
+}
+@model wDualAssistence.Models.EngagementViewModel;
+
+@section Styles {
+    <style>
+        .spanIcon {
+            border-radius: 5px;
+            border-style: solid;
+            border-color: white;
+        }
+
+        .btn-switch {
+            background-color: #2f373f;
+            border-radius: 3px;
+            height: 25px;
+            padding: 0;
+        }
+
+        .text-switch {
+            display: inline-block;
+            color: #fff;
+            text-transform: uppercase;
+            padding: 6px !important;
+            margin-top: -5px;
+        }
+
+        .activo {
+            background: #f9c92e;
+        }
+
+        .e-grid .e-filtered::before {
+            color: white !important;
+        }
+    </style>
+}
+
+<div class="content-wrapper">
+    <div class="content">
+        <div class="panel panel-default">
+            <div class="panel-heading heading-primary">
+                <span class="capa_btn volver">
+                    <button class="btn btn-base cancelar" type="button" onclick="irAListado()">
+                        <span class="fa span-button volver"></span>
+                        <p class="text-button-primary">VOLVER</p>
+                    </button>
+                </span>
+                <span class="capa_btn info">
+                    <button type="submit" class="btn btn-base crear" onclick="toExcel()">
+                        <span class="fa span-button fa-file-excel-o"></span>
+                        <p class="text-button-primary">Exportar</p>
+                    </button>
+                </span>
+            </div>
+            <div class="panel-body">
+                <section class="content-body">
+
+                    <ejs-grid id="Grid" dataSource="@Model.listaLog" allowPaging="true" allowFiltering="true" locale="es" gridLines="Both">
+                        <e-grid-filterSettings type="Menu" mode="OnEnter" operators="@(new { stringOperator = operators })"></e-grid-filterSettings>
+                        <e-grid-pagesettings enableQueryString="true" pageSize="10"></e-grid-pagesettings>
+                        <e-grid-columns>
+                            <e-grid-column field="id" isPrimaryKey="true" visible="false" type="string" headerTextAlign="Center" textAlign="Left" width="50"></e-grid-column>
+                            <e-grid-column field="fecha_solicita" headerText="FECHA SOL." type="date" format="dd/MM/yyyy" headerTextAlign="Center" textAlign="Left" width="50"></e-grid-column>
+                            <e-grid-column field="id_usuario_solicita" headerText="ID SOL." type="number" headerTextAlign="Center" textAlign="Left" width="50"></e-grid-column>
+                            <e-grid-column field="nombre_solicitante" headerText="NOMBRE SOLICITA" type="string" headerTextAlign="Center" textAlign="Left" width="150"></e-grid-column>
+
+                            <e-grid-column field="fecha_autoriza" headerText="FECHA AUT." type="date" format="dd/MM/yyyy" headerTextAlign="Center" textAlign="Left" width="50"></e-grid-column>
+                            <e-grid-column field="id_usuario_autoriza" headerText="ID AUT." type="number" headerTextAlign="Center" textAlign="Left" width="50"></e-grid-column>
+                            <e-grid-column field="nombre_autorizador" headerText="NOMBRE AUTORIZADOR" type="string" headerTextAlign="Center" textAlign="Right" width="150"></e-grid-column>
+                        </e-grid-columns>
+                    </ejs-grid>
+
+                </section>
+
+            </div>
+            <a id="exportar" href="" target="_blank"></a>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function irAListado() {
+        window.document.location.href = '@Url.Action("Listado", "Engagement")';
+    }
+
+    function toExcel() {
+
+            document.getElementById('exportar').href = '@Url.Action("RptEngagementLogEXCEL", "Engagement")/' + @Model.eEngagement.id;
+            document.getElementById('exportar').click();
+        }
+
+</script>
+
+@section Scripts {
+    
+}
+

@@ -1,0 +1,221 @@
+2020-09-18 09:16:53,685 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-18 09:25:23,377 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-18 09:47:45,285 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-18 16:16:17,345 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-18 16:19:30,483 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-18 16:52:00,383 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-18 16:54:22,322 [11] ERROR WebServices Business.Public.Categoria_Tarea - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> Npgsql.NpgsqlException: Exception while writing to stream ---> System.IO.IOException: Unable to write data to the transport connection: Se ha forzado la interrupción de una conexión existente por el host remoto. ---> System.Net.Sockets.SocketException: Se ha forzado la interrupción de una conexión existente por el host remoto
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 125
+   --- End of inner exception stack trace ---
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 134
+   at Npgsql.NpgsqlCommand.SendExecute(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 874
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1208
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 60
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.Categoria_Tarea.GetLista() in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Public\Categoria_Tarea.cs:line 133 
+2020-09-18 16:54:22,353 [6] ERROR WebServices Business.Public.Dia_Feriado - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> Npgsql.NpgsqlException: Exception while writing to stream ---> System.IO.IOException: Unable to write data to the transport connection: Se ha forzado la interrupción de una conexión existente por el host remoto. ---> System.Net.Sockets.SocketException: Se ha forzado la interrupción de una conexión existente por el host remoto
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 125
+   --- End of inner exception stack trace ---
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 134
+   at Npgsql.NpgsqlCommand.SendExecute(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 874
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1208
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 60
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.Dia_Feriado.GetLista() in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Public\Dia_Feriado.cs:line 110 
+2020-09-18 16:54:22,353 [15] ERROR WebServices Business.Public.Tarea - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> Npgsql.NpgsqlException: Exception while writing to stream ---> System.IO.IOException: Unable to write data to the transport connection: Se ha forzado la interrupción de una conexión existente por el host remoto. ---> System.Net.Sockets.SocketException: Se ha forzado la interrupción de una conexión existente por el host remoto
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 125
+   --- End of inner exception stack trace ---
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 134
+   at Npgsql.NpgsqlCommand.SendExecute(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 874
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1208
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 60
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.Tarea.GetLista() in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Public\Tarea.cs:line 132 
+2020-09-18 16:54:22,353 [16] ERROR WebServices Business.Security.Usuario - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> Npgsql.NpgsqlException: Exception while writing to stream ---> System.IO.IOException: Unable to write data to the transport connection: Se ha forzado la interrupción de una conexión existente por el host remoto. ---> System.Net.Sockets.SocketException: Se ha forzado la interrupción de una conexión existente por el host remoto
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 125
+   --- End of inner exception stack trace ---
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 134
+   at Npgsql.NpgsqlCommand.SendExecute(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 874
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1208
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 60
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Security.Usuario.GetAccesoxUsuario(Int64 id_usuario) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Security\Usuario.cs:line 276 
+2020-09-18 16:54:22,561 [6] ERROR WebServices wDualAssistence.Controllers.DiaFeriadoController - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> Npgsql.NpgsqlException: Exception while writing to stream ---> System.IO.IOException: Unable to write data to the transport connection: Se ha forzado la interrupción de una conexión existente por el host remoto. ---> System.Net.Sockets.SocketException: Se ha forzado la interrupción de una conexión existente por el host remoto
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 125
+   --- End of inner exception stack trace ---
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 134
+   at Npgsql.NpgsqlCommand.SendExecute(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 874
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1208
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Business.Public.Dia_Feriado.GetLista() in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Public\Dia_Feriado.cs:line 115
+   at wDualAssistence.Controllers.DiaFeriadoController.Get(ODataQueryOptions`1 queryOptions) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\NetcoreWebApp\Controllers\DiaFeriadoController.cs:line 51 
+2020-09-18 16:54:22,645 [15] ERROR WebServices wDualAssistence.Controllers.TareaController - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> Npgsql.NpgsqlException: Exception while writing to stream ---> System.IO.IOException: Unable to write data to the transport connection: Se ha forzado la interrupción de una conexión existente por el host remoto. ---> System.Net.Sockets.SocketException: Se ha forzado la interrupción de una conexión existente por el host remoto
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 125
+   --- End of inner exception stack trace ---
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 134
+   at Npgsql.NpgsqlCommand.SendExecute(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 874
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1208
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Business.Public.Tarea.GetLista() in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Public\Tarea.cs:line 145
+   at wDualAssistence.Controllers.TareaController.Get(ODataQueryOptions`1 queryOptions) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\NetcoreWebApp\Controllers\TareaController.cs:line 52 
+2020-09-18 16:54:22,726 [16] ERROR WebServices wDualAssistence.Controllers.ModuloController - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> Npgsql.NpgsqlException: Exception while writing to stream ---> System.IO.IOException: Unable to write data to the transport connection: Se ha forzado la interrupción de una conexión existente por el host remoto. ---> System.Net.Sockets.SocketException: Se ha forzado la interrupción de una conexión existente por el host remoto
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 125
+   --- End of inner exception stack trace ---
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 134
+   at Npgsql.NpgsqlCommand.SendExecute(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 874
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1208
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Business.Security.Usuario.GetAccesoxUsuario(Int64 id_usuario) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Security\Usuario.cs:line 281
+   at wDualAssistence.Controllers.ModuloController.GetAccesoByUsuario(Int64 idUsuario) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\NetcoreWebApp\Controllers\ModuloController.cs:line 35 
+2020-09-18 16:54:22,490 [11] ERROR WebServices wDualAssistence.Controllers.CategoriaTareaController - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> Npgsql.NpgsqlException: Exception while writing to stream ---> System.IO.IOException: Unable to write data to the transport connection: Se ha forzado la interrupción de una conexión existente por el host remoto. ---> System.Net.Sockets.SocketException: Se ha forzado la interrupción de una conexión existente por el host remoto
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 125
+   --- End of inner exception stack trace ---
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 134
+   at Npgsql.NpgsqlCommand.SendExecute(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 874
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1208
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Business.Public.Categoria_Tarea.GetLista() in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Public\Categoria_Tarea.cs:line 138
+   at wDualAssistence.Controllers.CategoriaTareaController.Get(ODataQueryOptions`1 queryOptions) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\NetcoreWebApp\Controllers\CategoriaTareaController.cs:line 52 
+2020-09-18 16:57:20,688 [24] ERROR WebServices Business.Public.Cargo_Engagement - System.Net.Sockets.SocketException (10060): Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+   at Npgsql.NpgsqlConnector.Connect(NpgsqlTimeout timeout) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 703
+   at Npgsql.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 555
+   at Npgsql.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 414
+   at Npgsql.ConnectorPool.AllocateLong(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/ConnectorPool.cs:line 246
+   at Npgsql.NpgsqlConnection.<>c__DisplayClass32_0.<<Open>g__OpenLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 302
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnection.Open() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 153
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.Cargo_Engagement.GetLista() in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Public\Cargo_Engagement.cs:line 110 
+2020-09-18 16:57:20,783 [24] ERROR WebServices wDualAssistence.Controllers.CargoController - System.Net.Sockets.SocketException (10060): Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+   at Business.Public.Cargo_Engagement.GetLista() in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Public\Cargo_Engagement.cs:line 115
+   at wDualAssistence.Controllers.CargoController.Get(ODataQueryOptions`1 queryOptions) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\NetcoreWebApp\Controllers\CargoController.cs:line 29 
+2020-09-18 17:00:13,035 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-18 17:02:06,894 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-18 17:08:28,531 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-18 17:17:53,210 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-18 17:38:26,611 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-18 17:58:42,111 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-18 18:00:19,482 [11] ERROR WebServices Business.Public.Area_Engagement - System.Exception: El area esta asociado a uno o más engagements!!...
+   at Business.Public.Area_Engagement.Eliminar(Int64 id) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Public\Area_Engagement.cs:line 69 
+2020-09-18 18:00:19,603 [11] ERROR WebServices wDualAssistence.Controllers.AreaController - System.Exception: El area esta asociado a uno o más engagements!!...
+   at Business.Public.Area_Engagement.Eliminar(Int64 id) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Public\Area_Engagement.cs:line 80
+   at wDualAssistence.Controllers.AreaController.Delete(Int32 id) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\NetcoreWebApp\Controllers\AreaController.cs:line 80 
+2020-09-18 18:13:39,403 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-18 18:15:47,773 [6] ERROR WebServices wDualAssistence.Controllers.EngagementEmpleadoController - System.Exception: La asignación de horas esta fuera de las fechas establecidas para el engagement: desde 17/09/2020, hasta: 30/09/2020
+   at wDualAssistence.Controllers.EngagementEmpleadoController.AsignarHoras(Int64 id_detalle, Int64 id_engagement, Int64 id_empleado, DateTime fecha, Double horas) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\NetcoreWebApp\Controllers\EngagementEmpleadoController.cs:line 192 
+2020-09-18 18:26:47,246 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-18 18:30:44,062 [25] ERROR WebServices Business.Public.EngagementEmpleado - System.Exception: No existe la asignación engagement empleado a eliminar !
+   at Business.Public.EngagementEmpleado.EliminarAsignacionEmpleado(Int64 id_engagement, Int64 id_empleado) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Public\EngagementEmpleado.cs:line 240 
+2020-09-18 18:30:44,203 [25] ERROR WebServices wDualAssistence.Controllers.EngagementEmpleadoController - System.Exception: No existe la asignación engagement empleado a eliminar !
+   at Business.Public.EngagementEmpleado.EliminarAsignacionEmpleado(Int64 id_engagement, Int64 id_empleado) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Public\EngagementEmpleado.cs:line 250
+   at wDualAssistence.Controllers.EngagementEmpleadoController.EliminarAsociacionEmpleado(Int64 id_engagement, Int64 id_empleado) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\NetcoreWebApp\Controllers\EngagementEmpleadoController.cs:line 257 
+2020-09-18 18:30:48,559 [31] ERROR WebServices Business.Public.EngagementEmpleado - System.Exception: No existe la asignación engagement empleado a eliminar !
+   at Business.Public.EngagementEmpleado.EliminarAsignacionEmpleado(Int64 id_engagement, Int64 id_empleado) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Public\EngagementEmpleado.cs:line 240 
+2020-09-18 18:30:48,611 [31] ERROR WebServices wDualAssistence.Controllers.EngagementEmpleadoController - System.Exception: No existe la asignación engagement empleado a eliminar !
+   at Business.Public.EngagementEmpleado.EliminarAsignacionEmpleado(Int64 id_engagement, Int64 id_empleado) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Public\EngagementEmpleado.cs:line 250
+   at wDualAssistence.Controllers.EngagementEmpleadoController.EliminarAsociacionEmpleado(Int64 id_engagement, Int64 id_empleado) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\NetcoreWebApp\Controllers\EngagementEmpleadoController.cs:line 257 
+2020-09-18 18:34:37,026 [26] ERROR WebServices Business.Public.EngagementEmpleado - System.Exception: No existe la asignación engagement empleado a eliminar !
+   at Business.Public.EngagementEmpleado.EliminarAsignacionEmpleado(Int64 id_engagement, Int64 id_empleado) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Public\EngagementEmpleado.cs:line 240 
+2020-09-18 18:34:37,112 [26] ERROR WebServices wDualAssistence.Controllers.EngagementEmpleadoController - System.Exception: No existe la asignación engagement empleado a eliminar !
+   at Business.Public.EngagementEmpleado.EliminarAsignacionEmpleado(Int64 id_engagement, Int64 id_empleado) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Public\EngagementEmpleado.cs:line 250
+   at wDualAssistence.Controllers.EngagementEmpleadoController.EliminarAsociacionEmpleado(Int64 id_engagement, Int64 id_empleado) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\NetcoreWebApp\Controllers\EngagementEmpleadoController.cs:line 257 

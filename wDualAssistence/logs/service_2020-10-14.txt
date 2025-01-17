@@ -1,0 +1,50 @@
+2020-10-14 09:29:55,503 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-10-14 09:30:10,547 [1] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:31:15,850 [7] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:32:15,883 [8] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:33:15,917 [48] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:34:15,945 [7] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:35:15,985 [17] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:37:16,517 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-10-14 09:37:25,912 [1] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:40:15,431 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-10-14 09:40:22,303 [1] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:41:24,387 [7] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:42:24,409 [9] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:43:33,951 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-10-14 09:43:40,146 [1] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:44:21,627 [7] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - Error al enviarMarcacion con el JSON {"codigo_turno":10,"entrada_movil":"2020-10-14 09:44:20.507","entrada_programada":"2020-10-14 09:30:00.000","entrada_real":"2020-10-14 09:44:21.179","enviado":0,"id_empleado":147,"id_empresa_entrada":41,"id_server":0,"latitud_entrada":-17.80568012,"longitud_entrada":-63.16028782,"salida_programada":"2020-10-14 16:00:00.000","action":"None"} 
+System.Exception: No es posible marcar la entrada. Las horas trabajadas en fecha 2020-10-13 es menor a 8. Favor de registrar sus horas de trabajo en la fecha especificada.
+   at wDualAssistence.Controllers.Api.MarcacionController.verificarEnviarMarcacion(String json) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 238
+2020-10-14 09:44:41,787 [42] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:45:44,624 [46] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:46:44,706 [7] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:47:44,769 [8] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:48:44,797 [8] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:49:44,838 [53] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:50:44,930 [64] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:51:44,955 [62] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:52:44,969 [65] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:53:45,008 [76] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:54:45,020 [69] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:55:45,050 [69] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:56:45,119 [69] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:57:45,167 [59] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:58:45,225 [59] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 09:59:45,289 [71] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 10:00:45,336 [71] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 10:01:45,409 [66] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 10:02:45,474 [71] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 10:03:45,487 [66] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 10:04:45,519 [72] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 10:06:23,935 [52] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 10:09:08,186 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-10-14 10:09:18,667 [1] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 10:13:45,286 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-10-14 10:13:52,980 [1] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 10:34:56,312 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-10-14 10:35:04,675 [1] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 10:36:06,820 [42] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 10:42:22,431 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-10-14 10:42:33,142 [1] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-14 10:43:38,225 [41] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 

@@ -1,0 +1,594 @@
+﻿
+@{
+    ViewData["Title"] = "Ubicaciones";
+    if (Model.eEmpresa.id != 0)
+    {
+        ViewData["Navbar-Title"] = "Recursos > Editar Ubicación";
+    }
+    else
+    {
+        ViewData["Navbar-Title"] = "Recursos > Crear Ubicación";
+    }
+
+    var asyncSettings = new Syncfusion.EJ2.Inputs.UploaderAsyncSettings { 
+        SaveUrl = @Url.Content("~/File/GuardarFotoEmpresa"), 
+        RemoveUrl = @Url.Content("~/File/Remove") 
+    };
+
+    var contentFotoPerfil = "#FotoPerfil";
+
+    var contentPerfiles = "#Perfiles";
+
+    var contenidoSupervisados = "#Supervisados";
+
+    List<object> commands = new List<object>();
+    commands.Add(new { type = "Delete", buttonOption = new { iconCss = "e-icons e-delete", cssClass = "e-flat" } });
+
+
+}
+@model wDualAssistence.Models.EmpresaViewModel
+
+@section Styles {
+
+    <style>
+        .e-upload {
+            visibility: hidden !important;
+        }
+
+        #fotoActual {
+            width: 200px;
+            height: 200px;
+        }
+
+        /*#region Estilo Tabs*/
+        .e-content .e-item {
+            font-size: 12px;
+            padding: 10px;
+            text-align: justify;
+        }
+
+
+        .e-group:before {
+            content: '\f0c0';
+        }
+
+        .e-photo:before {
+            content: '\f03e';
+        }
+
+        .e-sitemap:before {
+            content: '\f0e8';
+        }
+
+        #tabUsuario {
+            padding-top: 10px;
+        }
+
+        /*#endregion*/
+
+        #nombre_usuario {
+            text-transform: uppercase;
+        }
+    </style>
+
+    <style>
+        .e-treeview .e-ul {
+            padding: 0 0 0 0px !important;
+        }
+
+        .e-level-1 {
+            background: #8888883d !IMPORTANT;
+            margin-top: 2px !IMPORTANT;
+        }
+
+        .e-level-2 {
+            background: white;
+        }
+
+        .searchTrue {
+            color: red !important;
+        }
+
+        .boton-accion {
+            float: right;
+            margin-top: -25px;
+            margin-bottom: 5px;
+        }
+    </style>
+}
+
+<div class="content-wrapper">
+    <section class="content">
+        <form id="frmUsuario" class="form-horizontal" asp-controller="Empresa" asp-action="Post" autocomplete="off" data-ajax="true" data-ajax-method="POST"
+              data-ajax-begin="onAjaxBegin" data-ajax-complete="onAjaxComplete" data-ajax-loading="#loading"
+              data-ajax-success="fnSuccess(data)" data-ajax-failure="fnFailure()">
+            <div class="panel panel-default">
+                <div class="panel-heading heading-primary">
+                    <span class="capa_btn volver">
+                        <button class="btn btn-base cancelar" type="button" onclick="irAListado()">
+                            <span class="fa span-button volver"></span>
+                            <p class="text-button-primary">VOLVER</p>
+                        </button>
+                    </span>
+                    <span class="capa_btn confirmar">
+                        <button class="btn btn-base guardar btn-submit" onclick="Guardar()">
+                            <span class="fa span-button confirmar"></span>
+                            <p class="text-button-primary">GUARDAR</p>
+                        </button>
+                    </span>
+                </div>
+                <div class="panel-body">
+                    <section class="content-body">
+
+                        <input type="hidden" asp-for="eEmpresa.id" />
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                <h4> <b style="color:red;">*</b>Nombre Ubicación:</h4>
+                                <div class="e-input-group e-small">
+                                    <input class="e-input" asp-for="eEmpresa.nombre" type="text">
+                                </div>
+                                <span asp-validation-for="eEmpresa.nombre" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                <h4> <b style="color:red;">*</b>Dirección:</h4>
+                                <div class="e-input-group e-small">
+                                    <input class="e-input" asp-for="eEmpresa.direccion" type="text">
+                                </div>
+                                <span asp-validation-for="eEmpresa.direccion" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                <h4> <b style="color:red;">*</b>Persona de contacto:</h4>
+                                <div class="e-input-group e-small">
+                                    <input class="e-input" asp-for="eEmpresa.persona_contacto" type="text">
+                                </div>
+                                <span asp-validation-for="eEmpresa.persona_contacto" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                <h4> <b style="color:red;">*</b>Teléfono:</h4>
+                                <div class="e-input-group e-small">
+                                    <input class="e-input" asp-for="eEmpresa.telefono" type="text">
+                                </div>
+                                <span asp-validation-for="eEmpresa.telefono" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                <h4> Correo:</h4>
+                                <div class="e-input-group e-small">
+                                    <input class="e-input" asp-for="eEmpresa.email" type="text">
+                                </div>
+                                <span asp-validation-for="eEmpresa.email" class="text-danger"></span>
+                            </div>
+
+                        </div>
+
+                      @*<div class="row">
+                            
+                            <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                <h4> NIT:</h4>
+                                <div class="e-input-group e-small">
+                                    <input class="e-input" asp-for="eEmpresa.nit" type="text">
+                                </div>
+                                <span asp-validation-for="eEmpresa.nit" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                <h4> Razón social:</h4>
+                                <div class="e-input-group e-small">
+                                    <input class="e-input" asp-for="eEmpresa.razon_social" type="text">
+                                </div>
+                                <span asp-validation-for="eEmpresa.razon_social" class="text-danger"></span>
+                            </div>
+
+                        </div> *@
+
+
+                        <br />
+
+                        <!--#region listaParametrosGenerales-->
+                        <div id="Perfiles" style="display:none">
+                            <div class="panel panel-default">
+                                <input class="e-input" asp-for="eEmpresa.latitud" type="hidden">
+                                <input class="e-input" asp-for="eEmpresa.longitud" type="hidden">
+
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                        <h4> Perimetro (Metros):</h4>
+                                        <div class="e-input-group e-small">
+                                            <input class="e-input" asp-for="eEmpresa.perimetro" type="number" onchange="cambiarEspectro()">
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                                        <div id="map" style="width: 100%; height: 500px"></div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!--#endregion-->
+                        <!-- #region listaZonas -->
+                        <div id="Supervisados" style="display:none">
+                            <div class="panel panel-default">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                        <h4> <b style="color:red;">*</b>Area:</h4>
+                                        <div class="e-input-group e-small">
+                                            <ejs-dropdownlist id="ddlArea" dataSource="@ViewBag.listaAreas"
+                                                              placeholder="Seleccionar Area..." popupHeight="220px" locale="es"
+                                                              filterType="Contains"
+                                                              allowFiltering="true" change="onChangeArea">
+                                            </ejs-dropdownlist>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                        <h4> <b style="color:red;">*</b>Funcionarios:</h4>
+                                        <div class="e-input-group e-small">
+                                            @*<ejs-dropdownlist id="ddlPerfil" dataSource="@Model.listaEmpleado"
+                                                              placeholder="Agregar Empleado..." popupHeight="220px" locale="es"
+                                                              allowFiltering="true" change="onChangeInputDecimal"
+                                                              filterType="Contains">
+                                                <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                                            </ejs-dropdownlist>*@
+
+                                            <ejs-multiselect id="msEmpleados" mode="CheckBox" enableGroupCheckBox="true"
+                                                             enableSelectionOrder="false" showSelectAll="true" unSelectAllText="Ninguno"
+                                                             selectAllText="Todos" placeholder="Todos" filterBarPlaceholder="Buscar..."
+                                                             showClearButton="true" showDropDownIcon="true" dataSource="@Model.listaEmpleado"
+                                                             allowFiltering="true" filterType="Contains">
+                                                <e-multiselect-fields text="nombre" value="id"></e-multiselect-fields>
+                                            </ejs-multiselect>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4">
+                                        <br />
+                                        <span class="capa_btn info">
+                                            <button type="button" class="btn btn-base crear" onclick="agregarEmpleados()">
+                                                <span class="fa span-button fa-file-excel-o"></span>
+                                                <p class="text-button-primary">Agregar Selección</p>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <br />
+
+                                <ejs-grid id="gridUsuario" allowPaging="true" locale="es">
+                                    <e-grid-editSettings allowAdding="false" allowDeleting="true"></e-grid-editSettings>
+                                    <e-grid-pagesettings pageSize="8"></e-grid-pagesettings>
+                                    <e-grid-columns>
+                                        <e-grid-column field="id" isPrimaryKey="true" visible="false" type="string" headerTextAlign="Center" textAlign="Left" width="140"></e-grid-column>
+                                        <e-grid-column field="codigo" headerText="CODIGO" headerTextAlign="Center" textAlign="Center" width="50"></e-grid-column>
+                                        <e-grid-column field="nombre" headerText="NOMBRE" headerTextAlign="Center" textAlign="Left" width="150"></e-grid-column>
+                                        <e-grid-column field="telefono" headerText="TELEFONO" headerTextAlign="Center" textAlign="Left" width="80"></e-grid-column>
+                                        <e-grid-column field="ci" headerText="CI" headerTextAlign="Center" textAlign="Left" width="80"></e-grid-column>
+                                        <e-grid-column field="correo" headerText="CORREO" headerTextAlign="Center" textAlign="Left" width="80"></e-grid-column>
+                                        <e-grid-column headerText="+" width="50" commands="commands"></e-grid-column>
+                                    </e-grid-columns>
+                                </ejs-grid>
+
+                                <!--#region listaParametrosGenerales-->
+                                <input type="hidden" asp-for="stringListaPerfiles" />
+
+                            </div>
+                        </div>
+                        <!--#endregion-->
+                        <!--#region listaParametrosGenerales-->
+                        <div id="FotoPerfil" style="display:none">
+                            <div class="panel panel-default">
+                                @if (Model.eEmpresa.id != 0)
+                                {
+                                    <input type="hidden" id="imagen_logo" asp-for="eEmpresa.logo" />
+                                    <input type="hidden" id="eEmpresa.logo.listFotos[0].url_foto" name="eEmpresa.logo.listFotos[0].url_foto" value="@Model.eEmpresa.logo" />
+                                    <div style="width:100%; text-align: center" onclick="subirFoto()">
+                                        @if (Model.eEmpresa.listFotos.Count > 0)
+                                        {
+                                            <img id="fotoActual" class="img-defecto" src="../@Model.eEmpresa.listFotos[0].url_foto" alt="logo empresa" />
+                                        }
+                                        else
+                                        {
+                                            <img id="fotoActual" class="img-defecto" src="assets/empresas/empresa-defecto.svg" alt="logo empresa" />
+                                        }
+                                    </div>
+                                }
+                                else
+                                {
+                                    <input type="hidden" id="imagen_logo" asp-for="eEmpresa.logo" value="assets/empresas/empresa-defecto.svg" />
+                                    <input type="hidden" id="eEmpresa.logo.listFotos[0].url_foto" name="eEmpresa.logo.listFotos[0].url_foto" value="assets/empresas/empresa-defecto.svg" />
+                                    <div style="width:100%; text-align: center" onclick="subirFoto()">
+                                        <img id="fotoActual" class="img-defecto" src="../assets/empresas/empresa-defecto.svg" alt="logo empresa" />
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <!--#endregion-->
+
+                        <ejs-tab id="tabUsuario" cssClass="headerTab" animation="ViewBag.animation" created="onCreateTabsUsuario">
+                            <e-tab-tabitems>
+                                <e-tab-tabitem header="ViewBag.headerTextTwo" content="@contentPerfiles"></e-tab-tabitem>
+                                <e-tab-tabitem header="ViewBag.headerTextThree" content="@contenidoSupervisados"></e-tab-tabitem>
+                                <e-tab-tabitem header="ViewBag.headerTextOne" content="@contentFotoPerfil"></e-tab-tabitem>
+                            </e-tab-tabitems>
+                        </ejs-tab>
+
+                        <ejs-uploader id="uploadFiles" locale="es" autoUpload="true" allowedExtensions=".jpg,.png,.jpeg'"
+                                      sequentialUpload="true" asyncSettings="@asyncSettings"
+                                      success="onUploadSuccess" failure="onUploadFailed" template="#uploaderTemplate">
+                        </ejs-uploader>
+
+                    </section>
+                </div>
+            </div>
+        </form>
+
+    </section>
+</div>
+
+<script id="uploaderTemplate" type="text/x-template">
+    <span class='wrapper-upload'>
+    </span>
+</script>
+
+@section PreScripts {
+
+    <script>
+        function onfiltering(e) {
+            var query = new ej.data.Query();
+            query = (e.text !== '') ? query.where('nombre', 'contains', e.text, true) : query;
+            e.updateData(@Html.Raw(Json.Serialize(Model.listaEmpleado)), query);
+        }
+    </script>
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD61XJZbxHDlLWATXSGIAX3c7OTgh5dgH4&callback=initMap&libraries=drawing&v=weekly">
+
+    </script>
+    <script src="~/js/drawmapa.js"></script>
+
+    <script>
+    var listaDetalle = [];
+
+    </script>  
+    <script>
+        function onCreateTabsUsuario() {
+            var oTabUsuario = document.getElementById("tabUsuario").ej2_instances[0];
+            oTabUsuario.select(0);
+
+            var Grid = document.getElementById("gridUsuario").ej2_instances[0];
+            var listaDetalleAux = JSON.parse('@Html.Raw(Json.Serialize(Model.eEmpresa.listaEmpleado))');
+            if (listaDetalleAux == null) listaDetalle = [];
+            listaDetalleAux.forEach(function (item) {
+                listaDetalle.push(item);
+            });
+            Grid.dataSource = listaDetalle;
+            Grid.refresh();
+            console.log(Grid.dataSource);
+        }
+
+        function onChangeArea(args) {
+            var msEmpleados = document.getElementById("msEmpleados").ej2_instances[0];
+            if (args.itemData == null || args.itemData.id == 0) {
+                msEmpleados.dataSource = [];
+            } else {
+                $.ajax(
+                {
+                    type: "GET",
+                    url: '@Url.Action("GetListaByArea", "Empleado")/' + args.value,
+                    success: function (data) {
+                        msEmpleados.dataSource = data;
+                        if (!msEmpleados.dataSource.length) { //si el arreglo es vacio
+                            mensajeV1("Esta Area no tiene empleados registrados !", msgAlerta);
+                        } else {
+                            mensajeV1("Lista de Empleados Cargada", msgInformacion);
+                        }
+                    },
+                    error: function () {
+                        mensajeV1('No se pudo conectar con el servicio', msgError);
+                    }
+                });
+            }
+
+        }
+
+        
+
+    </script>
+
+    <script>
+        function subirFoto() {
+            var uploadObj = document.getElementById("uploadFiles").ej2_instances[0];
+            uploadObj.browseButton.click();
+        }
+
+        function onUploadSuccess(args) {
+            var pathImg = window.location.origin + '/assets/imagen/' + args.file.name;
+            document.getElementById('imagen_logo').value = 'assets/imagen/' + args.file.name;
+            document.getElementById('eEmpresa.logo.listFotos[0].url_foto').value = 'assets/imagen/' + args.file.name;
+            document.getElementById('fotoActual').src = pathImg;
+        }
+
+        function onUploadFailed(args) {
+            console.log('Ocurrio un error al subir -----------------------');
+
+        }
+    </script>
+
+}
+
+@section Scripts {
+    <script>
+        "use strict";
+        var market;
+        var map;
+        var drawingManager;
+        var iconMarker = { url: '../assets/recursos/marker/oficina_2.png' };
+        var eventOverlay;
+        var colorLinea = "#f7313b";
+        var colorFondo = "#8bf0ba";
+        var trasparentLinea = "50.0";
+        var trasparentFondo = "30.0";
+        var espectro;
+
+        function initMap() {
+            const myLatLng = {
+                lat: @Model.eEmpresa.latitud.ToString().Replace(",", "."),//-25,363,
+                lng: @Model.eEmpresa.longitud.ToString().Replace(",", ".")//131.044
+            };
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 13,
+                center: myLatLng
+            });
+            market = new google.maps.Marker({
+                draggable: true,
+                position: myLatLng,
+                icon: iconMarker,
+                map
+            });
+            drawingManager = new google.maps.drawing.DrawingManager({
+                drawingMode: google.maps.drawing.OverlayType.MARKER,
+                drawingControl: true,
+                drawingControlOptions: {
+                    position: google.maps.ControlPosition.TOP_CENTER,
+                    drawingModes: [
+                        google.maps.drawing.OverlayType.MARKER
+                    ]
+                },
+                markerOptions: {
+                    icon: iconMarker,
+                    draggable: true
+                }
+            });
+            drawingManager.setMap(map);
+
+            eventOverlay = google.maps.event.addListener(drawingManager, 'overlaycomplete', function (event) {
+                addMarker(event);
+            });
+
+            cambiarEspectro();
+        }
+
+        
+        function cambiarEspectro() {
+            if (espectro) {
+                espectro.setMap(null);
+            }
+
+            if (market) {
+                var valueSpinner = document.getElementById('eEmpresa_perimetro').value;
+                valueSpinner = valueSpinner;
+                espectro = crearCircle(market.getPosition(), map, false, colorLinea, colorFondo, trasparentLinea, trasparentFondo, parseInt(valueSpinner));
+            }
+
+        }
+
+        function addMarker(event) {
+            if (market) {
+                market.setMap(null);
+            }
+
+            if (event.type == google.maps.drawing.OverlayType.MARKER) {
+                market = event.overlay;
+                actualizarLatLng(market);
+
+                google.maps.event.addListener(market, 'drag', function () {
+                    //cambiarEspectro();
+                    actualizarLatLng(market)
+                });
+                drawingManager.setDrawingMode(null);
+            }
+        }
+        function actualizarLatLng(mark) {
+            //llat.value = mark.getPosition().lat();
+            //llng.value = mark.getPosition().lng();
+            cambiarEspectro();
+        }
+
+
+    </script>
+<script>
+    function onChangeInputDecimal(args) {
+        if (args.itemData != null) {
+            //BILLY REVISAR
+            const found = listaDetalle.some(el => el.id === args.itemData.id);
+            if (!found) //arr.push({ id, username: name });
+                listaDetalle.push(args.itemData);
+
+            var oGridUsuario = document.getElementById("gridUsuario").ej2_instances[0];
+            //oGridUsuario.dataSource.push(args.itemData);
+            oGridUsuario.dataSource = listaDetalle;
+            oGridUsuario.refresh();
+            console.log(oGridUsuario.dataSource);
+            //let ddlEmpleado = document.getElementById("ddlPerfil").ej2_instances[0];
+            //ddlEmpleado.value = null;
+
+        }
+    }
+
+    function agregarEmpleados() {
+        let msEmpleados = document.getElementById("msEmpleados").ej2_instances[0];
+        let listaSeleccionados = msEmpleados.value;
+        if (listaSeleccionados && listaSeleccionados.length) { //Si tiene algun valor
+            for (let i = 0; i < listaSeleccionados.length; i++) {
+                const found = listaDetalle.some(el => el.id === listaSeleccionados[i]);
+                if (!found) {
+                    var itemData = msEmpleados.dataSource.find(item => item.id === listaSeleccionados[i]);
+                    if (itemData != null) listaDetalle.push(itemData);
+                }
+            }
+
+            var oGridUsuario = document.getElementById("gridUsuario").ej2_instances[0];
+            oGridUsuario.dataSource = listaDetalle;
+            oGridUsuario.refresh();
+
+            msEmpleados.ClearAll()  // Limpiar elementos seleccionado
+
+            mensajeV1("Funcionarios seleccionados cargado con exito", msgInformacion);
+        } else {
+            mensajeV1("Debe seleccionar al menos un Funcionario", msgAlerta);
+        }
+
+    }
+</script>
+
+    <script type="text/javascript">
+
+        function Guardar() {
+            document.getElementById("eEmpresa_latitud").value = market.position.lat();    
+            document.getElementById("eEmpresa_longitud").value = market.position.lng();
+
+            var oGridUsuario = document.getElementById("gridUsuario").ej2_instances[0];
+            document.getElementById('stringListaPerfiles').value = JSON.stringify(oGridUsuario.dataSource);
+
+        }
+
+        function irAListado() {
+            window.document.location.href = '@Url.Action("Listado", "Empresa")';
+            //console.log(market.position.lat());
+            //console.log(market.position.lng());
+        }
+
+        //Despues del Submit del Form Principal
+        function fnSuccess(data) {
+            if (data.transaccion == true) {
+                mensajeV1("Transacción exitosa!", msgOk);
+                irAListado();
+            }
+            else
+                mensajeV1(data.mensaje, msgError);
+        }
+
+        function fnFailure() {
+            mensajeV1(errorServidor, msgError);
+        }
+    </script>
+
+    
+}

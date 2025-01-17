@@ -1,0 +1,163 @@
+﻿@model wDualAssistence.Models.ViewModelBase;
+
+<style>
+    .treeview.menu-open i {
+        color: #1e87d9;
+    }
+
+    body.sidebar-collapse .sidebar-menu.tree li.treeview:hover a > span{
+        background-color: #dfdfdf !important;
+    }
+</style>
+
+<script>
+    var listaModulos = null;
+    var listaProgramas = null;
+
+    //window.onload =
+        function getModulos() {
+            let idUsuario = @Model.idUsuario;
+
+            if (idUsuario) {
+                //Obteniendo los modulos
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetModulosByUsuario", "Modulo")',
+                    data: {
+                        idUsuario: idUsuario
+                    },
+                    success: function (data) {
+                        listaModulos = data;
+                        getProgramas(idUsuario);
+                    },
+                    error: function () {
+                        alert('Error al obtener la lista de modulos');
+                    }
+                });
+            }
+        }
+
+        function getProgramas(idUsuario) {
+            //Obteniendo los accesos
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetAccesoByUsuario", "Modulo")',
+                data: {
+                    idUsuario: idUsuario
+                },
+                success: function (data) {
+                    listaProgramas = data;
+                    MostrarModulosProgramas();
+                },
+                error: function () {
+                    alert('Error al obtener la lista de accesos');
+                }
+            });
+        }
+
+        function MostrarModulosProgramas() {
+             //Iteración
+            if (listaModulos && listaProgramas) {
+                let event_data = '';
+                listaModulos.forEach(function (modulo) {
+                    //console.log("modulos", modulo);
+                    event_data += `<li class="treeview">
+                                    <a href="">
+                                        <i class="fa `+ modulo.icon +`" style="font-size: 1.5em; margin-right: 5px;"></i> <span>`+modulo.nombre+`</span>
+                                        <span class="pull-right-container" style="background-color: transparent !important; margin-top: -10px">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                   <ul class="treeview-menu">`;
+
+                    listaProgramas.forEach(function (programa) {
+                        if (modulo.id == programa.id_modulo) {
+
+                           event_data += `<li class="" ><a href="..` + programa.url_pagina +`"><i class="fa fa-circle-o" style="color:#ff6700;"></i>`+programa.nombre+`</a></li>`;
+                        }
+                    });
+                    event_data += `</ul>
+                                   </li>`;
+
+                });
+                document.getElementById("menu").innerHTML = /*`<li class="header">Programas</li>` +*/ event_data;
+
+            } else {
+                console.log("La lista de Modulos y Programas esta vacia");
+            }
+
+        }
+
+    //function guardarProgramaSeleccionado(nombrePrograma) {
+    //    this.AddUpdateClaim("programa_seleccionado", nombrePrograma);        
+    //}
+
+</script>
+
+<script type="text/javascript">
+    @*if (@Model.tipo == 1) {
+        getModulos();
+    } else {
+        setTimeout(getModulosEmpleado, 1000);
+        //getModulosEmpleado();
+    }*@
+    getModulos();
+
+    function getModulosEmpleado() {
+        let event_data = `<li class="treeview">
+                            <a href="">
+                                <i class="fa fa-cogs" style="font-size: 1.5em; margin-right: 5px;"></i> <span>Engagement</span>
+                                <span class="pull-right-container" style="background-color: transparent !important; margin-top: -10px">
+                                <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="" > <a href="../HojaTrabajo/Listado"><i class="fa fa-circle-o" style="color:#ff6700;"></i>Hoja de Trabajo</a></li>
+                                <li class="" > <a href="../Engagement/Listado"><i class="fa fa-circle-o" style="color:#ff6700;"></i>Listado de Engagement</a></li>
+                            </ul>
+                        </li>
+                    `;
+
+        document.getElementById("menu").innerHTML = event_data;
+    }
+</script>
+
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        @*<div class="user-panel">
+            <div class="pull-left image">
+                <img src="~/lib/plantilla-adminlte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>@Model.NombreUsuario</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> @Model.Correo</a>
+            </div>
+            <img src="~/@Model.EmpresaImagen" alt="logo" width="100%" height="130" style="padding: 5%;">
+
+        </div>*@
+        <!-- search form -->
+        @*<p>@Model.NombreUsuario</p>
+        <a href="#"><i class="fa fa-circle text-success"></i> @Model.Correo</a>*@
+
+        @*<form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>*@
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree" id="menu">
+
+        </ul>
+
+    </section>
+    <!-- /.sidebar -->
+</aside>
+

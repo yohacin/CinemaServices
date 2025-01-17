@@ -1,0 +1,255 @@
+2020-09-30 09:12:09,157 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 09:19:08,014 [56] ERROR WebServices Business.Public.Empresa - Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Npgsql.PostgresException: 23505: llave duplicada viola restricción de unicidad «pk_empleado_empresa»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 467
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at Business.Public.Empresa.Modificar(Empresa eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empresa.cs:line 86 
+2020-09-30 09:19:08,241 [56] ERROR WebServices wDualAssistence.Controllers.EmpresaController - Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Npgsql.PostgresException: 23505: llave duplicada viola restricción de unicidad «pk_empleado_empresa»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 467
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Business.Public.Empresa.Modificar(Empresa eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empresa.cs:line 95
+   at wDualAssistence.Controllers.EmpresaController.Post(EmpresaViewModel vEmpresaViewModel) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\EmpresaController.cs:line 183 
+2020-09-30 09:41:06,065 [106] ERROR WebServices Business.Public.Empresa - Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Npgsql.PostgresException: 23503: inserción o actualización en la tabla «foto_empresa» viola la llave foránea «fk_empresa_foto»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 467
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at Business.Public.Empresa.GuardarFotoEmpresa(Foto_Empresa eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empresa.cs:line 128 
+2020-09-30 09:41:06,174 [106] ERROR WebServices wDualAssistence.Controllers.Api.EmpresaController - Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Npgsql.PostgresException: 23503: inserción o actualización en la tabla «foto_empresa» viola la llave foránea «fk_empresa_foto»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 467
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Business.Public.Empresa.GuardarFotoEmpresa(Foto_Empresa eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empresa.cs:line 137
+   at wDualAssistence.Controllers.Api.EmpresaController.enviarFotoEmpresa() in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpresaController.cs:line 109 
+2020-09-30 09:41:55,521 [124] ERROR WebServices Business.Public.Empresa - Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Npgsql.PostgresException: 23503: inserción o actualización en la tabla «foto_empresa» viola la llave foránea «fk_empresa_foto»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 467
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at Business.Public.Empresa.GuardarFotoEmpresa(Foto_Empresa eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empresa.cs:line 128 
+2020-09-30 09:41:55,657 [124] ERROR WebServices wDualAssistence.Controllers.Api.EmpresaController - Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Npgsql.PostgresException: 23503: inserción o actualización en la tabla «foto_empresa» viola la llave foránea «fk_empresa_foto»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 467
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Business.Public.Empresa.GuardarFotoEmpresa(Foto_Empresa eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empresa.cs:line 137
+   at wDualAssistence.Controllers.Api.EmpresaController.enviarFotoEmpresa() in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpresaController.cs:line 109 
+2020-09-30 09:43:24,042 [108] ERROR WebServices Business.Public.Empresa - Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Npgsql.PostgresException: 23503: inserción o actualización en la tabla «foto_empresa» viola la llave foránea «fk_empresa_foto»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 467
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at Business.Public.Empresa.GuardarFotoEmpresa(Foto_Empresa eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empresa.cs:line 128 
+2020-09-30 09:43:24,106 [108] ERROR WebServices wDualAssistence.Controllers.Api.EmpresaController - Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Npgsql.PostgresException: 23503: inserción o actualización en la tabla «foto_empresa» viola la llave foránea «fk_empresa_foto»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 467
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Business.Public.Empresa.GuardarFotoEmpresa(Foto_Empresa eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empresa.cs:line 137
+   at wDualAssistence.Controllers.Api.EmpresaController.enviarFotoEmpresa() in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpresaController.cs:line 109 
+2020-09-30 09:44:18,947 [108] ERROR WebServices Business.Public.Empresa - Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Npgsql.PostgresException: 23503: inserción o actualización en la tabla «foto_empresa» viola la llave foránea «fk_empresa_foto»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 467
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at Business.Public.Empresa.GuardarFotoEmpresa(Foto_Empresa eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empresa.cs:line 128 
+2020-09-30 09:44:21,983 [108] ERROR WebServices wDualAssistence.Controllers.Api.EmpresaController - Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Npgsql.PostgresException: 23503: inserción o actualización en la tabla «foto_empresa» viola la llave foránea «fk_empresa_foto»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 467
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Business.Public.Empresa.GuardarFotoEmpresa(Foto_Empresa eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empresa.cs:line 137
+   at wDualAssistence.Controllers.Api.EmpresaController.enviarFotoEmpresa() in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpresaController.cs:line 109 
+2020-09-30 09:49:03,235 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 09:58:56,159 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 10:05:33,429 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 10:10:52,916 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 10:11:44,348 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 10:19:44,085 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 10:34:33,993 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 10:50:49,922 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 11:08:53,062 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 11:54:03,668 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 12:04:16,140 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 13:41:30,181 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 14:22:34,831 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 14:33:35,454 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 15:09:59,691 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 15:21:25,535 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 15:29:33,232 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 15:56:42,119 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 16:13:50,119 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 16:24:57,264 [22] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - Error al enviarMarcacion con el JSON {"codigo_turno":1,"entrada_movil":"2020-09-30 16:15:01.000","entrada_programada":"2020-09-10 16:14:00.000","entrada_real":"0001-01-01 00:00:00.000","enviado":0,"fotoMarcacion":[{"enviado":0,"fecha_hora":"2020-09-30 16:24:22.527","id_marcacion_movil":6,"posicion":2,"url_foto":"/storage/emulated/0/DualAssistance/Photo/1601497462163.jpg","action":"Insert","id":9}],"id_empleado":90,"id_empresa_entrada":41,"id_empresa_salida":41,"id_server":0,"latitud_entrada":-17.805523141287267,"latitud_salida":-17.80558139551431,"longitud_entrada":-63.16021288745105,"longitud_salida":-63.160250606015325,"salida_movil":"2020-09-30 16:24:29.214","salida_programada":"2020-09-10 16:24:00.000","salida_real":"0001-01-01 00:00:00.000","action":"Update","id":6} 
+System.Exception: TEST
+   at wDualAssistence.Controllers.Api.MarcacionController.enviarMarcacion(String json)
+2020-09-30 16:25:21,454 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 16:26:34,687 [12] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - Error al enviarMarcacion con el JSON {"codigo_turno":1,"entrada_movil":"2020-09-30 16:15:01.000","entrada_programada":"2020-09-10 16:14:00.000","entrada_real":"0001-01-01 00:00:00.000","enviado":0,"fotoMarcacion":[{"enviado":0,"fecha_hora":"2020-09-30 16:24:22.000","id_marcacion":0,"id_marcacion_movil":6,"id_server":0,"posicion":2,"url_foto":"/storage/emulated/0/DualAssistance/Photo/1601497462163.jpg","action":"None","id":9}],"id_empleado":90,"id_empresa_entrada":41,"id_empresa_salida":41,"id_server":0,"latitud_entrada":-17.805523141287267,"latitud_salida":-17.80558139551431,"longitud_entrada":-63.16021288745105,"longitud_salida":-63.160250606015325,"salida_movil":"2020-09-30 16:24:29.000","salida_programada":"2020-09-10 16:24:00.000","salida_real":"0001-01-01 00:00:00.000","action":"None","id":6} 
+System.Exception: TEST
+   at wDualAssistence.Controllers.Api.MarcacionController.enviarMarcacion(String json) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 139
+2020-09-30 16:28:37,323 [15] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - Error al enviarMarcacion con el JSON {"codigo_turno":1,"entrada_movil":"2020-09-30 16:15:01.000","entrada_programada":"2020-09-10 16:14:00.000","entrada_real":"0001-01-01 00:00:00.000","enviado":0,"fotoMarcacion":[{"enviado":0,"fecha_hora":"2020-09-30 16:24:22.000","id_marcacion":0,"id_marcacion_movil":6,"id_server":0,"posicion":2,"url_foto":"/storage/emulated/0/DualAssistance/Photo/1601497462163.jpg","action":"None","id":9}],"id_empleado":90,"id_empresa_entrada":41,"id_empresa_salida":41,"id_server":0,"latitud_entrada":-17.805523141287267,"latitud_salida":-17.80558139551431,"longitud_entrada":-63.16021288745105,"longitud_salida":-63.160250606015325,"salida_movil":"2020-09-30 16:24:29.000","salida_programada":"2020-09-10 16:24:00.000","salida_real":"0001-01-01 00:00:00.000","action":"None","id":6} 
+System.Exception: TEST
+   at wDualAssistence.Controllers.Api.MarcacionController.enviarMarcacion(String json) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 139
+2020-09-30 16:30:48,639 [6] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - Error al enviarMarcacion con el JSON {"codigo_turno":1,"entrada_movil":"2020-09-30 16:15:01.000","entrada_programada":"2020-09-10 16:14:00.000","entrada_real":"0001-01-01 00:00:00.000","enviado":0,"fotoMarcacion":[{"enviado":0,"fecha_hora":"2020-09-30 16:24:22.000","id_marcacion":0,"id_marcacion_movil":6,"id_server":0,"posicion":2,"url_foto":"/storage/emulated/0/DualAssistance/Photo/1601497462163.jpg","action":"None","id":9}],"id_empleado":90,"id_empresa_entrada":41,"id_empresa_salida":41,"id_server":0,"latitud_entrada":-17.805523141287267,"latitud_salida":-17.80558139551431,"longitud_entrada":-63.16021288745105,"longitud_salida":-63.160250606015325,"salida_movil":"2020-09-30 16:24:29.000","salida_programada":"2020-09-10 16:24:00.000","salida_real":"0001-01-01 00:00:00.000","action":"None","id":6} 
+System.Exception: TEST
+   at wDualAssistence.Controllers.Api.MarcacionController.enviarMarcacion(String json) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 139
+2020-09-30 16:37:08,171 [33] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - Error al enviarMarcacion con el JSON {"codigo_turno":1,"entrada_movil":"2020-09-30 16:36:40.678","entrada_programada":"2020-09-10 16:35:00.000","entrada_real":"0001-01-01 00:00:00.000","enviado":0,"fotoMarcacion":[{"enviado":0,"fecha_hora":"2020-09-30 16:35:57.971","id_marcacion_movil":7,"posicion":1,"url_foto":"/storage/emulated/0/DualAssistance/Photo/1601498157565.jpg","action":"Insert","id":10}],"id_empleado":90,"id_empresa_entrada":41,"id_server":0,"latitud_entrada":-17.805618862621486,"longitud_entrada":-63.160177767276764,"salida_programada":"2020-09-10 16:39:00.000","action":"Insert","id":7} 
+System.Exception: TEST
+   at wDualAssistence.Controllers.Api.MarcacionController.enviarMarcacion(String json) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 139
+2020-09-30 16:37:48,404 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 16:39:22,070 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 16:40:09,502 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 16:44:28,302 [33] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - Error al enviarMarcacion con el JSON {"codigo_turno":1,"entrada_movil":"2020-09-30 16:41:25.000","entrada_programada":"2020-09-10 16:39:00.000","entrada_real":"2020-09-30 16:41:12.000","enviado":0,"id_empleado":90,"id_empresa_entrada":41,"id_empresa_salida":41,"id_server":0,"latitud_entrada":-17.805650127120316,"latitud_salida":-17.805592250078917,"longitud_entrada":-63.16034020856023,"longitud_salida":-63.16034046001732,"salida_movil":"2020-09-30 16:44:06.612","salida_programada":"2020-09-10 16:43:00.000","salida_real":"2020-09-30 16:43:53.677","action":"None","id":8} 
+System.Exception: No es posible marcar la salida. Las horas de trabajo registradas en fecha 2020-09-30 deben ser igual a 8
+   at wDualAssistence.Controllers.Api.MarcacionController.verificarEnviarMarcacion(String json) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 254
+2020-09-30 16:54:29,172 [42] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - Error al enviarMarcacion con el JSON {"codigo_turno":1,"entrada_movil":"2020-09-30 16:54:29.257","entrada_programada":"2020-09-10 16:53:00.000","entrada_real":"2020-09-30 16:54:28.697","enviado":0,"id_empleado":90,"id_empresa_entrada":41,"id_server":0,"latitud_entrada":-17.8055430483073,"longitud_entrada":-63.16017374396324,"salida_programada":"2020-09-10 16:57:00.000","action":"None"} 
+System.Exception: No es posible marcar la entrada. Las horas trabajadas en fecha 2020-09-29 es menor a 8. Favor de registrar sus horas de trabajo en la fecha especificada.
+   at wDualAssistence.Controllers.Api.MarcacionController.verificarEnviarMarcacion(String json) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 238
+2020-09-30 17:09:26,105 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 17:13:56,204 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 17:19:43,617 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-30 17:27:24,726 [9] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - Error al enviarMarcacion con el JSON {"codigo_turno":1,"entrada_movil":"2020-09-30 17:22:55.000","entrada_programada":"2020-09-10 17:22:00.000","entrada_real":"2020-09-30 17:22:54.000","enviado":0,"id_empleado":90,"id_empresa_entrada":41,"id_empresa_salida":41,"id_server":0,"latitud_entrada":-17.805678667500615,"latitud_salida":-17.805698700249195,"longitud_entrada":-63.160243229940534,"longitud_salida":-63.16033249720931,"salida_movil":"2020-09-30 17:27:24.963","salida_programada":"2020-09-10 17:26:00.000","salida_real":"2020-09-30 17:27:24.392","action":"None","id":9} 
+System.Exception: No es posible marcar la salida. Las horas de trabajo registradas en fecha 2020-09-30 deben ser igual a 8
+   at wDualAssistence.Controllers.Api.MarcacionController.verificarEnviarMarcacion(String json) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 254
+2020-09-30 17:28:06,710 [25] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - Error al enviarMarcacion con el JSON {"codigo_turno":1,"entrada_movil":"2020-09-30 17:22:55.000","entrada_programada":"2020-09-10 17:22:00.000","entrada_real":"2020-09-30 17:22:54.000","enviado":0,"id_empleado":90,"id_empresa_entrada":41,"id_empresa_salida":41,"id_server":0,"latitud_entrada":-17.805678667500615,"latitud_salida":-17.805698700249195,"longitud_entrada":-63.160243229940534,"longitud_salida":-63.16033249720931,"salida_movil":"2020-09-30 17:28:06.944","salida_programada":"2020-09-10 17:26:00.000","salida_real":"2020-09-30 17:28:06.373","action":"None","id":9} 
+System.Exception: No es posible marcar la salida. Las horas de trabajo registradas en fecha 2020-09-30 deben ser igual a 8
+   at wDualAssistence.Controllers.Api.MarcacionController.verificarEnviarMarcacion(String json) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 254
+2020-09-30 17:33:31,593 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 

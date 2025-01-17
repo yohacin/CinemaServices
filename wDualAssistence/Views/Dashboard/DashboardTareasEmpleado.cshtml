@@ -1,0 +1,288 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    ViewData["Navbar-Title"] = "Tareas Engagement";
+
+}
+@model wDualAssistence.Models.DashboardTareasEmpleadoViewModel;
+
+@section Styles {
+    <style>
+        .spanIcon {
+            border-radius: 5px;
+            border-style: solid;
+            border-color: white;
+        }
+
+        .cartel-horas {
+            width: fit-content;
+            border: 2px solid #0072cc;
+            padding: 5px;
+            border-radius: 5px;
+            background: #0070cc0d;
+        }
+    </style>
+
+    <style>
+        /*#region Estilo Tabs*/
+        .headerTab.e-tab .e-tab-header .e-tab-wrap {
+            width: 150px;
+        }
+
+        .e-content .e-item {
+            font-size: 12px;
+            padding: 10px;
+            text-align: justify;
+            width: 50px;
+        }
+
+
+        .e-group:before {
+            content: '\f0c0';
+        }
+
+        .e-photo:before {
+            content: '\f03e';
+        }
+
+        .e-sitemap:before {
+            content: '\f0e8';
+        }
+
+        #tabUsuario {
+            padding-top: 10px;
+        }
+
+        /* Text Overflow Ellipsis */
+        .headerTab.e-tab .e-tab-header .e-tab-wrap {
+            position: relative;
+        }
+
+            .headerTab.e-tab .e-tab-header .e-tab-wrap .e-tab-text {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: calc(100% - 30px);
+                position: relative;
+                display: block;
+            }
+
+        .headerTab.e-tab .e-tab-header .e-toolbar-item .e-tab-wrap {
+            padding: 0 6px;
+        }
+
+            .headerTab.e-tab .e-tab-header .e-toolbar-item .e-tab-wrap .delete-button-action {
+                position: relative;
+                right: 7px;
+                top: -3px;
+                background: red;
+                height: 24px;
+                width: 30px;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                border-radius: 6px;
+            }
+
+        .headerTab.e-tab .e-tab-header .e-toolbar-item:not(.tab-hijo).e-active .e-tab-wrap .delete-button-action {
+            display: flex;
+        }
+
+        .headerTab.e-tab .e-tab-header .e-toolbar-item:not(.e-active) .e-tab-wrap:hover {
+            height: 32px;
+        }
+
+
+        /*#endregion*/
+        .e-schedule .e-month-view .e-appointment {
+            background: #ff6700;
+        }
+        .e-schedule .e-month-view .e-work-days, .e-schedule .e-month-agenda-view .e-work-days {
+            height: 180px;
+        }
+    </style>
+
+}
+
+<div class="content-wrapper">
+    <div class="content">
+        <div class="panel panel-default">
+            <div class="panel-heading heading-primary">
+                <span class="capa_btn volver">
+                    <button class="btn btn-base cancelar" type="button" onclick="irAHojaTrabajo()">
+                        <span class="fa span-button volver"></span>
+                        <p class="text-button-primary">Ir a Hoja de Trabajo</p>
+                    </button>
+                </span>
+
+            </div>
+            <div class="panel-body">
+                <section class="content-body">
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                            <div class="e-input-group e-small">
+                                <ejs-dropdownlist id="ddlEngagement" dataSource="@Model.listaEngagement"
+                                                  placeholder="Seleccionar Engagement..." popupHeight="220px" locale="es"
+                                                  allowFiltering="true" change="onChangeEngagement">
+                                    <e-dropdownlist-fields text="titulo" value="id"></e-dropdownlist-fields>
+                                </ejs-dropdownlist>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6" hidden>
+                        </div>
+
+                        <div style="float: right; width: 200px">
+                            <span style="width: 5px; background: #317ab9; padding-left: 13px; border-radius: 50%;">&nbsp;</span>  Engagement Actual
+                            <br />
+                            <span style="width: 5px; background: #ff6700; padding-left: 13px; border-radius: 50%;">&nbsp;</span>  Otros Engagements
+                        </div>
+
+                    </div>
+                    <br />
+
+                    <p id="nombre_empleado" style="text-align: center; padding: 0px; margin: 0px; color: #0077cc; font-weight: bold; margin-top: -15px;"></p>
+                    <ejs-schedule id="schedule" height="550" created="createdCheduler" selectedDate="DateTime.Now" readonly="false" cellClick="ClickCell" eventClick="eventClick" locale="es">
+                        <e-schedule-views>
+                            @*<e-schedule-view option="WorkWeek" displayName="Semana" eventTemplate="#event-template"></e-schedule-view>*@
+                            <e-schedule-view option="Month" eventTemplate="#event-template"></e-schedule-view>
+                        </e-schedule-views>
+                        <e-schedule-eventsettings dataSource="@ViewBag.appointments" enableTooltip="true" tooltipTemplate="#toolTip">
+                        </e-schedule-eventsettings>
+
+                    </ejs-schedule>
+
+                    <button id="btnModal" type="button" data-toggle="modal" data-target="#modalRegistro" hidden />
+
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script id="event-template" type="text/x-template">
+    <div class='template-wrap' style="width: 100%; padding-left: 10px; background: ${PrimaryColor}">
+        <div class="subject">${Subject}</div>
+    </div>
+</script>
+
+<script id="toolTip" type="text/x-template">
+    <div class="tooltip-wrap">
+        <div class="content-area">
+            <div class="name">${Subject}</></div>
+            <div class="time">Engagement&nbsp;:&nbsp;${Engagement} </div>
+        </div>
+    </div>
+</script>
+
+<script>
+    const idEmpleado = @Model.idUsuario;
+
+    console.debug('idEmpleado: ', idEmpleado);
+
+    function irAListado() {
+        window.document.location.href = '@Url.Action("Listado", "Engagement")';
+    }
+</script>
+
+@section PreScripts {
+
+    <script>
+
+        function irAHojaTrabajo() {
+            window.document.location.href = '@Url.Action("Listado", "HojaTrabajo")';
+        }
+
+        function onChangeEngagement(args) {
+            const urlService = '@Url.Action("GetCalendarioByEmpresa", "Engagement")'
+            const idEngagement = args.itemData.id;
+
+            console.debug('changeEngagement: ', args);
+
+            RefrescarCalendario(idEngagement, idEmpleado, args.itemData.titulo);
+        }
+
+        function createdCheduler() {
+            const ddlEngagement = document.getElementById('ddlEngagement').ej2_instances[0];
+            console.debug('ddlEngagement: ', ddlEngagement);
+
+            if (ddlEngagement.dataSource.length > 0) {
+                const defaultValue = ddlEngagement.dataSource[0];
+                ddlEngagement.value = defaultValue.id;
+            }
+
+        }
+
+        function RefrescarCalendario(idEngagement, idEmpleado, nombreEngagement) {
+            console.debug('refrescando calendario');
+            document.getElementById("nombre_empleado").innerHTML = `Horas Asignadas para el engagement: ${nombreEngagement}`;
+
+            console.debug('idEmpleado: ', idEmpleado, 'idEngagement: ', idEngagement);
+
+            onAjaxBegin();
+            $.ajax(
+            {
+                type: "GET",
+                url: '@Url.Action("GetCalendarioByEmpresa", "Engagement")/' + idEngagement + '/' + idEmpleado,
+                success: function (data) {
+                    try {
+                        if (data.transaccion) {
+                            console.log("empieza...:", data.contenido);
+                            let schedule = document.getElementById("schedule").ej2_instances[0];
+                            schedule.eventSettings.dataSource = [];
+                            schedule.refresh();
+                            data.contenido.forEach(function (itemAsignacion) {
+                                onAjaxBegin();
+                                let res = itemAsignacion.StartTime.split("/");
+                                let desde = new Date(res[2] + "/" + res[1] + "/" + res[0]);
+                                itemAsignacion.StartTime = desde;
+
+                                let res2 = itemAsignacion.EndTime.split("/");
+                                let hasta = new Date(res2[2] + "/" + res2[1] + "/" + res2[0]);
+                                itemAsignacion.EndTime = hasta;
+
+                                schedule.eventSettings.dataSource.push(itemAsignacion);
+                            });
+                            console.log("cargado...");
+                            schedule.refresh();
+
+                        } else {
+                            throw data.mensaje;
+                        }
+                    } catch (ex) {
+                        console.error(ex.message);
+                        mensajeV1(ex.message, msgError);
+                    }
+
+                    onAjaxComplete();
+
+                },
+                error: function () {
+                    mensajeV1('No se pudo conectar con el servicio', msgError);
+                    onAjaxComplete();
+                }
+            });
+        }
+
+    </script>
+    <script>
+        function ClickCell(args) {
+            args.cancel = true;
+            console.debug('cell click: ', args);
+        }
+
+        function eventClick(args) {
+            args.cancel = true;
+            console.debug('event click: ', args);
+        }
+    </script>
+}
+
+@section Scripts {
+
+    <script>
+
+    </script>
+
+}

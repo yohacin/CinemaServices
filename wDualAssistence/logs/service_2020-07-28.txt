@@ -1,0 +1,322 @@
+2020-07-28 08:20:57,536 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 08:35:45,228 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 08:43:10,617 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 08:44:59,672 [9] ERROR WebServices Business.Security.Usuario - Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Npgsql.PostgresException: 23503: inserción o actualización en la tabla «usuario» viola la llave foránea «usuario_id_perfil_fkey»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 467
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at Business.Security.Usuario.Guardar(Usuario eUsuario) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 21 
+2020-07-28 08:44:59,803 [9] ERROR WebServices wDualAssistence.Controllers.UsuarioController - Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Npgsql.PostgresException: 23503: inserción o actualización en la tabla «usuario» viola la llave foránea «usuario_id_perfil_fkey»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 467
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Business.Security.Usuario.Guardar(Usuario eUsuario) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 35
+   at wDualAssistence.Controllers.UsuarioController.Post(UsuarioViewModel vUsuarioViewModel) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\UsuarioController.cs:line 136 
+2020-07-28 09:07:24,598 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 09:08:28,821 [6] ERROR WebServices Business.Security.Usuario - Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Npgsql.PostgresException: 23503: inserción o actualización en la tabla «usuario» viola la llave foránea «usuario_id_perfil_fkey»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 467
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at Business.Security.Usuario.Guardar(Usuario eUsuario) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 21 
+2020-07-28 09:08:28,984 [6] ERROR WebServices wDualAssistence.Controllers.UsuarioController - Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Npgsql.PostgresException: 23503: inserción o actualización en la tabla «usuario» viola la llave foránea «usuario_id_perfil_fkey»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 467
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Business.Security.Usuario.Guardar(Usuario eUsuario) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 35
+   at wDualAssistence.Controllers.UsuarioController.Post(UsuarioViewModel vUsuarioViewModel) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\UsuarioController.cs:line 138 
+2020-07-28 09:09:20,114 [18] ERROR WebServices Business.Security.Usuario - Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Npgsql.PostgresException: 23503: inserción o actualización en la tabla «usuario» viola la llave foránea «usuario_id_perfil_fkey»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 467
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at Business.Security.Usuario.Guardar(Usuario eUsuario) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 21 
+2020-07-28 09:09:20,202 [18] ERROR WebServices wDualAssistence.Controllers.UsuarioController - Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Npgsql.PostgresException: 23503: inserción o actualización en la tabla «usuario» viola la llave foránea «usuario_id_perfil_fkey»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 467
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Business.Security.Usuario.Guardar(Usuario eUsuario) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 35
+   at wDualAssistence.Controllers.UsuarioController.Post(UsuarioViewModel vUsuarioViewModel) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\UsuarioController.cs:line 138 
+2020-07-28 09:12:08,679 [6] ERROR WebServices wDualAssistence.Controllers.UsuarioController - System.Exception: Debe seleccionar el perfil del usuario
+   at wDualAssistence.Controllers.UsuarioController.Post(UsuarioViewModel vUsuarioViewModel) 
+2020-07-28 09:14:16,796 [15] ERROR WebServices wDualAssistence.Controllers.UsuarioController - System.Exception: Debe seleccionar el perfil del usuario
+   at wDualAssistence.Controllers.UsuarioController.Post(UsuarioViewModel vUsuarioViewModel) 
+2020-07-28 09:35:25,860 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 09:36:19,937 [7] ERROR WebServices Business.Security.Acceso - System.InvalidCastException: Can't cast database type character varying to Int64
+   at Npgsql.NpgsqlDefaultDataReader.GetFieldValue[T](Int32 column) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDefaultDataReader.cs:line 153
+   at lambda_method(Closure , DbDataReader )
+   at Microsoft.EntityFrameworkCore.Storage.Internal.TypedRelationalValueBufferFactory.Create(DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Business.Security.Acceso.GetEntity(Int64 id) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Acceso.cs:line 83 
+2020-07-28 09:36:20,136 [7] ERROR WebServices wDualAssistence.Controllers.PerfilController - System.InvalidCastException: Can't cast database type character varying to Int64
+   at Business.Security.Acceso.GetEntity(Int64 id) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Acceso.cs:line 88
+   at wDualAssistence.Controllers.PerfilController.Crear(Int64 id) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\PerfilController.cs:line 80 
+2020-07-28 09:36:44,389 [14] ERROR WebServices Business.Security.Acceso - System.InvalidCastException: Can't cast database type character varying to Int64
+   at Npgsql.NpgsqlDefaultDataReader.GetFieldValue[T](Int32 column) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDefaultDataReader.cs:line 153
+   at lambda_method(Closure , DbDataReader )
+   at Microsoft.EntityFrameworkCore.Storage.Internal.TypedRelationalValueBufferFactory.Create(DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Business.Security.Acceso.GetEntity(Int64 id) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Acceso.cs:line 83 
+2020-07-28 09:37:20,644 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 10:22:44,680 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 10:23:04,694 [10] ERROR WebServices Business.Security.Usuario - Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «modulo»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 444
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Security.Usuario.GetModulosxUsuario(Int64 id_usuario) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 236 
+2020-07-28 10:23:05,119 [10] ERROR WebServices wDualAssistence.Controllers.ModuloController - Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «modulo»
+   at Business.Security.Usuario.GetModulosxUsuario(Int64 id_usuario) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 241
+   at wDualAssistence.Controllers.ModuloController.GetModulosByUsuario(Int64 idUsuario) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\ModuloController.cs:line 21 
+2020-07-28 10:24:09,025 [9] ERROR WebServices Business.Security.Usuario - Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «modulo»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 444
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Security.Usuario.GetModulosxUsuario(Int64 id_usuario) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 236 
+2020-07-28 10:24:09,165 [9] ERROR WebServices wDualAssistence.Controllers.ModuloController - Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «modulo»
+   at Business.Security.Usuario.GetModulosxUsuario(Int64 id_usuario) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 241
+   at wDualAssistence.Controllers.ModuloController.GetModulosByUsuario(Int64 idUsuario) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\ModuloController.cs:line 21 
+2020-07-28 10:25:33,204 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 10:38:37,108 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 10:53:39,059 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 14:05:42,396 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 14:51:13,607 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 14:53:12,030 [15] ERROR WebServices Business.Public.Empleado - System.InvalidCastException: Column is null
+   at Npgsql.NpgsqlDefaultDataReader.GetFieldValue[T](Int32 column) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDefaultDataReader.cs:line 141
+   at lambda_method(Closure , DbDataReader )
+   at Microsoft.EntityFrameworkCore.Storage.Internal.TypedRelationalValueBufferFactory.Create(DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.Empleado.GetLista() in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 111 
+2020-07-28 14:53:12,191 [15] ERROR WebServices wDualAssistence.Controllers.EmpleadoController - System.InvalidCastException: Column is null
+   at Business.Public.Empleado.GetLista() in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 116
+   at wDualAssistence.Controllers.EmpleadoController.Get(ODataQueryOptions`1 queryOptions) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\EmpleadoController.cs:line 52 
+2020-07-28 14:53:36,585 [18] ERROR WebServices Business.Public.Empleado - System.InvalidCastException: Column is null
+   at Npgsql.NpgsqlDefaultDataReader.GetFieldValue[T](Int32 column) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDefaultDataReader.cs:line 141
+   at lambda_method(Closure , DbDataReader )
+   at Microsoft.EntityFrameworkCore.Storage.Internal.TypedRelationalValueBufferFactory.Create(DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.Empleado.GetLista() in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 111 
+2020-07-28 14:53:36,670 [18] ERROR WebServices wDualAssistence.Controllers.EmpleadoController - System.InvalidCastException: Column is null
+   at Business.Public.Empleado.GetLista() in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 116
+   at wDualAssistence.Controllers.EmpleadoController.Get(ODataQueryOptions`1 queryOptions) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\EmpleadoController.cs:line 52 
+2020-07-28 14:57:04,489 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 14:59:40,336 [19] ERROR WebServices Business.Public.Empleado - System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.Select[TSource,TResult](IEnumerable`1 source, Func`2 selector)
+   at Business.Public.Empleado.Guardar(Empleado eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 22 
+2020-07-28 14:59:40,520 [19] ERROR WebServices wDualAssistence.Controllers.EmpleadoController - System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at Business.Public.Empleado.Guardar(Empleado eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 33
+   at wDualAssistence.Controllers.EmpleadoController.Post(EmpleadoViewModel vEmpleadoViewModel) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\EmpleadoController.cs:line 110 
+2020-07-28 15:00:21,633 [28] ERROR WebServices Business.Public.Empleado - System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.Select[TSource,TResult](IEnumerable`1 source, Func`2 selector)
+   at Business.Public.Empleado.Guardar(Empleado eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 22 
+2020-07-28 15:00:21,712 [28] ERROR WebServices wDualAssistence.Controllers.EmpleadoController - System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at Business.Public.Empleado.Guardar(Empleado eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 33
+   at wDualAssistence.Controllers.EmpleadoController.Post(EmpleadoViewModel vEmpleadoViewModel) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\EmpleadoController.cs:line 110 
+2020-07-28 15:03:28,488 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 15:07:29,266 [25] ERROR WebServices Business.Public.Empleado - System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.Select[TSource,TResult](IEnumerable`1 source, Func`2 selector)
+   at Business.Public.Empleado.Guardar(Empleado eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 22 
+2020-07-28 15:07:29,415 [25] ERROR WebServices wDualAssistence.Controllers.EmpleadoController - System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at Business.Public.Empleado.Guardar(Empleado eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 33
+   at wDualAssistence.Controllers.EmpleadoController.Post(EmpleadoViewModel vEmpleadoViewModel) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\EmpleadoController.cs:line 110 
+2020-07-28 15:08:36,559 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 15:08:52,308 [6] ERROR WebServices Business.Security.Usuario - System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.Single[TSource](IQueryable`1 source)
+   at Business.Security.Usuario.Login(String usuario, String contrasena) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 215 
+2020-07-28 15:09:52,298 [10] ERROR WebServices Business.Public.Empleado - System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.Select[TSource,TResult](IEnumerable`1 source, Func`2 selector)
+   at Business.Public.Empleado.Guardar(Empleado eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 22 
+2020-07-28 15:09:52,406 [10] ERROR WebServices wDualAssistence.Controllers.EmpleadoController - System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at Business.Public.Empleado.Guardar(Empleado eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 33
+   at wDualAssistence.Controllers.EmpleadoController.Post(EmpleadoViewModel vEmpleadoViewModel) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\EmpleadoController.cs:line 110 
+2020-07-28 15:12:54,919 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 16:09:06,021 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 16:10:23,175 [6] ERROR WebServices Business.Public.Empleado - System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.Select[TSource,TResult](IEnumerable`1 source, Func`2 selector)
+   at Business.Public.Empleado.Guardar(Empleado eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 22 
+2020-07-28 16:10:23,371 [6] ERROR WebServices wDualAssistence.Controllers.EmpleadoController - System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at Business.Public.Empleado.Guardar(Empleado eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 33
+   at wDualAssistence.Controllers.EmpleadoController.Post(EmpleadoViewModel vEmpleadoViewModel) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\EmpleadoController.cs:line 110 
+2020-07-28 16:10:42,129 [6] ERROR WebServices Business.Public.Empleado - System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.Select[TSource,TResult](IEnumerable`1 source, Func`2 selector)
+   at Business.Public.Empleado.Guardar(Empleado eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 22 
+2020-07-28 16:10:42,234 [6] ERROR WebServices wDualAssistence.Controllers.EmpleadoController - System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at Business.Public.Empleado.Guardar(Empleado eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 33
+   at wDualAssistence.Controllers.EmpleadoController.Post(EmpleadoViewModel vEmpleadoViewModel) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\EmpleadoController.cs:line 110 
+2020-07-28 16:12:08,788 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 18:25:25,968 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 18:42:10,172 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-07-28 19:08:00,232 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 

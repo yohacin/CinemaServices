@@ -1,0 +1,360 @@
+2020-09-28 08:33:58,989 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 08:39:59,047 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 08:42:03,227 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 09:25:25,420 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 10:21:05,719 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 10:48:19,124 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 11:27:36,274 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 11:34:38,889 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 11:36:14,895 [6] ERROR WebServices Business.Public.Marcacion - System.Exception: No es posible marcar la entrada. Las horas trabajadas en fecha 2020-09-27 es menor a 8. Favor de registrar sus horas de trabajo en la fecha especificada.
+   at Business.Public.Marcacion.VerificarMarcacion(Marcacion eMarcacion) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Marcacion.cs:line 389 
+2020-09-28 11:36:17,556 [6] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - Error al enviarMarcacion con el JSON {"codigo_turno":1,"entrada_movil":"2020-09-28 11:35:41.327","entrada_programada":"2020-09-10 11:35:18.000","entrada_real":"0001-01-01 12:00:00.000","enviado":0,"id_empleado":90,"id_empresa_entrada":41,"id_server":0,"latitud_entrada":-17.780352872796357,"longitud_entrada":-63.100780332461,"salida_programada":"2020-09-10 05:00:28.000","action":"None"} 
+System.Exception: No es posible marcar la entrada. Las horas trabajadas en fecha 2020-09-27 es menor a 8. Favor de registrar sus horas de trabajo en la fecha especificada.
+   at Business.Public.Marcacion.VerificarMarcacion(Marcacion eMarcacion) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Marcacion.cs:line 432
+   at wDualAssistence.Controllers.Api.MarcacionController.verificarEnviarMarcacion(String json) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 79
+2020-09-28 11:36:51,071 [7] ERROR WebServices Business.Public.Marcacion - System.Exception: No es posible marcar la entrada. Las horas trabajadas en fecha 2020-09-27 es menor a 8. Favor de registrar sus horas de trabajo en la fecha especificada.
+   at Business.Public.Marcacion.VerificarMarcacion(Marcacion eMarcacion) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Marcacion.cs:line 389 
+2020-09-28 11:36:51,193 [7] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - Error al enviarMarcacion con el JSON {"codigo_turno":1,"entrada_movil":"2020-09-28 11:36:50.876","entrada_programada":"2020-09-10 11:35:18.000","entrada_real":"0001-01-01 12:00:00.000","enviado":0,"id_empleado":90,"id_empresa_entrada":41,"id_server":0,"latitud_entrada":-17.7802401361987,"longitud_entrada":-63.10078854672611,"salida_programada":"2020-09-10 05:00:28.000","action":"None"} 
+System.Exception: No es posible marcar la entrada. Las horas trabajadas en fecha 2020-09-27 es menor a 8. Favor de registrar sus horas de trabajo en la fecha especificada.
+   at Business.Public.Marcacion.VerificarMarcacion(Marcacion eMarcacion) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Marcacion.cs:line 432
+   at wDualAssistence.Controllers.Api.MarcacionController.verificarEnviarMarcacion(String json) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 79
+2020-09-28 11:37:59,221 [19] ERROR WebServices Business.Public.Marcacion - System.InvalidOperationException: The instance of entity type 'Marcacion' cannot be tracked because another instance with the same key value for {'id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode node, Boolean force)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode node, TState state, Func`3 handleNode)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.AttachGraph(InternalEntityEntry rootEntry, EntityState entityState, Boolean forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.DbContext.SetEntityState(InternalEntityEntry entry, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.DbContext.SetEntityState[TEntity](TEntity entity, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.DbContext.Update[TEntity](TEntity entity)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Update(TEntity entity)
+   at Business.Public.Marcacion.VerificarMarcacion(Marcacion eMarcacion) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Marcacion.cs:line 423 
+2020-09-28 11:37:59,317 [19] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - Error al enviarMarcacion con el JSON {"codigo_turno":1,"entrada_movil":"2020-09-28 11:37:59.472","entrada_programada":"2020-09-10 11:35:18.000","entrada_real":"0001-01-01 12:00:00.000","enviado":0,"id_empleado":90,"id_empresa_entrada":41,"id_server":0,"latitud_entrada":-17.780286697670817,"longitud_entrada":-63.10081419534981,"salida_programada":"2020-09-10 05:00:28.000","action":"None"} 
+System.InvalidOperationException: The instance of entity type 'Marcacion' cannot be tracked because another instance with the same key value for {'id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Business.Public.Marcacion.VerificarMarcacion(Marcacion eMarcacion) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Marcacion.cs:line 432
+   at wDualAssistence.Controllers.Api.MarcacionController.verificarEnviarMarcacion(String json) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 79
+2020-09-28 11:46:51,647 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 11:47:54,030 [10] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - Error al enviarMarcacion con el JSON {"codigo_turno":1,"entrada_movil":"2020-09-28 11:47:48.928","entrada_programada":"2020-09-10 11:47:18.000","entrada_real":"0001-01-01 12:00:00.000","enviado":0,"fotoMarcacion":[{"enviado":0,"fecha_hora":"2020-09-28 11:47:45.864","id_marcacion_movil":1,"posicion":1,"url_foto":"/storage/emulated/0/DualAssistance/Photo/1601308065728.jpg","action":"Insert","id":1}],"id_empleado":90,"id_empresa_entrada":41,"id_server":0,"latitud_entrada":-17.780385855585337,"longitud_entrada":-63.10082484036684,"salida_programada":"2020-09-10 05:00:28.000","action":"Insert","id":1} 
+System.InvalidCastException: Unable to cast object of type 'Newtonsoft.Json.Linq.JObject' to type 'Entities.Public.Marcacion'.
+   at wDualAssistence.Controllers.Api.MarcacionController.enviarMarcacion(String json) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 41
+2020-09-28 14:53:11,989 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 15:01:20,448 [11] ERROR WebServices Business.Security.Usuario - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> Npgsql.NpgsqlException: Exception while writing to stream ---> System.IO.IOException: Unable to write data to the transport connection: An existing connection was forcibly closed by the remote host. ---> System.Net.Sockets.SocketException: An existing connection was forcibly closed by the remote host
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 125
+   --- End of inner exception stack trace ---
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 134
+   at Npgsql.NpgsqlCommand.SendExecute(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 874
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1208
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 60
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Business.Security.Usuario.Login(String usuario, String contrasena) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 215 
+2020-09-28 15:01:40,903 [11] ERROR WebServices Business.Security.Usuario - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> System.TimeoutException: The operation has timed out.
+   at Npgsql.NpgsqlConnector.Connect(NpgsqlTimeout timeout) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 703
+   at Npgsql.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 555
+   at Npgsql.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 414
+   at Npgsql.ConnectorPool.AllocateLong(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/ConnectorPool.cs:line 246
+   at Npgsql.NpgsqlConnection.<>c__DisplayClass32_0.<<Open>g__OpenLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 302
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnection.Open() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 153
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 60
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Business.Security.Usuario.Login(String usuario, String contrasena) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 215 
+2020-09-28 15:02:20,983 [11] ERROR WebServices Business.Security.Usuario - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> Npgsql.PostgresException: 57P03: el sistema de base de datos est� inici�ndose
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1003
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.Auth.cs:line 26
+   at Npgsql.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 425
+   at Npgsql.ConnectorPool.AllocateLong(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/ConnectorPool.cs:line 246
+   at Npgsql.NpgsqlConnection.<>c__DisplayClass32_0.<<Open>g__OpenLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 302
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnection.Open() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 153
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 60
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Business.Security.Usuario.Login(String usuario, String contrasena) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 215 
+2020-09-28 15:02:34,800 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 15:07:00,890 [16] ERROR WebServices Business.Public.Empleado - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> Npgsql.NpgsqlException: Exception while writing to stream ---> System.IO.IOException: Unable to write data to the transport connection: An existing connection was forcibly closed by the remote host. ---> System.Net.Sockets.SocketException: An existing connection was forcibly closed by the remote host
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 125
+   --- End of inner exception stack trace ---
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 134
+   at Npgsql.NpgsqlCommand.SendExecute(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 874
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1208
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 60
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Business.Public.Empleado.Login(String usuario, String contrasena) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 272 
+2020-09-28 15:07:01,016 [16] ERROR WebServices wDualAssistence.Controllers.Api.EmpleadoController - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> Npgsql.NpgsqlException: Exception while writing to stream ---> System.IO.IOException: Unable to write data to the transport connection: An existing connection was forcibly closed by the remote host. ---> System.Net.Sockets.SocketException: An existing connection was forcibly closed by the remote host
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 125
+   --- End of inner exception stack trace ---
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 134
+   at Npgsql.NpgsqlCommand.SendExecute(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 874
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1208
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Business.Public.Empleado.Login(String usuario, String contrasena) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 278
+   at wDualAssistence.Controllers.Api.EmpleadoController.obtenerEmpleado(String sjson) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpleadoController.cs:line 58 
+2020-09-28 15:07:05,059 [16] ERROR WebServices Business.Public.Empleado - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> Npgsql.NpgsqlException: Exception while writing to stream ---> System.IO.IOException: Unable to write data to the transport connection: An existing connection was forcibly closed by the remote host. ---> System.Net.Sockets.SocketException: An existing connection was forcibly closed by the remote host
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 125
+   --- End of inner exception stack trace ---
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 134
+   at Npgsql.NpgsqlCommand.SendExecute(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 874
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1208
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 60
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Business.Public.Empleado.Login(String usuario, String contrasena) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 272 
+2020-09-28 15:07:05,111 [16] ERROR WebServices wDualAssistence.Controllers.Api.EmpleadoController - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> Npgsql.NpgsqlException: Exception while writing to stream ---> System.IO.IOException: Unable to write data to the transport connection: An existing connection was forcibly closed by the remote host. ---> System.Net.Sockets.SocketException: An existing connection was forcibly closed by the remote host
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 125
+   --- End of inner exception stack trace ---
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 134
+   at Npgsql.NpgsqlCommand.SendExecute(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 874
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1208
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Business.Public.Empleado.Login(String usuario, String contrasena) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 278
+   at wDualAssistence.Controllers.Api.EmpleadoController.obtenerEmpleado(String sjson) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpleadoController.cs:line 58 
+2020-09-28 15:07:16,601 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 15:28:14,055 [46] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - System.InvalidCastException: Unable to cast object of type 'Newtonsoft.Json.Linq.JObject' to type 'Entities.Public.MarcacionErronea'.
+   at wDualAssistence.Controllers.Api.MarcacionController.enviarMarcacionErronea(String pJson) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 317 
+2020-09-28 15:29:05,545 [53] ERROR WebServices Business.Public.MarcacionErronea - System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.First[TSource](IQueryable`1 source)
+   at Business.Public.MarcacionErronea.Buscar(MarcacionErronea pMarcacion) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\MarcacionErronea.cs:line 45 
+2020-09-28 15:29:07,806 [53] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - System.InvalidOperationException: Sequence contains no elements
+   at Business.Public.MarcacionErronea.Buscar(MarcacionErronea pMarcacion) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\MarcacionErronea.cs:line 50
+   at wDualAssistence.Controllers.Api.MarcacionController.enviarMarcacionErronea(String pJson) 
+2020-09-28 15:30:15,846 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 15:30:34,328 [9] ERROR WebServices Business.Public.MarcacionErronea - System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.First[TSource](IQueryable`1 source)
+   at Business.Public.MarcacionErronea.Buscar(MarcacionErronea pMarcacion) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\MarcacionErronea.cs:line 45 
+2020-09-28 15:30:35,847 [9] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - System.InvalidOperationException: Sequence contains no elements
+   at Business.Public.MarcacionErronea.Buscar(MarcacionErronea pMarcacion) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\MarcacionErronea.cs:line 50
+   at wDualAssistence.Controllers.Api.MarcacionController.enviarMarcacionErronea(String pJson) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 320 
+2020-09-28 15:37:46,848 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 15:38:02,650 [7] ERROR WebServices Business.Public.MarcacionErronea - System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.First[TSource](IQueryable`1 source)
+   at Business.Public.MarcacionErronea.Buscar(MarcacionErronea pMarcacion) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\MarcacionErronea.cs:line 79 
+2020-09-28 15:38:06,761 [7] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - System.InvalidOperationException: Sequence contains no elements
+   at Business.Public.MarcacionErronea.Buscar(MarcacionErronea pMarcacion) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\MarcacionErronea.cs:line 84
+   at wDualAssistence.Controllers.Api.MarcacionController.enviarMarcacionErronea(String pJson) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 320 
+2020-09-28 15:38:14,130 [10] ERROR WebServices Business.Public.MarcacionErronea - System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.First[TSource](IQueryable`1 source)
+   at Business.Public.MarcacionErronea.Buscar(MarcacionErronea pMarcacion) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\MarcacionErronea.cs:line 79 
+2020-09-28 15:38:15,570 [10] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - System.InvalidOperationException: Sequence contains no elements
+   at Business.Public.MarcacionErronea.Buscar(MarcacionErronea pMarcacion) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\MarcacionErronea.cs:line 84
+   at wDualAssistence.Controllers.Api.MarcacionController.enviarMarcacionErronea(String pJson) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 320 
+2020-09-28 15:38:36,846 [6] ERROR WebServices Business.Public.MarcacionErronea - System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.First[TSource](IQueryable`1 source)
+   at Business.Public.MarcacionErronea.Buscar(MarcacionErronea pMarcacion) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\MarcacionErronea.cs:line 79 
+2020-09-28 15:38:36,903 [6] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - System.InvalidOperationException: Sequence contains no elements
+   at Business.Public.MarcacionErronea.Buscar(MarcacionErronea pMarcacion) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\MarcacionErronea.cs:line 84
+   at wDualAssistence.Controllers.Api.MarcacionController.enviarMarcacionErronea(String pJson) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 320 
+2020-09-28 15:39:30,923 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 15:40:11,308 [9] ERROR WebServices Business.Public.MarcacionErronea - Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Npgsql.PostgresException: 42P01: no existe la relación «public.MarcacionErronea»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 444
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at Business.Public.MarcacionErronea.Guardar(MarcacionErronea eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\MarcacionErronea.cs:line 19 
+2020-09-28 15:40:22,636 [9] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Npgsql.PostgresException: 42P01: no existe la relación «public.MarcacionErronea»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 444
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Business.Public.MarcacionErronea.Guardar(MarcacionErronea eEntidad) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\MarcacionErronea.cs:line 28
+   at wDualAssistence.Controllers.Api.MarcacionController.enviarMarcacionErronea(String pJson) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 322 
+2020-09-28 15:41:49,991 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 15:56:13,657 [34] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - System.InvalidOperationException: Incorrect Content-Type: 
+   at Microsoft.AspNetCore.Http.Features.FormFeature.ReadForm()
+   at Microsoft.AspNetCore.Http.Internal.DefaultHttpRequest.get_Form()
+   at wDualAssistence.Controllers.Api.MarcacionController.enviarFotoMarcacion() in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 383 
+2020-09-28 17:42:41,425 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 17:51:55,809 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 17:54:32,208 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 17:56:25,648 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 18:42:33,810 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 18:52:36,247 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-28 18:54:59,586 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 

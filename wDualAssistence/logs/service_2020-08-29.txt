@@ -1,0 +1,1 @@
+2020-08-29 08:15:05,432 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 

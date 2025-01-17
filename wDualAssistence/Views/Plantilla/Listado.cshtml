@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewData["Title"] = "Plantillas";
+    ViewData["Navbar-Title"] = "Notificador > Listado de Plantillas";
+}
+
+@model wDualAssistence.Models.PlantillaViewModel;
+
+@section Styles {
+
+}
+
+
+<div class="content-wrapper">
+    <div class="content">
+        <div class="panel panel-default">
+            <div class="panel-heading heading-primary">
+                <span class="capa_btn info">
+                    <button type="submit" class="btn btn-base crear" onclick="Crear()">
+                        <span class="fa span-button info"></span>
+                        <p class="text-button-primary">Crear</p>
+                    </button>
+                </span>
+            </div>
+            <div class="panel-body">
+                <section class="content">
+                    <ejs-grid id="GridPlantilla" created="onCreateGridPlantilla" dataSource="@Model.eLstPlantilla" allowPaging="true" allowFiltering="true" locale="es" gridLines="Both">
+                        <e-grid-filterSettings showFilterBarStatus="false"></e-grid-filterSettings>
+                        <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
+                        <e-grid-columns>
+                            <e-grid-column field="nombre" filter="@(new {@operator = "contains", predicate = "or"})" headerText="Nombre" headerTextAlign="Center" textAlign="Left" width="50" allowFiltering="true"></e-grid-column>
+                            <e-grid-column template="#templateTipoPlantilla" AllowFiltering="false" headerText="Tipo Plantilla" headerTextAlign="Center" textAlign="Left" width="30"></e-grid-column>
+                            <e-grid-column headerTextAlign="Right" textAlign="Center" template="#menuContextual" width="20" allowFiltering="false"></e-grid-column>
+                        </e-grid-columns>
+                    </ejs-grid>
+                </section>
+
+                <form id="formCrearPlantilla" action='@Url.Action("Crear", "Plantilla")' method="POST">
+                    <input type="hidden" id="idPlantilla" name="idPlantilla" value="0">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a id="modalELiminar" href="@Url.Action("MostrarModalEliminar", "Modal")" data-toggle="modal" data-target="#modalBusqueda" hidden></a>
+<partial name="_SeccionModal" />
+
+<ejs-contextmenu id="contextmenu" items="@Model.menuItems" select="ejecutarAccion"></ejs-contextmenu>
+
+
+@section PreScripts {
+    <script id="templateTipoPlantilla" type="text/x-template">
+        <div class="">
+            ${if(tipo == 'C')}
+            <span class="fa fa-envelope"></span> Correo
+            ${else}
+            <span class="fa fa-weixin"></span> SMS
+            ${/if}
+        </div>
+    </script>
+
+    <script type="text/x-template" id="menuContextual">
+        <button class="boton-accion" onclick="abrirContextMenu(event, ${id})">
+            <i class="fa fa-list-ul"></i>
+        </button>
+    </script>
+
+    <script type="text/javascript">
+        var gridPlantilla;
+
+        function onCreateGridPlantilla() {
+            console.log('al crear grilla plantilla');
+            gridPlantilla = document.getElementById("GridPlantilla").ej2_instances[0];
+        }
+
+        var idPlantilla;
+        function abrirContextMenu(ev, id) {
+            idPlantilla = id;
+            let x = ev.pageX;
+            let y = ev.pageY;
+            let contextMenuObj = document.getElementById("contextmenu").ej2_instances[0];
+            contextMenuObj.open(y, x);
+        }
+
+        function ejecutarAccion(args) {
+            switch (args.item.id) {
+                case "1": // Editar
+                    let form = document.getElementById('formCrearPlantilla');
+                    document.getElementById('idPlantilla').value = idPlantilla;
+                    form.submit();
+                    break;
+                case "2": // Eliminar
+                    mostrarConfirmacion();
+                    break;
+                default:
+            }
+        }
+
+        function eliminarPlantilla(id) {
+            $.ajax({
+                type: "DELETE",
+                url: '@Url.Action("Delete", "Plantilla")',
+                data: { id: id },
+                success: function (data) {
+                    mensajeV1(data.Msg, msgOk);
+                    let selectedRow = gridPlantilla.getSelectedRowIndexes()[0]; //row select for eliminar
+                    gridPlantilla.dataSource.splice(selectedRow, 1); // delete the selected record.
+                    gridPlantilla.refresh(); // refresh the Grid.
+                },
+                error: function (response) {
+                    mensajeV1(response.Msg, msgError);
+                    console.log('StackTrace:', response.StackTrace);
+                }
+            });
+        }
+
+        function accionEliminar() {
+            eliminarPlantilla(idPlantilla);
+        }
+    </script>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        function Crear() {
+            let form = document.getElementById('formCrearPlantilla');
+            document.getElementById('idPlantilla').value = 0;
+            form.submit();
+        }
+
+
+        function mostrarConfirmacion() {
+            document.getElementById('modalELiminar').click();
+        }
+    </script>
+}

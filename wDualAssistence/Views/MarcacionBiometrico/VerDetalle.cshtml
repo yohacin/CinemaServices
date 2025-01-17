@@ -1,0 +1,160 @@
+﻿@{
+    ViewData["Title"] = "Marcaciones desde Biométrico";
+    ViewData["Navbar-Title"] = "Recursos > Ver Detalle Marcación de Biométrico";
+}
+
+@model wDualAssistence.Models.MarcacionBiometricoViewModel
+
+
+@section Styles {
+
+    <style>
+        .e-upload {
+            visibility: hidden !important;
+        }
+
+        #fotoActual {
+            width: 200px;
+            height: 200px;
+        }
+
+        /*#region Estilo Tabs*/
+        .e-content .e-item {
+            font-size: 12px;
+            padding: 10px;
+            text-align: justify;
+        }
+
+
+        .e-group:before {
+            content: '\f0c0';
+        }
+
+        .e-photo:before {
+            content: '\f03e';
+        }
+
+        .e-sitemap:before {
+            content: '\f0e8';
+        }
+
+        #tabUsuario {
+            padding-top: 10px;
+        }
+
+        /*#endregion*/
+
+        #nombre_usuario {
+            text-transform: uppercase;
+        }
+    </style>
+
+    <style>
+        .e-treeview .e-ul {
+            padding: 0 0 0 0px !important;
+        }
+
+        .e-level-1 {
+            background: #8888883d !IMPORTANT;
+            margin-top: 2px !IMPORTANT;
+        }
+
+        .e-level-2 {
+            background: white;
+        }
+
+        .searchTrue {
+            color: red !important;
+        }
+
+        .boton-accion {
+            float: right;
+            margin-top: -25px;
+            margin-bottom: 5px;
+        }
+    </style>
+}
+
+<div class="content-wrapper">
+    <section class="content">
+            <div class="panel panel-default">
+                <div class="panel-heading heading-primary">
+                    <span class="capa_btn volver">
+                        <button class="btn btn-base cancelar" type="button" onclick="irAListado()">
+                            <span class="fa span-button volver"></span>
+                            <p class="text-button-primary">VOLVER</p>
+                        </button>
+                    </span>
+                </div>
+                <div class="panel-body">
+                    <section class="content-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 col-lg-4 col-md-4">
+                            <h4> Formato de Marcación:</h4>
+                            <div>
+                                <input class="e-input" type="text" value="@Model.eMarcacionBiometrico.formato?.nombre" disabled />
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-lg-4 col-md-4">
+                            <h4> Ubicación:</h4>
+                            <div>
+                                <input class="e-input" type="text" value="@Model.eMarcacionBiometrico.empresa?.nombre" disabled />
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-lg-4 col-md-4">
+                            <h4> Archivo Marcación:</h4>
+                            <div>
+                                <input class="e-input" type="text" value="@Model.eMarcacionBiometrico.nombre_archivo" disabled />
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-4 col-lg-4 col-md-4">
+                            <h4> Fecha:</h4>
+                            <div>
+                                <input class="e-input" type="text" value="@Model.eMarcacionBiometrico.fecha_registro.ToString("dd/MM/yyyy HH:mm")" disabled />
+                            </div>
+                        </div>
+
+
+                        <div class="col-xs-12 col-sm-4 col-lg-4 col-md-4">
+                            <h4> Usuario:</h4>
+                            <div>
+                                <input class="e-input" type="text" value="@Model.eMarcacionBiometrico.usuario?.nombre" disabled />
+                            </div>
+                        </div>
+
+                    </div>
+
+                        <br />
+                        <div>
+                             <ejs-grid id="Grid" dataSource="@Model.eMarcacionBiometrico.listaDetalleMarcacion" allowPaging="true" locale="es" gridLines="Both">
+                                <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
+                                <e-grid-columns>
+                                    <e-grid-column field="id" headerTextAlign="Center" headerText="Nº" textAlign="Center" width="10"></e-grid-column>
+                                    <e-grid-column field="codigo_biometrico" headerTextAlign="Center" headerText="CODIGO BIOMETRICO" textAlign="Center" width="80"></e-grid-column>
+                                    <e-grid-column field="fecha_marcacion" headerText="FECHA Y HORA MARCACION" type="datetime" format="dd/MM/yyyy HH:mm" headerTextAlign="Center" textAlign="Center" width="80"></e-grid-column>
+                                </e-grid-columns>
+                            </ejs-grid>
+                        </div>
+
+                    </section>
+                </div>
+            </div>
+
+    </section>
+</div>
+
+@section Scripts {
+
+
+    <script type="text/javascript">
+
+         function irAListado() {
+            window.document.location.href = '@Url.Action("Listado", "MarcacionBiometrico")';
+        }
+
+    </script>
+
+}
+
+

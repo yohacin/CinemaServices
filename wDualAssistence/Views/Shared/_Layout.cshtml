@@ -1,0 +1,147 @@
+﻿@model wDualAssistence.Models.ViewModelBase;
+<!DOCTYPE html>
+<html>
+<head>    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewData["Title"]</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    @* Syncfusion Essential JS 2 bootstrap *@
+    <link href="~/lib/syncfusion/css/bootstrap.css" rel="stylesheet" />
+    @* Syncfusion Essential JS 2 Scripts *@
+    <script src="~/lib/syncfusion/js/ej2.min.js"></script>
+
+    @{ await Html.RenderPartialAsync("_CSS");}
+    @RenderSection("Styles", required: false)
+
+    <style>
+            /*.fondo-loading {
+            background: #f8f8f8;
+            box-shadow: 0 0 50px #edefee;
+        }*/
+
+            .loader > .fondo-loading {
+                opacity: 0.8 !important;
+            }
+
+        .e-grid .e-filtered::before {
+            color: #ffffff !important;
+        }
+    </style>
+</head>
+@* fixed *@
+<body class="hold-transition skin-blue sidebar-mini fixed sidebar-collapse">
+
+    @*<div id="loader" class="loader loader-default is-active" style="display: none;">
+            <div class="fondo-loading">
+                <img src="~/assets/images/recursos/loading-landicorp2.gif" alt="Alternate Text" />
+            </div>
+        </div>*@
+
+    <div id="loader" class="loading-page">
+        <div class="loading-background"></div>
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loadingContent" class="loading-content">
+                <img src="~/assets/recursos/asistencia-favicon.png" alt="Loading" />
+            </div>
+        </div>
+    </div>
+
+    <form id="frmDashboardLayout" action='@Url.Action("DashboardPrincipalMarcacionEmpleado", "Dashboard")' method="GET">
+        @*<input type="hidden" id="dashboard_redirect" name="sEmpresa">*@
+    </form>
+
+    <!-- Site wrapper -->
+    <div class="wrapper">
+
+        <header class="main-header">
+            @*<img class="fondo-degradado" src="~/assets/images/recursos/fondo-degradado.jpg" alt="Alternate Text" />*@
+            <!-- Logo -->
+            <a class="logo" onclick="redirectDashboard()">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <img id="logo-empresa-m" src="~/assets/recursos/asistencia-favicon.png" alt="Alternate Text" style="display:none;cursor:pointer;background-color:#fff;border-radius:50%" />
+                @*<img id="logo-empresa-g" src="~/assets/recursos/asistencia-favicon.png" alt="logo" style="width: 125px;height:150px;cursor:pointer">*@
+                <p id="logo-empresa-g" alt="logo" style="height:50px; cursor:pointer; font-weight: bold; font-size: 25px;">DualAssistance</p>
+
+                <span class="logo-mini"><b></b></span>
+                <!-- logo for regular state and mobile devices -->
+                @*<span class="logo-lg"><b>@Model.NombreEmpresa</b></span>*@
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            @Html.Partial("_HeaderNavbar")
+        </header>
+
+        <!-- =============================================== -->
+        <!-- Left side column. contains the sidebar -->
+        @Html.Partial("_LeftNavigation")
+
+        <!-- =============================================== -->
+        <!-- Content Wrapper. Contains page content -->
+        @RenderBody()
+
+
+        <!-- /.content-wrapper -->
+
+        @Html.Partial("_Footer")
+
+        <!-- Control Sidebar -->
+        @Html.Partial("_ControlSidebar")
+    </div>
+
+    @{ await Html.RenderPartialAsync("_JS"); }
+
+    @{ await Html.RenderPartialAsync("_JSMessageV1"); }
+
+    @RenderSection("PreScripts", required: false)
+    <ejs-scripts></ejs-scripts>
+    @RenderSection("Scripts", required: false)
+
+<script type="text/javascript">
+    function redirectDashboard() {
+        let form = document.getElementById('frmDashboardLayout');
+        let tipo_empleado = @Model.tipo;
+        let dashboard = @Model.dashboard;
+        if (tipo_empleado == 2 || dashboard == 0) {
+                form.action = '@Url.Action("DashboardPrincipalMarcacionEmpleado", "Dashboard")';
+        }
+        form.submit();
+    }
+
+    window.addEventListener("load", ev => {
+        let sMensaje = '@Model.errorMsg';
+        if (sMensaje) {
+            mensajeV1(sMensaje, msgError, 7000);
+        }
+    });
+
+    $('#formSubmit').on('keyup keypress', function (e) {
+        var keyCode = e.keyCode || e.which;
+        if (keyCode === 13) {
+            e.preventDefault();
+            return false;
+        }
+    });
+    $('#frmUsuario').on('keyup keypress', function (e) {
+        var keyCode = e.keyCode || e.which;
+        if (keyCode === 13) {
+            e.preventDefault();
+            return false;
+        }
+    });
+    $('#formAsociacion').on('keyup keypress', function (e) {
+        var keyCode = e.keyCode || e.which;
+        if (keyCode === 13) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+</script>
+</body>
+
+
+</html>
+

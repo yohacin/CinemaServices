@@ -1,0 +1,597 @@
+﻿
+@{
+    ViewData["Title"] = "DualAssistence";
+    Layout = "";
+}
+
+@model wDualAssistence.Models.LoginViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/png" href="~/assets/images/recursos/landicorp-favicon.png">
+    <title>DualbizPortal| Inicio de Sesion</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="~/lib/plantilla-adminlte/plugins/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/lib/plantilla-adminlte/plugins/font-awesome/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/lib/plantilla-adminlte/css/AdminLTE.min.css">
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link href="~/lib/three-dots/three-dots.min.css" rel="stylesheet" />
+
+    <!-- Jquery 3 -->
+    <script src="~/lib/plantilla-adminlte/plugins/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/plantilla-adminlte/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/plantilla-adminlte/plugins/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/plantilla-adminlte/plugins/jquery-ajax-unobstrusive/jquery.unobstrusive-ajax.js"></script>
+
+
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/lib/plantilla-adminlte/plugins/bootstrap/dist/js/bootstrap.js"></script>
+    @* Syncfusion Essential JS 2 bootstrap *@
+    <link href="~/lib/syncfusion/css/bootstrap.css" rel="stylesheet" />
+    @* Syncfusion Essential JS 2 Scripts *@
+    <script src="~/lib/syncfusion/js/ej2.min.js"></script>
+
+    <style>
+
+        /*#region Estilo Card Select Empresa*/
+        .card {
+            width: 200px;
+            height: 138px;
+            /*box-shadow: -4px 4px 10px #202020;*/
+            text-align: center;
+            /*background-color: #244289;*/
+            background-image: linear-gradient(to bottom, #195FC1, #294B7A) !important;
+            margin: 0;
+            color: #fff;
+            border-radius: 10px;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+        }
+
+            .card:hover {
+                /*background-color: #1e428a;*/
+                /*background-color: rgba(25, 54, 113, 1);*/
+                color: white;
+                box-shadow: -5px 5px 10px rgba(36, 66, 137, 0.5);
+            }
+
+        .card-titulo-empresa {
+            /*font-size: 2rem;
+            text-transform: uppercase;
+            color: #1e428a;
+            background-color: #fff;
+            padding: 5px 8px;
+            border-radius: 10px;*/
+            margin-top: 2%;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-left: 2%;
+            color: #1a4289;
+            text-transform: uppercase;
+            position: fixed;
+        }
+        /*#endregion*/
+
+        .input-login {
+            display: inline-block;
+            position: relative;
+            width: 90%;
+        }
+
+        .login-box-body {
+            height: 450px;
+            /*border-radius: 15px;*/
+            /*box-shadow: -10px 5px 20px #a3a1a1;*/
+            /*border: 2px solid #d0d0d0;*/
+            /*border: 3px solid rgba(8, 40, 101, 0.34);*/
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .negrita {
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        #linea-login {
+            width: 100%;
+            position: absolute;
+            height: 16%;
+            z-index: -1;
+            background-image: linear-gradient(to bottom, #195FC1, #294B7A) !important;
+            background: #0288D1;
+            filter: drop-shadow(-3px 5px 6px #999);
+        }
+
+        .column {
+            float: left;
+            width: max-content;
+            height: fit-content;
+            margin: 5px;
+        }
+
+        /* Remove extra left and right margins, due to padding */
+        .row {
+            margin: 0 -5px;
+            height: max-content;
+        }
+
+            /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+        /* Responsive columns */
+        @@media screen and (max-width: 600px) {
+            .column {
+                width: 200px;
+                display: block;
+                margin-bottom: 20px;
+            }
+        }
+
+        #headerEmpresas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 0;
+            width: 100%;
+            margin: 0;
+            display: none;
+        }
+
+            #headerEmpresas > img {
+                width: 100%;
+                height: 28px;
+                display: block;
+            }
+
+        .span-button-login {
+            display: inline-block;
+            /*background-color: #15344f;*/
+            background-image: linear-gradient(to bottom, rgba(25, 95, 193, 0.8), rgba(41, 75, 122, 1)) !important;
+            /*padding: 10px 10px;*/
+            padding: 7px;
+            color: #fff;
+            margin-right: -2px;
+            margin-left: 1px;
+            border-bottom-left-radius: 5px;
+            margin-right: -4px;
+            border-top-left-radius: 5px;
+            /*box-shadow: 0px -4px rgba(21, 52, 79, 0.6);*/
+        }
+
+        .btn-base {
+            padding: 0;
+            background-color: transparent !important;
+            border-radius: 0 !important;
+            outline: none !important;
+            overflow: hidden;
+            height: auto !important;
+        }
+
+        .text-button-login {
+            display: inline-block;
+            padding: 10px;
+            color: #fff;
+            background-color: #f37335;
+            /*background-image: linear-gradient(to bottom, #195FC1, #294B7A) !important;*/
+            margin: 1px;
+            border-bottom-right-radius: 5px;
+            border-top-right-radius: 5px;
+            text-transform: uppercase;
+            /*box-shadow: 0px -4px rgba(20, 155, 77, 0.5);*/
+        }
+
+        .btn-base.login span::before {
+            content: "\f090";
+        }
+
+        .row.btn-login {
+            margin-top: -45%;
+        }
+
+
+        .form-login {
+            padding: 0;
+        }
+
+        .form-login-1 {
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            box-shadow: -2px 5px 3px rgba(32, 32, 32, 0.5);
+            /*background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1),rgba(255, 255, 255, 0.8), rgba(244, 121, 31, 0.3), rgba(244, 121, 31, 0.5));*/
+            background-image: linear-gradient(to bottom, #fff, rgba(220, 234, 251, 0.8), #fff);
+        }
+
+        .form-login-2 {
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            box-shadow: 2px 5px 3px rgba(32, 32, 32, 0.5);
+        }
+
+        .gif-login {
+            margin-top: 5%;
+            height: 160px;
+            width: 240px;
+            border-radius: 15px;
+            /*border: 2px dashed rgba(32, 32, 32, 0.5);*/
+            background-color: #fff;
+        }
+
+        .img-logo-login {
+            background-color: #d0d0d0;
+            border-radius: 50%;
+            height: 100px;
+            width: 100px;
+            margin-top: -70px;
+            border: 8px solid #ffffff;
+            box-shadow: 0px 4px 5px rgba(32, 32, 32, 0.5);
+        }
+
+        .cabecera-adorno-login {
+            width: 100%;
+            height: 30px;
+            /*background-color: rgba(243, 115, 53, 1);*/
+            background-image: linear-gradient(to bottom, #ffcab0, #f37335);
+            position: absolute;
+            filter: drop-shadow(-3px 5px 6px #999);
+            border-top-right-radius: 15px;
+        }
+
+        @@media (max-width: 1200px) {
+            .form-login-1 {
+                display: none;
+            }
+        }
+
+        @@media (max-width: 768px) {
+            .cabecera-adorno-login {
+                width: 90%;
+            }
+        }
+
+        .card-imagen-empresa {
+            /*margin-top: -35px;*/
+            /*background-color: #fff;*/
+            /*height: 200px;*/
+            /*width: 150px;*/
+            /*padding: 8px;*/
+            /*border: 2px solid #eb9637;*/
+            /*border-radius: 10px;*/
+            /*filter: grayscale(100%);*/
+            position: relative;
+            top: -5px;
+        }
+
+        /*.card-imagen-empresa:hover {
+                filter: grayscale(1%);
+            }*/
+
+        .card-fila-empresa {
+            margin-top: calc(15% - 15px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container-empresa {
+            /*height: 50%;*/
+            width: 60% !important;
+            background-color: rgba(255, 255, 255, 0.9);
+            /* border: 5px solid #202020; */
+            border-radius: 15px;
+            box-shadow: -4px 5px 20px rgba(51, 51, 51, 0.5);
+        }
+
+        #Empresas {
+            width: 645px !important;
+            overflow-x: auto;
+            width: max-content !important;
+            max-width: 650px;
+            max-height: 260px;
+        }
+
+        #listaEmpresas {
+            overflow-x: auto;
+            width: max-content;
+            display: block;
+            overflow-y: hidden;
+            height: 160px;
+        }
+
+        input#login::-webkit-input-placeholder {
+            text-transform: capitalize;
+        }
+
+        .spanPassword {
+            margin: auto;
+            font-size: 1.3em;
+            cursor: pointer;
+            /*background-color: #d1d1d1;*/
+            padding: 5px 5px;
+            color: #006ecc;
+        }
+    </style>
+
+    <style>
+        /* override position and transform in 3.3.x */
+        .carousel-inner .item.left.active {
+            transform: translateX(-33%);
+        }
+
+        .carousel-inner .item.right.active {
+            transform: translateX(33%);
+        }
+
+        .carousel-inner .item.next {
+            transform: translateX(33%)
+        }
+
+        .carousel-inner .item.prev {
+            transform: translateX(-33%)
+        }
+
+        .carousel-inner .item.right,
+        .carousel-inner .item.left {
+            transform: translateX(0);
+        }
+
+
+        .carousel-control.left, .carousel-control.right {
+            background-image: none;
+        }
+
+        .item.active.empresaCard {
+            display: block !important;
+        }
+
+        .col-md-4 {
+            top: 35%;
+        }
+
+        .carousel-control:hover {
+            opacity: 1;
+            -webkit-transition: all 0.2s ease;
+        }
+
+        .carousel-control {
+            padding: 15px;
+            background: #2a2a2a;
+            color: #fff;
+            margin-top: 100px;
+            margin-bottom: 100px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .centrado {
+            display: flex;
+            align-content: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+
+
+<body class="hold-transition login-page">
+    <div id="linea-login"></div>
+
+
+
+    <div class="cabecera-login"></div>
+
+    <div class="row">
+
+
+        <div class="col-lg-6 form-login">
+            <form id="formLogin2" class="login-box" asp-controller="Home" asp-action="Validar" autocomplete="off" data-ajax="true"
+                  data-ajax-method="POST" data-ajax-begin="fnBegin"
+                  data-ajax-success="fnSuccess(data)" data-ajax-failure="fnFailure()">
+                <div class="cabecera-adorno-login">
+
+                </div>
+                <div class="login-box-body form-login-2">
+
+                    <div class="login-logo">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 col-lg-12">
+                                <img class="img-logo-login" src="~/assets/usuarios/defecto.svg" alt="logo" />
+                            </div>
+                            <div class="col-xs-12 col-md-12 col-lg-12">
+                                <label style="font-size: 30px;color: #1a4289;">Iniciar Sesion</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="form-group has-feedback">
+                        <i class="fa fa-user fa span-button-login"></i>
+                        <input type="text" id="login" asp-for="login" style="text-transform: uppercase !important"
+                               class="form-control input-login negrita" placeholder="Nombre Usuario" value="@Model.login" autofocus>
+                        <span asp-validation-for="login" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+
+                        <i class="fa fa-lock fa span-button-login"></i>
+                        <div class="e-input-group e-small form-control input-login" style="padding:6px 12px">
+                            <input type="password" id="password" asp-for="password"
+                                   value="@Model.password" class="e-input" style="padding:0;width:230px;font-size:15px;font-weight:bold" placeholder="Contraseña">
+                            <span class="fa fa-eye-slash spanPassword" id="spanContrasenaLogin" onclick="mostrarOcultarContrasena('password', 'spanContrasenaLogin')"></span>
+                        </div>
+                        <span asp-validation-for="password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group has-feedback" style="text-align: center; margin-top: -10px;">
+                        <a style="font-weight:bold;cursor:pointer" href="@Url.Action("Recuperar", "Home")">¿ Olvide mi Contraseña ?</a>
+                    </div>
+
+                    <a href="@Url.Action("Index", "Usuario")" id='hrefPanel'></a>
+
+                </div>
+                <div class="row btn-login">
+
+                    <!-- /.col -->
+                    <div class="centrado">
+                        <div id="animacionLoading" style="display: none;">
+                            <div class="dot-collision"></div>
+                        </div>
+                        <button id="btnSubmitLogin" type="submit" class="btn btn-base login">
+                            <span class="fa span-button-login"></span>
+                            <p class="text-button-login">Ingresar</p>
+                        </button>
+                        @*<button type="submit" class="btn btn-primary btn-block btn-flat" style="width:100%">Ingresar</button>*@
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+
+
+    <!-- /.login-logo -->
+    <!-- /.login-box-body -->
+    <div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    </div>
+
+
+
+
+    <header id="headerEmpresas">
+        <img src="~/assets/recursos/fondo-degradado.jpg" alt="Alternate Text" />
+    </header>
+    <div class="container container-empresa" id="Empresas" hidden>
+        <label class="card-titulo-empresa">Seleccione su Empresa</label>
+        <div class="row card-fila-empresa" id="listaEmpresas">
+
+        </div>
+    </div>
+
+
+    <form id="frmDashboard" action='@Url.Action("DashboardPrincipalEmpleado", "Dashboard")' method="GET"></form>
+    @*<input type="hidden" id="dashboard_redirect" name="sEmpresa" >*@
+
+
+<script type="text/javascript">
+
+        function bloquearEnterSubmit(ev) {
+            let keyCode = ev.keyCode;
+            if (keyCode == 13) {
+                ev.preventDefault();
+            }
+
+        }
+
+        function bloquearSubmit() {
+            document.getElementById('btnSubmitLogin').style.display = 'none';
+            document.getElementById('animacionLoading').style.display = 'block';
+            document.addEventListener('keydown', bloquearEnterSubmit);
+        }
+
+        function desbloquearSubmit() {
+            let btnSubmitLogin = document.getElementById('btnSubmitLogin');
+            btnSubmitLogin.style.display = 'block';
+            document.getElementById('animacionLoading').style.display = 'none';
+            document.removeEventListener('keydown', bloquearEnterSubmit);
+        }
+
+        function fnSuccess(data) {
+            console.log('fnSuccess');
+            if (data.Result == true) {
+                if (data.tipo == 1) {
+                    var form = document.getElementById('frmDashboard');
+                   
+                    if (typeof data.urldashboard === 'string' && data.urldashboard.trim().length > 0) {
+                        form.action = data.urldashboard;
+                    }
+
+                    form.submit();
+                } else {
+                    window.document.location.href = '@Url.Action("DashboardTareasEmpleado", "Dashboard")';
+                }
+            }
+            else {
+                desbloquearSubmit();
+                mensajeV1(data.contenido, msgAlerta);
+            }
+        }
+
+        function fnFailure() {
+            desbloquearSubmit();
+            mensajeV1(errorServidor, msgError);
+        }
+
+        function fnBegin() {
+            bloquearSubmit();
+        }
+
+        function iniciarSesion(ev) {
+            let idEmpresa = ev.srcElement.parentElement.id;
+        }
+
+
+        function selectEmpresa(idEmpresa) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("selectEmpresas","empresa")',
+                data: { id: idEmpresa },
+                success: function (data) {
+                    if (data.Result == true) {
+                        let oEmpresa = data.Contenido;
+
+                        var form = document.getElementById('frmDashboard');
+                        //document.getElementById("dashboard_redirect").value = oEmpresa.dashboard_empresa;
+                        form.submit();
+                    }
+                },
+                error: function () {
+                    mensajeV1(errorServidor, msgError);
+                }
+            });
+        }
+
+            function mostrarOcultarContrasena(input, span) {
+        let inputContra = document.getElementById(`${input}`);
+        let spanContra = document.getElementById(`${span}`)
+        if (inputContra.type === "password") {
+            inputContra.type = "text";
+            spanContra.className = "fa fa-eye spanPassword";
+        } else {
+            inputContra.type = "password";
+            spanContra.className = "fa fa-eye-slash spanPassword";
+        }
+    }
+</script>
+<script>
+    $(document).on("keydown", my_onkeydown_handler);
+    function my_onkeydown_handler(event) {
+        switch (event.keyCode) {
+            case 116: // 'F5'
+                event.preventDefault();
+                break;
+        }
+    }
+
+
+</script>
+    @{ await Html.RenderPartialAsync("_JSMessageV1");}
+    <ejs-scripts></ejs-scripts>
+
+</body>
+</html>

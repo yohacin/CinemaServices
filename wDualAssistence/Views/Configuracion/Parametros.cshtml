@@ -1,0 +1,756 @@
+﻿
+@{
+    ViewData["Title"] = "Configuracion";
+    ViewData["Navbar-Title"] = "Configuración > Parametrización del Engagement";
+
+    var asyncSettings = new Syncfusion.EJ2.Inputs.UploaderAsyncSettings { SaveUrl = @Url.Content("~/File/GuardarFotoEmpresa"), RemoveUrl = @Url.Content("~/File/Remove") };
+
+    var contenidoCategoria = "#TabCategoria";
+
+    var contenidoTarea = "#TabTarea";
+
+    var contenidoFeriado = "#TabFeriado";
+
+    var contenidoAreasCargos = "#TabAreasCargos";
+
+    List<object> operators = new List<object>();
+    operators.Add(new { value = "contains", text = "contains" });
+
+}
+@model wDualAssistence.Models.ConfiguracionViewModel
+
+@section Styles {
+
+    <style>
+
+
+        
+
+        #nombre_usuario {
+            text-transform: uppercase;
+        }
+    </style>
+
+}
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <section class="content-body">
+
+                    <!--#region TabCategoria-->
+                    <div id="TabCategoria" style="display:none">
+                        <div class="panel panel-default">
+
+                            <span class="capa_btn info">
+                                <button type="submit" class="btn btn-base crear" onclick="Crear(1)">
+                                    <span class="fa span-button info"></span>
+                                    <p class="text-button-primary">Crear Categoria</p>
+                                </button>
+                            </span>
+
+                            <ejs-grid id="GridCategoria" created="onCreateGridCategoria" allowPaging="true" allowFiltering="true" locale="es" gridLines="Both">
+                                <e-grid-filterSettings type="Menu" mode="OnEnter" operators="@(new { stringOperator = operators })"></e-grid-filterSettings>
+                                <e-grid-pagesettings enableQueryString="true" pageSize="10"></e-grid-pagesettings>
+                                <e-grid-columns>
+                                    <e-grid-column field="id" isPrimaryKey="true" visible="false"></e-grid-column>
+                                    <e-grid-column field="nombre" headerText="NOMBRE" type="string" headerTextAlign="Center" textAlign="Left" width="200"></e-grid-column>
+                                    <e-grid-column headerTextAlign="Center" textAlign="Center" template="#menuContextual" width="10" allowFiltering="false"></e-grid-column>
+                                </e-grid-columns>
+                            </ejs-grid>
+
+                            <!--  -------------------- PASO DE PARAMETRO POST ----------------- -->
+                            <form id="formPasoParametroCat" action='@Url.Action("Crear", "CategoriaTarea")' method="POST">
+                                <input type="hidden" id="id" name="id" value="0">
+                            </form>
+
+                        </div>
+                    </div>
+                    <!--#endregion-->
+                    <!-- #region TabTarea -->
+                    <div id="TabTarea" style="display:none">
+                        <div class="panel panel-default">
+
+                            <span class="capa_btn info">
+                                <button type="submit" class="btn btn-base crear" onclick="Crear(2)">
+                                    <span class="fa span-button info"></span>
+                                    <p class="text-button-primary">Crear Tarea</p>
+                                </button>
+                            </span>
+                            <ejs-grid id="GridTarea" created="onCreateGridTarea" allowPaging="true" allowFiltering="true" locale="es" gridLines="Both">
+                                <e-grid-filterSettings type="Menu" mode="OnEnter" operators="@(new { stringOperator = operators })"></e-grid-filterSettings>
+                                <e-grid-pagesettings enableQueryString="true" pageSize="10"></e-grid-pagesettings>
+                                <e-grid-columns>
+                                    <e-grid-column field="id" isPrimaryKey="true" visible="false"></e-grid-column>
+                                    <e-grid-column field="nombre" headerText="NOMBRE" type="string" headerTextAlign="Center" textAlign="Left" width="200"></e-grid-column>
+                                    <e-grid-column field="categoria" headerText="CATEGORIA" type="string" headerTextAlign="Center" textAlign="Left" width="50"></e-grid-column>
+                                    <e-grid-column headerTextAlign="Center" textAlign="Center" template="#menuContextualTar" width="10" allowFiltering="false"></e-grid-column>
+                                </e-grid-columns>
+                            </ejs-grid>
+
+                        </div>
+                    </div>
+                    <!--#endregion-->
+                    <!--#region TabFeriado-->
+                    <div id="TabFeriado" style="display:none">
+                        <div class="panel panel-default">
+                            <span class="capa_btn info">
+                                <button type="submit" class="btn btn-base crear" onclick="Crear(3)">
+                                    <span class="fa span-button info"></span>
+                                    <p class="text-button-primary">Crear Día Feriado</p>
+                                </button>
+                            </span>
+                            <ejs-grid id="GridFeriado" created="onCreateGridFeriado" allowPaging="true" allowFiltering="true" locale="es" gridLines="Both">
+                                <e-grid-filterSettings type="Menu" mode="OnEnter" operators="@(new { stringOperator = operators })"></e-grid-filterSettings>
+                                <e-grid-pagesettings enableQueryString="true" pageSize="10"></e-grid-pagesettings>
+                                <e-grid-columns>
+                                    <e-grid-column field="id" isPrimaryKey="true" visible="false"></e-grid-column>
+                                    <e-grid-column field="fecha" headerText="FECHA" type="date" format="dd/MM/yyyy" headerTextAlign="Center" textAlign="Left" width="40"></e-grid-column>
+                                    <e-grid-column field="descripcion" headerText="DESCRIPCION" type="string" headerTextAlign="Center" textAlign="Left" width="200"></e-grid-column>
+                                    <e-grid-column headerTextAlign="Center" textAlign="Center" template="#menuContextualFer" width="10" allowFiltering="false"></e-grid-column>
+                                </e-grid-columns>
+                            </ejs-grid>
+
+                        </div>
+                    </div>
+                    <!--#endregion-->
+
+                    <!--#region TabAreasCargos-->
+                    <div id="TabAreasCargos" style="display:none">
+                        <div class="panel panel-default">
+                            <div class="col-md-12 col-lg-6 col-xl-6">
+                                <span class="capa_btn info">
+                                    <button type="submit" class="btn btn-base crear" onclick="Crear(4)">
+                                        <span class="fa span-button info"></span>
+                                        <p class="text-button-primary">Crear Área</p>
+                                    </button>
+                                </span>
+                                <ejs-grid id="GridAreas" created="onCreateGridAreas" allowPaging="true" allowFiltering="true" locale="es" gridLines="Both">
+                                    <e-grid-filterSettings type="Menu" mode="OnEnter" operators="@(new { stringOperator = operators })"></e-grid-filterSettings>
+                                    <e-grid-pagesettings enableQueryString="true" pageSize="10"></e-grid-pagesettings>
+                                    <e-grid-columns>
+                                        <e-grid-column field="id" isPrimaryKey="true" visible="false"></e-grid-column>
+                                        <e-grid-column field="nombre" headerText="NOMBRE" type="string" headerTextAlign="Center" textAlign="Left" width="200"></e-grid-column>
+                                        <e-grid-column headerTextAlign="Center" textAlign="Center" template="#menuContextualAre" width="15" allowFiltering="false"></e-grid-column>
+                                    </e-grid-columns>
+                                </ejs-grid>
+                            </div>
+                            <div class="col-md-12 col-lg-6 col-xl-6">
+                                <span class="capa_btn info">
+                                    <button type="submit" class="btn btn-base crear" onclick="Crear(5)">
+                                        <span class="fa span-button info"></span>
+                                        <p class="text-button-primary">Crear Cargo</p>
+                                    </button>
+                                </span>
+                                <ejs-grid id="GridCargos" created="onCreateGridCargos" allowPaging="true" allowFiltering="true" locale="es" gridLines="Both">
+                                    <e-grid-filterSettings type="Menu" mode="OnEnter" operators="@(new { stringOperator = operators })"></e-grid-filterSettings>
+                                    <e-grid-pagesettings enableQueryString="true" pageSize="10"></e-grid-pagesettings>
+                                    <e-grid-columns>
+                                        <e-grid-column field="id" isPrimaryKey="true" visible="false"></e-grid-column>
+                                        <e-grid-column field="nombre" headerText="NOMBRE" type="string" headerTextAlign="Center" textAlign="Left" width="200"></e-grid-column>
+                                        <e-grid-column headerTextAlign="Center" textAlign="Center" template="#menuContextualCar" width="15" allowFiltering="false"></e-grid-column>
+                                    </e-grid-columns>
+                                </ejs-grid>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--#endregion-->
+
+                    <ejs-tab id="tabUsuario" cssClass="headerTab" animation="ViewBag.animation" created="onCreateTabsUsuario">
+                        <e-tab-tabitems>
+                            <e-tab-tabitem header="ViewBag.headerCategoria" content="@contenidoCategoria"></e-tab-tabitem>
+                            <e-tab-tabitem header="ViewBag.headerTarea" content="@contenidoTarea"></e-tab-tabitem>
+                            <e-tab-tabitem header="ViewBag.headerFeriado" content="@contenidoFeriado"></e-tab-tabitem>
+                            <e-tab-tabitem header="ViewBag.headerAreasCargos" content="@contenidoAreasCargos"></e-tab-tabitem>
+                        </e-tab-tabitems>
+                    </ejs-tab>
+
+
+                    <button id="btnModal" type="button" data-toggle="modal" data-target="#modalRegistro" hidden />
+                    <button id="btnModalArea" type="button" data-toggle="modal" data-target="#modalRegistroArea" hidden />
+
+                </section>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<a id="modalELiminar" href="@Url.Action("MostrarModalEliminar", "Modal")" data-toggle="modal" data-target="#modalBusqueda" hidden></a>
+<partial name="_SeccionModal" />
+
+<ejs-contextmenu id="contextmenu" items="Model.menuItems" select="ejecutarAccion"></ejs-contextmenu>
+
+
+<script type="text/x-template" id="menuContextual">
+    <button class="boton-accion" onclick="abrirContextMenu(event, ${ id }, 1, @("'")${nombre}@("'"), 0 )">
+        <i class="fa fa-list-ul"></i>
+    </button>
+</script>
+
+<script type="text/x-template" id="menuContextualTar">
+    <button class="boton-accion" onclick="abrirContextMenu(event, ${ id }, 2, @("'")${nombre}@("'"), ${id_categoria} )">
+        <i class="fa fa-list-ul"></i>
+    </button>
+</script>
+
+<script type="text/x-template" id="menuContextualFer">
+    <button class="boton-accion" onclick="abrirContextMenu(event, ${id}, 3, @("'")${descripcion}@("'"), 0, @("'")${ fecha }@("'"))">
+        <i class="fa fa-list-ul"></i>
+    </button>
+</script>
+
+<script type="text/x-template" id="menuContextualAre">
+    <button class="boton-accion" onclick="abrirContextMenu(event, ${id}, 4, `${nombre}`, 0)">
+        <i class="fa fa-list-ul"></i>
+    </button>
+</script>
+
+<script type="text/x-template" id="menuContextualCar">
+    <button class="boton-accion" onclick="abrirContextMenu(event, ${id}, 5, `${nombre}`, 0)">
+        <i class="fa fa-list-ul"></i>
+    </button>
+</script>
+
+<!--#region Modal para nueva contraseña -->
+<div class="modal fade" id="modalRegistro" role="dialog">
+    <div class="modal-dialog" style="width: 50%; top: 20%;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 style="margin: 0;"></h3>
+            </div>
+            <div class="modal-body" style="padding:40px 50px;">
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6" id="colNombre">
+                        <h4> <b style="color:red;">*</b>Nombre:</h4>
+                        <div class="e-input-group e-small">
+                            <input class="e-input" id="nombre" name="nombre" type="text">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6" id="colCategoria">
+                        <h4> <b style="color:red;">*</b>Categoria:</h4>
+                        <div class="e-input-group e-small">
+                            <ejs-dropdownlist id="ddlCategoria" dataSource="@Model.listaCategoria_Tarea" index="0"
+                                              placeholder="Seleccionar categoria..." popupHeight="220px" locale="es"
+                                              allowFiltering="true">
+                                <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                            </ejs-dropdownlist>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6" id="colFecha">
+                        <h4> <b style="color:red;">*</b>Fecha:</h4>
+                        <div class="e-input-group e-small">
+                            <input class="e-input" id="fecha" name="fecha" type="date">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6" id="colDescripcion">
+                        <h4> <b style="color:red;">*</b>Descripcion:</h4>
+                        <div class="e-input-group e-small">
+                            <input class="e-input" id="descripcion" name="descripcion" type="text">
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <span class="capa_btn confirmar">
+                    <button id="btnCambiarContra" type="button" class="btn btn-base guardar" onclick="Guardar()">
+                        <span class="fa span-button confirmar"></span>
+                        <p class="text-button-primary">Guardar</p>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalRegistroArea" role="dialog">
+    <div class="modal-dialog" style="width: 400px; top: 20%;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 style="margin: 0;"></h3>
+            </div>
+            <div class="modal-body" style="padding:40px 50px;">
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12" id="areaNombre">
+                        <h4> <b style="color:red;">*</b>Nombre:</h4>
+                        <div class="e-input-group e-small">
+                            <input class="e-input" id="inputAreaNombre" name="nombre" type="text">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <span class="capa_btn confirmar">
+                    <button id="btnCambiarContra" type="button" class="btn btn-base guardar" onclick="Guardar()">
+                        <span class="fa span-button confirmar"></span>
+                        <p class="text-button-primary">Guardar</p>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section PreScripts {
+
+    <script>
+        var id_tipo = 0; // 1 = cat, 2 = tar, 3 = fer
+        var id_parametro = 0
+        function ejecutarAccion(args) {
+            switch (args.item.id) {
+                case "0": // Nada
+                    break;
+                case "1": // Editar
+                    accionEditar();
+                    break;
+                case "2": // Eliminar
+                    document.getElementById("modalELiminar").click();
+                    break;
+                default:
+            }
+        }
+        var nombre = "";
+        var id_categoria = 0;
+        var fecha = new Date();
+
+        function abrirContextMenu(ev, id, tipo, pNombre, pId_categoria, pFecha = new Date()) {
+            id_parametro = id;
+            id_tipo = tipo;
+            nombre = pNombre;
+            id_categoria = pId_categoria;
+            fecha = new Date(pFecha);
+            let x = ev.pageX;
+            let y = ev.pageY;
+            let contextMenuObj = document.getElementById("contextmenu").ej2_instances[0];
+            contextMenuObj.open(y, x);
+        }
+
+        function Guardar() {
+            if (id_tipo == 1)
+                GuardarCategoria();
+            if (id_tipo == 2)
+                GuardarTarea();
+            if (id_tipo == 3)
+                GuardarFeriado();
+            if (id_tipo == 4)
+                GuardarArea();
+            if (id_tipo == 5)
+                GuardarCargo();
+        }
+
+        function GuardarCategoria() {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Post", "CategoriaTarea")',
+                data: {
+                    id: id_parametro,
+                    nombre: document.getElementById("nombre").value
+                },
+                success: function (data) {
+                    if (data.transaccion == true) {
+                        mensajeV1("Transacción exitosa!", msgOk);
+                        let GridCategoria = document.getElementById("GridCategoria").ej2_instances[0];
+                        GridCategoria.refresh(); // refresh the Grid.
+                        $("#modalRegistro").modal('hide');
+                    }
+                    else
+                        mensajeV1(data.mensaje, msgError);
+
+                },
+                error: function () {
+                    mensajeV1(errorServidor, msgError);
+                }
+            });
+        }
+
+        function GuardarTarea() {
+            let ddlCategoria = document.getElementById("ddlCategoria").ej2_instances[0];
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Post", "Tarea")',
+                data: {
+                    id: id_parametro,
+                    nombre: document.getElementById("nombre").value,
+                    id_categoria: ddlCategoria.value
+                },
+                success: function (data) {
+                    if (data.transaccion == true) {
+                        mensajeV1("Transacción exitosa!", msgOk);
+                        let GridTarea = document.getElementById("GridTarea").ej2_instances[0];
+                        GridTarea.refresh(); // refresh the Grid.
+                        $("#modalRegistro").modal('hide');
+                    }
+                    else
+                        mensajeV1(data.mensaje, msgError);
+
+                },
+                error: function () {
+                    mensajeV1(errorServidor, msgError);
+                }
+            });
+        }
+
+        function GuardarFeriado() {
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Post", "DiaFeriado")',
+                data: {
+                    id: id_parametro,
+                    descripcion: document.getElementById("descripcion").value,
+                    fecha: document.getElementById("fecha").value
+                },
+                success: function (data) {
+                    if (data.transaccion == true) {
+                        mensajeV1("Transacción exitosa!", msgOk);
+                        let GridFeriado = document.getElementById("GridFeriado").ej2_instances[0];
+                        GridFeriado.refresh(); // refresh the Grid.
+                        $("#modalRegistro").modal('hide');
+                    }
+                    else
+                        mensajeV1(data.mensaje, msgError);
+
+                },
+                error: function () {
+                    mensajeV1(errorServidor, msgError);
+                }
+            });
+        }
+
+        function GuardarArea() {
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Post", "Area")',
+                data: {
+                    id: id_parametro,
+                    nombre: document.getElementById("inputAreaNombre").value,
+                },
+                success: function (data) {
+                    if (data.transaccion == true) {
+                        mensajeV1("Transacción exitosa!", msgOk);
+                        let GridAreas = document.getElementById("GridAreas").ej2_instances[0];
+                        GridAreas.refresh(); // refresh the Grid.
+                        $("#modalRegistroArea").modal('hide');
+                    }
+                    else
+                        mensajeV1(data.mensaje, msgError);
+
+                },
+                error: function () {
+                    mensajeV1(errorServidor, msgError);
+                }
+            });
+        }
+
+        function GuardarCargo() {
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Post", "Cargo")',
+                data: {
+                    id: id_parametro,
+                    nombre: document.getElementById("inputAreaNombre").value,
+                },
+                success: function (data) {
+                    if (data.transaccion == true) {
+                        mensajeV1("Transacción exitosa!", msgOk);
+                        let GridCargos = document.getElementById("GridCargos").ej2_instances[0];
+                        GridCargos.refresh(); // refresh the Grid.
+                        $("#modalRegistroArea").modal('hide');
+                    }
+                    else
+                        mensajeV1(data.mensaje, msgError);
+
+                },
+                error: function () {
+                    mensajeV1(errorServidor, msgError);
+                }
+            });
+        }
+
+        function Crear(pTipo) {
+            id_tipo = pTipo;
+            id_parametro = 0;
+            accionEditar();
+        }
+
+        function accionEditar() {
+            
+            if (id_tipo == 1) {
+                document.getElementById("colNombre").style.display = 'block';
+                document.getElementById("colCategoria").style.display = 'none';
+                document.getElementById("colDescripcion").style.display = 'none';
+                document.getElementById("colFecha").style.display = 'none';
+
+
+
+                if (id_parametro != 0)
+                    document.getElementById("nombre").value = nombre;
+                else
+                    document.getElementById("nombre").value = "";
+
+            }
+            if (id_tipo == 2) {
+                document.getElementById("colCategoria").style.display = 'block';
+                document.getElementById("colNombre").style.display = 'block';
+                document.getElementById("colDescripcion").style.display = 'none';
+                document.getElementById("colFecha").style.display = 'none';
+                if (id_parametro != 0) {
+                    document.getElementById("nombre").value = nombre;
+                    let ddlCategoria = document.getElementById("ddlCategoria").ej2_instances[0];
+                    ddlCategoria.value = id_categoria;
+                }
+                else
+                    document.getElementById("nombre").value = "";
+            }
+            if (id_tipo == 3) {
+                document.getElementById("colDescripcion").style.display = 'block';
+                document.getElementById("colFecha").style.display = 'block';
+                document.getElementById("colCategoria").style.display = 'none';
+                document.getElementById("colNombre").style.display = 'none';
+                if (id_parametro != 0) {
+                    let sFecha = fecha.getFullYear() + "-" + ("0" + (fecha.getMonth() + 1)).slice(-2) + "-" + ("0" + fecha.getDate()).slice(-2);
+                    document.getElementById("descripcion").value = nombre;
+                    document.getElementById("fecha").value = sFecha;
+                }
+                else {
+                    document.getElementById("descripcion").value = "";
+                    document.getElementById("fecha").value = '@DateTime.Now.ToString("yyyy-MM-dd")';
+                }
+            }
+
+            if (id_tipo == 4) {
+                if (id_parametro != 0) {
+                    document.getElementById("inputAreaNombre").value = nombre;
+                } else {
+                    document.getElementById("inputAreaNombre").value = "";
+                }
+            }
+
+            if (id_tipo == 5) {
+                if (id_parametro != 0) {
+                    document.getElementById("inputAreaNombre").value = nombre;
+                } else {
+                    document.getElementById("inputAreaNombre").value = "";
+                }
+            }
+
+            if (id_tipo <= 3) {
+                document.getElementById("btnModal").click();
+            } else {
+                document.getElementById("btnModalArea").click();
+            }
+            
+        }
+
+        function accionEliminar() {
+            if (id_tipo == 1)
+                EliminarCategoria(id_parametro);
+            if (id_tipo == 2)
+                EliminarTarea(id_parametro);
+            if (id_tipo == 3)
+                EliminarFeriado(id_parametro);
+            if (id_tipo == 4)
+                EliminarArea(id_parametro);
+            if (id_tipo == 5)
+                EliminarCargo(id_parametro);
+        }
+
+        function EliminarCategoria(id) {
+            $.ajax({
+                type: "DELETE",
+                url: '@Url.Action("Delete", "CategoriaTarea")',
+                data: { id: id },
+                success: function (data) {
+                    if (data.transaccion) {
+                        mensajeV1("Categoria Eliminado", msgOk);
+                        let GridCategoria = document.getElementById("GridCategoria").ej2_instances[0];
+                        GridCategoria.refresh(); // refresh the Grid.
+                    } else {
+                        mensajeV1(data.mensaje, msgError);
+                    }
+                },
+                error: function () {
+                    mensajeV1(errorServidor, msgError);
+                }
+            });
+        }
+
+        function EliminarTarea(id) {
+            $.ajax({
+                type: "DELETE",
+                url: '@Url.Action("Delete", "Tarea")',
+                data: { id: id },
+                success: function (data) {
+                    if (data.transaccion) {
+                        mensajeV1("Tarea Eliminado", msgOk);
+                        let GridTarea = document.getElementById("GridTarea").ej2_instances[0];
+                        GridTarea.refresh(); // refresh the Grid.
+                    } else {
+                        mensajeV1(data.mensaje, msgError);
+                    }
+
+                },
+                error: function () {
+                    mensajeV1(errorServidor, msgError);
+                }
+            });
+        }
+
+        function EliminarFeriado(id) {
+            $.ajax({
+                type: "DELETE",
+                url: '@Url.Action("Delete", "DiaFeriado")',
+                data: { id: id },
+                success: function (data) {
+                    if (data.transaccion) {
+                        mensajeV1("Dia Feriado Eliminado", msgOk);
+                        let GridFeriado = document.getElementById("GridFeriado").ej2_instances[0];
+                        GridFeriado.refresh(); // refresh the Grid.
+                    } else {
+                        mensajeV1(data.mensaje, msgError);
+                    }
+                },
+                error: function () {
+                    mensajeV1(errorServidor, msgError);
+                }
+            });
+        }
+
+        function EliminarArea(id) {
+            $.ajax({
+                type: "DELETE",
+                url: '@Url.Action("Delete", "Area")',
+                data: { id: id },
+                success: function (data) {
+                    if (data.transaccion) {
+                        mensajeV1("Area Eliminada", msgOk);
+                        let GridAreas = document.getElementById("GridAreas").ej2_instances[0];
+                        GridAreas.refresh(); // refresh the Grid.
+                    } else {
+                        mensajeV1(data.mensaje, msgError);
+                    }
+                },
+                error: function () {
+                    mensajeV1(errorServidor, msgError);
+                }
+            });
+        }
+
+        function EliminarCargo(id) {
+            $.ajax({
+                type: "DELETE",
+                url: '@Url.Action("Delete", "Cargo")',
+                data: { id: id },
+                success: function (data) {
+                    if (data.transaccion) {
+                        mensajeV1("Cargo Eliminado", msgOk);
+                        let GridCargos = document.getElementById("GridCargos").ej2_instances[0];
+                        GridCargos.refresh(); // refresh the Grid.
+                    } else {
+                        mensajeV1(data.mensaje, msgError);
+                    }
+                },
+                error: function () {
+                    mensajeV1(errorServidor, msgError);
+                }
+            });
+        }
+    </script>
+
+    <script>
+        function onCreateGridCategoria() {
+            let GridCategoria = document.getElementById('GridCategoria').ej2_instances[0];
+            GridCategoria.dataSource = new ej.data.DataManager({
+                url: "@Url.Action("CategoriaTarea", "oData")?$orderby=id%20desc",
+                adaptor: new ej.data.ODataV4Adaptor(),
+                crossDomain: true,
+                offline: false
+            });
+        }
+
+        function onCreateGridTarea() {
+            let GridTarea = document.getElementById('GridTarea').ej2_instances[0];
+            GridTarea.dataSource = new ej.data.DataManager({
+                url: "@Url.Action("Tarea", "oData")?$orderby=id%20desc",
+                adaptor: new ej.data.ODataV4Adaptor(),
+                crossDomain: true,
+                offline: false
+            });
+        }
+
+        function onCreateGridFeriado() {
+            let GridFeriado = document.getElementById('GridFeriado').ej2_instances[0];
+            GridFeriado.dataSource = new ej.data.DataManager({
+                url: "@Url.Action("DiaFeriado", "oData")?$orderby=id%20desc",
+                adaptor: new ej.data.ODataV4Adaptor(),
+                crossDomain: true,
+                offline: false
+            });
+        }
+
+        function onCreateGridAreas() {
+            let GridAreas = document.getElementById('GridAreas').ej2_instances[0];
+            GridAreas.dataSource = new ej.data.DataManager({
+                url: "@Url.Action("Area", "oData")?$orderby=id%20desc",
+                adaptor: new ej.data.ODataV4Adaptor(),
+                crossDomain: true,
+                offline: false
+            });
+        }
+
+        function onCreateGridCargos() {
+            let GridCargos = document.getElementById('GridCargos').ej2_instances[0];
+            GridCargos.dataSource = new ej.data.DataManager({
+                url: "@Url.Action("Cargo", "oData")?$orderby=id%20desc",
+                adaptor: new ej.data.ODataV4Adaptor(),
+                crossDomain: true,
+                offline: false
+            });
+        }
+
+        function onCreateTabsUsuario() {
+            var oTabUsuario = document.getElementById("tabUsuario").ej2_instances[0];
+            oTabUsuario.select(0);
+        }
+
+    </script>
+
+
+}
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        //Despues del Submit del Form Principal
+        function fnSuccess(data) {
+            if (data.transaccion == true) {
+                mensajeV1("Transacción exitosa!", msgOk);
+                irAListado();
+            }
+            else
+                mensajeV1(data.mensaje, msgError);
+        }
+
+        function fnFailure() {
+            mensajeV1(errorServidor, msgError);
+        }
+    </script>
+
+
+}

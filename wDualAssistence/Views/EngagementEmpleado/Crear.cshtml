@@ -1,0 +1,358 @@
+﻿@{
+    ViewData["Title"] = "Engagement";
+    ViewData["Navbar-Title"] = "Recursos > Empresa > Engagement - Detalle de horas";
+
+    List<object> commandsAll = new List<object>();
+    commandsAll.Add(new { type = "Save", buttonOption = new { iconCss = "e-icons e-save", cssClass = "e-flat" } });
+    commandsAll.Add(new { type = "Edit", buttonOption = new { iconCss = "e-icons e-edit", cssClass = "e-flat" } });
+    commandsAll.Add(new { type = "Delete", buttonOption = new { iconCss = "e-icons e-delete", cssClass = "e-flat" } });
+
+}
+@model wDualAssistence.Models.EngagementEmpleadoViewModel;
+
+@section Styles {
+    <style>
+        .spanIcon {
+            border-radius: 5px;
+            border-style: solid;
+            border-color: white;
+        }
+
+        .cartel-horas {
+            width: fit-content;
+            border: 2px solid #0072cc;
+            padding: 5px;
+            border-radius: 5px;
+            background: #0070cc0d;
+        }
+    </style>
+}
+
+<div class="content-wrapper">
+    <div class="content">
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading heading-primary">
+                <span class="capa_btn volver">
+                    <button class="btn btn-base cancelar" type="button" onclick="irAListado()">
+                        <span class="fa span-button volver"></span>
+                        <p class="text-button-primary">VOLVER</p>
+                    </button>
+                </span>
+            </div>
+
+            <div class="panel-body">
+                <section class="content-body">
+
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6">
+                            <h4> <b>Empresa:</b>  @Model.nombre_empresa</h4>
+                            <h4> <b>Engagement:</b>  @Model.eEngagement.titulo</h4>
+                            <h4> <b>Duracion del Engagement:</b>  @Model.eEngagement.desde.ToString("dd/MM/yyyy") hasta @Model.eEngagement.hasta.ToString("dd/MM/yyyy")</h4>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6">
+                            <h4 class="cartel-horas" id="horas_disponibles"> <i class="fa fa-exclamation"></i> <b> Horas disponibles:</b>   @Model.horas_disponibles</h4>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                            <h4> <b>Empleado:</b> </h4>
+                            <div class="e-input-group e-small">
+                                <ejs-dropdownlist id="ddlEmpleado" dataSource="@Model.listaEmpleado" value="Model.eEngagement_Empleado.id_empleado"
+                                                  placeholder="Seleccionar Empleado..." popupHeight="220px" locale="es"
+                                                  allowFiltering="true" change="CambioEmpleado">
+                                    <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                                </ejs-dropdownlist>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                            <h4> Desde:</h4>
+                            <div id="datetimepicker-control">
+                                <ejs-datepicker id="desde" placeholder="Selecione la fecha" format="dd/MM/yyyy" value="@DateTime.Now" locale="es" min="Model.eEngagement.desde" max="Model.eEngagement.hasta"></ejs-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                            <h4> Hasta:</h4>
+                            <div id="datetimepicker-control">
+                                <ejs-datepicker id="hasta" placeholder="Selecione la fecha" format="dd/MM/yyyy" value="@DateTime.Now.AddDays(1)" locale="es" min="Model.eEngagement.desde" max="Model.eEngagement.hasta"></ejs-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                            <h4> Cantidad:</h4>
+                            <div class="e-input-group e-small">
+                                <input class="e-input" id="cantidad" type="number" value="0" min="0">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                            <br />
+                            <span class="capa_btn info">
+                                <button type="button" class="btn btn-base crear" onclick="agregarDetalle()">
+                                    <span class="fa span-button fa-file-excel-o"></span>
+                                    <p class="text-button-primary">Agregar</p>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <br />
+
+
+                    <ejs-grid id="Grid" allowPaging="true" locale="es" gridLines="Both" actionComplete="actionComplete">
+                        <e-grid-editSettings allowAdding="false" allowDeleting="true" allowEditing="true"></e-grid-editSettings>
+                        <e-grid-pagesettings pageSize="8"></e-grid-pagesettings>
+                        <e-grid-columns>
+                            <e-grid-column field="id_ref" isPrimaryKey="true" visible="false"></e-grid-column>
+                            <e-grid-column field="id" visible="false"></e-grid-column>
+                            <e-grid-column field="fecha_inicio" headerText="DESDE" type="date" format="dd/MM/yyyy" headerTextAlign="Center" textAlign="Right" width="100" allowEditing="false" editType="datepickeredit" edit="@(new { @params = new { format = "dd/MM/yyyy" } })"></e-grid-column>
+                            <e-grid-column field="fecha_fin" headerText="HASTA" type="date" format="dd/MM/yyyy" headerTextAlign="Center" textAlign="Right" width="100" allowEditing="false" editType="datepickeredit" edit="@(new { @params = new { format = "dd/MM/yyyy" } })"></e-grid-column>
+                            <e-grid-column field="cantidad_horas" headerText="CANTIDAD DE HORAS HABILITADAS" headerTextAlign="Center" textAlign="Right" width="100" editType="numericedit"
+                                           edit="@(new { @params = new Syncfusion.EJ2.Inputs.NumericTextBox() { ValidateDecimalOnType = true, Decimals = 0, Format = "N" } })"></e-grid-column>
+                            <e-grid-column headerText=" " width="50" commands="commandsAll"></e-grid-column>
+                        </e-grid-columns>
+                    </ejs-grid>
+
+                </section>
+            </div>
+
+        </div>
+        <form id="formSubmit" class="form-horizontal" asp-controller="EngagementEmpleado" asp-action="Post" autocomplete="off" data-ajax="true" data-ajax-method="POST"
+              data-ajax-begin="onAjaxBegin" data-ajax-complete="onAjaxComplete" data-ajax-loading="#loading"
+              data-ajax-success="fnSuccess(data)" data-ajax-failure="fnFailure()">
+
+            <input type="hidden" id="id_engagement_empleado" name="id_engagement_empleado" value="@Model.eEngagement_Empleado.id">
+            <input type="hidden" id="stringListaDetalle" name="stringListaDetalle">
+        </form>
+        <form id="formPasoParametro" action='@Url.Action("AsociacionEmpleado", "Engagement")' method="POST">
+            <input type="hidden" id="id_engagement" name="id_engagement" value="0">
+            <input type="hidden" id="id_empresa" name="id_empresa" value="0">
+        </form>
+    </div>
+</div>
+
+<script>
+    var listaDetalle = [];
+    var contadorDetalle = 0;
+
+    //Carga Principal
+        $(document).ready(function () {
+            var Grid = document.getElementById("Grid").ej2_instances[0];
+            var listaDetalleAux = JSON.parse('@Html.Raw(Json.Serialize(Model.listaDetalle_Engagement_Empleado))')
+            if (listaDetalleAux == null) listaDetalle = [];
+            listaDetalleAux.forEach(function (item) {
+                let res = item.fecha_inicio.split("/");
+                let desde = new Date(res[2] + "/" + res[1] + "/" + res[0]);
+
+                let res2 = item.fecha_fin.split("/");
+                let hasta = new Date(res2[2] + "/" + res2[1] + "/" + res2[0]);
+                contadorDetalle++;
+                listaDetalle.push({
+                    id_ref: contadorDetalle,
+                    id: item.id,
+                    id_engagement_empleado: item.id_engagement_empleado,
+                    fecha_inicio: desde,
+                    fecha_fin: hasta,
+                    cantidad_horas: item.cantidad_horas,
+                    estado: item.estado
+                });
+
+            });
+            Grid.dataSource = listaDetalle;
+            Grid.refresh();
+
+        });
+
+    function agregarDetalle() {
+        var Grid = document.getElementById("Grid").ej2_instances[0];
+
+        //var fecha_inicio = document.getElementById("fecha_inicio").value;
+        //var fecha_fin = document.getElementById("fecha_fin").value;
+        var desde = document.getElementById('desde').ej2_instances[0];
+        var hasta = document.getElementById('hasta').ej2_instances[0];
+        var cantidad = document.getElementById("cantidad").value;
+
+        let desdeDate = new Date(desde.value.toDateString());
+        let hastaDate = new Date(hasta.value.toDateString());
+        if (desdeDate > hastaDate) {
+            mensajeV1("La fecha hasta debe ser mayor a la fecha desde", msgAlerta);
+            return;
+        }
+        if (cantidad < 0) {
+            mensajeV1("La cantidad no debe ser negativa", msgAlerta);
+            return;
+        }
+        let swRepetido = false;
+        listaDetalle.forEach(function (element) {
+            //if (desde >= element.fecha_inicio && desde <= element.fecha_fin || hasta >= element.fecha_inicio || hasta <= element.fecha_fin){
+            //    mensajeV1("Rango de fecha Repetida !", msAlerta);
+            //    return;
+            //}
+            console.log(element);
+            element.fecha_inicio.setHours(0, 0, 0, 0);
+            element.fecha_fin.setHours(0, 0, 0, 0);
+            if ((desdeDate >= element.fecha_inicio && desdeDate <= element.fecha_fin) ||
+                (hastaDate >= element.fecha_inicio && hastaDate <= element.fecha_fin)
+
+                ) {
+                mensajeV1("Rango de fecha Repetida !", msgAlerta);
+                swRepetido = true;
+                return;
+            }
+        });
+
+        if (!swRepetido) {
+            contadorDetalle++;
+            listaDetalle.push({
+                id_ref: contadorDetalle,
+                id: 0,
+                id_engagement_empleado: 0,
+                fecha_inicio: desde.value,
+                fecha_fin: hasta.value,
+                cantidad_horas: cantidad,
+                estado: 0
+            });
+
+            Grid.dataSource = listaDetalle;
+            Grid.refresh();
+            desde.value = hasta.value;
+            document.getElementById("cantidad").value = 0;
+
+            Guardar();
+        }
+
+    }
+
+    function Guardar() {
+        var grid = document.getElementById("Grid").ej2_instances[0];
+        //document.getElementById('stringListaDetalle').value = JSON.stringify(grid.dataSource);
+        //document.getElementById("id_engagement_empleado").value = @Model.eEngagement_Empleado.id;
+        //var frmformSubmit = document.getElementById("formSubmit");
+        //frmformSubmit.submit();
+
+        //var form = document.getElementById('formSubmit');
+        //form.submit();
+        let ddlEmpleado = document.getElementById("ddlEmpleado").ej2_instances[0];
+        onAjaxBegin();
+        $.ajax(
+            {
+                type: "POST",
+                url: '@Url.Action("Post", "EngagementEmpleado")',
+                data: {
+                    id_engagement: @Model.eEngagement.id,
+                    id_empleado: ddlEmpleado.value,
+                    stringListaDetalle: JSON.stringify(grid.dataSource)
+                },
+                success: function (data) {
+                    if (data.transaccion == true) {
+                        //mensajeV1("Transacción exitosa!", msgOk);
+                        //irAListado();
+                        document.getElementById("horas_disponibles").innerHTML = '<i class="fa fa-exclamation"></i> <b> Horas disponibles:</b> ' + data.horas_disponibles;
+                        let ddlEmpleado = document.getElementById("ddlEmpleado").ej2_instances[0];
+                        let id_empleado = ddlEmpleado.value;
+                        ddlEmpleado.dataSource = data.listaEmpleado;
+                        ddlEmpleado.value = id_empleado;
+                    }
+                    else
+                        mensajeV1(data.mensaje, msgError);
+
+                    onAjaxComplete();
+                },
+                error: function () {
+                    mensajeV1('No se pudo conectar con el servicio', msgError);
+                    onAjaxComplete();
+                }
+            });
+
+    }
+
+    function irAListado() {
+        var form = document.getElementById('formPasoParametro');
+        document.getElementById('id_engagement').value = @Model.eEngagement.id;
+        document.getElementById('id_empresa').value = @Model.eEngagement.id_empresa;
+        form.submit();
+    }
+
+</script>
+
+@section PreScripts{ 
+    <script>
+        function actionComplete(args) {
+            
+            if (args.requestType === 'save') {
+                Guardar();
+            }
+            if (args.requestType == "delete") {
+                Guardar();
+            }
+
+        }
+
+        function CambioEmpleado(args) {
+
+            onAjaxBegin();
+            $.ajax(
+            {
+                type: "GET",
+                url: '@Url.Action("GetDetalleByEmpleado", "EngagementEmpleado")/' + args.value + '/' + @Model.eEngagement.id,
+                success: function (data) {
+                    if (data.transaccion) {
+                        var oGrid = document.getElementById("Grid").ej2_instances[0];
+                        listaDetalle = [];
+                        data.detalle.forEach(function (item) {
+                            let res = item.fecha_inicio.split("/");
+                            item.fecha_inicio = new Date(res[2] + "/" + res[1] + "/" + res[0]);
+
+                            let res2 = item.fecha_fin.split("/");
+                            item.fecha_fin = new Date(res2[2] + "/" + res2[1] + "/" + res2[0]);
+                            listaDetalle.push(item);
+                        });
+
+                        oGrid.dataSource = listaDetalle;
+                        oGrid.refresh();
+
+                        document.getElementById("horas_disponibles").innerHTML = '<i class="fa fa-exclamation"></i> <b> Horas disponibles:</b> ' + data.horas_disponibles;
+
+                    } else {
+                        mensajeV1(data.mensaje, msgError);
+                    }
+                    onAjaxComplete();
+                },
+                error: function () {
+                    mensajeV1('No se pudo conectar con el servicio', msgError);
+                    onAjaxComplete();
+                }
+            });
+        }
+    </script>
+
+}
+
+@section Scripts {
+    <script>
+        
+        //Despues del Submit del Form Principal
+        function fnSuccess(data) {
+            console.log("---------");
+            if (data.transaccion == true) {
+                //mensajeV1("Transacción exitosa!", msgOk);
+                //irAListado();
+            }
+            else
+                mensajeV1(data.mensaje, msgError);
+        }
+
+        function fnFailure() {
+            mensajeV1(errorServidor, msgOk);
+        }
+        //#endregion
+    </script>
+
+    
+
+}
+

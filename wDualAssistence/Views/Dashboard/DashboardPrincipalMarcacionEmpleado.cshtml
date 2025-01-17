@@ -1,0 +1,199 @@
+﻿@model wDualAssistence.Models.DashboardPrincipalViewModel;
+
+@{
+    ViewData["Title"] = "Dashboard";
+    ViewData["Navbar-Title"] = "Pantalla de inicio";
+}
+
+<style>
+    .card-dashboard {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+        .card-dashboard:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+    .card-container-dashboard {
+        padding: 2px 16px;
+        background-color: #202020;
+        color: #fff;
+    }
+
+    .numero {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 5em;
+        color: #202020;
+        margin-left: 38%;
+        margin-right: 40%;
+        text-shadow: 2px 3px #97b2e8;
+    }
+
+    /*#dashboard-mainter {
+        display: none;
+    }*/
+</style>
+
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header"></section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <section class="content-body">
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                            <h4> Empresas:</h4>
+                            <div class="control-container">
+                                <ejs-multiselect id="selectEmpresas" dataSource="@Model.listaEmpresas" mode="CheckBox" placeholder="Seleccione una o más empresas" locale="es"
+                                                 showSelectAll="true" showDropDownIcon="true" selectAllText="Todas" unSelectAllText="Des Seleccionar" value="@Model.idsEmpresas"
+                                                 filterBarPlaceholder="Buscar empresas" popupHeight="350px"
+                                                 allowFiltering="true" popupWidth="400">
+                                    <e-multiselect-fields text="nombre" value="id"></e-multiselect-fields>
+                                </ejs-multiselect>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                            <h4> Desde:</h4>
+                            <div class="control-container">
+                                <ejs-datepicker id="desde" placeholder="Selecione la fecha" format="dd-MMM-yyyy" value="@DateTime.Now.AddMonths(-1)" locale="es"></ejs-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                            <h4> Hasta:</h4>
+                            <div class="control-container">
+                                <ejs-datepicker id="hasta" placeholder="Selecione la fecha" format="dd-MMM-yyyy" value="@DateTime.Now" locale="es"></ejs-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                            <h4 style="visibility: hidden;"> Accion:</h4>
+                            <span class="capa_btn info">
+                                <button type="submit" class="btn btn-base crear" onclick="buscar()">
+                                    <span class="fa span-button fa-file-excel-o"></span>
+                                    <p class="text-button-primary">Buscar</p>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <figure class="highcharts-figure">
+                        <div id="container"></div>
+                    </figure>
+                </section>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+
+    <a href="#" id="report" target="_blank"></a>
+
+</div>
+
+@section PreScripts {
+    <script src="~/lib/highcharts/highcharts.js"></script>
+    <script src="~/lib/highcharts/modules/data.js"></script>
+    <script src="~/lib/highcharts/modules/drilldown.js"></script>
+    <script src="~/lib/highcharts/modules/exporting.js"></script>
+    <script src="~/lib/highcharts/modules/export-data.js"></script>
+    <script src="~/lib/highcharts/modules/accessibility.js"></script>
+
+    <script src="~/lib/highcharts-utils/render-highcharts.js?v=2.0"></script>
+
+    <script type="text/javascript">
+
+    </script>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        const jsonChart = JSON.parse('@Html.Raw(Json.Serialize(Model.dashboardReport))');
+        console.debug('jsonChart: ', jsonChart);
+
+        actualizarGraficoDashboardMarcacionEmpleados(jsonChart, 'container', TYPE_EMPLEADO);
+
+        /* Filtros */
+        let idsEmpresa = [];
+        let desde = '';
+        let hasta = '';
+
+        function cargarFiltros() {
+            idsEmpresa = document.getElementById('selectEmpresas').ej2_instances[0].value;
+            desde = document.getElementById('desde').ej2_instances[0].value;
+            hasta = document.getElementById('hasta').ej2_instances[0].value;
+
+            idsEmpresa = idsEmpresa && idsEmpresa.length > 0 ? idsEmpresa : [];
+            desde = desde.toISOString();
+            hasta = hasta.toISOString();
+
+            /* Quitar time */
+            desde = desde.split('T')[0];
+            hasta = hasta.split('T')[0];
+
+            console.debug('filtros: ', idsEmpresa, desde, hasta);
+        }
+
+        function buscar() {
+            cargarFiltros();
+
+            onAjaxBegin();
+            $.ajax({
+                type: "POST",
+                url: `@Url.Action("GetListaDashboardReportMarcacionEmpleado", "Dashboard")/${desde}/${hasta}`,
+                contentType: 'application/json',
+                data: JSON.stringify(idsEmpresa),
+                dataType: 'json',
+                success: function (data) {
+                    try {
+                        if (data.transaccion) {
+
+                            console.debug('response: ', data);
+
+                            actualizarGraficoDashboardMarcacionEmpleados(data.contenido, 'container', TYPE_EMPLEADO);
+                        } else {
+                            throw data.mensaje;
+                        }
+                    } catch (ex) {
+                        console.error('Error al buscar: ', ex);
+                        mensajeV1("Error:" + ex.message, msgError);
+                    }
+                    onAjaxComplete();
+                },
+                error: function () {
+                    onAjaxComplete();
+                    mensajeV1(errorServidor, msgError);
+                }
+            });
+        }
+
+        function generarReporteGeneral() {
+            console.debug('generarReporteGeneral');
+
+            let report = document.getElementById("report");
+            report.href = '@Url.Action("RptSeguimientoMarcacionXEmpleado", "Reporte")';
+            report.click();
+
+        }
+
+        function generarReportePorEmpleado(idEmpleado) {
+            console.debug('idEmpleado: ', idEmpleado);
+            let report = document.getElementById("report");
+            report.href = '@Url.Action("RptSeguimientoXEngagement2", "Reporte")/' + idEmpleado;
+            report.click();
+
+        }
+
+        function generaReportePorEngagement(idEmpleado, idEngagement) {
+            console.debug('idEmpleado: ', idEmpleado, 'idEngagement: ', idEngagement);
+            let report = document.getElementById("report");
+            report.href = '@Url.Action("RptSeguimientoXEmpresa2", "Reporte")/' + idEmpleado + '/' + idEngagement;
+            report.click();
+        }
+    </script>
+}

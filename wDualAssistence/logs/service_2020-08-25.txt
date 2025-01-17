@@ -1,0 +1,59 @@
+2020-08-25 00:39:55,882 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-25 01:01:46,097 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-25 07:43:39,321 [79] ERROR WebServices Business.Public.DashboardPrincipal - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> System.TimeoutException: The operation has timed out.
+   at Npgsql.NpgsqlConnector.Connect(NpgsqlTimeout timeout) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 703
+   at Npgsql.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 555
+   at Npgsql.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 414
+   at Npgsql.ConnectorPool.AllocateLong(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/ConnectorPool.cs:line 246
+   at Npgsql.NpgsqlConnection.<>c__DisplayClass32_0.<<Open>g__OpenLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 302
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnection.Open() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 153
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 60
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.DashboardPrincipal.GetLista() in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Public\DashboardPrincipal.cs:line 125 
+2020-08-25 08:48:14,617 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-25 08:54:21,460 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-25 08:54:28,863 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-25 08:55:52,179 [15] ERROR WebServices Business.Public.DashboardPrincipal - Npgsql.PostgresException (0x80004005): 42601: error de sintaxis en o cerca de «)»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 444
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.DashboardPrincipal.GetListaFiltrada(List`1 idsEmpresa, DateTime desde, DateTime hasta) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Public\DashboardPrincipal.cs:line 66 
+2020-08-25 08:55:52,359 [15] ERROR WebServices wDualAssistence.Controllers.DashboardController - Npgsql.PostgresException (0x80004005): 42601: error de sintaxis en o cerca de «)»
+   at Business.Public.DashboardPrincipal.GetListaFiltrada(List`1 idsEmpresa, DateTime desde, DateTime hasta) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Public\DashboardPrincipal.cs:line 71
+   at wDualAssistence.Controllers.DashboardController.GetListaDashboardReport(String empresas, DateTime desde, DateTime hasta) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\NetcoreWebApp\Controllers\DashboardController.cs:line 40 
+2020-08-25 09:02:04,205 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-25 09:04:03,904 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-25 09:13:28,614 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-25 09:22:18,556 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-25 10:08:51,646 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-25 10:52:00,114 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-25 10:59:45,847 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-25 11:02:43,387 [7] ERROR WebServices wDualAssistence.Controllers.DiaFeriadoController - System.Exception: Ya existe un dia feriado registrado con la misma fecha !
+   at wDualAssistence.Controllers.DiaFeriadoController.Post(DiaFeriadoViewModel vDiaFeriadoViewModel) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\DiaFeriadoController.cs:line 106 
+2020-08-25 11:50:35,341 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-25 12:02:18,080 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 

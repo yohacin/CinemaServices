@@ -1,0 +1,290 @@
+﻿@{
+    ViewData["Title"] = "Recursos";
+    ViewData["Navbar-Title"] = "Recursos > Engagements";
+
+
+    List<object> operators = new List<object>();
+    operators.Add(new { value = "contains", text = "contains" });
+    //var formatoFecha = new { type = "datetime", format = "dd-MMM-yyyy" };
+}
+@model wDualAssistence.Models.EngagementViewModel;
+
+@section Styles {
+    <style>
+        .spanIcon {
+            border-radius: 5px;
+            border-style: solid;
+            border-color: white;
+        }
+
+        .btn-switch {
+            background-color: #2f373f;
+            border-radius: 3px;
+            height: 25px;
+            padding: 0;
+        }
+
+        .text-switch {
+            display: inline-block;
+            color: #fff;
+            text-transform: uppercase;
+            padding: 6px !important;
+            margin-top: -5px;
+        }
+
+        .activo {
+            background: #f9c92e;
+        }
+
+        .e-grid .e-filtered::before {
+            color:white !important;
+        }
+    </style>
+}
+
+<div class="content-wrapper">
+    <div class="content">
+        <div class="panel panel-default">
+            <div class="panel-heading heading-primary">
+                <span class="capa_btn info">
+                    <button class="btn btn-base crear" type="button" onclick="Crear()">
+                        <span class="fa span-button info"></span>
+                        <p class="text-button-primary">Crear</p>
+                    </button>
+                </span>
+
+            </div>
+            <div class="panel-body">
+                <section class="content-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4">
+                            <h4>Estados:</h4>
+                            <button id="btnPlanificado" class="btn-switch activo" type="button" onclick="FiltroEstado(1)">
+                                <p class="text-switch">PLANIFICADO</p>
+                            </button>
+                            <button id="btnProceso" class="btn-switch" type="button" onclick="FiltroEstado(2)">
+                                <p class="text-switch">EN PROCESO</p>
+                            </button>
+                            <button id="btnTerminado" class="btn-switch" type="button" onclick="FiltroEstado(3)">
+                                <p class="text-switch">TERMINADO</p>
+                            </button>
+                        </div>
+
+                        @*<div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                            <h4> Empresa:</h4>
+                            <div class="e-input-group e-small">
+                                <ejs-multiselect id="selectEmpresas" dataSource="@Model.listaEmpresa" mode="CheckBox" placeholder="Seleccione una o más empresas" locale="es"
+                                                 showSelectAll="true" showDropDownIcon="true" selectAllText="Todas" unSelectAllText="Des Seleccionar" value="@Model.idsEmpresas"
+                                                 filterBarPlaceholder="Seleccionar empresas" popupHeight="350px"
+                                                 allowFiltering="true"
+                                                 itemTemplate="@Html.Raw("${id} Hrs - ${nombre}")">
+                                    <e-multiselect-fields text="nombre" value="id"></e-multiselect-fields>
+                                </ejs-multiselect>
+
+                            </div>
+                        </div>*@
+
+
+                        @*<div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                            <br />
+                            <span class="capa_btn info">
+                                <button type="submit" class="btn btn-base crear" onclick="buscar()">
+                                    <span class="fa span-button fa-file-excel-o"></span>
+                                    <p class="text-button-primary">Buscar</p>
+                                </button>
+                            </span>
+                        </div>*@
+                    </div>
+                    <ejs-grid id="Grid" created="onCreateGrid" dataSource="@Model.listaEngagement" allowPaging="true" allowFiltering="true" locale="es" gridLines="Both">
+                        <e-grid-filterSettings type="Menu" mode="OnEnter" operators="@(new { stringOperator = operators })"></e-grid-filterSettings>
+                        <e-grid-pagesettings enableQueryString="true" pageSize="10"></e-grid-pagesettings>
+                        <e-grid-columns>
+                            <e-grid-column field="id" isPrimaryKey="true" visible="false" type="string" headerTextAlign="Center" textAlign="Left" width="50"></e-grid-column>
+                            <e-grid-column field="area" headerText="AREA" type="string" headerTextAlign="Center" textAlign="Left" width="100"></e-grid-column>
+                            <e-grid-column field="empresa" headerText="EMPRESA" type="string" headerTextAlign="Center" textAlign="Left" width="150"></e-grid-column>
+                            <e-grid-column field="titulo" headerText="ENGAGEMENT" type="string" headerTextAlign="Center" textAlign="Left" width="200"></e-grid-column>
+                            <e-grid-column field="desde" headerText="DESDE" type="date" format="dd/MM/yyyy" headerTextAlign="Center" textAlign="Right" width="100"></e-grid-column>
+                            <e-grid-column field="hasta" headerText="HASTA" type="date" format="dd/MM/yyyy" headerTextAlign="Center" textAlign="Right" width="100"></e-grid-column>
+                            <e-grid-column field="hora_servicio" headerText="HORAS DE SERVICIO" type="number" headerTextAlign="Center" textAlign="Right" width="100"></e-grid-column>
+                            <e-grid-column field="horas_ejecutadas" headerText="HORAS EJECUTADAS" type="number" headerTextAlign="Center" textAlign="Right" width="100"></e-grid-column>
+                            <e-grid-column headerTextAlign="Center" textAlign="Center" template="#menuContextual" width="30" allowFiltering="false"></e-grid-column>
+                        </e-grid-columns>
+                    </ejs-grid>
+
+                </section>
+                <!--  -------------------- PASO DE PARAMETRO POST ----------------- -->
+                <form id="formPasoParametro" action='@Url.Action("Crear", "Engagement")' method="POST">
+                    <input type="hidden" id="id_engagement" name="id_engagement" value="0">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a id="modalELiminar" href="@Url.Action("MostrarModalEliminar", "Modal")" data-toggle="modal" data-target="#modalBusqueda" hidden></a>
+
+
+<partial name="_SeccionModal" />
+
+<ejs-contextmenu id="contextmenu" items="Model.menuItems" select="ejecutarAccion"></ejs-contextmenu>
+
+<script type="text/x-template" id="menuContextual">
+    <button class="boton-accion" onclick="abrirContextMenu(event, ${ id })">
+        <i class="fa fa-list-ul"></i>
+    </button>
+</script>
+
+<script type="text/x-template" id="listaEmpresa">
+    <p>${id} - ${nombre}</p>
+</script>
+
+<script>
+
+    var oGrid;
+    var id_parametro = 0;
+
+    function onCreateGrid() {
+        oGrid = document.getElementById('Grid').ej2_instances[0];
+    }
+
+    function irAListado() {
+        window.document.location.href = '@Url.Action("Listado", "Empresa")';
+    }
+
+    function ejecutarAccion(args) {
+        switch (args.item.id) {
+            case "0": // Nada
+                break;
+            case "1": // Asociacion
+                var form = document.getElementById('formPasoParametro');
+                document.getElementById('id_engagement').value = id_parametro;
+                form.action = '@Url.Action("AsociacionCalendar", "Engagement")';
+                form.method = 'POST'
+                form.submit();
+                break;
+            case "2": // Editar
+                var form = document.getElementById('formPasoParametro');
+                document.getElementById('id_engagement').value = id_parametro;
+                form.submit();
+                break;
+            case "3": // Logs
+                var form = document.getElementById('formPasoParametro');
+                document.getElementById('id_engagement').value = id_parametro;
+                form.action = '@Url.Action("Log", "Engagement")';
+                form.method = 'POST'
+                form.submit();
+                break;
+            case "4": // Eliminar
+                mostrarConfirmacion();
+                break;
+            default:
+        }
+    }
+
+    function Crear() {
+        var form = document.getElementById('formPasoParametro');
+        document.getElementById('id_engagement').value = 0;
+        form.submit();
+    }
+
+    function abrirContextMenu(ev, id) {
+        id_parametro = id;
+        let x = ev.pageX;
+        let y = ev.pageY;
+        let contextMenuObj = document.getElementById("contextmenu").ej2_instances[0];
+        contextMenuObj.open(y, x);
+    }
+
+    function EliminarUsuario(id) {
+        $.ajax({
+            type: "DELETE",
+            url: '@Url.Action("Delete", "Engagement")',
+            data: { id: id },
+            success: function (data) {
+                console.log(data);
+                if (data.transaccion) {
+                    mensajeV1("Engagement Eliminado", msgOk);
+                    //var grid = document.getElementById("Grid").ej2_instances[0];
+                    //grid.refresh(); // refresh the Grid.
+                    location.reload();
+                } else {
+                    mensajeV1(data.mensaje, msgError);
+                }
+            },
+            error: function () {
+                mensajeV1(errorServidor, msgError);
+            }
+        });
+    }
+
+    function accionEliminar() {
+        EliminarUsuario(id_parametro);
+    }
+
+</script>
+
+@section Scripts {
+    <script>
+
+        var id_tipo = 2;
+        function FiltroEstado(tipo) {
+            document.getElementById("btnPlanificado").classList.remove("activo");
+            document.getElementById("btnProceso").classList.remove("activo");
+            document.getElementById("btnTerminado").classList.remove("activo");
+
+            if (tipo == 1) {
+                document.getElementById("btnPlanificado").classList.add("activo");
+            }
+            if (tipo == 2) {
+                document.getElementById("btnProceso").classList.add("activo");
+            }
+            if (tipo == 3) {
+                document.getElementById("btnTerminado").classList.add("activo");
+            }
+            id_tipo = tipo;
+
+            buscar();
+        }
+
+        function buscar() {
+            onAjaxBegin();
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetListaByFiltro", "Engagement")/' + id_tipo,
+                success: function (data) {
+                    if (data.transaccion) {
+                        var ogrid = document.getElementById("Grid").ej2_instances[0];
+                        //oGridUsuario.dataSource = data.contenido;
+                        ogrid.dataSource = [];
+                        data.contenido.forEach(function (item) {
+                            let res = item.desde.split("/");
+                            let desde = new Date(res[2] + "/" + res[1] + "/" + res[0]);
+
+                            let res2 = item.hasta.split("/");
+                            let hasta = new Date(res2[2] + "/" + res2[1] + "/" + res2[0]);
+
+                            item.desde = desde;
+                            item.hasta = hasta;
+                            ogrid.dataSource.push(item);
+                        });
+                        onAjaxComplete();
+                        ogrid.refresh();
+                    } else {
+                        onAjaxComplete();
+                        mensajeV1("Error:" + data.mensaje, msgError);
+                    }
+                },
+                error: function () {
+                    onAjaxComplete();
+                    mensajeV1(errorServidor, msgError);
+                }
+            });
+        }
+
+        function mostrarConfirmacion() {
+            document.getElementById("modalELiminar").click();
+
+        }
+    </script>
+}
+

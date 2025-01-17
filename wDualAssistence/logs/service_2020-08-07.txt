@@ -1,0 +1,22 @@
+2020-08-07 08:42:49,948 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-07 09:29:56,170 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-07 09:30:14,026 [11] ERROR WebServices Business.Security.Usuario - System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.Single[TSource](IQueryable`1 source)
+   at Business.Security.Usuario.Login(String usuario, String contrasena) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 215 
+2020-08-07 09:44:50,606 [7] ERROR WebServices wDualAssistence.Controllers.EngagementController - System.Exception: El campo titulo es requerido !
+   at wDualAssistence.Controllers.EngagementController.Post(EngagementViewModel vEngagementViewModel) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\EngagementController.cs:line 115 
+2020-08-07 10:16:42,580 [50] ERROR WebServices wDualAssistence.Controllers.EngagementController - System.Exception: La sumatoria de HORAS POR TAREA no debe ser mayor a la sumatoria del DETALLE DE HORAS del engagement !
+   at wDualAssistence.Controllers.EngagementController.Post(EngagementViewModel vEngagementViewModel) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\EngagementController.cs:line 123 
+2020-08-07 10:51:27,468 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-07 11:22:47,103 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-07 14:31:42,972 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-07 16:19:33,793 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 

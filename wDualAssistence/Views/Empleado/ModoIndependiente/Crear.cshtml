@@ -1,0 +1,588 @@
+﻿
+@{
+    ViewData["Title"] = "Funcionario";
+    if (Model.eEmpleado.id != 0)
+    {
+        ViewData["Navbar-Title"] = "Recursos > Editar Funcionario";
+    }
+    else
+    {
+        ViewData["Navbar-Title"] = "Recursos > Crear Funcionario";
+    }
+}
+@model wDualAssistence.Models.EmpleadoViewModel
+
+@section Styles {
+
+    <style>
+        .e-upload {
+            visibility: hidden !important;
+        }
+
+        #fotoActual {
+            width: 200px;
+            height: 200px;
+        }
+
+        /*#region Estilo Tabs*/
+        .e-content .e-item {
+            font-size: 12px;
+            padding: 10px;
+            text-align: justify;
+        }
+
+
+        .e-group:before {
+            content: '\f0c0';
+        }
+
+        .e-photo:before {
+            content: '\f03e';
+        }
+
+        .e-sitemap:before {
+            content: '\f0e8';
+        }
+
+        #tabUsuario {
+            padding-top: 10px;
+        }
+
+        /*#endregion*/
+
+        #nombre_usuario {
+            text-transform: uppercase;
+        }
+
+        .e-treeview .e-ul {
+            padding: 0 0 0 0px !important;
+        }
+
+        .e-level-1 {
+            background: #8888883d !IMPORTANT;
+            margin-top: 2px !IMPORTANT;
+        }
+
+        .e-level-2 {
+            background: white;
+        }
+
+        .searchTrue {
+            color: red !important;
+        }
+
+        .boton-accion {
+            float: right;
+            margin-top: -25px;
+            margin-bottom: 5px;
+        }
+
+
+
+        e-tooltip-wrap .e-arrow-tip-outer.e-tip-left {
+    border-right: 8px solid #ccc;
+}
+
+.e-tooltip-wrap .e-arrow-tip-inner.e-tip-left {
+    color: #fff;
+}
+
+.e-tooltip-wrap.e-popup {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+}
+
+.e-tooltip-wrap .e-tip-content {
+    max-height: 300px;
+    overflow-y: auto;
+    color: #333;
+}
+
+.turnos-jornada {
+    max-height: 300px;
+}
+
+    .turnos-jornada ul {
+        width: 100%;
+        min-width: 200px;
+        list-style: none;
+        padding-inline-start: 0;
+        padding: 3px;
+    }
+
+        .turnos-jornada ul li {
+            border: solid 1px #ccc;
+            position: relative;
+            height: 56px;
+            margin-bottom: -1px;
+        }
+
+    .turnos-jornada .list-resumen {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .turnos-jornada .item-numero {
+        height: 100%;
+        display: inline-flex;
+        width: 30px;
+        border-right: 1px solid #ccc;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .turnos-jornada .item-turno {
+        width: calc(100% - 30px);
+        height: 100%;
+        display: inline-flex;
+        flex-direction: column;
+        float: right;
+        padding: 2px 10px;
+    }
+    </style>
+}
+
+<div class="content-wrapper">
+    <section class="content">
+        <form id="frmUsuario" class="form-horizontal" asp-controller="Empleado" asp-action="GuardarModoIndependiente" autocomplete="off" data-ajax="true" data-ajax-method="POST"
+              data-ajax-begin="onAjaxBegin" data-ajax-complete="onAjaxComplete" data-ajax-loading="#loading"
+              data-ajax-success="fnSuccess(data)" data-ajax-failure="fnFailure()">
+            <div class="panel panel-default">
+                <div class="panel-heading heading-primary">
+                    <span class="capa_btn volver">
+                        <button class="btn btn-base cancelar" type="button" onclick="irAListado()">
+                            <span class="fa span-button volver"></span>
+                            <p class="text-button-primary">VOLVER</p>
+                        </button>
+                    </span>
+                    <span class="capa_btn confirmar">
+                        <button class="btn btn-base guardar btn-submit">
+                            <span class="fa span-button confirmar"></span>
+                            <p class="text-button-primary">GUARDAR</p>
+                        </button>
+                    </span>
+            
+                </div>
+                <div class="panel-body">
+                    <section class="content-body" style="margin-top:1rem;">
+
+                        <input type="hidden" asp-for="eEmpleado.id" />
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-lg-2 col-md-2 text-center">
+                                @{
+                                    string url_img = (Model.foto_empleado == null) ? "/assets/usuarios/defecto.svg" : $"/DirectorioFotos/fotos/{Model.foto_empleado.url_foto}";
+                                }
+                                <img src="@url_img" alt="foto_funcionario" style="width:auto; max-height:250px;" onerror="this.src='/assets/usuarios/defecto.svg'" />
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-lg-10 col-md-10">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                        <h4> Código Biométrico:</h4>
+                                        <div class="e-input-group e-small">
+                                            <input class="e-input" asp-for="eEmpleado.codigo" type="text">
+                                        </div>
+                                        <span asp-validation-for="eEmpleado.codigo" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                        <h4> <b style="color:red;">*</b>Nombre:</h4>
+                                        <div class="e-input-group e-small">
+                                            <input class="e-input" asp-for="eEmpleado.nombre" type="text" required>
+                                        </div>
+                                        <span asp-validation-for="eEmpleado.nombre" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                        <h4> <b style="color:red;">*</b>Ape. Paterno:</h4>
+                                        <div class="e-input-group e-small">
+                                            <input class="e-input" asp-for="eEmpleado.apellido_paterno" type="text" required>
+                                        </div>
+                                        <span asp-validation-for="eEmpleado.apellido_paterno" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                        <h4> Ape. Materno:</h4>
+                                        <div class="e-input-group e-small">
+                                            <input class="e-input" asp-for="eEmpleado.apellido_materno" type="text">
+                                        </div>
+                                        <span asp-validation-for="eEmpleado.apellido_materno" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                        <h4> <b style="color:red;">*</b>Perfil:</h4>
+                                        <div class="e-input-group e-small">
+                                            <ejs-dropdownlist id="ddlPerfil" dataSource="@Model.listaPerfil" index="0" ejs-for="eEmpleado.id_perfil"
+                                                              placeholder="Seleccionar perfil..." popupHeight="220px" locale="es"
+                                                              allowFiltering="true">
+                                                <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                                            </ejs-dropdownlist>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                        <h4> <b style="color:red;">*</b>CI:</h4>
+                                        <div class="e-input-group e-small">
+                                            <input class="e-input" asp-for="eEmpleado.ci" type="text" required>
+                                        </div>
+                                        <span asp-validation-for="eEmpleado.ci" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                        <h4> <b style="color:red;">*</b>Área:</h4>
+                                        <div class="e-input-group e-small">
+                                            <input class="e-input" asp-for="eEmpleado.area" type="text" required>
+                                        </div>
+                                        <span asp-validation-for="eEmpleado.area" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                        <h4> <b style="color:red;">*</b>Correo:</h4>
+                                        <div class="e-input-group e-small">
+                                            <input class="e-input" asp-for="eEmpleado.correo" type="email" required>
+                                        </div>
+                                        <span asp-validation-for="eEmpleado.correo" class="text-danger"></span>
+                                    </div>
+
+
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                        <h4> Teléfono:</h4>
+                                        <div class="e-input-group e-small">
+                                            <input class="e-input" asp-for="eEmpleado.telefono" type="number">
+                                        </div>
+                                        <span asp-validation-for="eEmpleado.telefono" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                        <h4> Jornada:</h4>
+                                        <div class="e-input-group e-small">
+                                            <ejs-dropdownlist id="ddlJornada" dataSource="@Model.listaJornadas" showClearButton="true" ejs-for="eEmpleado.id_jornada"
+                                                              placeholder="Seleccionar jornada..." popupHeight="220px" locale="es"
+                                                              allowFiltering="true" created="onCreatedSelectJornadaAlerta" cssClass="patientStatus" close="CerrarPopUpAlerta">
+                                                <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                                            </ejs-dropdownlist>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                        <h4> <b style="color:red;">*</b>Fecha Nacimiento:</h4>
+                                        <div class="e-input-group e-small">
+                                            <input class="e-input" asp-for="eEmpleado.fecha_nacimiento" type="date" required>
+                                        </div>
+                                        <span asp-validation-for="eEmpleado.fecha_nacimiento" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                        <h4> <b style="color:red;">*</b>Usuario:</h4>
+                                        <div class="e-input-group e-small">
+                                            <input class="e-input" asp-for="eEmpleado.usuario" type="text" required>
+                                        </div>
+                                        <span asp-validation-for="eEmpleado.usuario" class="text-danger"></span>
+                                    </div>
+
+                                    @*          <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                    <h4> Cargo:</h4>
+                                    <div class="e-input-group e-small">
+                                    <input class="e-input" asp-for="eEmpleado.cargo" type="text">
+                                    </div>
+                                    <span asp-validation-for="eEmpleado.cargo" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                    <h4> <b style="color:red;">*</b> Fecha Registro:</h4>
+                                    <div class="e-input-group e-small">
+                                    <input class="e-input" asp-for="eEmpleado.fecha_ingreso" type="date">
+                                    </div>
+                                    <span asp-validation-for="eEmpleado.fecha_ingreso" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                    <h4> <b style="color:red;">*</b> Fecha Salida:</h4>
+                                    <div class="e-input-group e-small">
+                                    <input class="e-input" asp-for="eEmpleado.fecha_salida" type="date">
+                                    </div>
+                                    <span asp-validation-for="eEmpleado.fecha_salida" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-2">
+                                    <h4> Sucursal:</h4>
+                                    <div class="e-input-group e-small">
+                                    <ejs-dropdownlist id="ddlSucursal" dataSource="@Model.listaSucursales" showClearButton="true" ejs-for="eEmpleado.id_sucursal"
+                                    placeholder="Seleccionar sucursal..." popupHeight="220px" locale="es"
+                                    allowFiltering="true" >
+                                    <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                                    </ejs-dropdownlist>
+                                    </div>
+                                    </div>
+                                    *@
+
+
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                        <h4> <b style="color:red;">*</b>Contraseña:</h4>
+                                        @if (Model.eEmpleado.id != 0)
+                                        {
+                                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevaContrasena" style="width: 100%;">Actualizar Contraseña</button>
+                                            <input class="e-input" id="contrasena" asp-for="eEmpleado.clave" type="hidden">
+                                        }
+                                        else
+                                        {
+                                            <input class="e-input" id="contrasena" asp-for="eEmpleado.clave" type="password" required>
+                                            <span asp-validation-for="eEmpleado.clave" class="text-danger"></span>
+                                        }
+
+                                    </div>
+
+                                  @*   <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                        <h4> Cod. Biometrico:</h4>
+                                        <div class="e-input-group e-small">
+                                            <input class="e-input" asp-for="eEmpleado.codigo_biometrico" type="text">
+                                        </div>
+                                        <span asp-validation-for="eEmpleado.codigo_biometrico" class="text-danger"></span>
+                                    </div> *@
+
+                                  
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <br /><br />
+
+                        <br />
+
+
+                              <h5>Lista de turnos</h5>
+
+                        <ejs-grid id="gridTurno" dataSource="@Model.eEmpleado.listaTurno" locale="es" gridLines="Both">
+                            <e-grid-pagesettings enableQueryString="true" pageSize="8"></e-grid-pagesettings>
+                            <e-grid-columns>
+                                <e-grid-column field="id" isPrimaryKey="true" visible="false" ></e-grid-column>
+                                <e-grid-column field="codigo_turno" headerText="NRO" headerTextAlign="Center" textAlign="Left" width="20"></e-grid-column>
+                                <e-grid-column field="dia.descripcion" headerText="DIA" headerTextAlign="Center" textAlign="Center" width="40"></e-grid-column>
+                                <e-grid-column field="descripcion_turno" headerText="DESCRIPCION" headerTextAlign="Center" textAlign="Left" width="100"></e-grid-column>
+                                <e-grid-column field="entrada" headerText="ENTRADA" headerTextAlign="Center" textAlign="Left" width="70"></e-grid-column>
+                                <e-grid-column field="salida" headerText="SALIDA" headerTextAlign="Center" textAlign="Left" width="70"></e-grid-column>
+                                <e-grid-column field="anticipo_entrada" headerText="ANT. ENT." headerTextAlign="Center" textAlign="Right" width="40" ></e-grid-column>
+                                <e-grid-column field="tolerancia_entrada" headerText="DES. ENT." headerTextAlign="Center" textAlign="Right" width="40" ></e-grid-column>
+                                <e-grid-column field="anticipo_salida" headerText="ANT. SAL." headerTextAlign="Center" textAlign="Right" width="40" ></e-grid-column>
+                                <e-grid-column field="tolerancia_salida" headerText="DES. SAL." headerTextAlign="Center" textAlign="Right" width="40"></e-grid-column>
+                            </e-grid-columns>
+                        </ejs-grid>
+
+
+
+
+                    </section>
+                </div>
+            </div>
+        </form>
+
+    </section>
+</div>
+
+<script type="text/x-template" id="tolerancia">
+    0.00
+</script>
+
+<!--#region Modal para nueva contraseña -->
+<div class="modal fade" id="modalNuevaContrasena" role="dialog">
+    <div class="modal-dialog">
+        <form id="formNuevaContrasena" class="form-horizontal" asp-controller="Empleado" asp-action="setContrasena" autocomplete="off" data-ajax="true" data-ajax-method="POST"
+              data-ajax-success="fnSuccessContrasena(data)" data-ajax-failure="fnFailureContrasena()">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 style="margin: 0;"><span class="fa fa-lock"></span> Actualizar Contraseña:</h3>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+
+                    <input class="e-input" name="id_usuario" placeholder="Nombre" type="hidden" value="@Model.eEmpleado.id">
+
+                    <div class="form-group">
+                        <label for="usrname"> Nueva contraseña:</label>
+                        <div class="e-input-group e-small">
+                            <input class="e-input" id="nuevaContrasenaAdmin" name="nueva_contrasena" type="password" value="" required>
+                            <span class="fa fa-eye-slash spanPassword" id="spanNuevaContrasenaAdmin" onclick="mostrarOcultarContrasena('nuevaContrasenaAdmin', 'spanNuevaContrasenaAdmin')"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="capa_btn confirmar">
+                        <button id="btnCambiarContra" type="submit" class="btn btn-base guardar">
+                            <span class="fa span-button confirmar"></span>
+                            <p class="text-button-primary">Guardar</p>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--#endregion-->
+
+
+<script>
+    function onCreatedSelectJornadaAlerta() {
+            var ddlGrupo = document.getElementById('ddlJornada').ej2_instances[0];
+            console.log('on create select grupos disponibles', ddlGrupo);
+
+            tooltipSelectGrupoAlerta = new ej.popups.Tooltip({
+                id: 'id_tooltip',
+                content: 'Contenido Tooltip',
+                target: '.patientStatus .e-list-item',
+                position: 'RightCenter',
+                opensOn: 'Hover',
+                beforeRender: onBeforeRenderTooltipAlerta
+            });
+
+            tooltipSelectGrupoAlerta.appendTo('body');
+        }
+
+        function onBeforeRenderTooltipAlerta(args) {
+            let idJornada = parseInt(args.target.dataset.value);
+            var ddlGrupo = document.getElementById('ddlJornada').ej2_instances[0];
+            let jornada = ddlGrupo.properties.dataSource.find(g => g.id == idJornada);
+            let listaTurnos = jornada.listaDetalleJornada;
+
+            const tipoQuery = 2;
+
+            // if (jornada.tipo == tipoQuery) {
+            //     this.content = `El jornada tiene contactos que se extraeran de una Consulta!`;
+            //     return;
+            // }
+
+            if (listaTurnos.length == 0) {
+                this.content = `La jornada no tiene turnos.`;
+                return;
+            }
+
+            const diasSemana = ["LUNES", "MARTES", "MIÉRCOLES", "JUEVES", "VIERNES", "SÁBADO", "DOMINGO"];
+
+            let turnosHtmlList =
+                `<li style="height: 30px; background: #0072cc; color: white;">
+                                <div class="list-resumen">
+                                    <strong>TOTAL DE TURNOS: ${listaTurnos.length}</strong>
+                                </div>
+                             </li>`;
+
+            listaTurnos.forEach((turno, index) => {
+                // Convertir las horas recibidas a objetos de tipo Date
+                const horaEntrada = new Date(turno.hora_entrada);
+                const horaSalida = new Date(turno.hora_salida);
+
+                const diaLiteral = diasSemana[turno.dia - 1]; 
+
+                // Formatear las horas en formato HH:mm
+                const horaEntradaFormatted = horaEntrada.toLocaleTimeString('es-ES', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                });
+                const horaSalidaFormatted = horaSalida.toLocaleTimeString('es-ES', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                });
+
+                turnosHtmlList +=
+                    `<li>
+                        <div class="item-numero">${index + 1}</div>
+                        <div class="item-turno">
+                            <div class="nombre"><strong>Día:</strong> ${diaLiteral}</div>
+                            <div class="correo"><strong>Hora Entrada:</strong> ${horaEntradaFormatted}</div>
+                            <div class="telefono"><strong>Hora Salida:</strong> ${horaSalidaFormatted}</div>
+                        </div>
+                        </li>`;
+            });
+
+        let turnosHtmlContainer = `<div class="turnos-jornada"><ul>${turnosHtmlList}</ul></div>`;
+        this.content = turnosHtmlContainer;
+
+        }
+
+        function CerrarPopUpAlerta() {
+            tooltipSelectGrupoAlerta.close();
+            var tooltip = document.querySelector(`[id^="tooltip_"]`);
+            if (tooltip) tooltip.style.display = 'none';
+        }
+</script>
+
+@section PreScripts {
+
+    <script>
+        function CambioUsuario(arg) {
+            if (arg.value != null) {
+                onAjaxBegin();
+                $.ajax(
+                {
+                    type: "GET",
+                    url: '@Url.Action("Get", "Usuario")/' + arg.value,
+                    success: function (data) {
+                        if (data.transaccion) {
+                            console.log(data.usuario);
+                        } else {
+                            mensajeV1(data.mensaje, msgOk);
+                        }
+                        onAjaxComplete();
+                    },
+                    error: function () {
+                        onAjaxComplete();
+                        mensajeV1('No se pudo conectar con el servicio', msgError);
+                    }
+                });
+            }
+        }
+    </script>
+
+}
+
+@section Scripts {
+
+    <script type="text/javascript">
+        function irAListado() {
+            window.document.location.href = '@Url.Action("Listado", "Empleado")';
+        }
+
+        //Despues del Submit del Form Principal
+        function fnSuccess(data) {
+            if (data.transaccion == true) {
+                mensajeV1("Transacción exitosa!", msgOk);
+                irAListado();
+            }
+            else
+                mensajeV1(data.mensaje, msgError);
+        }
+
+        function fnFailure() {
+            mensajeV1(errorServidor, msgOk);
+        }
+
+        //#region Metodos para el Cambio de Contrasena
+        function fnSuccessContrasena(data) {
+            if (data.transaccion == true) {
+                mensajeV1(data.mensaje, msgOk);
+                document.getElementById("contrasena").value = document.getElementById("nuevaContrasenaAdmin").value;
+                $("#modalNuevaContrasena").modal('hide');
+            }
+            else {
+                mensajeV1(data.mensaje, msgError);
+            }
+
+        }
+
+        function fnFailureContrasena() {
+            mensajeV1(errorServidor, msgOk);
+        }
+        //#endregion
+    </script>
+
+}

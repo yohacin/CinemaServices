@@ -1,0 +1,6 @@
+2020-08-22 10:30:32,483 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-22 10:34:16,497 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-22 10:42:00,556 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-22 10:47:49,365 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-22 19:11:48,061 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-22 19:12:39,071 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 

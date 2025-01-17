@@ -1,0 +1,197 @@
+﻿@{
+    ViewData["Title"] = "Reporte";
+    ViewData["Navbar-Title"] = "Reporte > Marcaciones";
+
+    List<object> operators = new List<object>();
+    operators.Add(new { value = "contains", text = "contains" });
+    //var formatoFecha = new { type = "datetime", format = "dd-MMM-yyyy" };
+}
+@model wDualAssistence.Models.ViewModelBase;
+
+    <style>
+        .tipo-manual {
+            color: white;
+            background-color: #0072cce0;
+            margin: 0;
+            border-radius: 1px;
+            text-align: left;
+        }
+
+        .tipo-sin-dato {
+            color: white;
+            background: black;
+            margin: 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .e-grid .e-rowcell {
+            white-space: pre-wrap !important;
+        }
+
+    </style>
+
+
+<div class="content-wrapper">
+    <div class="content">
+        <div class="panel panel-default">
+            <div class="panel-heading heading-primary">
+                <span class="capa_btn info">
+                    <button type="submit" class="btn btn-base " onclick="toExcel()">
+                        <span class="fa span-button fa-file-excel-o"></span>
+                        <p class="text-button-primary">Reporte [RRHH]</p>
+                    </button>
+                </span>
+
+                <span class="capa_btn info">
+                    <button type="submit" class="btn btn-base " onclick="toGraficoExcel()">
+                        <span class="fa span-button fa-file-excel-o"></span>
+                        <p class="text-button-primary">Reporte Grafico</p>
+                    </button>
+                </span>
+            </div>
+            <div class="panel-body">
+                <section class="content-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                            <h4> Desde:</h4>
+                            <div id="datetimepicker-control">
+                                <ejs-datepicker id="desde" placeholder="Selecione la fecha" format="dd-MMM-yyyy" value="@DateTime.Now" locale="es"></ejs-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                            <h4> Hasta:</h4>
+                            <div id="datetimepicker-control">
+                                <ejs-datepicker id="hasta" placeholder="Selecione la fecha" format="dd-MMM-yyyy" value="@DateTime.Now" locale="es"></ejs-datepicker>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                            <span class="capa_btn info">
+                                <button type="submit" class="btn btn-base crear" onclick="buscar()">
+                                    <span class="fa span-button fa-file-excel-o"></span>
+                                    <p class="text-button-primary">Buscar</p>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <ejs-grid id="gridUsuario" dataSource="@ViewBag.lista" allowPaging="true" allowFiltering="true" locale="es" gridLines="Both">
+                        <e-grid-filterSettings type="Menu" mode="OnEnter" operators="@(new { stringOperator = operators })"></e-grid-filterSettings>
+                        <e-grid-pagesettings enableQueryString="true" pageSize="8"></e-grid-pagesettings>
+                        <e-grid-columns>
+                            <e-grid-column field="id" isPrimaryKey="true" visible="false" type="string" headerTextAlign="Center" textAlign="Left" width="140"></e-grid-column>
+                            <e-grid-column field="nombre_empleado" headerText="NOMBRE" headerTextAlign="Center" textAlign="Left" width="100"></e-grid-column>
+                            <e-grid-column field="empresa_entrada" headerText="EMP. ENT." headerTextAlign="Center" textAlign="Left" width="40"></e-grid-column>
+                            <e-grid-column field="empresa_salida" headerText="EMP. SAL." headerTextAlign="Center" textAlign="Left" width="40"></e-grid-column>
+                            <e-grid-column field="descripcion_turno" headerText="TURNO" headerTextAlign="Center" textAlign="Left" width="60"></e-grid-column>
+                            <e-grid-column field="entrada_programada" headerText="ENT. PROG." headerTextAlign="Center" textAlign="Left" width="40" allowFiltering="false"></e-grid-column>
+                            <e-grid-column field="salida_programada" headerText="SAL. PROG." headerTextAlign="Center" textAlign="Left" width="40" allowFiltering="false"></e-grid-column>
+                            <e-grid-column field="entrada_real" headerText="ENT. REAL" template="#tipoEnt" headerTextAlign="Center" textAlign="Right" width="40" allowEditing="false"></e-grid-column>
+                            <e-grid-column headerText="IMAGEN ENT" headerTextAlign="Center" textAlign="Center" template="#imagenEnt" width="30" allowFiltering="false"></e-grid-column>
+                            <e-grid-column field="salida_real" headerText="SAL. REAL" template="#tipoSal" headerTextAlign="Center" textAlign="Center" width="40" allowEditing="false"></e-grid-column>
+                            <e-grid-column headerText="IMAGEN SAL" headerTextAlign="Center" textAlign="Center" template="#imagenSal" width="30" allowFiltering="false"></e-grid-column>
+                        </e-grid-columns>
+                    </ejs-grid>
+                </section>
+            </div>
+            <a id="exportar" href="" target="_blank"></a>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-template" id="tipoEnt">
+    ${if(entrada_real == "SIN DATOS")}
+    <p class="tipo-sin-dato">${entrada_real}</p>
+    ${else}
+    <p class="tipo-manual">${entrada_real} </p>
+    <p class="tipo-manual">${tipo_marcacion_entrada}</p>
+    ${/if}
+
+</script>
+
+<script type="text/x-template" id="tipoSal">
+    ${if(salida_real == "SIN DATOS")}
+    <p class="tipo-sin-dato">${salida_real}</p>
+    ${else}
+    <p class="tipo-manual">${salida_real} </p>
+    <p class="tipo-manual">${tipo_marcacion_salida}</p>
+    ${/if}
+
+</script>
+
+<script type="text/x-template" id="imagenEnt">
+    <img src="${imagen_ent}" alt="foto entrada" width="50"
+         onerror="this.onerror=null;this.src='/assets/recursos/defecto.svg';"/>
+</script>
+
+<script type="text/x-template" id="imagenSal">
+    <img src="${imagen_sal}" alt="foto salida" width="50"
+         onerror="this.onerror=null;this.src='/assets/recursos/defecto.svg';" />
+</script>
+
+@section Scripts {
+    <script>
+        function toExcel() {
+            var desde = document.getElementById('desde').ej2_instances[0].value.toString();
+            var hasta = document.getElementById('hasta').ej2_instances[0].value.toString();
+
+            var posGMT = (desde.indexOf("GMT"));
+            desde = desde.substring(0, posGMT);
+            hasta = hasta.substring(0, hasta.indexOf("GMT"));
+
+            document.getElementById('exportar').href = '@Url.Action("RptMarcacionesEXCEL", "Reporte")/' + desde + '/' + hasta;
+            document.getElementById('exportar').click();
+        }
+
+        function toGraficoExcel() {
+            var desde = document.getElementById('desde').ej2_instances[0].value.toString();
+            var hasta = document.getElementById('hasta').ej2_instances[0].value.toString();
+
+            var posGMT = (desde.indexOf("GMT"));
+            desde = desde.substring(0, posGMT);
+            hasta = hasta.substring(0, hasta.indexOf("GMT"));
+
+            document.getElementById('exportar').href = '@Url.Action("RptMarcacionesGraficoEXCEL", "Reporte")/' + desde + '/' + hasta;
+            document.getElementById('exportar').click();
+        }
+
+        function buscar() {
+            var desde = document.getElementById('desde').ej2_instances[0].value.toString();
+            var hasta = document.getElementById('hasta').ej2_instances[0].value.toString();
+
+            var posGMT = (desde.indexOf("GMT"));
+            desde = desde.substring(0, posGMT);
+            hasta = hasta.substring(0, hasta.indexOf("GMT"));
+            onAjaxBegin();
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetListaMarcaciones", "Marcacion")/' + desde + '/' + hasta,
+                success: function (data) {
+                    if (data.transaccion) {
+                        var oGridUsuario = document.getElementById("gridUsuario").ej2_instances[0];
+                        //oGridUsuario.dataSource = data.contenido;
+                        oGridUsuario.dataSource = [];
+                        data.contenido.forEach(function (item) {
+                            oGridUsuario.dataSource.push(item);
+                        });
+                        onAjaxComplete();
+                        oGridUsuario.refresh();
+                    } else {
+                        onAjaxComplete();
+                        mensajeV1("Error:" + data.mensaje, msgError);
+                    }
+                },
+                error: function () {
+                    onAjaxComplete();
+                    mensajeV1(errorServidor, msgError);
+                }
+            });
+
+        }
+
+
+    </script>
+}

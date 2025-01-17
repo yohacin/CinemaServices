@@ -1,0 +1,104 @@
+2020-10-07 16:41:04,437 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-10-07 16:41:13,312 [1] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 16:41:13,549 [1] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 16:42:13,602 [9] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 16:42:13,616 [9] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 16:43:13,644 [6] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 16:43:13,656 [6] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 16:44:13,692 [6] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 16:44:13,697 [6] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 16:45:13,749 [22] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 16:45:13,759 [22] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 16:46:14,754 [33] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 16:46:14,763 [33] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 16:47:14,813 [31] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 16:47:14,819 [31] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 16:48:14,856 [31] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 16:48:14,864 [31] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 16:49:14,905 [30] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 16:49:14,918 [30] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 16:51:32,054 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-10-07 16:51:38,363 [1] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 16:51:38,551 [1] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 16:52:38,616 [9] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 16:52:38,633 [9] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 16:53:38,682 [18] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 16:53:38,691 [18] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 16:54:38,741 [6] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 16:54:38,753 [6] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 16:55:38,824 [23] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 16:55:38,829 [23] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 16:56:38,890 [6] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 16:56:38,898 [6] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 16:57:38,945 [6] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 16:57:38,950 [6] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 16:58:38,992 [6] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 16:58:38,998 [6] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 16:59:39,040 [6] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 16:59:39,046 [6] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:00:39,093 [25] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:00:39,099 [25] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:01:39,155 [15] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:01:39,164 [15] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:02:39,211 [15] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:02:39,217 [15] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:03:39,265 [28] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:03:39,270 [28] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:04:39,327 [10] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:04:39,344 [10] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:05:39,382 [15] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:05:39,387 [15] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:06:39,433 [15] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:06:39,464 [15] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:07:39,513 [15] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:07:39,524 [15] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:08:39,573 [15] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:08:39,584 [15] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:09:39,639 [36] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:09:39,663 [36] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:10:39,718 [15] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:10:39,768 [15] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:11:39,822 [15] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:11:39,926 [15] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:12:39,999 [37] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:12:40,007 [37] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:13:40,057 [15] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:13:40,062 [15] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:14:40,101 [36] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:14:40,109 [36] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:15:40,162 [36] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:15:40,171 [36] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:16:40,231 [15] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:16:40,242 [15] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:17:40,291 [31] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:17:40,296 [31] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:18:40,351 [15] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:18:40,357 [15] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:19:40,417 [36] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:19:40,423 [36] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:20:40,491 [41] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:20:40,496 [41] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:21:40,559 [36] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:21:40,566 [36] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:22:40,625 [36] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:22:40,640 [36] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:23:40,681 [39] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:23:40,695 [39] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:24:40,751 [15] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:24:40,756 [15] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:25:40,807 [36] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:25:40,964 [36] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:26:41,014 [15] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:26:41,090 [15] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:27:41,157 [43] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:27:41,219 [43] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:28:41,281 [15] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:28:41,483 [15] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:29:41,522 [36] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:29:41,681 [36] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:30:41,747 [15] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:30:41,971 [15] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:31:42,030 [15] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:31:42,117 [15] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 
+2020-10-07 17:32:42,173 [45] INFO  WebServices wDualAssistence.Controllers.WorkerController - Termino la actualizacion de TURNOS EMPLEADOS 
+2020-10-07 17:32:42,188 [45] INFO  WebServices wDualAssistence.Controllers.EngagementController - VERIFICANDO Si existena notificacion de avance de engagement 

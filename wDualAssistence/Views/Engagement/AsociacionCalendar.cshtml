@@ -1,0 +1,773 @@
+﻿@{
+    ViewData["Title"] = "Engagement";
+    ViewData["Navbar-Title"] = "Recursos > Engagement - Asociacion de empleados";
+
+
+    List<object> operators = new List<object>();
+    operators.Add(new { value = "contains", text = "contains" });
+    //var formatoFecha = new { type = "datetime", format = "dd-MMM-yyyy" };
+}
+@model wDualAssistence.Models.EngagementViewModel;
+
+@section Styles {
+    <style>
+        .spanIcon {
+            border-radius: 5px;
+            border-style: solid;
+            border-color: white;
+        }
+
+        .cartel-horas {
+            width: fit-content;
+            border: 2px solid #0072cc;
+            padding: 5px;
+            border-radius: 5px;
+            background: #0070cc0d;
+        }
+    </style>
+
+    <style>
+        /*#region Estilo Tabs*/
+        .headerTab.e-tab .e-tab-header .e-tab-wrap {
+            width: 150px;
+        }
+
+        .e-content .e-item {
+            font-size: 12px;
+            padding: 10px;
+            text-align: justify;
+            width: 50px;
+        }
+
+
+        .e-group:before {
+            content: '\f0c0';
+        }
+
+        .e-photo:before {
+            content: '\f03e';
+        }
+
+        .e-sitemap:before {
+            content: '\f0e8';
+        }
+
+        #tabUsuario {
+            padding-top: 10px;
+        }
+
+        /* Text Overflow Ellipsis */
+        .headerTab.e-tab .e-tab-header .e-tab-wrap {
+            position: relative;
+        }
+
+            .headerTab.e-tab .e-tab-header .e-tab-wrap .e-tab-text {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: calc(100% - 30px);
+                position: relative;
+                display: block;
+            }
+
+        .headerTab.e-tab .e-tab-header .e-toolbar-item .e-tab-wrap {
+            padding: 0 6px;
+        }
+
+            .headerTab.e-tab .e-tab-header .e-toolbar-item .e-tab-wrap .delete-button-action {
+                position: relative;
+                right: 7px;
+                top: -3px;
+                background: red;
+                height: 24px;
+                width: 30px;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                border-radius: 6px;
+            }
+
+        .headerTab.e-tab .e-tab-header .e-toolbar-item:not(.tab-hijo).e-active .e-tab-wrap .delete-button-action {
+            display: flex;
+        }
+
+        .headerTab.e-tab .e-tab-header .e-toolbar-item:not(.e-active) .e-tab-wrap:hover {
+            height: 32px;
+        }
+
+
+        /*#endregion*/
+        .e-schedule .e-month-view .e-appointment {
+            background: #ff6700;
+        }
+
+        .e-schedule .e-month-view .e-work-days, .e-schedule .e-month-agenda-view .e-work-days {
+            height: 180px;
+        }
+    </style>
+
+}
+
+<div class="content-wrapper">
+    <div class="content">
+        <div class="panel panel-default">
+            <div class="panel-heading heading-primary">
+                <span class="capa_btn volver">
+                    <button class="btn btn-base cancelar" type="button" onclick="irAListado()">
+                        <span class="fa span-button volver"></span>
+                        <p class="text-button-primary">VOLVER</p>
+                    </button>
+                </span>
+
+            </div>
+            <div class="panel-body">
+                <section class="panel-content" style="height: calc(100vh - 90px);">
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                            <div class="e-input-group e-small">
+                                <ejs-dropdownlist id="ddlEngagement" dataSource="@Model.listaEngagement" ejs-for="eEngagement.id"
+                                                  placeholder="Seleccionar Engagement..." popupHeight="220px" locale="es"
+                                                  allowFiltering="true" change="onChangeEngagement" filterType="Contains">
+                                    <e-dropdownlist-fields text="titulo" value="id"></e-dropdownlist-fields>
+                                </ejs-dropdownlist>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6" hidden>
+                            <h4 class="cartel-horas"> <i class="fa fa-exclamation"></i> <b> Maximo de horas:</b>   @(Model.eEngagement.hora_servicio)</h4>
+                        </div>
+
+                        <div style="float: right; width: 200px">
+                            <span style="width: 5px; background: #317ab9; padding-left: 13px; border-radius: 50%;">&nbsp;</span>  Engagement Actual
+                            <br />
+                            <span style="width: 5px; background: #ff6700; padding-left: 13px; border-radius: 50%;">&nbsp;</span>  Otros Engagements
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                            <div class="e-input-group e-small">
+                                <ejs-dropdownlist id="ddlArea" dataSource="@ViewBag.listaAreas"
+                                                  placeholder="Seleccionar Area..." popupHeight="220px" locale="es"
+                                                  allowFiltering="true" change="onChangeArea" filterType="Contains">
+                                </ejs-dropdownlist>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                            <div class="e-input-group e-small">
+                                <ejs-dropdownlist id="ddlEmpleado" dataSource="@Model.listaEmpleado"
+                                                  placeholder="Agregar Empleado..." popupHeight="220px" locale="es"
+                                                  allowFiltering="true" filterType="Contains">
+                                    <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                                </ejs-dropdownlist>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                            <span class="capa_btn info">
+                                <button type="button" class="btn btn-base crear" onclick="AgregarEmpleado()">
+                                    <span class="fa span-button fa-file-excel-o"></span>
+                                    <p class="text-button-primary">Agregar Empleado</p>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <br />
+
+                    <ejs-tab id="ej2Tab" cssClass="headerTab" animation="ViewBag.animation"
+                             created="tabCreated" Selected="tabSelected" added="tabAdded">
+                    </ejs-tab>
+
+                    <p id="nombre_empleado" style="text-align: center; padding: 0px; margin: 0px; color: #0077cc; font-weight: bold; margin-top: -15px;">Nombre Empleado:</p>
+                    <ejs-schedule id="schedule" height="550" selectedDate="DateTime.Now" readonly="false" cellClick="ClickCell" eventClick="eventClick" locale="es">
+                        <e-schedule-views>
+                            @*<e-schedule-view option="WorkWeek" displayName="Semana" eventTemplate="#event-template"></e-schedule-view>*@
+                            <e-schedule-view option="Month" eventTemplate="#event-template"></e-schedule-view>
+                        </e-schedule-views>
+                        <e-schedule-eventsettings dataSource="@ViewBag.appointments" enableTooltip="true" tooltipTemplate="#toolTip">
+                        </e-schedule-eventsettings>
+
+                    </ejs-schedule>
+
+                    <button id="btnModal" type="button" data-toggle="modal" data-target="#modalRegistro" hidden />
+
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<a id="modalELiminar" href="@Url.Action("MostrarModalEliminar", "Modal")" data-toggle="modal" data-target="#modalBusqueda" hidden></a>
+
+<script id="event-template" type="text/x-template">
+    <div class='template-wrap' style="width: 100%; padding-left: 10px; background: ${PrimaryColor}">
+        <div class="subject">${Subject}</div>
+    </div>
+</script>
+
+<script id="toolTip" type="text/x-template">
+    <div class="tooltip-wrap">
+        <div class="content-area">
+            <div class="name">${Subject}</></div>
+            <div class="time">Engagement&nbsp;:&nbsp;${Engagement} </div>
+        </div>
+    </div>
+</script>
+
+<!--#region Modal para nueva contraseña -->
+<div class="modal fade" id="modalRegistro" role="dialog">
+    <div class="modal-dialog" style="width: 400px; top: 20%;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 style="margin: 0;">Asignar Horas</h3>
+            </div>
+            <div class="modal-body" style="padding:20px">
+                <input id="idDetalle" type="hidden" value="0">
+                <h4 id="colNombre">Empleado: Billy Crespo Salinas</h4>
+
+                Fecha: <input type="date" id="fecha" readonly />
+                <br />
+                <p>! Maximo de horas por dia: <span id="horasTurnoDia">8</span></p>
+                <br />
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6">
+                        <h4> Hrs Disponibles:</h4>
+                        <div class="e-input-group e-small">
+                            <input class="e-input" id="horas_disponibles" type="text" value="8" disabled style="color: white; background: #ffa500b3; text-align: right; padding-right: 10px;">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6">
+                        <h4> <b style="color:red;">*</b>Asignar Horas:</h4>
+                        <div class="e-input-group e-small">
+                            <input class="e-input" id="horas" name="horas" type="number">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <span id="eliminarAsignacion" class="capa_btn finalizar" style="display: none;">
+                    <button id="btnEliminarAsignacion" type="button" class="btn btn-base eliminar" onclick="EliminarAsignacion()">
+                        <span class="fa span-button finalizar"></span>
+                        <p class="text-button-primary">Eliminar</p>
+                    </button>
+                </span>
+                <span class="capa_btn confirmar">
+                    <button id="btnCambiarContra" type="button" class="btn btn-base guardar" onclick="GuardarAsignacion()">
+                        <span class="fa span-button confirmar"></span>
+                        <p class="text-button-primary">Guardar</p>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--#endregion-->
+
+<script>
+
+    function irAListado() {
+        window.document.location.href = '@Url.Action("Listado", "Engagement")';
+    }
+
+
+    function accionEliminar() {
+        $.ajax({
+            type: "DELETE",
+            url: '@Url.Action("Delete", "EngagementEmpleado")',
+            data: { id: id_parametro },
+            success: function (data) {
+                if (data.transaccion) {
+                    mensajeV1("Asociacion del empleado al engagement eliminado", msgOk);
+                    //var grid = document.getElementById("Grid").ej2_instances[0];
+                    //grid.refresh(); // refresh the Grid.
+                    location.reload();
+                } else {
+                    mensajeV1(data.mensaje, msgError);
+                }
+            },
+            error: function () {
+                mensajeV1(errorServidor, msgError);
+            }
+        });
+    }
+
+
+
+</script>
+
+@section PreScripts {
+
+    <script>
+        function onChangeEngagement(args) {
+            if (args.itemData == null || args.itemData.id == 0) {
+                return;
+            } else {
+                onAjaxBegin();
+                $.ajax(
+                {
+                    type: "GET",
+                    url: '@Url.Action("GetListaEmpleadoEngagement", "Engagement")/' + args.itemData.id,
+                    success: function (data) {
+                        if (data.transaccion) {
+
+                            loadTabActions(true, data.contenido);
+
+                            //var tabObj = document.getElementById("ej2Tab").ej2_instances[0];
+                            //tabObj.selectedItem = 0;
+                            //tabObj.items = [];
+                            //console.log(tabObj);
+                            //data.contenido.forEach(function (itemEmp) {
+                            //    // Required tab item object formed by using textbox inputs
+                            //    var item = { header: { text: itemEmp.id_empleado + "-" + itemEmp.nombre_empleado }, content: "" };
+
+                            //    totalItems = document.querySelectorAll('#ej2Tab .e-toolbar-item').length;
+                            //    // Item object and the index argument passed into the addTab method to add a new tab
+                            //    tabObj.addTab([item], totalItems - 1);
+                            //});
+
+
+                            //RefrescarCalendario();
+
+
+                            //let schedule = document.getElementById("schedule").ej2_instances[0];
+                            //schedule.eventSettings.dataSource = [];
+                            //data.contenido.forEach(function (itemAsignacion) {
+
+                            //    let res = itemAsignacion.StartTime.split("/");
+                            //    let desde = new Date(res[2] + "/" + res[1] + "/" + res[0]);
+                            //    itemAsignacion.StartTime = desde;
+
+                            //    let res2 = itemAsignacion.EndTime.split("/");
+                            //    let hasta = new Date(res2[2] + "/" + res2[1] + "/" + res2[0]);
+                            //    itemAsignacion.EndTime = hasta;
+
+                            //    schedule.eventSettings.dataSource.push(itemAsignacion);
+                            //});
+
+                            //schedule.refresh();
+
+                        } else {
+                            mensajeV1(data.mensaje, msgError);
+                            onAjaxComplete();
+                        }
+                    },
+                    error: function () {
+                        mensajeV1('No se pudo conectar con el servicio', msgError);
+                        onAjaxComplete();
+                    }
+                });
+
+            }
+        }
+
+        function tabAdded(args) {
+            console.debug('tabAdded: ', args);
+            RefrescarCalendario();
+        }
+
+        function loadTabActions(reloadTabs = false, data) {
+            var totalItems = 0;
+            let listaEngagementEmpleado = JSON.parse('@Html.Raw(Json.Serialize(Model.listaEngagement_Empleado))');
+
+            if (data) {
+                listaEngagementEmpleado = data;
+            }
+
+            if (listaEngagementEmpleado == null) return;
+
+            var tabObj = document.getElementById("ej2Tab").ej2_instances[0];
+
+            if (reloadTabs) {
+                tabObj.selectedItem = 0;
+                tabObj.items = [];
+                tabObj.refresh();
+            }
+
+            let tabItems = [];
+            listaEngagementEmpleado.forEach(function (itemEmp) {
+                // Required tab item object formed by using textbox inputs
+
+                let contenido = `${itemEmp.id_empleado} - ${itemEmp.nombre_empleado}`;
+                var item = { header: { text: contenido, iconCss: 'delete-action', iconPosition: 'Right' }, content: "" };
+
+                tabItems.push(item);
+            });
+
+            totalItems = document.querySelectorAll('#ej2Tab .e-toolbar-item').length;
+            // Item object and the index argument passed into the addTab method to add a new tab
+            tabObj.addTab(tabItems, totalItems - 1);
+            tabObj.refresh();
+
+            let deleteButtons = document.getElementById('ej2Tab').querySelectorAll('.delete-action');
+            const deleteButonTemplate = `<button class="delete-button-action" onclick="deleteEmpleado(this)"><i class="fa fa-close"></i></button>`;
+
+            for (let button of deleteButtons) {
+                console.debug('button: ', button);
+                button.innerText = "";
+                button.insertAdjacentHTML('beforeend', deleteButonTemplate);
+            }
+        }
+
+        function tabCreated() {
+            loadTabActions();
+        }
+
+        function deleteEmpleado(element) {
+            const tabText = element.parentElement.parentElement.querySelector('.e-tab-text').innerText;
+            let ddlEngagement = document.getElementById("ddlEngagement").ej2_instances[0];
+            const idEmpleado = parseInt(tabText.split('-')[0]);
+            console.debug('idEmpleado: ', idEmpleado);
+            onAjaxBegin();
+            $.ajax(
+            {
+                type: "GET",
+                url: `@Url.Action("EliminarAsociacionEmpleado", "Engagement")/${ddlEngagement.value}/${idEmpleado}`,
+                success: function (data) {
+                    try {
+                        if (data.transaccion) {
+
+                            window.location.reload();
+
+                        } else {
+                            throw data.mensaje;
+                        }
+                    } catch (ex) {
+                        console.error(ex);
+                        mensajeV1(ex, msgError);
+                    }
+
+                    onAjaxComplete();
+
+                },
+                error: function () {
+                    mensajeV1('No se pudo conectar con el servicio', msgError);
+                    onAjaxComplete();
+                }
+            });
+        }
+
+        function RefrescarCalendario() {
+            console.debug('refrescando calendario');
+            let tabObj = document.getElementById("ej2Tab").ej2_instances[0];
+            let id_empleado = tabObj.tbItem[tabObj.selectedItem].innerText.split("-")[0];
+            let ddlEngagement = document.getElementById("ddlEngagement").ej2_instances[0];
+            document.getElementById("nombre_empleado").innerHTML = tabObj.tbItem[tabObj.selectedItem].innerText;
+
+            console.debug('idEmpleado: ', id_empleado, 'idEngagement: ', ddlEngagement.value);
+
+            onAjaxBegin();
+            $.ajax(
+            {
+                type: "GET",
+                url: '@Url.Action("GetCalendarioByEmpresa", "Engagement")/' + ddlEngagement.value + '/' + id_empleado,
+                success: function (data) {
+                    try {
+                        if (data.transaccion) {
+                            let schedule = document.getElementById("schedule").ej2_instances[0];
+                            schedule.eventSettings.dataSource = [];
+                            schedule.refresh();
+                            data.contenido.forEach(function (itemAsignacion) {
+                                onAjaxBegin();
+                                let res = itemAsignacion.StartTime.split("/");
+                                let desde = new Date(res[2] + "/" + res[1] + "/" + res[0]);
+                                itemAsignacion.StartTime = desde;
+
+                                let res2 = itemAsignacion.EndTime.split("/");
+                                let hasta = new Date(res2[2] + "/" + res2[1] + "/" + res2[0]);
+                                itemAsignacion.EndTime = hasta;
+
+                                schedule.eventSettings.dataSource.push(itemAsignacion);
+                            });
+                            schedule.refresh();
+
+                        } else {
+                            throw data.mensaje;
+                        }
+                    } catch (ex) {
+                        console.error(ex);
+                        mensajeV1(ex, msgError);
+                    }
+
+                    onAjaxComplete();
+
+                },
+                error: function () {
+                    mensajeV1('No se pudo conectar con el servicio', msgError);
+                    onAjaxComplete();
+                }
+            });
+        }
+
+        function tabSelected(args) {
+            console.debug('tabSelected: ', args);
+            RefrescarCalendario();
+        }
+
+        function AgregarEmpleado() {
+            let ddlEmpleado = document.getElementById("ddlEmpleado").ej2_instances[0];
+            if (ddlEmpleado.value == null || ddlEmpleado.value == 0) {
+                mensajeV1("Debe seleccionar al empleado para agregarlo", msgError);
+                return;
+            }
+            console.log("ddlEmpleado:" ,ddlEmpleado);
+
+            let ddlEngagement = document.getElementById("ddlEngagement").ej2_instances[0];
+
+            var tabObj = document.getElementById("ej2Tab").ej2_instances[0];
+            onAjaxBegin();
+            $.ajax(
+            {
+                type: "GET",
+                url: '@Url.Action("AsociarEmpleado", "Engagement")/' + ddlEngagement.value + '/' + ddlEmpleado.value,
+                success: function (data) {
+                    if (data.transaccion) {
+                        var item = { header: { text: ddlEmpleado.value + "-" + ddlEmpleado.text }, content: "" };
+                        totalItems = document.querySelectorAll('#ej2Tab .e-toolbar-item').length;
+                        tabObj.addTab([item], totalItems);
+                    } else {
+                        mensajeV1(data.mensaje, msgError);
+                    }
+                    onAjaxComplete();
+                },
+                error: function () {
+                    mensajeV1('No se pudo conectar con el servicio', msgError);
+                    onAjaxComplete();
+                }
+            });
+
+        }
+
+        function onChangeArea(args) {
+            let ddlEmpleado = document.getElementById("ddlEmpleado").ej2_instances[0];
+            if (args.itemData == null || args.itemData.id == 0) {
+                ddlEmpleado.dataSource = [];
+            } else {
+                $.ajax(
+                {
+                    type: "GET",
+                    url: '@Url.Action("GetListaByArea", "Empleado")/' + args.value,
+                    success: function (data) {
+                        ddlEmpleado.dataSource = data;
+                        if (!ddlEmpleado.dataSource.length) { //si el arreglo es vacio
+                            mensajeV1("Esta Area no tiene empleados registrados !", msgAlerta);
+                        } else {
+                            mensajeV1("Lista de Empleados Cargada", msgInformacion);
+                        }
+                    },
+                    error: function () {
+                        mensajeV1('No se pudo conectar con el servicio', msgError);
+                    }
+                });
+            }
+
+
+        }
+
+        async function getHorasTurno(idEmpleado, fecha) {
+            return $.ajax({ type: "GET", url: `@Url.Action("GetHorasTurno", "Engagement")/${idEmpleado}/${fecha}`});
+        }
+
+        async function getHorasDisponibles(idEmpleado, fecha) {
+            return $.ajax({ type: "GET", url: `@Url.Action("GetHorasDisponibles", "Engagement")/${idEmpleado}/${fecha}` });
+        }
+
+    </script>
+    <script>
+        async function ClickCell(args) {
+            args.cancel = true;
+            //console.log("arg:", args);
+            var tabObj = document.getElementById("ej2Tab").ej2_instances[0];
+            let dateInitial = new Date(args.startTime);
+            let fechaDtl = dateInitial.getFullYear() + "-" + ("0" + (dateInitial.getMonth() + 1)).slice(-2) + "-" + ("0" + dateInitial.getDate()).slice(-2);
+
+
+            let btnModal = document.getElementById("btnModal");
+            btnModal.click();
+
+            let tabSelected = tabObj.tbItem[tabObj.selectedItem];
+            document.getElementById('idDetalle').value = 0;
+            document.getElementById("colNombre").innerText = "Empleado: " + tabSelected.innerText;
+            document.getElementById("fecha").value = fechaDtl;
+            document.getElementById("horas").value = 0;
+
+            document.getElementById('eliminarAsignacion').style.display = 'none';
+
+            onAjaxBegin();
+            let id_empleado = tabObj.tbItem[tabObj.selectedItem].innerText.split("-")[0];
+
+
+            try {
+                let responseHorasTurno = await getHorasTurno(id_empleado, fechaDtl);
+                let responseHorasDisponibles = await getHorasDisponibles(id_empleado, fechaDtl);
+
+                if (!responseHorasTurno.transaccion || !responseHorasDisponibles.transaccion) {
+                    throw new Error('No se pudo obtener los horarios y horas para el empleado');
+                }
+
+                document.getElementById("horasTurnoDia").innerText = responseHorasTurno.horas_turno;
+                document.getElementById("horas_disponibles").value = responseHorasDisponibles.horas_disponibles;
+            } catch (e) {
+                console.error('Ocurrió un error al al cargar información del engagement: ', e);
+                mensajeV1('No se pudo conectar con el servicio', msgError);
+            } finally {
+                onAjaxComplete();
+            }
+
+            @*$.ajax(
+            {
+                type: "GET",
+                url: '@Url.Action("GetHorasDisponibles", "Engagement")/' + id_empleado + '/' + fechaDtl,
+                success: function (data) {
+                    if (data.transaccion) {
+                        document.getElementById("horas_disponibles").value = data.horas_disponibles;
+                    } else {
+                        mensajeV1(data.mensaje, msgError);
+                    }
+                    onAjaxComplete();
+                },
+                error: function () {
+                    mensajeV1('No se pudo conectar con el servicio', msgError);
+                    onAjaxComplete();
+                }
+            });*@
+
+        }
+
+        function eventClick(args) {
+            args.cancel = true;
+            console.log('event click: ', args);
+
+            const eventItem = args.event;
+
+            if (!eventItem.CurrentEngagement) {
+                return;
+            }
+
+            const tabObj = document.getElementById("ej2Tab").ej2_instances[0];
+            let dateInitial = new Date(args.event.StartTime);
+            let fechaDtl = dateInitial.getFullYear() + "-" + ("0" + (dateInitial.getMonth() + 1)).slice(-2) + "-" + ("0" + dateInitial.getDate()).slice(-2);
+
+            let btnModal = document.getElementById("btnModal");
+            btnModal.click();
+
+            let tabSelected = tabObj.tbItem[tabObj.selectedItem];
+            document.getElementById('idDetalle').value = args.event.IdDetalleEngagementEmpleado;
+            document.getElementById("colNombre").innerText = "Empleado: " + tabSelected.innerText;
+            document.getElementById("fecha").value = fechaDtl;
+            document.getElementById("horas").value = args.event.HorasAsignadas;
+
+            document.getElementById('eliminarAsignacion').style.display = 'inline-block';
+
+            onAjaxBegin();
+            let id_empleado = tabObj.tbItem[tabObj.selectedItem].innerText.split("-")[0];
+
+            $.ajax(
+            {
+                type: "GET",
+                url: '@Url.Action("GetHorasDisponibles", "Engagement")/' + id_empleado + '/' + fechaDtl,
+                success: function (data) {
+                    if (data.transaccion) {
+                        let horas_disponibles = parseFloat(data.horas_disponibles) + parseFloat(args.event.HorasAsignadas);
+                        document.getElementById("horas_disponibles").value = horas_disponibles;
+                    } else {
+                        mensajeV1(data.mensaje, msgError);
+                    }
+                    onAjaxComplete();
+                },
+                error: function () {
+                    mensajeV1('No se pudo conectar con el servicio', msgError);
+                    onAjaxComplete();
+                }
+            });
+        }
+    </script>
+}
+
+@section Scripts {
+
+    <script>
+        async function GuardarAsignacion() {
+
+            var tabObj = document.getElementById("ej2Tab").ej2_instances[0];
+            let ddlEngagement = document.getElementById("ddlEngagement").ej2_instances[0];
+            let id_detalle = document.getElementById('idDetalle').value;
+            let id_engagement = ddlEngagement.value;
+            let id_empleado = tabObj.tbItem[tabObj.selectedItem].innerText.split("-")[0];
+            let fecha = document.getElementById("fecha").value;
+            let horas = document.getElementById("horas").value;
+
+            const horasTurnoResponse = await getHorasTurno(id_empleado, fecha);
+
+            if (!horasTurnoResponse.transaccion) {
+                mensajeV1(`No se pudo obtener las horas del turno`, msgAlerta);
+                return;
+            }
+
+            if (horas <= 0 || horas > horasTurnoResponse.horas_turno) {
+                mensajeV1(`El campo horas asignadas debe ser entre 0 y ${horasTurnoResponse.horas_turno}`, msgAlerta);
+                return;
+            }
+            onAjaxBegin();
+            $.ajax(
+            {
+                type: "GET",
+                url: `@Url.Action("AsignarHoras", "Engagement")/${id_detalle}/${id_engagement}/${id_empleado}/${fecha}/${horas}`,
+                success: function (data) {
+                    if (data.transaccion) {
+                        $("#modalRegistro").modal('hide');
+                        RefrescarCalendario();
+                    } else {
+                        mensajeV1(data.mensaje, msgError);
+                    }
+                    onAjaxComplete();
+                },
+                error: function () {
+                    mensajeV1('No se pudo conectar con el servicio', msgError);
+                    onAjaxComplete();
+                }
+            });
+
+        }
+
+        function EliminarAsignacion() {
+            const tabObj = document.getElementById("ej2Tab").ej2_instances[0];
+            const id_detalle = document.getElementById('idDetalle').value;
+            const id_empleado = tabObj.tbItem[tabObj.selectedItem].innerText.split("-")[0];
+            const fecha = document.getElementById("fecha").value;
+
+            onAjaxBegin();
+            $.ajax(
+            {
+                type: "GET",
+                    url: `@Url.Action("EliminarAsignacionHoras", "Engagement")/${id_detalle}/${id_empleado}/${fecha}`,
+                success: function (data) {
+                    if (data.transaccion) {
+                        $("#modalRegistro").modal('hide');
+
+                    } else {
+                        mensajeV1(data.mensaje, msgError);
+                    }
+                    onAjaxComplete();
+                },
+                error: function () {
+                    mensajeV1('No se pudo conectar con el servicio', msgError);
+                    onAjaxComplete();
+                }
+            });
+            RefrescarCalendario();
+        }
+    </script>
+
+
+}
+

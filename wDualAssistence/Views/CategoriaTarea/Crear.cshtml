@@ -1,0 +1,160 @@
+﻿
+@{
+    ViewData["Title"] = "Categoria";
+    if (Model.eCategoria_Tarea.id != 0)
+    {
+        ViewData["Navbar-Title"] = "Engagement > Editar Categoria";
+    }
+    else
+    {
+        ViewData["Navbar-Title"] = "Engagement > Crear Categoria";
+    }
+}
+@model wDualAssistence.Models.CategoriaTareaViewModel
+
+@section Styles {
+
+    <style>
+        .e-upload {
+            visibility: hidden !important;
+        }
+
+        #fotoActual {
+            width: 200px;
+            height: 200px;
+        }
+
+        /*#region Estilo Tabs*/
+        .e-content .e-item {
+            font-size: 12px;
+            padding: 10px;
+            text-align: justify;
+        }
+
+
+        .e-group:before {
+            content: '\f0c0';
+        }
+
+        .e-photo:before {
+            content: '\f03e';
+        }
+
+        .e-sitemap:before {
+            content: '\f0e8';
+        }
+
+        #tabUsuario {
+            padding-top: 10px;
+        }
+
+        /*#endregion*/
+
+        #nombre_usuario {
+            text-transform: uppercase;
+        }
+    </style>
+
+    <style>
+        .e-treeview .e-ul {
+            padding: 0 0 0 0px !important;
+        }
+
+        .e-level-1 {
+            background: #8888883d !IMPORTANT;
+            margin-top: 2px !IMPORTANT;
+        }
+
+        .e-level-2 {
+            background: white;
+        }
+
+        .searchTrue {
+            color: red !important;
+        }
+
+        .boton-accion {
+            float: right;
+            margin-top: -25px;
+            margin-bottom: 5px;
+        }
+    </style>
+}
+
+<div class="content-wrapper">
+    <section class="content">
+        <form id="frmUsuario" class="form-horizontal" asp-controller="CategoriaTarea" asp-action="Post" autocomplete="off" data-ajax="true" data-ajax-method="POST"
+              data-ajax-begin="onAjaxBegin" data-ajax-complete="onAjaxComplete" data-ajax-loading="#loading"
+              data-ajax-success="fnSuccess(data)" data-ajax-failure="fnFailure()">
+            <div class="panel panel-default">
+                <div class="panel-heading heading-primary">
+                    <span class="capa_btn volver">
+                        <button class="btn btn-base cancelar" type="button" onclick="irAListado()">
+                            <span class="fa span-button volver"></span>
+                            <p class="text-button-primary">VOLVER</p>
+                        </button>
+                    </span>
+                    <span class="capa_btn confirmar">
+                        <button class="btn btn-base guardar btn-submit">
+                            <span class="fa span-button confirmar"></span>
+                            <p class="text-button-primary">GUARDAR</p>
+                        </button>
+                    </span>
+                </div>
+                <div class="panel-body">
+                    <section class="content-body">
+
+                        <input type="hidden" asp-for="eCategoria_Tarea.id" />
+
+                        <div class="row">
+
+                            <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                <h4> <b style="color:red;">*</b>Nombre:</h4>
+                                <div class="e-input-group e-small">
+                                    <input class="e-input" asp-for="eCategoria_Tarea.nombre" type="text">
+                                </div>
+                                <span asp-validation-for="eCategoria_Tarea.nombre" class="text-danger"></span>
+                            </div>
+
+
+                        </div>
+
+                    </section>
+                </div>
+            </div>
+        </form>
+
+    </section>
+</div>
+
+
+
+@section PreScripts {
+
+
+}
+
+@section Scripts {
+
+    <script type="text/javascript">
+        function irAListado() {
+            window.document.location.href = '@Url.Action("Listado", "CategoriaTarea")';
+        }
+
+        //Despues del Submit del Form Principal
+        function fnSuccess(data) {
+            if (data.transaccion == true) {
+                mensajeV1("Transacción exitosa!", msgOk);
+                irAListado();
+            }
+            else
+                mensajeV1(data.mensaje, msgError);
+        }
+
+        function fnFailure() {
+            mensajeV1(errorServidor, msgOk);
+        }
+
+    </script>
+
+}

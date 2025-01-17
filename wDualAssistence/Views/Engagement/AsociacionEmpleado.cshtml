@@ -1,0 +1,408 @@
+﻿@{
+    ViewData["Title"] = "Engagement";
+    ViewData["Navbar-Title"] = "Recursos > Empresa > Engagement - Asociacion de empleados";
+
+
+    List<object> operators = new List<object>();
+    operators.Add(new { value = "contains", text = "contains" });
+    //var formatoFecha = new { type = "datetime", format = "dd-MMM-yyyy" };
+}
+@model wDualAssistence.Models.EngagementViewModel;
+
+@section Styles {
+    <style>
+        .spanIcon {
+            border-radius: 5px;
+            border-style: solid;
+            border-color: white;
+        }
+
+        .cartel-horas {
+            width: fit-content;
+            border: 2px solid #0072cc;
+            padding: 5px;
+            border-radius: 5px;
+            background: #0070cc0d;
+        }
+    </style>
+}
+
+<div class="content-wrapper">
+    <div class="content">
+        <div class="panel panel-default">
+            <div class="panel-heading heading-primary">
+                <span class="capa_btn volver">
+                    <button class="btn btn-base cancelar" type="button" onclick="irAListado()">
+                        <span class="fa span-button volver"></span>
+                        <p class="text-button-primary">VOLVER</p>
+                    </button>
+                </span>
+                <span class="capa_btn info">
+                    <button type="button" class="btn btn-base crear" data-toggle="modal" data-target="#modalBuscarEmpleado">
+                        <span class="fa span-button fa-file-excel-o"></span>
+                        <p class="text-button-primary">Agregar Empleado</p>
+                    </button>
+                </span>
+            </div>
+            <div class="panel-body">
+                <section class="content-body">
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4">
+                            <h4> <b>Empresa:</b>  @Model.nombre_empresa</h4>
+                            <h4> <b>Engagement:</b>  @Model.eEngagement.titulo</h4>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6">
+                            <h4 class="cartel-horas"> <i class="fa fa-exclamation"></i> <b> Maximo de horas:</b>   @(Model.eEngagement.hora_servicio)</h4>
+                        </div>
+                    </div>
+
+
+                    <ejs-grid id="Grid" created="onCreateGrid" dataSource="@Model.listaEngagement_Empleado" allowPaging="true" allowFiltering="true" locale="es" gridLines="Both">
+                        <e-grid-filterSettings type="Menu" mode="OnEnter" operators="@(new { stringOperator = operators })"></e-grid-filterSettings>
+                        <e-grid-pagesettings enableQueryString="true" pageSize="10"></e-grid-pagesettings>
+                        <e-grid-columns>
+                            <e-grid-column field="id" isPrimaryKey="true" visible="false"></e-grid-column>
+                            <e-grid-column field="nombre_empleado" headerText="NOMBRE" type="string" headerTextAlign="Center" textAlign="Left" width="100"></e-grid-column>
+                            <e-grid-column field="fecha_asignacion" headerText="FECHA ASIGNACION" type="date" format="dd-MMM-yyyy" headerTextAlign="Center" textAlign="Right" width="50"></e-grid-column>
+                            <e-grid-column field="cantidad_horas_habilitadas" headerText="HORAS ASIGNADAS" type="string" template="#horasAsignadas" headerTextAlign="Center" textAlign="Right" width="50"></e-grid-column>
+                            <e-grid-column headerTextAlign="Center" textAlign="Center" template="#menuContextual" width="30" allowFiltering="false"></e-grid-column>
+                        </e-grid-columns>
+                    </ejs-grid>
+
+                </section>
+                <!--  -------------------- PASO DE PARAMETRO POST ----------------- -->
+                <form id="formPasoParametro" action='@Url.Action("Crear", "Engagement")' method="POST">
+                    <input type="hidden" id="id_engagement_empleado" name="id_engagement_empleado" value="0">
+                </form>
+
+                <button id="btnModalDetalle" type="button" data-toggle="modal" data-target="#modalDetalleEmpleado" hidden />
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<a id="modalELiminar" href="@Url.Action("MostrarModalEliminar", "Modal")" data-toggle="modal" data-target="#modalBusqueda" hidden></a>
+
+<partial name="_SeccionModal" />
+
+<ejs-contextmenu id="contextmenu" items="Model.menuItems" select="ejecutarAccion"></ejs-contextmenu>
+
+<script type="text/x-template" id="horasAsignadas">
+
+    ${if(cantidad_horas_habilitadas == 0)}
+    <p style="color: #ff6700;"><i class="fa fa-exclamation" /> Debe realizar la asignación de horas</p>
+    ${else}
+    <p>${cantidad_horas_habilitadas}</p>
+    ${/if}
+
+</script>
+
+<script type="text/x-template" id="menuContextual">
+    <button class="boton-accion" onclick="abrirContextMenu(event, ${ id }, ${ id_empleado })">
+        <i class="fa fa-list-ul"></i>
+    </button>
+</script>
+
+
+<!--#region Modal para nueva contraseña -->
+<div class="modal fade" id="modalDetalleEmpleado" role="dialog">
+    <div class="modal-dialog" style="width: 60%;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 style="margin: 0;"><span class="fa fa-lock"></span> Detalle del Empleado</h3>
+            </div>
+            <div class="modal-body" style="padding: 5px 10px;" id="detalle_body">
+                
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--#region Modal para nueva contraseña -->
+<div class="modal fade" id="modalBuscarEmpleado" role="dialog">
+    <div class="modal-dialog" style="width: 80%;">
+        <form id="formAsociacion" class="form-horizontal" asp-controller="EngagementEmpleado" asp-action="PostEmpleado" autocomplete="off" data-ajax="true" data-ajax-method="POST"
+              data-ajax-success="fnSuccessEmpleado(data)" data-ajax-failure="fnSuccessEmpleado()">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 style="margin: 0;"><span class="fa fa-lock"></span> Busqueda de Empleados</h3>
+                </div>
+                <div class="modal-body" style="padding: 5px 10px;">
+
+                    <input type="hidden" name="id_engagement" value="@Model.eEngagement.id">
+                    <input type="hidden" name="stringListaEmpleado" id="stringListaEmpleado" />
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                            <h4> Area:</h4>
+                            <div class="e-input-group e-small">
+                                <ejs-dropdownlist id="ddlArea" dataSource="@ViewBag.listaAreas"
+                                                  placeholder="Seleccionar Area..." popupHeight="220px" locale="es"
+                                                  allowFiltering="true" change="onChangeArea">
+                                </ejs-dropdownlist>
+                            </div>
+                        </div>
+                        <div lass="col-xs-12 col-sm-6 col-lg-4 col-md-4">
+                            <br />
+                            <span class="capa_btn confirmar">
+                                <button id="btnCambiarContra" type="submit" class="btn btn-base guardar" onclick="AsignarSeleccion()">
+                                    <span class="fa span-button confirmar"></span>
+                                    <p class="text-button-primary">AGREGAR SELECCION</p>
+                                </button>
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <ejs-grid id="GridEmpleado" created="onCreateGrid" dataSource="@Model.listaEmpleado" allowPaging="true" allowFiltering="true" locale="es" gridLines="Both">
+                        <e-grid-pagesettings enableQueryString="true" pageSize="8"></e-grid-pagesettings>
+                        <e-grid-columns>
+                            <e-grid-column type="checkbox" width="30"></e-grid-column>
+                            <e-grid-column field="id" isPrimaryKey="true" visible="false" type="string"></e-grid-column>
+                            <e-grid-column field="area" headerText="AREA" type="string" headerTextAlign="Center" textAlign="Left" width="80">
+
+                            </e-grid-column>
+                            <e-grid-column field="nombre" headerText="NOMBRE" headerTextAlign="Center" textAlign="Left" width="150"></e-grid-column>
+                            <e-grid-column headerText="ENGAGEMENT ASIGNADOS" headerTextAlign="Center" template="#menuAsignacion" width="450" allowFiltering="false"></e-grid-column>
+                        </e-grid-columns>
+                    </ejs-grid>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/x-template" id="menuAsignacion">
+    <table class="CardTable" cellpadding="3" cellspacing="2">
+        <tbody>
+            ${for(itemDetalle of listaAsignacionHelper)}
+            <tr>
+                <td style="font-weight:bold; border-bottom:1px solid"><b>Empresa:</b> ${getNombreEmpresa(listaAsignacionHelper[itemDetalleIndex])} </td>
+                <td style="border-bottom:1px solid;"></td>
+                <td style="border-bottom:1px solid;"></td>
+                <td style="border-bottom:1px solid;"></td>
+            </tr>
+
+            ${for(item of itemDetalle)}
+            <tr>
+                <td style="width:40%"> &nbsp; ${item.nombre_engagement} </td>
+                <td style='width: 20%; border-left:1px solid; padding:3px'>Hrs. Asig.:${item.horas_asignadas} </td>
+                <td style='width: 20%; border-left: 1px solid; padding: 3px'>Hrs. Util.: ${item.horas_utilizadas} </td>
+                <td style='width: 20%; border-left: 1px solid; padding: 3px'>Hrs. Disp.: ${item.horas_disponibles} </td>
+            </tr>
+            ${/for}
+            ${/for}
+        </tbody>
+    </table>
+
+
+
+</script>
+
+
+<!--#endregion-->
+
+<script>
+
+    var oGrid;
+    var id_parametro = 0;
+    var id_engagement = 0;
+    var id_empleado = 0;
+
+    function onCreateGrid() {
+        oGrid = document.getElementById('Grid').ej2_instances[0];
+    }
+
+    function irAListado() {
+        window.document.location.href = '@Url.Action("Engagement", "Empresa")/' + @Model.eEngagement.id_empresa;
+    }
+
+
+    function ejecutarAccion(args) {
+        switch (args.item.id) {
+            case "0": // Nada
+                break;
+            case "1": // asignar horas
+                var form = document.getElementById('formPasoParametro');
+                document.getElementById('id_engagement_empleado').value = id_parametro;
+                form.action = '@Url.Action("Crear", "EngagementEmpleado")';
+                form.method = 'POST'
+                form.submit();
+                break;
+            case "2":
+                let listaDetalleEmpleado = JSON.parse('@Html.Raw(Json.Serialize(Model.listaEmpleado))');
+                const found = listaDetalleEmpleado.find(el => el.id === id_empleado);
+                if (found != null) {
+                    abrirModalDetalle(found);
+                }
+                break;
+            case "3": // Eliminar
+                document.getElementById("modalELiminar").click();
+                break;
+            default:
+        }
+    }
+    function abrirContextMenu(ev, id, pId_empleado) {
+        id_parametro = id;
+        id_empleado = pId_empleado
+        let x = ev.pageX;
+        let y = ev.pageY;
+        let contextMenuObj = document.getElementById("contextmenu").ej2_instances[0];
+        contextMenuObj.open(y, x);
+    }
+
+    function accionEliminar() {
+        $.ajax({
+            type: "DELETE",
+            url: '@Url.Action("Delete", "EngagementEmpleado")',
+            data: { id: id_parametro },
+            success: function (data) {
+                if (data.transaccion) {
+                    mensajeV1("Asociacion del empleado al engagement eliminado", msgOk);
+                    //var grid = document.getElementById("Grid").ej2_instances[0];
+                    //grid.refresh(); // refresh the Grid.
+                    location.reload();
+                } else {
+                    mensajeV1(data.mensaje, msgError);
+                }
+            },
+            error: function () {
+                mensajeV1(errorServidor, msgError);
+            }
+        });
+    }
+
+    
+
+</script>
+
+@section PreScripts {
+    <script type="text/javascript">
+        window.getNombreEmpresa = detalles => {
+            const sum = detalles.reduce((a, b) => a + (b["horas_asignadas"] || 0), 0);
+            return detalles[0].nombre_empresa + "(" + sum + " Hrs)";
+        }
+
+        function onChangeArea(args) {
+            var grid = document.getElementById('GridEmpleado').ej2_instances[0];
+            grid.filterByColumn('area', 'equal', args.value);
+        }
+    </script>
+
+    <script>
+        function abrirModalDetalle(pEmpleado) {
+
+            pEmpleado
+            let sResult = `
+        <table class="CardTable" cellpadding="3" cellspacing="2" style="width: 100%;">
+            <tbody>
+        `;
+            pEmpleado.listaAsignacionHelper.forEach(function (pEmpresa) {
+
+                sResult += `
+                    <tr>
+                        <td style="font-weight:bold; border-bottom:1px solid"><b>Empresa:</b> ${pEmpresa[0].nombre_empresa} </td>
+                        <td style="border-bottom:1px solid;"></td>
+                        <td style="border-bottom:1px solid;"></td>
+                        <td style="border-bottom:1px solid;"></td>
+                    </tr>
+`;
+
+                pEmpresa.forEach(function (item) {
+
+                    sResult += `
+
+                        <tr>
+                            <td style="width:40%"> &nbsp; ${item.nombre_engagement} </td>
+                            <td style='width: 20%; border-left:1px solid; padding:3px'>Hrs. Asig.:${item.horas_asignadas} </td>
+                            <td style='width: 20%; border-left: 1px solid; padding: 3px'>Hrs. Util.: ${item.horas_utilizadas} </td>
+                            <td style='width: 20%; border-left: 1px solid; padding: 3px'>Hrs. Disp.: ${item.horas_disponibles} </td>
+                        </tr>
+`
+
+                });
+
+
+            });
+            sResult += `
+            </tbody>
+        </table>
+        `;
+
+            document.getElementById("detalle_body").innerHTML = sResult;
+            document.getElementById("btnModalDetalle").click();
+
+        }
+    </script>
+}
+
+@section Scripts {
+
+    <script>
+    var listaEngagementEmpleado = [];
+    var contadorEngagementEmpleado = 10000;
+
+    function AsignarSeleccion() {
+        var GridEmpleado = document.getElementById("GridEmpleado").ej2_instances[0];
+        document.getElementById('stringListaEmpleado').value = JSON.stringify(GridEmpleado.getSelectedRecords());
+
+        @*console.log(GridEmpleado.getSelectedRecords());
+
+        var Grid = document.getElementById("Grid").ej2_instances[0];
+
+        GridEmpleado.getSelectedRecords().forEach(function (item) {
+            const found = listaEngagementEmpleado.some(el => el.id_empleado === item.id);
+            if (!found) {
+                contadorEngagementEmpleado++;
+                listaEngagementEmpleado.push({
+                    id: contadorEngagementEmpleado,
+                    id_empleado: item.id,
+                    id_engagement: @Model.eEngagement.id,
+                    fecha_asignacion: 0,
+                    estado: 0,
+                    nombre_empleado: item.nombre,
+                    cantidad_horas_habilitadas: 0
+                });
+            }
+        });
+
+        Grid.dataSource = listaEngagementEmpleado;
+        Grid.refresh();
+
+        mensajeV1("Los item seleccionados se agregaron correctamente !", msgOk);
+        $("#modalBuscarEmpleado").modal('hide');*@
+
+
+    }
+
+
+    function fnSuccessEmpleado(data) {
+        if (data.transaccion == true) {
+            $("#modalBuscarEmpleado").modal('hide');
+            location.reload();
+        }
+        else {
+            mensajeV1(data.mensaje, msgError);
+        }
+
+    }
+
+    function fnFailureEmpleado() {
+        mensajeV1(errorServidor, msgOk);
+    }
+
+
+    </script>
+
+
+}
+

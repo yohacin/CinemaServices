@@ -1,0 +1,1091 @@
+﻿
+@{
+    ViewData["Title"] = "Engagement";
+    if (Model.eEngagement.id != 0)
+    {
+        ViewData["Navbar-Title"] = "Recursos > Empresa > Editar Engagement";
+    }
+    else
+    {
+        ViewData["Navbar-Title"] = "Recursos > Empresa > Crear Engagement";
+    }
+
+    var asyncSettings = new Syncfusion.EJ2.Inputs.UploaderAsyncSettings { SaveUrl = @Url.Content("~/File/AdjuntoEngagement"), RemoveUrl = @Url.Content("~/File/Remove") };
+
+    var contentDatos = "#DatosGeneral";
+    var contentDetalle = "#DetalleHora";
+    var contentTareas = "#Tareas";
+    var contentAlertas = "#Alertas";
+
+    List<object> commands = new List<object>();
+    commands.Add(new { type = "Delete", buttonOption = new { iconCss = "e-icons e-delete", cssClass = "e-flat" } });
+
+    List<object> commandsAll = new List<object>();
+    commandsAll.Add(new { type = "Save", buttonOption = new { iconCss = "e-icons e-save", cssClass = "e-flat" } });
+    commandsAll.Add(new { type = "Edit", buttonOption = new { iconCss = "e-icons e-edit", cssClass = "e-flat" } });
+    commandsAll.Add(new { type = "Delete", buttonOption = new { iconCss = "e-icons e-delete", cssClass = "e-flat" } });
+
+    // var editParams = new { @params = new { decimals = 4 } };
+
+
+    List<object> operators = new List<object>();
+    operators.Add(new { value = "contains", text = "contains" });
+    //var formatoFecha = new { type = "datetime", format = "dd-MMM-yyyy" };
+
+}
+@model wDualAssistence.Models.EngagementViewModel
+
+@section Styles {
+    <link href="~/css/style_tab.css" rel="stylesheet" />
+
+    <style>
+        .e-upload {
+            visibility: hidden !important;
+        }
+
+        #fotoActual {
+            width: 150px;
+            height: 150px;
+        }
+
+        /*#region Estilo Tabs*/
+        .e-content .e-item {
+            font-size: 12px;
+            padding: 10px;
+            text-align: justify;
+        }
+
+
+        .e-group:before {
+            content: '\f0c0';
+        }
+
+        .e-photo:before {
+            content: '\f03e';
+        }
+
+        .e-sitemap:before {
+            content: '\f0e8';
+        }
+
+        #tabUsuario {
+            padding-top: 10px;
+        }
+
+        /*#endregion*/
+
+        #nombre_usuario {
+            text-transform: uppercase;
+        }
+    </style>
+
+    <style>
+        .e-treeview .e-ul {
+            padding: 0 0 0 0px !important;
+        }
+
+        .e-level-1 {
+            background: #8888883d !IMPORTANT;
+            margin-top: 2px !IMPORTANT;
+        }
+
+        .e-level-2 {
+            background: white;
+        }
+
+        .searchTrue {
+            color: red !important;
+        }
+
+        .boton-accion {
+            float: right;
+            margin-top: -25px;
+            margin-bottom: 5px;
+        }
+    </style>
+    <style>
+        .cartel-horas {
+            width: fit-content;
+            border: 2px solid #0072cc;
+            padding: 5px;
+            border-radius: 5px;
+            background: #0070cc0d;
+        }
+    </style>
+}
+
+<div class="content-wrapper">
+    <section class="content">
+        <form id="frmUsuario" class="form-horizontal" asp-controller="Engagement" asp-action="Post" autocomplete="off" data-ajax="true" data-ajax-method="POST"
+              data-ajax-begin="onAjaxBegin" data-ajax-complete="onAjaxComplete" data-ajax-loading="#loading"
+              data-ajax-success="fnSuccess(data)" data-ajax-failure="fnFailure()">
+            <div class="panel panel-default">
+                <div class="panel-heading heading-primary">
+                    <span class="capa_btn volver">
+                        <button class="btn btn-base cancelar" type="button" onclick="irAListado()">
+                            <span class="fa span-button volver"></span>
+                            <p class="text-button-primary">VOLVER</p>
+                        </button>
+                    </span>
+                    @if (Model.tipo == 2 || Model.eEngagement.id == 0)
+                    {
+                        <span class="capa_btn confirmar">
+                            <button class="btn btn-base guardar btn-submit" onclick="Guardar()">
+                                <span class="fa span-button confirmar"></span>
+                                <p class="text-button-primary">GUARDAR</p>
+                            </button>
+                        </span>
+                    }else{
+                        <o><i class="fa fa-exclamation"></i> El Engagement solo puede ser modificado por los responsables</o>
+                    }
+                </div>
+                <div class="panel-body">
+                    <section class="content-body">
+
+                        <input type="hidden" asp-for="eEngagement.id" />
+                        <input type="hidden" asp-for="eEngagement.id_usuario" />
+
+                        <!--#region -->
+                        <div id="DatosGeneral" style="display:none">
+                            <div class="panel panel-default">
+
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-lg-8 col-md-8">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4">
+                                                <h4> Empresa:</h4>
+                                                <div class="e-input-group e-small">
+                                                    <ejs-dropdownlist id="ddlEmpresa" dataSource="@Model.listaEmpresa" ejs-for="eEngagement.id_empresa"
+                                                                      placeholder="Seleccionar Empresa..." popupHeight="220px" locale="es"
+                                                                      allowFiltering="true"
+                                                                      itemTemplate="@Html.Raw("${id} Hrs - ${nombre}")" filterType="Contains">
+                                                        <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                                                    </ejs-dropdownlist>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                                                <h4> <b style="color:red;">*</b>Titulo:</h4>
+                                                <div class="e-input-group e-small">
+                                                    <input class="e-input" asp-for="eEngagement.titulo" type="text">
+                                                </div>
+                                                <span asp-validation-for="eEngagement.titulo" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                                <h4> Desde:</h4>
+                                                <div class="e-input-group e-small">
+                                                    <input class="e-input" asp-for="eEngagement.desde" type="date">
+                                                </div>
+                                                <span asp-validation-for="eEngagement.desde" class="text-danger"></span>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                                <h4> Hasta:</h4>
+                                                <div class="e-input-group e-small">
+                                                    <input class="e-input" asp-for="eEngagement.hasta" type="date">
+                                                </div>
+                                                <span asp-validation-for="eEngagement.hasta" class="text-danger"></span>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                                <h4> Facturable:</h4>
+                                                <ejs-switch id="facturable" ejs-for="eEngagement.facturable"></ejs-switch>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                                <h4> Area del Engagement:</h4>
+                                                <div class="e-input-group e-small">
+                                                    <ejs-dropdownlist id="ddlAreaEngagement" dataSource="@Model.listaArea" ejs-for="eEngagement.id_area"
+                                                                      placeholder="Seleccionar Area..." popupHeight="220px" locale="es"
+                                                                      allowFiltering="true" filterType="Contains">
+                                                        <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                                                    </ejs-dropdownlist>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                                <h4> Estado:</h4>
+                                                <div class="e-input-group e-small">
+                                                    <ejs-dropdownlist id="ddlEstado" dataSource="@ViewBag.listaEstado" ejs-for="eEngagement.estado_ejecucion"
+                                                                      placeholder="Seleccionar Estado..." popupHeight="220px" locale="es">
+                                                        <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                                                    </ejs-dropdownlist>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3">
+                                        <input type="hidden" id="imagen_logo" asp-for="eEngagement.adj_contrato" />
+                                        @if (Model.eEngagement.id != 0)
+                                        {
+                                            if (Model.eEngagement.adj_contrato == null)
+                                            {
+                                                <div style="width:100%; text-align: center" onclick="subirAdjunto()">
+                                                    <img id="fotoActual" class="img-defecto" src="../assets/recursos/doc-y-pdf.png" alt="adjunto" />
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div style="width:100%; text-align: center" onclick="subirAdjunto()">
+                                                    <img id="fotoActual" class="img-defecto" src="../assets/recursos/doc-y-pdf.png" alt="adjunto" />
+                                                    <br />
+                                                    <a class="capa_btn info" href="../@Model.eEngagement.adj_contrato" target="_blank">
+                                                        <button class="btn btn-base crear" type="button">
+                                                            <span class="fa fa-eye span-button info"></span>
+                                                            <p class="text-button-primary">Preview</p>
+                                                        </button>
+                                                    </a>
+                                                </div>
+
+                                            }
+                                        }
+                                        else
+                                        {
+                                        <div style="width:100%; text-align: center" onclick="subirAdjunto()">
+                                            <img id="fotoActual" class="img-defecto" src="../assets/recursos/doc-y-pdf.png" alt="foto de adjunto" />
+                                            <button class="btn btn-base crear" type="button" onclick="subirAdjunto">
+                                                <p class="text-button-primary">Subir Contrato</p>
+                                            </button>
+                                        </div>
+                                        }
+                                    </div>
+
+                                </div>
+                                <br />
+                                <fieldset style="border:1px solid #ff6700 !important;">
+                                    <legend>RESPONSABLES</legend>
+
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4">
+                                            <h4> <b style="color:red;">*</b>Responsable:</h4>
+                                            <div class="e-input-group e-small">
+                                                <ejs-dropdownlist id="ddlPerfil" dataSource="@Model.listaEmpleado"
+                                                                  placeholder="Seleccionar responsable..." popupHeight="220px" locale="es"
+                                                                  allowFiltering="true" filterType="Contains">
+                                                    <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                                                </ejs-dropdownlist>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                            <h4> Cargo:</h4>
+                                            <div class="e-input-group e-small">
+                                                <ejs-dropdownlist id="ddlCargo" dataSource="@Model.listaCargo"
+                                                                  placeholder="Seleccionar Cargo..." popupHeight="220px" locale="es"
+                                                                  allowFiltering="true" filterType="Contains">
+                                                    <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                                                </ejs-dropdownlist>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                            <br />
+                                            <span class="capa_btn info">
+                                                <button type="button" class="btn btn-base crear" onclick="agregarResponsable()">
+                                                    <span class="fa span-button fa-file-excel-o"></span>
+                                                    <p class="text-button-primary">Agregar</p>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <br />
+
+                                    <ejs-grid id="gridResponsables" allowPaging="true" locale="es" gridLines="Both">
+                                        <e-grid-editSettings allowAdding="false" allowDeleting="true" allowEditing="true"></e-grid-editSettings>
+                                        <e-grid-pagesettings pageSize="8"></e-grid-pagesettings>
+                                        <e-grid-columns>
+                                            <e-grid-column field="id_usuario" isPrimaryKey="true" visible="false" ></e-grid-column>
+                                            <e-grid-column field="nombre_usuario" headerText="USUARIO" headerTextAlign="Center" textAlign="Left" width="100" allowEditing="false"></e-grid-column>
+                                            <e-grid-column field="cargo" headerText="CARGO" headerTextAlign="Center" textAlign="Left" width="50"></e-grid-column>
+                                            <e-grid-column headerText=" " width="30" commands="commandsAll"></e-grid-column>
+                                        </e-grid-columns>
+                                    </ejs-grid>
+                                </fieldset>
+
+                                <input type="hidden" asp-for="stringListaResponsables" />
+
+                            </div>
+                        </div>
+                        <!--#endregion-->
+                        <!--#region -->
+                        <div id="DetalleHora" style="display:none">
+                            <div class="panel panel-default">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                        <h4> Tipo:</h4>
+                                        <div class="e-input-group e-small">
+                                            <ejs-dropdownlist id="ddlTipo" dataSource="@ViewBag.listaTipo"
+                                                              placeholder="Seleccionar tipo..." popupHeight="220px" locale="es">
+                                            </ejs-dropdownlist>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                        <h4> Cantidad [Hr]:</h4>
+                                        <div class="e-input-group e-small">
+                                            <input class="e-input" id="cantidad" type="number" value="0">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                        <br />
+                                        <span class="capa_btn info">
+                                            <button type="button" class="btn btn-base crear" onclick="agregarHoras()">
+                                                <span class="fa span-button fa-file-excel-o"></span>
+                                                <p class="text-button-primary">Agregar</p>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                        <h4> Descripcion:</h4>
+                                        <textarea rows="5" style="width:100%; resize: none;" id="descripcion"></textarea>
+                                    </div>
+                                </div>
+
+                                <ejs-grid id="gridDetalle"  allowPaging="true" locale="es" gridLines="Both">
+                                    <e-grid-editSettings allowAdding="false" allowDeleting="true" allowEditing="true"></e-grid-editSettings>
+                                    <e-grid-pagesettings pageSize="8"></e-grid-pagesettings>
+                                    <e-grid-columns>
+                                        <e-grid-column field="id" isPrimaryKey="true" visible="false" ></e-grid-column>
+                                        <e-grid-column field="tipo_descripcion" headerText="TIPO" headerTextAlign="Center" textAlign="Left" width="80" allowEditing="false"></e-grid-column>
+                                        <e-grid-column field="cantidad" headerText="CANTIDAD [Hr]" headerTextAlign="Center" textAlign="Right" width="40" type="number" editType="numericedit" 
+                                                       edit="@(new { @params = new Syncfusion.EJ2.Inputs.NumericTextBox() { ValidateDecimalOnType = true, Decimals = 0, Format = "0" } })"></e-grid-column>
+                                        <e-grid-column field="descripcion" headerText="DESCRIPCION" headerTextAlign="Center" textAlign="Left" width="150"></e-grid-column>
+                                        <e-grid-column headerText=" " width="50" commands="commandsAll"></e-grid-column>
+                                    </e-grid-columns>
+                                </ejs-grid>
+
+                                <input type="hidden" asp-for="stringListaDetalleHoras" />
+                            </div>
+                        </div>
+                        <!--#endregion-->
+                        <!--#region -->
+                        <div id="Tareas" style="display:none">
+                            <div class="panel panel-default">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                                        <h4> Seleccione las tareas para agregar:</h4>
+                                        <button class="boton-accion" onclick="abrirContextMenu(event)" type="button">
+                                            <i class="fa fa-list-ul"></i>
+                                        </button>
+                                        <div class="e-input-group e-small">
+                                            <input class="e-input" id="buscarTreeView" type="text" placeholder="buscar..." onkeypress="return runScript(event)">
+                                            <button class="btn btn-base icono buscar" type="button" onclick="buscarPerfiles()">
+                                                <span class="fa span-button"></span>
+                                            </button>
+                                        </div>
+
+                                        <ejs-treeview id="treedata" showCheckBox="true">
+                                            <e-treeview-fields dataSource="Model.listaCategoriaTarea"
+                                                               id="Id" parentID="parentId" text="sNombre" hasChildren="hasChild"
+                                                               isChecked="isChecked" expanded="expanded">
+                                            </e-treeview-fields>
+                                        </ejs-treeview>
+
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                                        <div class="row">
+
+                                            <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4">
+                                                <br />
+                                                <span class="capa_btn info">
+                                                    <button type="button" class="btn btn-base crear" onclick="agregarTareas()">
+                                                        <span class="fa span-button fa-file-excel-o"></span>
+                                                        <p class="text-button-primary">Agregar Selección</p>
+                                                    </button>
+                                                </span>
+                                            </div>
+
+                                            <br />
+                                            <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4" hidden>
+                                                <span class="capa_btn info">
+                                                    <button type="button" class="btn btn-base crear" data-toggle="modal" data-target="#modalCrearTarea">
+                                                        <span class="fa span-button fa-file-excel-o"></span>
+                                                        <p class="text-button-primary">Agregar Nueva Tarea</p>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6">
+
+                                        <o class="cartel-horas" id="horas_trabajo"> <i class="fa fa-exclamation"></i> <b> Horas de Trabajo:</b> @Model.eEngagement.listaDetalle_Hora_Engagement.Where(dtl => dtl.tipo == 1).Sum(dtl => dtl.cantidad) [Hrs]</o>
+                                        ! Asignadas en el tab "Detalle De Horas"
+                                    </div>
+                                </div>
+                                <br />
+
+
+                                <ejs-grid id="gridTareas" dataSource="@Model.eEngagement.listaTarea_Engagement" allowPaging="true" locale="es" gridLines="Both" allowFiltering="true"
+                                          commandClick="commandClickGridTareas">
+                                    <e-grid-editSettings allowAdding="false" allowDeleting="true" allowEditing="true"></e-grid-editSettings>
+                                    <e-grid-filterSettings type="Menu" mode="OnEnter" operators="@(new { stringOperator = operators })"></e-grid-filterSettings>
+                                    <e-grid-pagesettings pageSize="8"></e-grid-pagesettings>
+                                    <e-grid-columns>
+                                        <e-grid-column field="id" isPrimaryKey="true" visible="false" type="string" headerTextAlign="Center" textAlign="Left" width="40"></e-grid-column>
+                                        <e-grid-column field="descripcion" headerText="NOMBRE" headerTextAlign="Center" textAlign="Left" width="100" allowEditing="false"></e-grid-column>
+                                        <e-grid-column field="categoria" headerText="CATEGORIA" headerTextAlign="Center" textAlign="Left" width="80" allowEditing="false"></e-grid-column>
+                                        <e-grid-column field="maximo_horas" headerText="MAXIMO HORAS" headerTextAlign="Center" textAlign="Right" width="40" allowEditing="true" type="number" editType="numericedit" allowFiltering="false"
+                                                       edit="@(new { @params = new Syncfusion.EJ2.Inputs.NumericTextBox() { ValidateDecimalOnType = true, Decimals = 0, Format = "0" } })"></e-grid-column>
+                                        <e-grid-column headerText=" " width="30" commands="commandsAll"></e-grid-column>
+                                    </e-grid-columns>
+                                </ejs-grid>
+
+                                <input type="hidden" asp-for="stringListaTareas" />
+                            </div>
+                        </div>
+                        <!--#endregion-->
+                        <!--#region -->
+                        <div id="Alertas" style="display:none">
+                            <div class="panel panel-default">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                        <h4> % de Avance para notificar:</h4>
+                                        <div class="e-input-group e-small">
+                                            <input class="e-input" id="porcentaje_notificar" min="0" max="100" type="number" value="0">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                                        <br />
+                                        <span class="capa_btn info">
+                                            <button type="button" class="btn btn-base crear" onclick="agregarAlerta()">
+                                                <span class="fa span-button fa-file-excel-o"></span>
+                                                <p class="text-button-primary">Agregar</p>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <br />
+
+                                <ejs-grid id="gridAlertas" allowPaging="true" locale="es" gridLines="Both">
+                                    <e-grid-editSettings allowAdding="false" allowDeleting="true" allowEditing="true"></e-grid-editSettings>
+                                    <e-grid-pagesettings pageSize="8"></e-grid-pagesettings>
+                                    <e-grid-columns>
+                                        <e-grid-column field="id" isPrimaryKey="true" visible="false" type="string" headerTextAlign="Center" textAlign="Left" width="140"></e-grid-column>
+                                        <e-grid-column field="porcentaje_notificador" headerText="PORCENTAJE A NOTIFICAR" headerTextAlign="Center" textAlign="Left" width="80" editType="numericedit" 
+                                                       edit="@(new { @params = new Syncfusion.EJ2.Inputs.NumericTextBox() { ValidateDecimalOnType = true, Decimals = 0, Format = "N" } })"></e-grid-column>
+                                        <e-grid-column headerText="+" width="150" commands="commandsAll"></e-grid-column>
+                                    </e-grid-columns>
+                                </ejs-grid>
+
+
+                                <input type="hidden" asp-for="stringListaAlertas" />
+                            </div>
+                        </div>
+                        <!--#endregion-->
+
+
+                        <ejs-tab id="tab" cssClass="headerTab" animation="ViewBag.animation" created="onCreateTabs">
+                            <e-tab-tabitems>
+                                <e-tab-tabitem header="ViewBag.headerText1" content="@contentDatos"></e-tab-tabitem>
+                                <e-tab-tabitem header="ViewBag.headerText2" content="@contentDetalle"></e-tab-tabitem>
+                                <e-tab-tabitem header="ViewBag.headerText3" content="@contentTareas"></e-tab-tabitem>
+                                <e-tab-tabitem header="ViewBag.headerText4" content="@contentAlertas"></e-tab-tabitem>
+                            </e-tab-tabitems>
+                        </ejs-tab>
+
+                        <ejs-uploader id="uploadFiles" locale="es" autoUpload="true" allowedExtensions=".docx,.pdf"
+                                      sequentialUpload="true" asyncSettings="@asyncSettings"
+                                      success="onUploadSuccess" failure="onUploadFailed" template="#uploaderTemplate">
+                        </ejs-uploader>
+
+
+                    </section>
+                </div>
+            </div>
+        </form>
+
+        <form id="formPasoParametro" action='@Url.Action("Engagement", "Empresa")' method="POST">
+            <input type="hidden" id="id" name="id" value="0">
+        </form>
+
+        <partial name="_SeccionModal" />
+
+    </section>
+</div>
+<ejs-contextmenu id="contextmenu" items="Model.menuItems" select="ejecutarAccion"></ejs-contextmenu>
+
+<script id="uploaderTemplate" type="text/x-template">
+    <span class='wrapper-upload'>
+    </span>
+</script>
+
+
+<!--#region Modal para nueva contraseña -->
+<div class="modal fade" id="modalCrearTarea" role="dialog">
+    <div class="modal-dialog">
+        <form id="formNuevaContrasena" class="form-horizontal" asp-controller="Tarea" asp-action="Post" autocomplete="off" data-ajax="true" data-ajax-method="POST"
+              data-ajax-success="fnSuccessTarea(data)" data-ajax-failure="fnSuccessTarea()">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 style="margin: 0;"><span class="fa fa-lock"></span> Registrar Tarea:</h3>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+
+                    <input class="e-input" type="hidden" asp-for="eTarea.id">
+
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6">
+                            <h4> <b style="color:red;">*</b>Nombre:</h4>
+                            <div class="e-input-group e-small">
+                                <input class="e-input" asp-for="eTarea.nombre" type="text">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6">
+                            <h4> <b style="color:red;">*</b>Categoria:</h4>
+                            <div class="e-input-group e-small">
+                                <ejs-dropdownlist id="ddlCategoria_Tarea" dataSource="@Model.listaCategoria_Tarea" index="0" ejs-for="eTarea.id_categoria"
+                                                  placeholder="Seleccionar categoria..." popupHeight="220px" locale="es"
+                                                  allowFiltering="true">
+                                    <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                                </ejs-dropdownlist>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="capa_btn confirmar">
+                        <button id="btnCambiarContra" type="submit" class="btn btn-base guardar">
+                            <span class="fa span-button confirmar"></span>
+                            <p class="text-button-primary">Guardar</p>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--#endregion-->
+
+@section PreScripts {
+
+    <script id="uploaderTemplate" type="text/x-template">
+        <span class='wrapper-upload'>
+        </span>
+    </script>
+
+    <script type="text/javascript">
+
+        //#region Variables Globales
+        var tree;
+
+        //Variables de Componentes Syncfusion
+        var oGrid;
+        var oTab;
+
+        //#endregion
+
+        function abrirContextMenu(ev) {
+            let x = ev.pageX;
+            let y = ev.pageY;
+            let contextMenuObj = document.getElementById("contextmenu").ej2_instances[0];
+            contextMenuObj.open(y, x);
+        }
+
+        function ejecutarAccion(args) {
+            switch (args.item.id) {
+                case "0": // Nada
+                    break;
+                case "1": // Expandir
+                    tree.expandAll();
+                    break;
+                case "2": // Colapsar
+                    tree.collapseAll();
+                    break;
+                default:
+            }
+        }
+
+        async function commandClickGridTareas(args) {
+            console.log(args.commandColumn.type);
+            if (args.commandColumn.type == 'Delete') {
+                let tarea = args.rowData;
+                console.log(tarea);
+                args.cancel = true;
+
+                let gridTareas = document.getElementById("gridTareas").ej2_instances[0];
+                let id_item = gridTareas.dataSource.findIndex(x => x.id_tarea = tarea.id_tarea);
+                
+
+                let respuesta = await getData('@Url.Action("ValidarUsoTarea", "Engagement")/' + @Model.eEngagement.id + "/" + tarea.id_tarea);
+               
+
+                if (respuesta.transaccion) {
+                    //args.cancel = true;
+                    mensajeV1('No se puede eliminar la tarea, porque ya fueron cargadas horas para este engagement', msgAlerta);
+                } else {
+                    gridTareas.dataSource.splice(id_item, 1);
+                    gridTareas.refresh();
+                }
+
+                console.log(respuesta);
+
+                @*onAjaxBegin();
+                $.ajax(
+                {
+                    type: "GET",
+                    url: '@Url.Action("ValidarUsoTarea", "Engagement")/' + @Model.eEngagement.id + "/" + tarea.id_tarea,
+                    success: function (data) {
+                        //args.rowData.total = data.total;
+                        if (!data.transaccion) {
+
+                            mensajeV1('No se puede eliminar la tarea, porque ya fueron cargadas horas para este engagement', msgAlerta);
+                        } else {
+                            let gridTareas = document.getElementById("gridTareas").ej2_instances[0];
+                            gridTareas.dataSource.
+                        }
+
+                        onAjaxComplete();
+                    },
+                    error: function () {
+                        onAjaxComplete();
+                        mensajeV1('No se pudo conectar con el servicio', msgError);
+                    }
+                });*@
+            }
+        }
+
+
+        function getData(url_get) {
+              return $.ajax(
+                {
+                    type: "GET",
+                      url: url_get
+                });
+        };
+
+        async function test() {
+            try {
+                const res = await getData();
+                console.log(res)
+            } catch(err) {
+            console.log(err);
+            }
+        }
+
+
+    </script>
+
+    <script>
+        function onCreateTabs() {
+            var oTab = document.getElementById("tab").ej2_instances[0];
+            oTab.select(0);
+        }
+
+        function subirAdjunto() {
+            var uploadObj = document.getElementById("uploadFiles").ej2_instances[0];
+            uploadObj.browseButton.click();
+        }
+
+        function onUploadSuccess(args) {
+            var pathImg = window.location.origin + '/assets/adjuntos/' + args.file.name;
+            document.getElementById('imagen_logo').value = 'assets/adjuntos/' + args.file.name;
+            document.getElementById('fotoActual').src = window.location.origin + '/assets/recursos/con_adjunto.PNG';
+        }
+
+        function onUploadFailed(args) {
+            console.log('Ocurrio un error al subir -----------------------');
+
+        }
+    </script>
+}
+
+@section Scripts {
+
+    <script type="text/javascript">
+    //#region Metodos Principales
+
+
+
+        function irAListado() {
+            @*var form = document.getElementById('formPasoParametro');
+            document.getElementById('id').value = @Model.eEngagement.id_empresa;
+            form.submit();*@
+            window.document.location.href = '@Url.Action("Listado", "Engagement")';
+        }
+
+        function Guardar() {
+            var gridTareas = document.getElementById("gridTareas").ej2_instances[0];
+            document.getElementById('stringListaTareas').value = JSON.stringify(gridTareas.dataSource);
+
+            var gridAlertas = document.getElementById("gridAlertas").ej2_instances[0];
+            document.getElementById('stringListaAlertas').value = JSON.stringify(gridAlertas.dataSource);
+
+            var gridDetalle = document.getElementById("gridDetalle").ej2_instances[0];
+            document.getElementById('stringListaDetalleHoras').value = JSON.stringify(gridDetalle.dataSource);
+
+            var gridResponsables = document.getElementById("gridResponsables").ej2_instances[0];
+            document.getElementById('stringListaResponsables').value = JSON.stringify(gridResponsables.dataSource);
+
+            let ddlEstado = document.getElementById("ddlEstado").ej2_instances[0];
+            console.log(ddlEstado.value);
+        }
+
+        //Despues del Submit del Form Principal
+        function fnSuccess(data) {
+            if (data.transaccion == true) {
+                mensajeV1("Transacción exitosa!", msgOk);
+                irAListado();
+            }
+            else {
+                mensajeV1(data.mensaje, msgError);
+                if (data.tab >= 0) {
+                    var oTab = document.getElementById("tab").ej2_instances[0];
+                    oTab.select(data.tab);
+                }
+            }
+        }
+
+        function fnFailure() {
+            mensajeV1(errorServidor, msgOk);
+        }
+        //#endregion
+
+        //Despues del Submit del Form Principal
+        function fnSuccessTarea(data) {
+            if (data.transaccion == true) {
+                mensajeV1("Tarea creada", msgOk);
+                $("#modalCrearTarea").modal('hide');
+                document.getElementById("eTarea_nombre").value = "";
+                refrescarCategoriaTarea();
+            }
+            else
+                mensajeV1(data.mensaje, msgError);
+
+        }
+
+        function fnFailureTarea() {
+            mensajeV1(errorServidor, msgOk);
+        }
+
+        function TEST() {
+            var data = tree.getTreeData().push(
+                { Id: 50006, parentId: 4, sNombre: "desarrollo 10", isChecked: false, hasChildren: false }
+            );
+            console.log(data);
+
+
+            tree.fields = { dataSource: data, id: 'Id', text: 'sNombre', isChecked: 'isChecked', hasChildren: 'hasChild' };
+
+
+
+            console.log(tree);
+        }
+
+        function refrescarCategoriaTarea() {
+
+            $.ajax(
+                {
+                    type: "GET",
+                    url: '@Url.Action("GetCategoriaTarea", "Tarea")',
+                    success: function (data) {
+                        //tree = document.getElementById("treedata").ej2_instances[0];
+                        //tree.treeData.push(
+                        //    { Id: 50006, parentId: 4, sNombre: "desarrollo 10", isChecked: false }
+                        //);
+                        //tree.refresh();
+                        //tree.expandAll();
+                        //console.log(tree);
+
+                        var fields = {
+                            dataSource: data, query: null, id: 'Id', text: 'sNombre', hasChildren: 'hasChild', isChecked: 'isChecked'
+
+                        };
+                        //var tree = document.getElementById("tree").ej2_instances[0];
+                        tree.fields = fields;
+                        tree.refresh();
+                        console.log(tree);
+                        //let treeData = [];
+                        //let subChildData = [];
+
+                        //data.forEach(function (item) {
+                        //    if (item.parentId == 0) { // padre
+                        //        subChildData = [];
+                        //        data.forEach(function (itemHijo) {
+                        //            if (itemHijo.parentId == item.Id) {
+                        //                subChildData.push({
+                        //                    Id: itemHijo.Id,
+                        //                    sNombre: itemHijo.sNombre
+                        //                });
+                        //            }
+                        //        });
+
+                        //        treeData.push({
+                        //            Id: item.Id, sNombre: item.sNombre, isChecked: false, expanded: true,
+                        //            subChild: subChildData
+
+                        //        });
+                        //    }
+                        //});
+                        //tree.fields = { dataSource: treeData, id: 'Id', text: 'sNombre', isChecked: 'isChecked', child: 'subChild' };
+
+                        //id = "Id" parentID = "parentId" text = "sNombre" hasChildren = "hasChild"
+                        //isChecked = "isChecked" expanded = "expanded"
+
+                    },
+                    error: function () {
+                        mensajeV1('No se pudo conectar con el servicio', msgError);
+                    }
+                });
+
+
+        }
+        //#endregion
+
+    //#region Metodos para los Perfiles por Empresa del Usuario
+
+    function runScript(e) {
+        if (e.keyCode == 13) {
+            buscarPerfiles();
+            e.preventDefault();
+        }
+    }
+
+    function buscarPerfiles() {
+        let textoBuscar = document.getElementById('buscarTreeView').value.toUpperCase();
+
+        let elementos = tree.liList;
+        //tree.liList[0].setAttribute("aria-expanded", true);
+
+        let padre;
+        let sw = false;
+        elementos.forEach(function (item) {
+            let element = item.querySelector(".e-list-text").innerHTML.toUpperCase();
+
+            if (item.outerHTML.indexOf('aria-level="1"') >= 0) {
+                padre = item;
+                sw = false;
+            }
+
+            if (element.indexOf(textoBuscar) >= 0) {
+                item.querySelector(".e-list-text").classList.add("searchTrue");
+
+                if (item.outerHTML.indexOf('aria-level="1"') < 0) {
+                    if (padre.querySelector(".e-list-parent") != null) {
+                        padre.classList.remove(".e-node-collapsed");
+                        padre.setAttribute("aria-expanded", true);
+                        padre.querySelector(".e-icons").classList.remove("e-icon-expandable");
+                        padre.querySelector(".e-icons").classList.add("e-icon-collapsible");
+                        sw = true;
+                        padre.querySelector(".e-list-parent").style.display = "block";
+                    }
+                }
+            } else {
+                item.querySelector(".e-list-text").classList.remove("searchTrue");
+
+                if (padre.querySelector(".e-list-parent") != null && !sw) {
+                    padre.querySelector(".e-list-parent").style.display = "none";
+                    padre.classList.add(".e-node-collapsed");
+                    padre.setAttribute("aria-expanded", false);
+                    padre.querySelector(".e-icons").classList.add("e-icon-expandable");
+                    padre.querySelector(".e-icons").classList.remove("e-icon-collapsible");
+                }
+
+            }
+        });
+
+    }
+
+    //#endregion
+    </script>
+
+    <script>
+        var contadorResponsables = 0;
+        var contadorHoras = 0;
+        var contadorAlertas = 0;
+        var contadorTareas = 0;
+
+        var listaResponsableAux = [];
+        var listaDetalleAux = [];
+        var listaAlertaAux = [];
+        var listaTareaAux = [];
+
+        //Carga Principal
+        $(document).ready(function () {
+            tree = document.getElementById("treedata").ej2_instances[0];
+            //tree.expandAll();
+            tree.collapseAll();
+
+            var gridResponsables = document.getElementById("gridResponsables").ej2_instances[0];
+            listaResponsableAux = JSON.parse('@Html.Raw(Json.Serialize(Model.eEngagement.listaResponsable_Engagement))');
+            if (listaResponsableAux == null) listaResponsableAux = [];
+            gridResponsables.dataSource = listaResponsableAux;
+            gridResponsables.refresh();
+
+            var gridDetalle = document.getElementById("gridDetalle").ej2_instances[0];
+            listaDetalleAux = JSON.parse('@Html.Raw(Json.Serialize(Model.eEngagement.listaDetalle_Hora_Engagement))');
+            if (listaDetalleAux == null) listaDetalleAux = [];
+            gridDetalle.dataSource = listaDetalleAux;
+            gridDetalle.refresh();
+
+            var gridAlertas = document.getElementById("gridAlertas").ej2_instances[0];
+            listaAlertaAux = JSON.parse('@Html.Raw(Json.Serialize(Model.eEngagement.listaAlerta_Engagement))');
+            if (listaAlertaAux == null) listaAlertaAux = [];
+            gridAlertas.dataSource = listaAlertaAux;
+            gridAlertas.refresh();
+
+            var gridTareas = document.getElementById("gridTareas").ej2_instances[0];
+            listaTareaAux = JSON.parse('@Html.Raw(Json.Serialize(Model.eEngagement.listaTarea_Engagement))');
+            if (listaTareaAux == null) listaTareaAux = [];
+            gridTareas.dataSource = listaTareaAux;
+            gridTareas.refresh();
+
+        });
+
+        function agregarResponsable() {
+            contadorResponsables++;
+            var ddlPerfil = document.getElementById("ddlPerfil").ej2_instances[0];
+            let ddlCargo = document.getElementById("ddlCargo").ej2_instances[0];
+            if (ddlCargo.value == null)
+                return;
+            if (ddlCargo.value == 0)
+                return;
+
+            var gridResponsables = document.getElementById("gridResponsables").ej2_instances[0];
+            if (ddlPerfil.index == null) {
+                mensajeV1("Debe seleccionar al responsable !", msgAlerta);
+                return;
+            }
+
+            const found = listaResponsableAux.some(el => el.id_usuario === ddlPerfil.value);
+            if (!found)
+                listaResponsableAux.push({
+                    id: contadorResponsables,
+                    id_usuario: ddlPerfil.value,
+                    cargo: ddlCargo.text,
+                    estado: 0,
+                    id_engagement: 0,
+                    nombre_usuario: ddlPerfil.text
+                });
+
+            gridResponsables.dataSource = listaResponsableAux;
+            gridResponsables.refresh();
+
+            ddlPerfil.value = null;
+            ddlCargo.value = null;
+
+        }
+
+        function agregarHoras() {
+            contadorHoras++;
+            var ddlTipo = document.getElementById("ddlTipo").ej2_instances[0];
+            var cantidad = document.getElementById("cantidad");
+            var descripcion = document.getElementById("descripcion");
+
+            var gridDetalle = document.getElementById("gridDetalle").ej2_instances[0];
+            if (ddlTipo.index == null) {
+                mensajeV1("Debe seleccionar el tipo de hora !", msgAlerta);
+                return;
+            }
+
+            if (ddlTipo.index + 1 == 1) { // tipro trabajo solo debe existir un item
+                const found = listaDetalleAux.some(el => el.tipo === 1);
+                if (!found) {
+                    listaDetalleAux.push({
+                        id: contadorHoras,
+                        id_engagement: 0,
+                        tipo: ddlTipo.index + 1,
+                        cantidad: cantidad.value,
+                        descripcion: descripcion.value,
+                        estado: 0,
+                        tipo_descripcion: ddlTipo.text
+                    });
+                    document.getElementById("horas_trabajo").innerHTML = ' <i class="fa fa-exclamation"></i> <b> Horas de Trabajo:</b>   ' + cantidad.value;
+                }
+            }else
+                listaDetalleAux.push({
+                    id: contadorHoras,
+                    id_engagement: 0,
+                    tipo: ddlTipo.index + 1,
+                    cantidad: cantidad.value,
+                    descripcion: descripcion.value,
+                    estado: 0,
+                    tipo_descripcion: ddlTipo.text
+                });
+
+            gridDetalle.dataSource = listaDetalleAux;
+            gridDetalle.refresh();
+
+            ddlTipo.value = null;
+            cantidad.value = 0;
+            descripcion.value = "";
+        }
+
+        function agregarAlerta() {
+            contadorAlertas++;
+            var porcentaje_notificar = document.getElementById("porcentaje_notificar");
+            var gridAlertas = document.getElementById("gridAlertas").ej2_instances[0];
+            console.log(porcentaje_notificar.value);
+            if (porcentaje_notificar.value == "" || porcentaje_notificar.value < 0 || porcentaje_notificar.value > 100) {
+                mensajeV1("El valor para notificar debe estar entre 0 y 100", msgAlerta);
+                return;
+            }
+
+            let found = listaAlertaAux.some(el => el.porcentaje_notificador == porcentaje_notificar.value);
+            if (!found)
+                listaAlertaAux.push({
+                    id: contadorAlertas,
+                    porcentaje_notificador: porcentaje_notificar.value,
+                    id_engagement: 0,
+                    estado: 0,
+                });
+
+            gridAlertas.dataSource = listaAlertaAux;
+            gridAlertas.refresh();
+
+            porcentaje_notificar.value = 0;
+        }
+
+        function agregarTareas() {
+            contadorTareas = 0;
+            var porcentaje_notificar = document.getElementById("porcentaje_notificar");
+            var gridTareas = document.getElementById("gridTareas").ej2_instances[0];
+
+            tree = document.getElementById("treedata").ej2_instances[0];
+
+            //listaTareaAux = [];
+            let sPadre = "CATEGORIA";
+            tree.getTreeData().forEach(function (item) {
+                if (!item.hasOwnProperty('parentId')) {
+                    sPadre = item.sNombre
+                    tree.getTreeData().forEach(function (itemHijo) {
+                        if (itemHijo.hasOwnProperty('parentId') && itemHijo.hasOwnProperty('isChecked') && itemHijo.parentId == item.Id) {
+                            let id_tarea = itemHijo.Id - (itemHijo.parentId * 1000);
+                            let found = listaTareaAux.some(el => el.id_tarea === id_tarea);
+                            if (!found) {
+                                contadorTareas++;
+                                listaTareaAux.push({
+                                    id: contadorTareas,
+                                    id_engagement: 0,
+                                    id_tarea: id_tarea,
+                                    descripcion: itemHijo.sNombre,
+                                    maximo_horas: 0,
+                                    estado: 0,
+                                    categoria: sPadre,
+                                });
+                            }
+
+                        }
+
+                    });
+                }
+            });
+            tree.uncheckAll();
+            tree.refresh();
+            tree.collapseAll();
+
+            gridTareas.dataSource = listaTareaAux;
+            gridTareas.refresh();
+
+        }
+    </script>
+}

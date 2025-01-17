@@ -1,0 +1,531 @@
+﻿@model wDualAssistence.Models.ViewModelBase;
+<style>
+    .titulo {
+        position: relative;
+        top: 10px;
+        color: #fff !important;
+        padding: 0 5px;
+        font-size: 20px;
+    }
+
+    .btn-menu-usuario {
+        height: 78px;
+        margin: 0 !important;
+        /* background-color: #ea8363; */
+        background-image: linear-gradient(to bottom, #687bc1, #3a5e84);
+        color: #fff;
+        border-radius: 15px;
+        position: relative;
+        padding: 15px 5px;
+        /*margin: 0 0 10px 10px;*/
+        min-width: 80px;
+    }
+
+        .btn-menu-usuario:hover {
+            color: #fff;
+            background-image: linear-gradient(to bottom, #687bc1, #3a5e84);
+            text-decoration: none;
+            border-color: #aaa;
+        }
+
+        .btn-menu-usuario > .fa, .btn-menu-usuario > .glyphicon, .btn-menu-usuario > .ion {
+            font-size: 20px;
+            display: block;
+        }
+
+    #myModalEmpresa2 > .modal-dialog {
+        width: 700px;
+    }
+
+    .campanaNotificacion {
+        -webkit-animation: animarCampana 1.5s infinite ease; /* Safari 4.0 - 8.0 */
+        -moz-animation: animarCampana 1.5s infinite ease; /* Mozilla */
+        animation: animarCampana 1.5s infinite ease;
+    }
+
+    /* Mozilla */
+    @@-moz-keyframes animarCampana {
+        0% {
+            color: white;
+            transform: scale(1.35) rotate(45deg);
+        }
+
+        25% {
+            color: white;
+            transform: scale(1.35) rotate(-45deg);
+        }
+
+        50% {
+            color: #ffc627;
+            transform: rotate(-40deg);
+        }
+
+        100% {
+            color: #ffc627;
+            transform: rotate(40deg);
+        }
+    }
+
+    /* Safari 4.0 - 8.0 */
+    @@-webkit-keyframes animarCampana {
+        0% {
+            color: white;
+            transform: scale(1.35) rotate(45deg);
+        }
+
+        25% {
+            color: white;
+            transform: scale(1.35) rotate(-45deg);
+        }
+
+        50% {
+            color: #ffc627;
+            transform: rotate(-40deg);
+        }
+
+        100% {
+            color: #ffc627;
+            transform: rotate(40deg);
+        }
+    }
+
+    /* Standard syntax */
+    @@keyframes animarCampana {
+        0% {
+            color: white;
+            transform: scale(1.35) rotate(45deg);
+        }
+
+        25% {
+            color: white;
+            transform: scale(1.35) rotate(-45deg);
+        }
+
+        50% {
+            color: #ffc627;
+            transform: rotate(-40deg);
+        }
+
+        100% {
+            color: #ffc627;
+            transform: rotate(40deg);
+        }
+    }
+</style>
+
+<nav class="navbar navbar-static-top">
+    @*<img src="~/assets/images/recursos/fondo-degradado.jpg" alt="Alternate Text" />*@
+    <!-- Sidebar toggle button-->
+
+    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+
+    </a>
+
+    <a class="titulo">@ViewData["Navbar-Title"]</a>
+
+    <div class="navbar-custom-menu">
+
+        <ul class="nav navbar-nav">
+            <!--<li class="dropdown notifications-menu notificacion-dropdown">
+                <a href="#" class="dropdown-toggle header-dropdown" data-toggle="dropdown">
+                    <i id="campana_notificacion" class="fa fa-bell"></i>
+                    <span class="label label-warning notificacion-span" id="numero_notificacion">5</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="header">Tienes 5 notificaciones</li>
+                    <li>-->
+                        <!-- inner menu: contains the actual data -->
+                        <!--<ul class="menu">
+                            <li>
+                                <a href="#" onclick="redirigirDashboard()">
+                                    <i class="fa fa-users text-aqua"></i> 5 Engagement pendientes por autorizar
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="footer"><a href="#" onclick="redirigirDashboard()">Ver</a></li>
+                </ul>
+            </li>-->
+            <!-- Tasks: style can be found in dropdown.less -->
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu usuario-dropdown">
+                <a href="#" class="dropdown-toggle header-dropdown" data-toggle="dropdown">
+                    <img src="../@Model.UsuarioImagen" class="user-image" alt="User Image"
+                         onerror="this.onerror=null;this.src='../assets/usuarios/defecto.svg';">
+                    <span class="hidden-xs">@Model.NombreUsuario</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-usuario">
+                    <!-- User image -->
+                    <li class="user-header">
+                        <img src="../@Model.UsuarioImagen" class="img-circle" alt="User Image"
+                         onerror="this.onerror=null;this.src='../assets/usuarios/defecto.svg';">
+
+                        <p class="blanco">
+                            @Model.NombreUsuario
+                            <small>@Model.Correo</small>
+                        </p>
+                    </li>
+                    <!-- Menu Body -->
+
+
+
+                    <li class="acciones-navbar-usuario">
+                        @if (Model.tipo == 1)
+                        {
+                            <a href="#" data-toggle="modal" data-target="#modalContraseña">
+
+                                <p>
+                                    <i class="fa fa-lock"></i>
+                                    Cambiar contraseña
+                                </p>
+                            </a>
+                        }
+
+                        <a href="@Url.Action("logout","home")">
+
+                            <p>
+                                <i class="fa fa-arrow-circle-right"></i>
+                                Cerrar sesion
+                            </p>
+                        </a>
+                    </li>
+
+
+
+                    <!-- Menu Footer-->
+                    <li class="user-footer dropdown-menu-usuario-footer">
+                    </li>
+
+                </ul>
+            </li>
+            <!-- Control Sidebar Toggle Button -->
+            <li>
+                @*<a href="#" data-toggle="control-sidebar"><i class="fa fa-cogs"></i></a>*@
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<style>
+    .modal-backdrop {
+        z-index: 2;
+    }
+
+    .column {
+        float: left;
+        width: max-content;
+        height: fit-content;
+        margin: 5px;
+    }
+
+    /* Remove extra left and right margins, due to padding */
+    .row {
+        margin: 0 -5px;
+        height: max-content;
+    }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+    /* Responsive columns */
+    @@media screen and (max-width: 600px) {
+        .column {
+            width: 200px;
+            display: block;
+            margin-bottom: 20px;
+        }
+    }
+
+    /* Style the counter cards */
+    .card {
+        width: 200px;
+        height: 140px;
+        box-shadow: -4px 4px 10px #202020;
+        padding: 16px;
+        text-align: center;
+        background-color: #244289;
+        margin: 0;
+        color: #fff;
+        border-radius: 10px;
+        box-shadow: -5px 5px 10px rgba(36, 66, 137, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .card:hover {
+            /*background-color: #1e428a;*/
+            background-color: rgba(25, 54, 113, 1);
+            color: white;
+        }
+
+    .card-imagen-empresa {
+    }
+
+    .card-titulo-empresa {
+        font-size: 2rem;
+        text-transform: uppercase;
+        color: #1e428a !important;
+        background-color: #fff;
+        padding: 5px 8px;
+        border-radius: 10px;
+    }
+</style>
+
+<!-- ---------------------------  Modal para cambiar la contrasena inicio------------------------------------- -->
+<!-- Modal -->
+<div class="modal fade" id="modalContraseña" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 style="margin: 0;"><span class="fa fa-lock"></span> Cambio de Contraseña </h3>
+            </div>
+            <div class="modal-body" style="padding:40px 50px;">
+
+                <input class="e-input" name="codigo_usuario" placeholder="Nombre" type="hidden" value="@Model.idUsuario">
+                <input class="e-input" id="newContrasena" name="nueva_contrasena" placeholder="Nombre" type="hidden" value="@Model.Contrasena">
+
+                <div class="form-group">
+                    <label for="usrname"> Contraseña actual</label>
+                    <div class="e-input-group e-small">
+                        <input class="e-input inputEnter" id="contrasenaActual" type="password" value="" required>
+                        <span class="fa fa-eye-slash spanPassword" id="spanContrasenaActual" onclick="mostrarOcultarContrasena('contrasenaActual', 'spanContrasenaActual')"></span>                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="psw"> Contraseña nueva</label>
+                    <div class="e-input-group e-small">
+                        <input class="e-input inputEnter" id="contrasenaNueva" type="password" value="" required>
+                        <span class="fa fa-eye-slash spanPassword" id="spanContrasenaNueva" onclick="mostrarOcultarContrasena('contrasenaNueva', 'spanContrasenaNueva')"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="psw"> Confirme la nueva contraseña</label>
+                    <div class="e-input-group e-small">
+                        <input class="e-input inputEnter" id="contrasenaNuevaRepetida" type="password" value="" required>
+                        <span class="fa fa-eye-slash spanPassword" id="spanContrasenaNuevaRepetida" onclick="mostrarOcultarContrasena('contrasenaNuevaRepetida', 'spanContrasenaNuevaRepetida')"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="capa_btn confirmar">
+                    <button id="btnCambiarContra" type="button" class="btn btn-base guardar" onclick="verificarCambioContrasena()">
+                        <span class="fa span-button confirmar"></span>
+                        <p class="text-button-primary">Guardar</p>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- --------------------------- Style modal para cambiar la contrasena ------------------------------------- -->
+<style>
+    .modal-header, h3, .close {
+        color: white !important;
+        text-align: center;
+        font-size: 20px;
+    }
+</style>
+<!-- --------------------------- Script modal para cambiar la contrasena ------------------------------------- -->
+<script src="~/lib/plantilla-adminlte/plugins/jquery/dist/jquery.js"></script>
+
+
+<script type="text/javascript">
+
+    let input = document.getElementsByClassName("inputEnter");
+    for (let i = 0; i < input.length; i++) {
+        input[i].addEventListener("keyup", function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("btnCambiarContra").click();
+            }
+        });
+    }
+
+    function verificarCambioContrasena() {
+        let contrasenaActual = document.getElementById('contrasenaActual');
+        let contrasenaNueva = document.getElementById('contrasenaNueva');
+        let contrasenaRepetida = document.getElementById('contrasenaNuevaRepetida');
+
+        if (contrasenaNueva.value == "" && contrasenaRepetida.value == "") {
+            mensajeV1("Rellene todos los datos!...", msgError);
+            return;
+        }
+
+        if (contrasenaNueva.value == contrasenaRepetida.value) {
+            GuardarCambioContrasena(contrasenaActual.value, contrasenaNueva.value);
+        } else {
+            mensajeV1("Las contraseñas no coinciden!...", msgError);
+        }
+    }
+
+    function GuardarCambioContrasena(actualContrasena, newContrasena) {
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("SetContrasenaValidar", "Usuario")/@Model.idUsuario"+"/"+actualContrasena+"/"+newContrasena + "/" + @Model.tipo,
+            success: function (data) {
+                if (data.transaccion == true) {
+                    if (@Model.tipo == 1) {
+                        window.location.href = "@Url.Action("DashboardPrincipalEmpleado", "Dashboard")";
+                    } else {
+                        window.location.href = "@Url.Action("DashboardTareasEmpleado", "Dashboard")";
+                    }
+                } else {
+                    mensajeV1(data.mensaje, msgError);
+                }
+            },
+            error: function () {
+                mensajeV1("Error en el Servidor", msgError);
+            }
+        });
+    }
+
+    //#region Metodos para cambio de Contraseña
+
+
+    //#endregion
+
+</script>
+
+<!-- ---------------------------  Modal para cambiar la contrasena Fin ------------------------------------- -->
+<!-- Modal Cambio de Empresa -->
+<div id="myModalEmpresa2" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Seleccione la empresa con la de desea Ingresar</h4>
+            </div>
+            <div id="cuerpoModalEmpresa" class="modal-body">
+                <div class="container" id="Empresas">
+                    <div class="row" id="listaEmpresas2">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-base cancelar" data-dismiss="modal">
+                    <span class="fa span-button"></span>
+                    <p class="text-button-danger">Cancelar</p>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="frmDashboardNavbar" action='@Url.Action("Dashboard", "Dashboard")' method="GET">
+</form>
+
+
+<script type="text/javascript">
+
+
+    document.getElementById('cuerpoModalEmpresa').onmousewheel = function (e) {
+        this.scrollLeft += (e.deltaY * 0.5);
+        e.preventDefault();
+        console.log(this);
+        console.log(e);
+    }
+
+    function scrollModalEmpresa(ev) {
+        this.scrollLeft -= (ev.deltaY * 30);
+        ev.preventDefault();
+    }
+
+    function cargarEmpresas() {
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("GetEmpresas", "Empresa")",
+            data: {},
+            success: function (data) {
+                $('#listaEmpresas2').empty();
+                var event_data = '';
+                data.forEach(function (element) {
+                    event_data += ' <div class="column">';
+                    event_data += ' <div class="card" onClick="selectEmpresa2(' + element.codigo_empresa + ')">';
+                    event_data += ' <img class="card-imagen-empresa" src="../' + element.imagen_logo + '" alt="logo" width="150" height="150">';
+                    //event_data += ' <h3 class="card-titulo-empresa">' + element.nombre + '</h3>';
+                    //event_data += ' <p>' + element.sigla + '</p>';
+                    event_data += ' </div>';
+                    event_data += ' </div>';
+                });
+                $('#listaEmpresas2').append(event_data);
+                document.getElementById("Empresas").hidden = false;
+            },
+            error: function () {
+                alert('Error en el servidor');
+            }
+        });
+    }
+
+
+    function redirigirDashboard() {
+        //let form = document.getElementById('frmDashboardNavbar');
+        //form.submit();
+        window.location = '@Url.Action("DashboardPrincipalEmpleado", "Dashboard")';
+    }
+
+
+    function selectEmpresa2(idEmpresa) {
+        console.log(idEmpresa);
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("selectEmpresas","empresa")',
+            data: { id: idEmpresa },
+            success: function (data) {
+                if (data.Result == true) {
+                   let oEmpresa = data.Contenido;
+                    redirigirDashboard();
+                }
+            },
+            error: function () {
+                alert('Error al Eliminar Usuario');
+            }
+        });
+    }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#modalContraseña").on('shown.bs.modal', function () {
+            $(this).find('#contrasenaActual').focus();
+        });
+
+        $("#modalContraseña").on("hidden.bs.modal", function () {
+            document.getElementById("contrasenaActual").value = "";
+            document.getElementById("contrasenaNueva").value = "";
+            document.getElementById("contrasenaNuevaRepetida").value = "";
+            let spanPass = document.getElementsByClassName("spanPassword");
+            for (let i = 0; i < spanPass.length; i++) {
+                spanPass[i].className = "fa fa-eye-slash spanPassword";
+            }            
+        });
+
+        //let nroNotificaciones = document.getElementById("numero_notificacion").innerHTML;
+        //let campana = document.getElementById("campana_notificacion");
+        //if (nroNotificaciones > 0) {
+        //    campana.classList.add("campanaNotificacion");
+        //} else {
+        //    //campana.classList.remove("campanaNotificacion");
+        //}
+    });
+</script>
+
+
+
+

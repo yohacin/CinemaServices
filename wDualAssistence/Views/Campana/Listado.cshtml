@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewData["Title"] = "Campañas";
+    ViewData["Navbar-Title"] = "Notificador > Listado de Campañas";
+}
+
+@model wDualAssistence.Models.CampanaViewModel;
+
+@section Styles {
+
+}
+
+<div class="content-wrapper">
+    <div class="content">
+        <div class="panel panel-default">
+            <div class="panel-heading heading-primary">
+                <span class="capa_btn info">
+                    <button type="submit" class="btn btn-base crear" onclick="Crear()">
+                        <span class="fa span-button info"></span>
+                        <p class="text-button-primary">Crear</p>
+                    </button>
+                </span>
+            </div>
+            <div class="panel-body">
+                <section class="content">
+                    <ejs-grid id="GridCampana"
+                              created="onCreateGridCampana"
+                              dataSource="@Model.eLstCampana"
+                              allowPaging="true"
+                              allowFiltering="true"
+                              locale="es"
+                              gridLines="Both">
+                        <e-grid-filterSettings showFilterBarStatus="false"></e-grid-filterSettings>
+                        <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
+                        <e-grid-columns>
+                            <e-grid-column field="nombre" headerText="Nombre" filter="@(new {@operator = "contains", predicate = "or"})" headerTextAlign="Center" textAlign="Left" width="50" allowFiltering="true"></e-grid-column>
+                            <e-grid-column field="fecha_inicial_ejecucion" AllowFiltering="false" filter="@(new {@operator = "contains", predicate = "or"})" headerText="Fecha Inicial Ejecución" headerTextAlign="Center" type="date" format="d-MMM-y" textAlign="Left" width="50" allowFiltering="true"></e-grid-column>
+                            <e-grid-column field="hora_ejecucion" filter="@(new {@operator = "contains", predicate = "or"})" headerText="Hora Ejecución" headerTextAlign="Center" textAlign="Left" width="50" allowFiltering="true"></e-grid-column>
+                            <e-grid-column field="contenido" filter="@(new {@operator = "contains", predicate = "or"})" headerText="Contenido" headerTextAlign="Center" textAlign="Left" width="80" allowFiltering="true"></e-grid-column>
+                            <e-grid-column headerTextAlign="Right" textAlign="Center" template="#menuContextual" width="30" allowFiltering="false"></e-grid-column>
+                        </e-grid-columns>
+                    </ejs-grid>
+                </section>
+
+                <form id="formCrearCampana" action='@Url.Action("Crear", "Campana")' method="POST">
+                    <input type="hidden" id="idCampana" name="idCampana" value="0">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a id="modalELiminar" href="@Url.Action("MostrarModalEliminar", "Modal")" data-toggle="modal" data-target="#modalBusqueda" hidden></a>
+<partial name="_SeccionModal" />
+
+<ejs-contextmenu id="contextmenu" items="@Model.menuItems" select="ejecutarAccion"></ejs-contextmenu>
+
+@section PreScripts {
+    <script type="text/x-template" id="menuContextual">
+        <button class="boton-accion" onclick="abrirContextMenu(event, ${codigo_campana})">
+            <i class="fa fa-list-ul"></i>
+        </button>
+    </script>
+
+    <script type="text/javascript">
+        var gridCampana;
+
+        function onCreateGridCampana() {
+            console.log('al crear grilla campana');
+            gridCampana = document.getElementById('GridCampana').ej2_instances[0];
+        }
+
+        var idCampana;
+        function abrirContextMenu(ev, id) {
+            idCampana = id;
+            let x = ev.pageX;
+            let y = ev.pageY;
+            let contextMenuObj = document.getElementById("contextmenu").ej2_instances[0];
+            contextMenuObj.open(y, x);
+        }
+
+        function ejecutarAccion(args) {
+            switch (args.item.id) {
+                case "1": // Editar
+                    let form = document.getElementById('formCrearCampana');
+                    document.getElementById('idCampana').value = idCampana;
+                    form.submit();
+                    break;
+                case "2": // Eliminar
+                    mostrarConfirmacion();
+                    break;
+                default:
+            }
+        }
+    </script>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        function Crear() {
+            let form = document.getElementById('formCrearCampana');
+            document.getElementById('idCampana').value = 0;
+            form.submit();
+        }
+
+        function mostrarConfirmacion() {
+            document.getElementById('modalELiminar').click();
+        }
+
+        function eliminarCampana(id) {
+            $.ajax({
+                type: "DELETE",
+                url: '@Url.Action("Delete", "Campana")',
+                data: { id: id },
+                success: function (data) {
+                    mensajeV1(data.Msg, msgOk);
+                    let selectedRow = gridCampana.getSelectedRowIndexes()[0]; //row select for eliminar
+                    gridCampana.dataSource.splice(selectedRow, 1); // delete the selected record.
+                    gridCampana.refresh(); // refresh the Grid.
+                },
+                error: function (response) {
+                    mensajeV1(response.Msg, msgError);
+                    console.log('StackTrace:', response.StackTrace);
+                }
+            });
+        }
+
+        function accionEliminar() {
+            eliminarCampana(idCampana);
+        }
+    </script>
+}
+

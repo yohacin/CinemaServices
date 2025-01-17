@@ -1,0 +1,91 @@
+2020-08-31 08:16:41,051 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-31 09:18:45,048 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-31 09:29:53,518 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-31 10:13:18,498 [95] ERROR WebServices wDualAssistence.Controllers.EngagementEmpleadoController - System.Exception: El numero de horas asignadas (60) no debe ser mayor al numero de horas disponibles(45)
+   at wDualAssistence.Controllers.EngagementEmpleadoController.Post(Int64 id_engagement, Int64 id_empleado, String stringListaDetalle) 
+2020-08-31 10:13:27,331 [95] ERROR WebServices wDualAssistence.Controllers.EngagementEmpleadoController - System.Exception: El numero de horas asignadas (50) no debe ser mayor al numero de horas disponibles(45)
+   at wDualAssistence.Controllers.EngagementEmpleadoController.Post(Int64 id_engagement, Int64 id_empleado, String stringListaDetalle) 
+2020-08-31 10:13:39,694 [90] ERROR WebServices wDualAssistence.Controllers.EngagementEmpleadoController - System.Exception: El numero de horas asignadas (50) no debe ser mayor al numero de horas disponibles(45)
+   at wDualAssistence.Controllers.EngagementEmpleadoController.Post(Int64 id_engagement, Int64 id_empleado, String stringListaDetalle) 
+2020-08-31 10:38:27,937 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-31 10:45:56,950 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-31 11:09:57,236 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-31 11:45:28,136 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-31 11:46:02,912 [6] ERROR WebServices Business.Security.Usuario - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> Npgsql.NpgsqlException: Exception while reading from stream ---> System.IO.IOException: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond. ---> System.Net.Sockets.SocketException: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at Npgsql.NpgsqlReadBuffer.<>c__DisplayClass31_0.<<Ensure>g__EnsureLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlReadBuffer.cs:line 154
+   --- End of inner exception stack trace ---
+   at Npgsql.NpgsqlReadBuffer.<>c__DisplayClass31_0.<<Ensure>g__EnsureLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlReadBuffer.cs:line 175
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 955
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 444
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at Npgsql.PostgresDatabaseInfo.LoadBackendTypes(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async) in /home/roji/projects/npgsql/src/Npgsql/PostgresDatabaseInfo.cs:line 211
+   at Npgsql.PostgresDatabaseInfo.LoadPostgresInfo(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async) in /home/roji/projects/npgsql/src/Npgsql/PostgresDatabaseInfo.cs:line 109
+   at Npgsql.PostgresDatabaseInfoFactory.Load(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async) in /home/roji/projects/npgsql/src/Npgsql/PostgresDatabaseInfo.cs:line 49
+   at Npgsql.NpgsqlDatabaseInfo.Load(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDatabaseInfo.cs:line 250
+   at Npgsql.NpgsqlConnector.LoadDatabaseInfo(NpgsqlTimeout timeout, Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 466
+   at Npgsql.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 438
+   at Npgsql.ConnectorPool.AllocateLong(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/ConnectorPool.cs:line 246
+   at Npgsql.NpgsqlConnection.<>c__DisplayClass32_0.<<Open>g__OpenLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 302
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnection.Open() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 153
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 60
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Business.Security.Usuario.Login(String usuario, String contrasena) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Security\Usuario.cs:line 215 
+2020-08-31 12:12:16,424 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-31 15:05:08,913 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-31 15:09:17,391 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-31 15:45:41,182 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-31 16:05:02,387 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-31 19:21:36,559 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-31 19:26:36,017 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-31 19:37:56,495 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-31 19:47:35,637 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-31 19:53:29,838 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-31 20:04:20,919 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-31 20:04:52,241 [12] INFO  WebServices wDualAssistence.Controllers.HomeController - KEY:m1 
+2020-08-31 20:04:52,241 [4] INFO  WebServices wDualAssistence.Controllers.HomeController - KEY:m1 
+2020-08-31 20:04:52,244 [12] INFO  WebServices wDualAssistence.Controllers.HomeController - USUARIO:Billy 
+2020-08-31 20:04:52,248 [12] INFO  WebServices wDualAssistence.Controllers.HomeController - MENSAJE:Hola pepe 
+2020-08-31 20:04:52,247 [4] INFO  WebServices wDualAssistence.Controllers.HomeController - USUARIO:Billy 
+2020-08-31 20:04:52,249 [4] INFO  WebServices wDualAssistence.Controllers.HomeController - MENSAJE:Hola pepe 
+2020-08-31 20:04:52,249 [4] INFO  WebServices wDualAssistence.Controllers.HomeController - KEY:m2 
+2020-08-31 20:04:52,251 [4] INFO  WebServices wDualAssistence.Controllers.HomeController - USUARIO:Pepe 
+2020-08-31 20:04:52,252 [4] INFO  WebServices wDualAssistence.Controllers.HomeController - MENSAJE:Hola Billy ! 
+2020-08-31 20:04:52,248 [12] INFO  WebServices wDualAssistence.Controllers.HomeController - KEY:m2 
+2020-08-31 20:04:52,254 [12] INFO  WebServices wDualAssistence.Controllers.HomeController - USUARIO:Pepe 
+2020-08-31 20:04:52,254 [12] INFO  WebServices wDualAssistence.Controllers.HomeController - MENSAJE:Hola Billy ! 
+2020-08-31 20:05:58,266 [4] INFO  WebServices wDualAssistence.Controllers.HomeController - KEY:m3 
+2020-08-31 20:05:58,267 [4] INFO  WebServices wDualAssistence.Controllers.HomeController - USUARIO:PEdro 
+2020-08-31 20:05:58,267 [4] INFO  WebServices wDualAssistence.Controllers.HomeController - MENSAJE:Hola chicos !!! 
+2020-08-31 20:05:58,275 [12] INFO  WebServices wDualAssistence.Controllers.HomeController - KEY:m3 
+2020-08-31 20:05:58,276 [12] INFO  WebServices wDualAssistence.Controllers.HomeController - USUARIO:PEdro 
+2020-08-31 20:05:58,276 [12] INFO  WebServices wDualAssistence.Controllers.HomeController - MENSAJE:Hola chicos !!! 
+2020-08-31 20:06:49,329 [12] INFO  WebServices wDualAssistence.Controllers.HomeController - KEY:m4 
+2020-08-31 20:06:49,331 [12] INFO  WebServices wDualAssistence.Controllers.HomeController - USUARIO:Billy 
+2020-08-31 20:06:49,333 [12] INFO  WebServices wDualAssistence.Controllers.HomeController - MENSAJE:Hola pedro, cuanto tiempo ché ? 
+2020-08-31 20:06:49,329 [4] INFO  WebServices wDualAssistence.Controllers.HomeController - KEY:m4 
+2020-08-31 20:06:49,359 [4] INFO  WebServices wDualAssistence.Controllers.HomeController - USUARIO:Billy 
+2020-08-31 20:06:49,360 [4] INFO  WebServices wDualAssistence.Controllers.HomeController - MENSAJE:Hola pedro, cuanto tiempo ché ? 

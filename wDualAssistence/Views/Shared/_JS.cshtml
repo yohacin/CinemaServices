@@ -1,0 +1,244 @@
+﻿<environment include="Development,Staging">
+    <!-- ./wrapper -->
+    <!-- jQuery 3 -->
+    <script src="~/lib/plantilla-adminlte/plugins/jquery/dist/jquery.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/lib/plantilla-adminlte/plugins/jquery-ui/jquery-ui.js"></script>
+    <!-- jQuery UI Validate -->
+    <script src="~/lib/plantilla-adminlte/plugins/jquery-validation/dist/jquery.validate.js"></script>
+    <!-- jQuery UI Validate-unobstrusive -->
+    <script src="~/lib/plantilla-adminlte/plugins/jquery-ajax-unobstrusive/jquery.unobstrusive-ajax.js"></script>
+    <!-- jQuery UI Ajax-unobstrusive -->
+    <script src="~/lib/plantilla-adminlte/plugins/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <!-- jQuery UI SERIALIZE -->
+    <script src="~/lib/plantilla-adminlte/plugins/jquery-serialize-object-2.4.0/jquery.serialize-object.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/lib/plantilla-adminlte/plugins/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- SlimScroll -->
+    <script src="~/lib/plantilla-adminlte/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/lib/plantilla-adminlte/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/lib/plantilla-adminlte/js/demo.js"></script>
+    <!--SyncFusion componentes set idioma -->
+    <script src="~/lib/syncfusion/js/idioma_componenetes.js" asp-append-version="true"></script>
+    <!--jQuery para dar formato a los numeros -->
+    <script src="~/lib/plantilla-adminlte/plugins/jquery-number/jquery.number.js"></script>
+
+</environment>
+
+<environment include="Production">
+    <!-- ./wrapper -->
+    <!-- jQuery 3 -->
+    <script src="~/lib/plantilla-adminlte/plugins/jquery/dist/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/lib/plantilla-adminlte/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- jQuery UI Validate -->
+    <script src="~/lib/plantilla-adminlte/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+    <!-- jQuery UI Validate-unobstrusive -->
+    <script src="~/lib/plantilla-adminlte/plugins/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <!-- jQuery UI Ajax-unobstrusive -->
+    <script src="~/lib/plantilla-adminlte/plugins/jquery-ajax-unobstrusive/jquery.unobstrusive-ajax.js"></script>
+    <!-- jQuery UI SERIALIZE -->
+    <script src="~/lib/plantilla-adminlte/plugins/jquery-serialize-object-2.4.0/jquery.serialize-object.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/lib/plantilla-adminlte/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="~/lib/plantilla-adminlte/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/lib/plantilla-adminlte/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/lib/plantilla-adminlte/js/demo.js"></script>
+    <!--SyncFusion componentes set idioma -->
+    <script src="~/lib/syncfusion/js/idioma_componenetes.js"></script>
+    <!--jQuery para dar formato a los numeros -->
+    <script src="~/lib/plantilla-adminlte/plugins/jquery-number/jquery.number.min.js"></script>
+
+</environment>
+
+<!--HighChart para graficos estadisticos -->
+@*<script src="~/lib/plantilla-adminlte/plugins/highchart/highcharts.js"></script>*@
+
+<script type="text/javascript">
+
+    function bloquearEnterSubmit(ev) {
+        let keyCode = ev.keyCode;
+        if (keyCode == 13) {
+            ev.preventDefault();
+        }
+    }
+
+    function bloquearSubmit() {
+        let submitButtons = document.getElementsByClassName('btn-submit');
+        for (let i = 0; i < submitButtons.length; i++) {
+            submitButtons[i].disabled = true;
+        }
+        document.addEventListener('keydown', bloquearEnterSubmit);
+    }
+
+    function desbloquearSubmit() {
+        let submitButtons = document.getElementsByClassName('btn-submit');
+        for (let i = 0; i < submitButtons.length; i++) {
+            submitButtons[i].disabled = false;
+        }
+        document.removeEventListener('keydown', bloquearEnterSubmit);
+    }
+
+    function onAjaxBegin() {
+        bloquearSubmit();
+        document.getElementById('loader').style.display = 'flex';
+    }
+
+    function onAjaxComplete() {
+        desbloquearSubmit();
+        document.getElementById('loader').style.display = 'none';
+    }
+
+</script>
+
+<script type="text/javascript">
+
+    window.addEventListener("load", ev => {
+        let loadingPage = document.getElementById('loader');
+
+        if (loadingPage) {
+            loadingPage.style.display = 'none';
+        }
+    });
+
+    window.addEventListener("beforeunload", ev => {
+        let loadingPage = document.getElementById('loader');
+
+        if (loadingPage) {
+            loadingPage.style.display = 'flex';
+        }
+    });
+
+    $(document).ready(function () {
+
+        $('.sidebar-menu').tree();
+        pintarInputSearch();        
+        
+        $(".modal-content").draggable({
+            handle: ".modal-header"
+        });
+
+    });
+
+    /*Filtro personalizado para los DropdownList*/
+    function onFiltering() {
+
+    }
+</script>
+
+<script type="text/javascript">
+    //#region Funciones Auxiliares
+    function getLstIdGrid(listaGrid) {
+        let lstIdGrid = [];
+        listaGrid.forEach(function (e) {
+            lstIdGrid.push(e.id);
+        });
+        return lstIdGrid;
+    }
+
+    function mostrarOcultarContrasena(input, span) {
+        let inputContra = document.getElementById(`${input}`);
+        let spanContra = document.getElementById(`${span}`)
+        if (inputContra.type === "password") {
+            inputContra.type = "text";
+            spanContra.className = "fa fa-eye spanPassword";
+        } else {
+            inputContra.type = "password";
+            spanContra.className = "fa fa-eye-slash spanPassword";
+        }
+    }
+
+
+    //Vanilla Custom InputSearch
+
+    function pintarInputSearch() {
+
+        let lstInputSearch = document.querySelectorAll("div.e-input-group.e-small.vc-search");
+        let tieneSpan = false;
+        lstInputSearch.forEach(function (oInputSearch) {
+            oInputSearch.childNodes.forEach(function (oNodo) {
+
+                if (oNodo.className == "fa fa-close fa-span vc-span-search") {
+                    oNodo.parentNode.removeChild(oNodo);
+                }
+
+                if (oNodo.nodeName == "INPUT") {
+                    console.log("oNodo", oNodo);
+                    let oSpan = document.createElement("span");
+                    oSpan.className = "fa fa-close fa-span vc-span-search";
+                    oSpan.style.cssText = "display:none;";
+
+                    oInputSearch.appendChild(oSpan);
+
+                    oNodo.addEventListener('input', onTypeTexto.bind(this, oNodo, oSpan), true);
+                    oSpan.addEventListener('click', limpiarTexto.bind(this, oNodo, oSpan), true);
+
+                }
+            });
+        });
+    }
+
+    function onTypeTexto(oInput, oSpan) {
+        if (oInput.value == "") {
+            oSpan.style.display = "none";
+        } else {
+            oSpan.style.display = "block";
+        }
+
+    }
+
+    function limpiarTexto(oInput, oSpan) {
+        oInput.value = "";
+        oSpan.style.display = "none";
+        oInput.focus();
+    }
+
+    let lstInputNumber = document.querySelectorAll(".e-input.vc-input-number");
+    lstInputNumber.forEach(function (oInput) {
+        oInput.addEventListener("keypress", soloNumeros.bind(this), true);
+    });
+
+    function soloNumeros(e) {
+        let keynum = window.event ? window.event.keyCode : e.which;
+        if ((keynum == 8) || (keynum == 46)) {
+            return true;
+        }
+        let esNumero = /\d/.test(String.fromCharCode(keynum));
+        if (!esNumero) {
+            e.preventDefault();
+        }
+    }
+
+    //function pintarMensajeError(mensajeError) {
+
+    //        let oSeccion = document.querySelector("div.panel-body > section");
+
+    //        let divErrorMsg = `<div class="row errorMsg">
+    //                            <span class="fa fa-close iconError" onclick="cerrarMensajeError()"></span>
+    //                            <p>${mensajeError}</p>
+    //                       </div>`;
+
+    //        oSeccion.insertAdjacentHTML('afterbegin', divErrorMsg);
+
+    //        console.log("secciones", oSeccion);
+    //}
+
+    function cerrarMensajeError() {
+        let rowMsg = document.querySelector("div.row.errorMsg");
+
+        if (rowMsg) {
+            rowMsg.style.display = 'none';
+        }        
+    }
+    //#endregion
+</script>
+
+
+
+
+

@@ -1,0 +1,46 @@
+2020-09-15 08:30:29,245 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 08:32:02,002 [6] ERROR WebServices wDualAssistence.Controllers.Api.EmpleadoController - System.InvalidCastException: Unable to cast object of type 'System.Int64' to type 'Entities.Public.ViewLogin'.
+   at wDualAssistence.Controllers.Api.EmpleadoController.obtenerEmpleado(String sJson) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpleadoController.cs:line 47 
+2020-09-15 08:38:52,610 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 08:40:49,159 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 08:42:27,367 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 08:43:07,408 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 08:46:05,346 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 08:46:31,189 [6] ERROR WebServices wDualAssistence.Controllers.Api.EmpleadoController - System.ArgumentNullException: Value cannot be null.
+Parameter name: value
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value)
+   at wDualAssistence.Controllers.Api.EmpleadoController.obtenerEmpleado(String sJson) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpleadoController.cs:line 48 
+2020-09-15 08:47:22,111 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 08:47:47,576 [10] ERROR WebServices wDualAssistence.Controllers.Api.EmpleadoController - System.ArgumentNullException: Value cannot be null.
+Parameter name: value
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value)
+   at wDualAssistence.Controllers.Api.EmpleadoController.obtenerEmpleado(String sJson) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpleadoController.cs:line 49 
+2020-09-15 08:48:20,725 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 08:49:30,120 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 08:58:36,761 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 09:07:25,031 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 11:23:32,299 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 11:26:12,012 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 11:26:46,648 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 11:34:45,514 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 11:36:36,908 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 11:49:41,761 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 11:51:35,596 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 11:56:19,151 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 11:56:59,190 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 11:59:02,411 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 12:00:38,578 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 12:02:51,424 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 12:05:10,433 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 12:06:33,785 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 12:07:47,732 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 12:08:48,387 [12] ERROR WebServices wDualAssistence.Controllers.Api.EmpleadoController - System.ArgumentNullException: Value cannot be null.
+Parameter name: value
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value)
+   at wDualAssistence.Controllers.Api.EmpleadoController.obtenerEmpleado(String S) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpleadoController.cs:line 53 
+2020-09-15 12:09:13,831 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 12:11:59,174 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-15 12:14:12,197 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 

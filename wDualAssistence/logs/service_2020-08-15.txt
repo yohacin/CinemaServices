@@ -1,0 +1,5 @@
+2020-08-15 09:06:59,094 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-15 09:14:56,703 [16] ERROR WebServices wDualAssistence.Controllers.EngagementEmpleadoController - System.Exception: El numero de horas asignadas (30) no debe ser mayor al numero de horas disponibles(20)
+   at wDualAssistence.Controllers.EngagementEmpleadoController.Post(Int64 id_engagement_empleado, String stringListaDetalle) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\EngagementEmpleadoController.cs:line 72 
+2020-08-15 09:24:21,154 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-15 10:59:06,683 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 

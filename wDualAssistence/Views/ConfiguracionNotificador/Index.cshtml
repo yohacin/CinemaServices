@@ -1,0 +1,270 @@
+﻿
+@{
+    ViewData["Title"] = "Configuracion";
+    var i = -1;
+}
+@model wDualAssistence.Models.Notificador.ConfiguracionNotificadorViewModel;
+
+
+@section Styles {
+    <style>
+        .e-upload {
+            visibility: hidden !important;
+        }
+
+        fieldset {
+            margin: 0;
+            margin-bottom: 1%;
+            margin-top: 2%;
+        }
+
+        legend {
+            font-size: 14px;
+            padding: 5px 5px 5px 10px;
+        }
+
+        fieldset .row {
+        }
+
+        fieldset legend {
+            padding-bottom: 0;
+        }
+
+        /*
+
+        fieldset {
+            border: 1px solid #ddd !important;
+            margin: 0;
+            min-width: 0;
+            padding: 10px;
+            position: relative;
+            border-radius: 4px;
+            padding-left: 10px !important;
+        }*/
+
+        .e-input-group, .e-input-group.e-control-wrapper, .e-float-input, .e-float-input.e-input-group, .e-float-input.e-control-wrapper, .e-float-input.e-input-group.e-control-wrapper {
+            border-radius: 10px !important;
+        }
+
+            e-input-group .e-input-group-icon:last-child, .e-input-group.e-control-wrapper .e-input-group-icon:last-child {
+                border-radius: 10px !important;
+            }
+
+            .e-input-group.e-error, .e-input-group.e-control-wrapper.e-error, .e-input-group.e-error:not(.e-float-icon-left), .e-input-group.e-control-wrapper.e-error:not(.e-float-icon-left) {
+                border-color: #ccc !important;
+            }
+
+                .e-input.e-error, .e-input.e-error:focus, .e-input-group.e-error input.e-input, .e-input-group.e-control-wrapper.e-error input.e-input, .e-input-group.e-control-wrapper.e-error .e-input-group-icon, .e-input-group.e-error .e-input-group-icon, .e-input-group.e-error textarea.e-input, .e-input-group.e-control-wrapper.e-error textarea.e-input {
+                    border-color: #ccc !important;
+                }
+
+        .input-config {
+            float: right;
+            border-radius: 10px;
+            width: 100%;
+            height: 28px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+            .input-config:focus {
+                outline-width: 0;
+                border: 2px solid #317ab9;
+            }
+
+        .row {
+            margin-top: 7px !important;
+        }
+
+        h4 {
+            margin-top: 5px !important;
+        }
+    </style>
+
+    <style>
+
+        .ayuda {
+            color: white;
+            float: right;
+            margin-right: 5px;
+            border: 1px solid #00c0f5;
+            background: #00c0f5;
+            border-radius: 50%;
+            padding-left: 3px;
+            padding-right: 3px;
+            cursor: pointer;
+            width: 23px;
+            height: 23px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+            .ayuda:hover {
+                font-size: 17px;
+            }
+    </style>
+
+}
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="panel panel-default">
+            <form id="frm" class="form-horizontal" asp-controller="ConfiguracionNotificador" asp-action="Post" autocomplete="off" data-ajax="true" data-ajax-method="POST"
+                  data-ajax-begin="onAjaxBegin" data-ajax-complete="onAjaxComplete" data-ajax-loading="#loading"
+                  data-ajax-success="fnSuccess(data)" data-ajax-failure="fnFailure()">
+                <div class="panel-heading heading-primary">
+                    <span class="capa_btn confirmar">
+                        <button class="btn btn-base guardar btn-submit">
+                            <span class="fa fa-ban span-button confirmar"></span>
+                            <p class="text-button-primary">GUARDAR</p>
+                        </button>
+                    </span>
+
+                </div>
+                <div class="panel-body">
+                    <input type="hidden" asp-for="eCredencial_Correo.id" />
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                            <fieldset>
+                                <legend>
+                                    <span class="fa fa-gear"></span>
+                                    CREDENCIALES PARA EL SERVIDOR DE CORREO
+                                </legend>
+
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                                        <h4 style="margin-bottom: 0% !important;"> HOST:</h4>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                                        <input class="input-config" type="text" asp-for="eCredencial_Correo.host" id="host_correo">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                                        <h4 style="margin-bottom: 0% !important;"> PUERTO:</h4>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                                        <input class="input-config" type="number" asp-for="eCredencial_Correo.puerto" id="puerto_correo">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                                        <h4 style="margin-bottom: 0% !important;"> USUARIO:</h4>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                                        <input class="input-config" type="text" asp-for="eCredencial_Correo.usuario" id="usuario_correo">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                                        <h4 style="margin-bottom: 0% !important;"> CONTRASEÑA:</h4>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                                        <input class="input-config" type="password" asp-for="eCredencial_Correo.contrasena" value="@Model.eCredencial_Correo.contrasena" id="contrasena_correo">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                                        <h4 style="margin-bottom: 0% !important;"> HABILITAR SSL:</h4>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                                        <ejs-switch checked="true" id="switchEnableSsl" ejs-for="eCredencial_Correo.enablessl"></ejs-switch>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                                        <input class="input-config" type="email" id="correo_prueba" placeholder="Correo para enviar prueba">
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                                        <span class="capa_btn info">
+                                            <button type="button" class="btn btn-base crear" onclick="probarCorreo()">
+                                                <span class="fa fa-plus span-button info"></span>
+                                                <p class="text-button-primary">ENVIAR</p>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+@section PreScripts{
+
+    <script>
+
+
+    </script>
+
+}
+
+@section Scripts {
+    <script>
+        function probarCorreo() {
+            let correo_prueba = document.getElementById("correo_prueba").value;
+            if (correo_prueba.lenght < 3) {
+                mensajeV1("Introduzca un correo para mandar prueba del correo", msgError);
+                return;
+            }
+
+            onAjaxBegin();
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("ProbarCorreo", "ConfiguracionNotificador")',
+                data: {
+                    host : document.getElementById("host_correo").value,
+                    puerto : document.getElementById("puerto_correo").value,
+                    usuario : document.getElementById("usuario_correo").value,
+                    contrasena : document.getElementById("contrasena_correo").value,
+                    enviar_correo : correo_prueba
+                },
+                success: function (data) {
+                    try {
+                        if (data.transaccion == true) {
+                            mensajeV1("Prueba enviada! <p>si no recibe el correo en menos de 10 min, los parametros fueron incorrectos<p>", msgOk);
+                        } else {
+                            throw data.mensaje;
+                        }
+                    } catch (e) {
+                        console.error(e);
+                        mensajeV1('Ocurrio un error inesperado', msgError);
+                    }
+                    onAjaxComplete();
+                },
+                error: function () {
+                    mensajeV1(errorServidor, msgError);
+                }
+            });
+
+        }
+    </script>
+
+    <script>
+
+        function fnSuccess(data) {
+            if (data.transaccion == true) {
+                refrescar();
+                mensajeV1("Guardado correcto", msgOk);
+            } else {
+                mensajeV1("Guardado incorrecta", msgError);
+            }
+        }
+
+        function fnFailure() {
+            console.log("Error!");
+        }
+
+        function refrescar() {
+            window.location.reload();
+        }
+
+    </script>
+
+}

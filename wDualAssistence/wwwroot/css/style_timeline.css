@@ -1,0 +1,101 @@
+﻿.timeline {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+}
+
+.li {
+    transition: all 200ms ease-in;
+    margin: 0%;
+    padding: 0%;
+    width: 250px;
+}
+
+.timestamp {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 100;
+}
+
+.status {
+  padding: 0px 40px;
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid #D6DCE0;
+  position: relative;
+}
+.status h4 {
+  font-weight: 600;
+}
+.status:before {
+  content: "";
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  position: absolute;
+  top: -15px;
+  left: 42%;
+}
+
+.li.complete .status.aceptado {
+    border-top: 2px solid #66DC71;
+}
+
+.li.complete .status.rechazado {
+    border-top: 2px solid red;
+}
+
+.li.complete .status.aceptado:before {
+    background-color: #66DC71;
+    border: none;
+}
+.li.complete .status.rechazado:before {
+    background-color: red;
+    border: none;
+}
+
+.li.complete .status.aceptado h4 {
+    color: #66DC71;
+}
+
+.li.complete .status.rechazado h4 {
+    color: red;
+}
+
+.timeline:before {
+    background-color: transparent;
+}
+
+.timeline > li {
+    margin: 0px;
+    width: 270px;
+}
+
+@media (min-device-width: 320px) and (max-device-width: 700px) {
+    .timeline {
+    list-style-type: none;
+    display: block;
+  }
+
+  .li {
+    display: flex;
+    width: inherit;
+  }
+
+  .timestamp {
+    width: 100px;
+  }
+
+  .status:before {
+    left: -8%;
+    top: 30%;
+  }
+}
+
+

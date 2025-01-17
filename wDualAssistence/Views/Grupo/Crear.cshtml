@@ -1,0 +1,234 @@
+﻿
+@{
+    ViewData["Title"] = "Grupo";
+    if (Model.eGrupo.codigo_grupo != 0)
+    {
+        ViewData["Navbar-Title"] = "Notificador > Editar Grupo";
+    }
+    else
+    {
+        ViewData["Navbar-Title"] = "Notificador > Crear Grupo";
+    }
+
+    List<object> commands = new List<object>();
+    commands.Add(new { type = "Delete", buttonOption = new { iconCss = "e-icons e-delete", cssClass = "e-flat" } });
+
+}
+@model wDualAssistence.Models.Notificador.GrupoViewModel
+
+@section Styles {
+
+    <style>
+        
+        #nombre_usuario {
+            text-transform: uppercase;
+        }
+    </style>
+
+}
+
+<div class="content-wrapper">
+    <section class="content">
+        <form id="frmUsuario" class="form-horizontal" asp-controller="Grupo" asp-action="Post" autocomplete="off" data-ajax="true" data-ajax-method="POST"
+              data-ajax-begin="onAjaxBegin" data-ajax-complete="onAjaxComplete" data-ajax-loading="#loading"
+              data-ajax-success="fnSuccess(data)" data-ajax-failure="fnFailure()">
+            <div class="panel panel-default">
+                <div class="panel-heading heading-primary">
+                    <span class="capa_btn volver">
+                        <button class="btn btn-base cancelar" type="button" onclick="irAListado()">
+                            <span class="fa span-button volver"></span>
+                            <p class="text-button-primary">VOLVER</p>
+                        </button>
+                    </span>
+                    <span class="capa_btn confirmar">
+                        <button class="btn btn-base guardar btn-submit" onclick="Guardar()">
+                            <span class="fa span-button confirmar"></span>
+                            <p class="text-button-primary">GUARDAR</p>
+                        </button>
+                    </span>
+                </div>
+                <div class="panel-body">
+                    <section class="content-body">
+
+                        <input type="hidden" asp-for="eGrupo.codigo_grupo" />
+                        <input type="hidden" asp-for="stringListaContacto" />
+
+                        <div class="row">
+
+                            <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                <h4> <b style="color:red;">*</b>Nombre:</h4>
+                                <div class="e-input-group e-small">
+                                    <input class="e-input" asp-for="eGrupo.nombre" type="text">
+                                </div>
+                                <span asp-validation-for="eGrupo.nombre" class="text-danger"></span>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4">
+                                <h4> Descripción:</h4>
+                                <div class="e-input-group e-small">
+                                    <input class="e-input" asp-for="eGrupo.descripcion" type="text">
+                                </div>
+                                <span asp-validation-for="eGrupo.descripcion" class="text-danger"></span>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4">
+                                <h4> Tipo:</h4>
+                                <div class="e-input-group e-small">
+                                    <ejs-dropdownlist id="ddlTipo" ejs-for="eGrupo.tipo"
+                                                      placeholder="Seleccionar tipo..." popupHeight="220px" locale="es"
+                                                      allowFiltering="true"
+                                                      created="createdDdlTipo"
+                                                      change="CambioTipo">
+                                        <e-dropdownlist-fields text="nombre" value="tipo"></e-dropdownlist-fields>
+                                    </ejs-dropdownlist>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <fieldset style="border:1px solid #ff6700 !important;" id="div_contacto">
+                            <legend>CONTACTOS</legend>
+
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4">
+                                    <h4> Usuario:</h4>
+                                    <div class="e-input-group e-small">
+                                        <ejs-dropdownlist id="ddlPerfil" dataSource="@Model.listaUsuario"
+                                                          placeholder="Seleccionar responsable..." popupHeight="220px" locale="es"
+                                                          allowFiltering="true"
+                                                          change="CambioUsuario">
+                                            <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                                        </ejs-dropdownlist>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                            <ejs-grid id="gridContacto" dataSource="Model.eGrupo.oLstContactos" allowPaging="true" locale="es">
+                                <e-grid-editSettings allowAdding="false" allowDeleting="true" allowEditing="true"></e-grid-editSettings>
+                                <e-grid-pagesettings pageSize="8"></e-grid-pagesettings>
+                                <e-grid-columns>
+                                    <e-grid-column field="codigo_grupo" visible="false"></e-grid-column>
+                                    <e-grid-column field="codigo_contacto" isPrimaryKey="true" visible="false"></e-grid-column>
+                                    <e-grid-column field="tipo" visible="false"></e-grid-column>
+                                    <e-grid-column field="marca_eliminado" visible="false"></e-grid-column>
+                                    <e-grid-column field="nombre" headerText="USUARIO" headerTextAlign="Center" textAlign="Left" width="100" allowEditing="false"></e-grid-column>
+                                    <e-grid-column field="correo" headerText="CORREO" headerTextAlign="Center" textAlign="Left" width="50" allowEditing="false"></e-grid-column>
+                                    <e-grid-column field="telefono" headerText="TELEFONO" headerTextAlign="Center" textAlign="Left" width="50" allowEditing="false"></e-grid-column>
+                                    <e-grid-column headerText=" " width="30" commands="commands"></e-grid-column>
+                                </e-grid-columns>
+                            </ejs-grid>
+                        </fieldset>
+
+                        <div class="row" id="div_query">
+                            <br />
+                            <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6">
+                                <h4> !Nota:</h4>
+                                <p>El query introducido debe tener las siguientes columnas:</p>
+                                <ul>
+                                    <li>codigo_grupo</li>
+                                    <li>codigo_contacto</li>
+                                    <li>nombre</li>
+                                    <li>correo</li>
+                                    <li>telefono</li>
+                                    <li>tipo</li>
+                                    <li>marca_eliminado</li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6">
+                                <h4> Query:</h4>
+                                <div class="e-input-group e-small">
+                                    <textarea rows="5" style="width:100%; resize: none; height: 400px;" asp-for="eGrupo.query"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </form>
+
+    </section>
+</div>
+
+
+
+@section PreScripts {
+
+    <script>
+        function CambioTipo(arg) {
+            if (arg.value == 1) {
+                document.getElementById("div_contacto").style.display = "block";
+                document.getElementById("div_query").style.display = "none";
+            }
+            if (arg.value == 2) {
+                document.getElementById("div_contacto").style.display = "none";
+                document.getElementById("div_query").style.display = "block";
+            }
+        }
+
+        function createdDdlTipo(arg) {
+            let ddlTipo = document.getElementById("ddlTipo").ej2_instances[0];
+            ddlTipo.dataSource = [];
+            ddlTipo.dataSource.push({
+                tipo: 1,
+                nombre: "LISTA DE CONTACTOS"
+            });
+            ddlTipo.dataSource.push({
+                tipo: 2,
+                nombre: "QUERY"
+            });
+        }
+
+        var contadorContacto = 0;
+        function CambioUsuario(arg) {
+            if (arg == null) return;
+            let gridContacto = document.getElementById("gridContacto").ej2_instances[0];
+
+
+            const found = gridContacto.dataSource.some(el => el.codigo_contacto === arg.value);
+            if (!found)
+                gridContacto.dataSource.push({
+                    codigo_grupo: @Model.eGrupo.codigo_grupo,
+                    codigo_contacto: arg.value,
+                    nombre: arg.itemData.nombre,
+                    correo: arg.itemData.email,
+                    telefono: arg.itemData.telefono,
+                    tipo: "P",
+                    marca_eliminado: 0
+                });
+            gridContacto.refresh();
+
+            arg.value = null;
+        }
+
+        function Guardar() {
+            let gridContacto = document.getElementById("gridContacto").ej2_instances[0];
+            document.getElementById("stringListaContacto").value = JSON.stringify(gridContacto.dataSource);
+
+        }
+    </script>
+}
+
+@section Scripts {
+
+    <script type="text/javascript">
+        function irAListado() {
+            window.document.location.href = '@Url.Action("Listado", "Grupo")';
+        }
+
+        //Despues del Submit del Form Principal
+        function fnSuccess(data) {
+            if (data.transaccion == true) {
+                mensajeV1("Transacción exitosa!", msgOk);
+                irAListado();
+            }
+            else
+                mensajeV1(data.mensaje, msgError);
+        }
+
+        function fnFailure() {
+            mensajeV1(errorServidor, msgOk);
+        }
+
+    </script>
+
+}

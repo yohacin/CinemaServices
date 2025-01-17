@@ -1,0 +1,122 @@
+2020-09-17 09:43:21,884 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 09:45:49,578 [35] ERROR WebServices Business.Public.Empleado - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> System.TimeoutException: The operation has timed out.
+   at Npgsql.NpgsqlConnector.Connect(NpgsqlTimeout timeout) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 703
+   at Npgsql.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 555
+   at Npgsql.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 414
+   at Npgsql.ConnectorPool.AllocateLong(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/ConnectorPool.cs:line 246
+   at Npgsql.NpgsqlConnection.<>c__DisplayClass32_0.<<Open>g__OpenLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 302
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnection.Open() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 153
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 60
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.Empleado.GetLista() in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 142 
+2020-09-17 09:45:49,768 [35] ERROR WebServices wDualAssistence.Controllers.Api.EmpleadoController - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> System.TimeoutException: The operation has timed out.
+   at Npgsql.NpgsqlConnector.Connect(NpgsqlTimeout timeout) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 703
+   at Npgsql.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 555
+   at Npgsql.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 414
+   at Npgsql.ConnectorPool.AllocateLong(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/ConnectorPool.cs:line 246
+   at Npgsql.NpgsqlConnection.<>c__DisplayClass32_0.<<Open>g__OpenLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 302
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnection.Open() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 153
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Business.Public.Empleado.GetLista() in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 155
+   at wDualAssistence.Controllers.Api.EmpleadoController.ListarEmpleados() in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpleadoController.cs:line 27 
+2020-09-17 10:20:33,436 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 10:29:26,864 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 10:30:08,298 [7] ERROR WebServices wDualAssistence.Controllers.Api.EmpleadoController - System.InvalidCastException: Unable to cast object of type 'Newtonsoft.Json.Linq.JObject' to type 'Entities.Public.ViewLogin'.
+   at wDualAssistence.Controllers.Api.EmpleadoController.obtenerEmpleado(String sjson) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpleadoController.cs:line 49 
+2020-09-17 10:30:42,190 [7] ERROR WebServices wDualAssistence.Controllers.Api.EmpleadoController - System.InvalidCastException: Unable to cast object of type 'Newtonsoft.Json.Linq.JObject' to type 'Entities.Public.ViewLogin'.
+   at wDualAssistence.Controllers.Api.EmpleadoController.obtenerEmpleado(String sjson) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpleadoController.cs:line 49 
+2020-09-17 10:31:40,698 [15] ERROR WebServices wDualAssistence.Controllers.Api.EmpleadoController - System.InvalidCastException: Unable to cast object of type 'Newtonsoft.Json.Linq.JObject' to type 'Entities.Public.ViewLogin'.
+   at wDualAssistence.Controllers.Api.EmpleadoController.obtenerEmpleado(String sjson) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpleadoController.cs:line 49 
+2020-09-17 10:33:33,096 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 10:38:59,798 [17] ERROR WebServices wDualAssistence.Controllers.Api.EmpleadoController - System.InvalidCastException: Unable to cast object of type 'Newtonsoft.Json.Linq.JObject' to type 'Entities.Public.ViewLogin'.
+   at wDualAssistence.Controllers.Api.EmpleadoController.obtenerEmpleado(String sjson) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpleadoController.cs:line 49 
+2020-09-17 10:40:04,914 [38] ERROR WebServices wDualAssistence.Controllers.Api.EmpleadoController - <log4net.Error>Exception rendering object type [System.NullReferenceException]<stackTrace>System.TypeLoadException: Could not load type 'wDualAssistence.Controllers.Api.EmpleadoController+<obtenerEmpleado>d__1#1' from assembly 'wDualAssistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+   at System.Reflection.CustomAttribute._CreateCaObject(RuntimeModule pModule, IRuntimeMethodInfo pCtor, Byte** ppBlob, Byte* pEndBlob, Int32* pcNamedArgs)
+   at System.Reflection.CustomAttribute.CreateCaObject(RuntimeModule module, IRuntimeMethodInfo ctor, IntPtr& blob, IntPtr blobEnd, Int32& namedArgs)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType, Boolean mustBeInheritable, IList derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeMethodInfo method, RuntimeType caType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Type type, Boolean inherit)
+   at System.Reflection.CustomAttributeExtensions.GetCustomAttributes[T](MemberInfo element)
+   at System.Diagnostics.StackTrace.TryResolveStateMachineMethod(MethodBase& method, Type& declaringType)
+   at System.Diagnostics.StackTrace.ToString(TraceFormat traceFormat)
+   at System.Exception.GetStackTrace(Boolean needFileInfo)
+   at System.Exception.ToString(Boolean needFileLineInfo, Boolean needMessage)
+   at log4net.ObjectRenderer.DefaultRenderer.RenderObject(RendererMap rendererMap, Object obj, TextWriter writer)
+   at log4net.ObjectRenderer.RendererMap.FindAndRender(Object obj, TextWriter writer)</stackTrace></log4net.Error> 
+2020-09-17 10:42:07,489 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 10:53:45,615 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 10:54:37,909 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 11:00:00,713 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 11:17:46,349 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 11:25:50,186 [19] ERROR WebServices Business.Public.Empleado - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> System.TimeoutException: The operation has timed out.
+   at Npgsql.NpgsqlConnector.Connect(NpgsqlTimeout timeout) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 703
+   at Npgsql.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 555
+   at Npgsql.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 414
+   at Npgsql.ConnectorPool.AllocateLong(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/ConnectorPool.cs:line 246
+   at Npgsql.NpgsqlConnection.<>c__DisplayClass32_0.<<Open>g__OpenLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 302
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnection.Open() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 153
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 60
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Business.Public.Empleado.Login(String usuario, String contrasena) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 272 
+2020-09-17 11:25:50,579 [19] ERROR WebServices wDualAssistence.Controllers.Api.EmpleadoController - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> System.TimeoutException: The operation has timed out.
+   at Npgsql.NpgsqlConnector.Connect(NpgsqlTimeout timeout) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 703
+   at Npgsql.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 555
+   at Npgsql.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 414
+   at Npgsql.ConnectorPool.AllocateLong(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/ConnectorPool.cs:line 246
+   at Npgsql.NpgsqlConnection.<>c__DisplayClass32_0.<<Open>g__OpenLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 302
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnection.Open() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 153
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Business.Public.Empleado.Login(String usuario, String contrasena) in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Empleado.cs:line 278
+   at wDualAssistence.Controllers.Api.EmpleadoController.obtenerEmpleado(String sjson) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpleadoController.cs:line 57 
+2020-09-17 11:58:15,891 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 11:59:41,776 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 12:06:23,033 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 12:07:53,539 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 12:14:59,447 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 12:16:31,280 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 12:18:49,852 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 15:41:58,697 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 15:52:42,167 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 16:24:06,928 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 17:46:33,067 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 18:06:49,615 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 18:09:13,952 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 18:18:43,444 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-17 18:30:36,575 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 

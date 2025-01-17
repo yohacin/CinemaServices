@@ -1,0 +1,46 @@
+2020-08-24 09:40:18,120 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-24 10:13:18,875 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-24 11:43:05,594 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-24 11:52:35,411 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-24 12:02:16,656 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-24 14:47:54,636 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-24 14:48:20,768 [18] ERROR WebServices Business.Security.Usuario - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> System.TimeoutException: The operation has timed out.
+   at Npgsql.NpgsqlConnector.Connect(NpgsqlTimeout timeout) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 703
+   at Npgsql.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 555
+   at Npgsql.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 414
+   at Npgsql.ConnectorPool.AllocateLong(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/ConnectorPool.cs:line 246
+   at Npgsql.NpgsqlConnection.<>c__DisplayClass32_0.<<Open>g__OpenLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 302
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnection.Open() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnection.cs:line 153
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 60
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Business.Security.Usuario.Login(String usuario, String contrasena) in D:\Archivos\Documentos\Proyectos\AspDotNet\DualAssistance\Arquitectura\Business\Security\Usuario.cs:line 215 
+2020-08-24 14:54:45,302 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-24 14:56:31,686 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-24 15:11:26,486 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-24 15:13:35,451 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-24 15:22:59,185 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-24 15:25:54,292 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-24 15:26:37,681 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-24 15:27:14,967 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-24 16:16:51,222 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-24 18:13:50,654 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-24 18:49:03,677 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-24 23:26:42,800 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-24 23:45:03,321 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 

@@ -1,0 +1,31 @@
+2020-08-12 08:59:18,416 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-12 09:18:15,933 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-12 09:22:06,272 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-12 09:23:47,813 [17] ERROR WebServices wDualAssistence.Controllers.EngagementEmpleadoController - System.Exception: El numero de horas asignadas (100) no debe ser mayor al numero de horas disponibles(45)
+   at wDualAssistence.Controllers.EngagementEmpleadoController.Post(Int64 id_engagement_empleado, String stringListaDetalle) in C:\xDesarrollo\w_DualAsistencia\wDualAssistence\Controllers\EngagementEmpleadoController.cs:line 72 
+2020-08-12 15:09:52,864 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-12 15:47:25,452 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-08-12 16:16:35,896 [77] ERROR WebServices Business.Public.Engagement - System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. ---> Npgsql.NpgsqlException: Exception while writing to stream ---> System.IO.IOException: Unable to write data to the transport connection: An existing connection was forcibly closed by the remote host. ---> System.Net.Sockets.SocketException: An existing connection was forcibly closed by the remote host
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 125
+   --- End of inner exception stack trace ---
+   at Npgsql.NpgsqlWriteBuffer.Flush(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlWriteBuffer.cs:line 134
+   at Npgsql.NpgsqlCommand.SendExecute(Boolean async) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 874
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1208
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   --- End of inner exception stack trace ---
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 60
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.Engagement.GetLista() in C:\xDesarrollo\w_DualAsistencia\Arquitectura\Business\Public\Engagement.cs:line 257 
+2020-08-12 19:05:13,589 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 

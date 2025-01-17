@@ -1,0 +1,113 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cldr-data",
+        "scope": null,
+        "escapedName": "cldr-data",
+        "name": "cldr-data",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "F:\\Visual Studio 2017 projects\\EJ2\\Sample Creator sample\\Calendar\\Globalization\\Globalization"
+    ]
+  ],
+  "_from": "cldr-data@latest",
+  "_id": "cldr-data@32.0.1",
+  "_inCache": true,
+  "_location": "/cldr-data",
+  "_nodeVersion": "6.11.2",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/cldr-data-32.0.1.tgz_1516240232586_0.7760311556048691"
+  },
+  "_npmUser": {
+    "name": "rxaviers",
+    "email": "rxaviers@gmail.com"
+  },
+  "_npmVersion": "4.6.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cldr-data",
+    "scope": null,
+    "escapedName": "cldr-data",
+    "name": "cldr-data",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cldr-data/-/cldr-data-32.0.1.tgz",
+  "_shasum": "7960832836e0a64a74be88b55ee105f2980a0f2a",
+  "_shrinkwrap": null,
+  "_spec": "cldr-data",
+  "_where": "F:\\Visual Studio 2017 projects\\EJ2\\Sample Creator sample\\Calendar\\Globalization\\Globalization",
+  "author": {
+    "name": "Rafael Xavier de Souza",
+    "email": "rxaviers@gmail.com",
+    "url": "http://rafael.xavier.blog.br"
+  },
+  "bugs": {
+    "url": "https://github.com/rxaviers/cldr-data-npm/issues"
+  },
+  "dependencies": {
+    "cldr-data-downloader": "0.3.x",
+    "glob": "5.x.x"
+  },
+  "description": "Npm module for Unicode CLDR JSON data",
+  "devDependencies": {
+    "grunt": "0.4.x",
+    "grunt-contrib-jshint": "0.10.x",
+    "grunt-dco": "0.0.3",
+    "matchdep": "*"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "7960832836e0a64a74be88b55ee105f2980a0f2a",
+    "tarball": "https://registry.npmjs.org/cldr-data/-/cldr-data-32.0.1.tgz"
+  },
+  "files": [
+    "DCO.md",
+    "index.js",
+    "install.js",
+    "urls.json"
+  ],
+  "gitHead": "2ac59a42d62cb30f26504578d370d8b771030848",
+  "homepage": "https://github.com/rxaviers/cldr-data-npm",
+  "keywords": [
+    "unicode",
+    "CLDR",
+    "JSON",
+    "data"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/rxaviers/cldr-data-npm/blob/master/LICENSE"
+    }
+  ],
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "rxaviers",
+      "email": "rxaviers@gmail.com"
+    }
+  ],
+  "name": "cldr-data",
+  "optionalDependencies": {},
+  "readme": "# Npm's cldr-data\n\nNpm module for [Unicode CLDR JSON][] data.\n\n[Unicode CLDR JSON]: http://cldr.unicode.org/index/cldr-spec/json\n\n## Goal\n\n- Allow i18n libraries to define CLDR data as versioned \"peer\" dependency.\n- Provide tools to assist (in other words, ease the pain) on fetching the data.\n\nBonus goals\n\n- Optimal for backend development. (Frontend, see [Bower's cldr-data][]).\n- Optimal for Node.js environment. (AMD, see [Bower's cldr-data][]).\n\n[Bower's cldr-data]: https://github.com/rxaviers/cldr-data-bower\n\n## Usage\n\n### For libraries\n\nOn the `package.json` of your i18n library, define its CLDR data dependency by\nusing the *peerDependencies* property.\n\n    \"peerDependencies\": {\n      \"cldr-data\": \">=26\"\n    }\n\nOn your library, access CLDR JSON data using `require(\"cldr-data\")`.\n\n```javascript\nfunction Pluralize(locale) {\n  var plurals = require(\"cldr-data/supplemental/plurals\");\n  var language = extractLanguageFrom(locale);\n\n  // Your awesome pluralization logic\n  pluralForm = doAwesomeStuffWith(\n    plurals.supplemental[\"plurals-type-cardinal\"][language]\n  );\n\n  return pluralForm;\n}\n```\n\nFor your convinience, use cldr-data in conjunction with [cldr.js][]. You can\nfind more details switching to the [Foo Number Format Library Example][] or\n[Application Example][] branches.\n\n[Foo Number Format Library Example]: https://github.com/rxaviers/cldr-data-npm/tree/example-library-foo\n[Application Example]: https://github.com/rxaviers/cldr-data-npm/tree/example-application\n[cldr.js]: https://github.com/rxaviers/cldrjs\n\n### For applications\n\nOn the `package.json` of your applications, define its CLDR data dependency by\nusing the *dependencies* or *devDependencies* property.\n\n    \"dependencies\": {\n      \"cldr-data\": \"26\",\n      \"libraries-that-use-cldr-data\": \"x\"\n    }\n\n#### Locale coverage\n\nBy default, the locale coverage installed is **core**, which Unicode defines as\nthe top tier languages and is equivalent to the `json.zip` content. There are\ntwo ways to modify the installation and get the **full** coverage instead.\n\n*Use the environment variable `CLDR_COVERAGE`*\n\nOn the command line, set the locale coverage using the environment variable.\n\n```\n$ CLDR_COVERAGE=full npm install\n```\n\n*Use the package.json `cldr-data-coverage` property*\n\nOn the `package.json` of you application, set the locale coverage using the\n`cldr-data-coverage` property.\n\n```\n{\n  ...\n  \"cldr-data-coverage\": \"full\",\n  ...\n}\n```\n\n#### Set Custom json file with urls or filter existing\n\nBy default, used file `urls.json` form cldr-data module, which contain\nfor each lovale coverage 18 urls. For set custom `.json` file, that have\nstructure accoding `urls.json` use `cldr-data-urls-json` property in `package.json` your webApp\n*Define the package.json `cldr-data-urls-json` property*\n\n```\n{\n  ...\n  \"cldr-data-urls-json\": \"../../cldrdatadwnl.json\",\n  ...\n}\n```\nPath must be relative from cldr-data directory\n\n\n*Example custom cldrdatadwnl.json*\nFile have only 7 urls.\n```\n{\n    \"core\": [\n        \"https://github.com/unicode-cldr/cldr-core/archive/30.0.3.zip\",\n        \"https://github.com/unicode-cldr/cldr-dates-modern/archive/30.0.3.zip\",\n        \"https://github.com/unicode-cldr/cldr-localenames-modern/archive/30.0.3.zip\",\n        \"https://github.com/unicode-cldr/cldr-misc-modern/archive/30.0.3.zip\",\n        \"https://github.com/unicode-cldr/cldr-numbers-modern/archive/30.0.3.zip\",\n        \"https://github.com/unicode-cldr/cldr-segments-modern/archive/30.0.3.zip\",\n        \"https://github.com/unicode-cldr/cldr-units-modern/archive/30.0.3.zip\"\n    ]\n}\n```\n\nOr you can filter existing urls by regexp pattern, via `cldr-data-urls-filter`\nfield in `package.json`:\n\n```\n{\n  ...\n  \"cldr-data-urls-filter\": \"(cldr-core|cldr-numbers-modern|cldr-dates-modern)\",\n  ...\n}\n```\n\n\n## License\n\nMIT © [Rafael Xavier de Souza](http://rafael.xavier.blog.br)\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rxaviers/cldr-data-npm.git"
+  },
+  "scripts": {
+    "install": "node install.js",
+    "test": "grunt && node test/index.js"
+  },
+  "version": "32.0.1"
+}

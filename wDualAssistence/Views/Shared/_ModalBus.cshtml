@@ -1,0 +1,164 @@
+﻿@model wDualAssistence.Models.ModalBusViewModel
+
+<style>
+    .content {
+        min-height: auto;
+    }
+
+    .box.box-primary {
+        border-bottom: solid;
+        margin-bottom: 0;
+        padding-bottom: 5px;
+    }
+
+    .box-header .box-title {
+        color: black !important;
+    }
+
+    .modal-content {
+        /*max-height: 90vh;*/
+        max-height: 565px;
+        overflow: hidden;
+        height: max-content !important;
+    }
+
+    .modal-body {
+        max-height: calc(90vh - 84px);
+        overflow-y: auto;
+    }
+
+    .modal.fade.vertical-center.in {
+        display: flex !important;
+        align-items: center;
+    }
+
+    .box.box-primary {
+        overflow-y: auto;
+    }
+
+    .modal-header {
+        cursor: all-scroll;
+    }
+
+    .cursor-grab {
+        cursor: grab;
+    }
+
+    .cursor-grabbing {
+        cursor: grabbing;
+    }
+
+    #texto-eliminar {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 600;
+        text-transform: uppercase;
+
+        display: block;
+        top: -28px;
+        position: relative;
+        color: #202020;
+        margin-left: 60px;
+    }
+
+    #contenido > img {
+        height: 60px;
+        display: block;
+        position: relative;
+        top: 17px;
+        left: 10px;
+    }
+</style>
+
+@* onmousedown="grabbing()" onmouseup="grab()" *@
+<div class="modal-header" id="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">@Model.titulo</h4>
+</div>
+<div class="modal-body">
+    <div id="contenido" class="content">
+
+        @switch (Model.tipo)
+        {
+            case ModalBusViewModel.TipoModal.Simple:
+                <partial name="@Model.contenidoViewModel.rutaVistaParcial" model="Model.contenidoViewModel" />
+                break;
+            case ModalBusViewModel.TipoModal.Busqueda:
+                <partial name="TipoModal/_BusquedaN" model="Model.contenidoViewModel" />
+                break;
+            default:
+                <img src="~/assets/recursos/question-icon.png" />                    
+                <p id="texto-eliminar">@Model.texto</p>                    
+                break;
+        }
+
+
+    </div>
+</div>
+<div class="modal-footer">
+    @if (Model.botonConfirmar)
+    {
+    <span class="capa_btn confirmar">
+        <button id="botonConfirmacion" type="button" class="btn btn-base guardar" data-dismiss="modal">
+            <span class="fa span-button confirmar"></span>
+            <p class="text-button-primary">@Model.textoConfirmar</p>
+        </button>
+    </span>
+
+    }
+    @if (Model.botonCancelar)
+    {
+<span class="capa_btn finalizar">
+    <button type="button" class="btn btn-base cancelar" data-dismiss="modal">
+        <span class="fa span-button finalizar"></span>
+        <p class="text-button-primary">@Model.textoCancelar</p>
+    </button>
+</span>
+    }
+
+</div>
+
+@if (Model.tipo == ModalBusViewModel.TipoModal.Eliminar)
+{
+    <script>
+        document.getElementById('botonConfirmacion').addEventListener('click', function (e) {
+            accionEliminar();
+        });
+    </script>
+
+}
+
+<script type="text/javascript">
+
+
+
+    function grab() {
+        $("#modal-header").removeClass("cursor-grabbing ");
+        $("#modal-header").addClass("cursor-grab");
+
+    }
+
+    function grabbing() {
+        $("#modal-header").removeClass("cursor-grab");
+        $("#modal-header").addClass("cursor-grabbing");
+    }
+
+    function saludo() {
+        $('#contenido').html('Otro mensaje');
+    }
+
+    // Se ejecuta despues de cargar el contenido de la Modal
+    $(document).ready(function () {
+        // saludo();
+    });
+
+    // Limpia el contenido de la Modal
+    $(document).on('hidden.bs.modal', function (e) {
+        $(e.target).removeData('bs.modal');
+    });
+
+    //$("#modalContenido").draggable({
+    //    handle: ".modal-header"
+    //});
+
+</script>

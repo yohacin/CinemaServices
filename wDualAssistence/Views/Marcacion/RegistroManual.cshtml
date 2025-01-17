@@ -1,0 +1,248 @@
+﻿
+@{
+    ViewData["Title"] = "Marcacion";
+    ViewData["Navbar-Title"] = "Recursos > Marcación";
+}
+@model wDualAssistence.Models.MarcacionViewModel
+
+@section Styles {
+
+    <style>
+        .e-upload {
+            visibility: hidden !important;
+        }
+
+        #fotoActual {
+            width: 200px;
+            height: 200px;
+        }
+
+        /*#region Estilo Tabs*/
+        .e-content .e-item {
+            font-size: 12px;
+            padding: 10px;
+            text-align: justify;
+        }
+
+
+        .e-group:before {
+            content: '\f0c0';
+        }
+
+        .e-photo:before {
+            content: '\f03e';
+        }
+
+        .e-sitemap:before {
+            content: '\f0e8';
+        }
+
+        #tabUsuario {
+            padding-top: 10px;
+        }
+
+        /*#endregion*/
+
+        #nombre_usuario {
+            text-transform: uppercase;
+        }
+    </style>
+
+    <style>
+        .e-treeview .e-ul {
+            padding: 0 0 0 0px !important;
+        }
+
+        .e-level-1 {
+            background: #8888883d !IMPORTANT;
+            margin-top: 2px !IMPORTANT;
+        }
+
+        .e-level-2 {
+            background: white;
+        }
+
+        .searchTrue {
+            color: red !important;
+        }
+
+        .boton-accion {
+            float: right;
+            margin-top: -25px;
+            margin-bottom: 5px;
+        }
+    </style>
+}
+
+<div class="content-wrapper">
+    <section class="content">
+        <form id="frmUsuario" class="form-horizontal" asp-controller="Marcacion" asp-action="Post" autocomplete="off" data-ajax="true" data-ajax-method="POST"
+              data-ajax-begin="onAjaxBegin" data-ajax-complete="onAjaxComplete" data-ajax-loading="#loading"
+              data-ajax-success="fnSuccess(data)" data-ajax-failure="fnFailure()">
+            <div class="panel panel-default">
+                <div class="panel-heading heading-primary">
+                    
+                    <span class="capa_btn confirmar">
+                        <button class="btn btn-base guardar btn-submit">
+                            <span class="fa span-button confirmar"></span>
+                            <p class="text-button-primary">GUARDAR</p>
+                        </button>
+                    </span>
+                </div>
+                <div class="panel-body">
+                    <section class="content-body">
+
+
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                <h4> <b style="color:red;">*</b>Empleado:</h4>
+                                <div class="e-input-group e-small">
+                                    <ejs-dropdownlist id="ddlEmpleado" dataSource="@Model.listaEmpleado" ejs-for="eMarcacion.id_empleado"
+                                                      placeholder="Seleccionar empleado..." popupHeight="220px" locale="es"
+                                                      allowFiltering="true"
+                                                      change="cambioDllEmpleado"
+                                                      filterType="Contains">
+                                        <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                                    </ejs-dropdownlist>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                <h4> <b style="color:red;">*</b>Empresa:</h4>
+                                <div class="e-input-group e-small">
+                                    <ejs-dropdownlist id="ddlEmpresa" ejs-for="eMarcacion.id_empresa_entrada"
+                                                      placeholder="Seleccionar empresa..." popupHeight="220px" locale="es"
+                                                      allowFiltering="true"
+                                                      filterType="Contains">
+                                        <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                                    </ejs-dropdownlist>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                <h4> <b style="color:red;">*</b>Turno:</h4>
+                                <div class="e-input-group e-small">
+                                    <ejs-dropdownlist id="ddlTurno" ejs-for="eMarcacion.codigo_turno"
+                                                      placeholder="Seleccionar turno..." popupHeight="220px" locale="es"
+                                                      allowFiltering="true"
+                                                      filterType="Contains">
+                                        <e-dropdownlist-fields text="descripcion_turno" value="codigo_turno"></e-dropdownlist-fields>
+                                    </ejs-dropdownlist>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                <h4> <b style="color:red;">*</b>Fecha / Hora:</h4>
+                                <div class="e-input-group e-small">
+                                    <ejs-datetimepicker id="datepicker" ejs-for="eMarcacion.fecha_marcacion" format="yyyy-MM-dd HH:mm"></ejs-datetimepicker>
+
+                                    @*<input class="e-input"  type="datetime-local">*@
+                                </div>
+                                @*<span asp-validation-for="eMarcacion.fecha_marcacion" class="text-danger"></span>*@
+                            </div>
+
+                        </div>
+
+                        <br />
+                        <div class="row">
+
+                            <div class="col-xs-12 col-sm-6 col-lg-1 col-md-1">
+                                    <ejs-radiobutton id="radio1" label="ENTRADA" value="1" ejs-for="eMarcacion.tipo_marcacion_entrada"></ejs-radiobutton>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-lg-1 col-md-1">
+                                    <ejs-radiobutton id="radio2" label="SALIDA" value="2" ejs-for="eMarcacion.tipo_marcacion_entrada"></ejs-radiobutton>
+                            </div>
+
+                        </div>
+
+
+
+                    </section>
+                </div>
+            </div>
+        </form>
+
+    </section>
+</div>
+
+@section PreScripts {
+    <script>
+        function cambioDllEmpleado(agr) {
+
+            var oddlEmpresa = document.getElementById('ddlEmpresa').ej2_instances[0];
+
+            if (agr.itemData.id == 0) {
+                oddlEmpresa.dataSource = [];
+            } else {
+                ajaxObtenerEmpresa(agr.itemData.id);
+                ajaxObtenerTurno(agr.itemData.id);
+            }
+        }
+
+        function ajaxObtenerEmpresa(idEmpleado) {
+            $.ajax(
+                {
+                    type: "GET",
+                    url: '@Url.Action("GetEmpresaByEmpleado", "Empleado")/' + idEmpleado,
+                    success: function (data) {
+                        var oddlEmpresa = document.getElementById('ddlEmpresa').ej2_instances[0];
+                        oddlEmpresa.dataSource = data;
+                        if (!oddlEmpresa.dataSource.length) { //si el arreglo es vacio
+                            mensajeV1("Este empleado no tiene empresas asignadas", msgAlerta);
+                        } else {
+                            //mensajeV1("Lista de Modelos Cargada", msgInformacion);
+                        }
+                    },
+                    error: function () {
+                        mensajeV1('No se pudo conectar con el servicio', msgError);
+                    }
+                });
+        }
+
+        function ajaxObtenerTurno(idEmpleado) {
+            $.ajax(
+                {
+                    type: "GET",
+                    url: '@Url.Action("GetTurnoByEmpleado", "Empleado")/' + idEmpleado,
+                    success: function (data) {
+                        var oddlTurno = document.getElementById('ddlTurno').ej2_instances[0];
+                        oddlTurno.dataSource = data;
+                        if (!oddlTurno.dataSource.length) { //si el arreglo es vacio
+                            mensajeV1("Este empleado no tiene turnos asignadas", msgAlerta);
+                        } else {
+                            //mensajeV1("Lista de Modelos Cargada", msgInformacion);
+                        }
+                    },
+                    error: function () {
+                        mensajeV1('No se pudo conectar con el servicio', msgError);
+                    }
+                });
+        }
+    </script>
+
+}
+
+@section Scripts {
+
+
+    <script type="text/javascript">
+
+
+        //Despues del Submit del Form Principal
+        function fnSuccess(data) {
+            if (data.transaccion == true) {
+                mensajeV1("Transacción exitosa!", msgOk);
+                location.reload();
+            }
+            else
+                mensajeV1(data.mensaje, msgError);
+        }
+
+        function fnFailure() {
+            mensajeV1(errorServidor, msgOk);
+        }
+    </script>
+
+}

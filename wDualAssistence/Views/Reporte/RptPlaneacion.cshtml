@@ -1,0 +1,159 @@
+﻿@{
+    ViewData["Title"] = "Reporte";
+    ViewData["Navbar-Title"] = "Reporte > Planeacion";
+}
+@model wDualAssistence.Models.ViewModelBase;
+
+<style>
+    .btnUnselect {
+        border: 1px solid #cccccc;
+        padding-left: 10px;
+        margin-left: 1px;
+    }
+</style>
+
+<div class="content-wrapper">
+    <div class="content">
+        <div class="panel panel-default">
+            <div class="panel-heading heading-primary">
+                <span class="capa_btn info">
+                    <button type="submit" class="btn btn-base crear" onclick="toExcel()">
+                        <span class="fa span-button fa-file-excel-o"></span>
+                        <p class="text-button-primary">Exportar</p>
+                    </button>
+                </span>
+            </div>
+            <div class="panel-body">
+                <section class="content-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                            <h4> Desde:</h4>
+                            <div id="datetimepicker-control">
+                                <ejs-datepicker id="desde" placeholder="Selecione la fecha" format="dd/MM/yyyy" value="@DateTime.Now.AddDays(-7)" locale="es"></ejs-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                            <h4> Hasta:</h4>
+                            <div id="datetimepicker-control">
+                                <ejs-datepicker id="hasta" placeholder="Selecione la fecha" format="dd/MM/yyyy" value="@DateTime.Now" locale="es"></ejs-datepicker>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                            <h4> Area:</h4>
+                            <div class="e-input-group e-small">
+                                <ejs-dropdownlist id="ddlArea" dataSource="@ViewBag.listaArea"
+                                                  placeholder="Seleccionar Area..." popupHeight="220px" locale="es"
+                                                  filterType="Contains"
+                                                  allowFiltering="true">
+                                    <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                                </ejs-dropdownlist>
+                                <button class="btnUnselect" onclick="LimpiarSeleccion(2)"><i class="fa fa-times"></i> </button>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4">
+                            <h4> Empresa:</h4>
+                            <div class="e-input-group e-small">
+                                <ejs-dropdownlist id="ddlEmpresa" dataSource="@ViewBag.listaEmpresa"
+                                                  placeholder="Seleccionar Empresa..." popupHeight="220px" locale="es"
+                                                  filterType="Contains"
+                                                  allowFiltering="true" change="CambioEmpresa">
+                                    <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                                </ejs-dropdownlist>
+                                <button class="btnUnselect" onclick="LimpiarSeleccion(1)"> <i class="fa fa-times"></i> </button>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-5 col-md-5">
+                            <h4> Engagement:</h4>
+                            <div class="e-input-group e-small">
+                                <ejs-dropdownlist id="ddlEngagement" dataSource="@ViewBag.listaEngagement"
+                                                  placeholder="Seleccionar Engagement..." popupHeight="220px" locale="es"
+                                                  filterType="Contains"
+                                                  allowFiltering="true">
+                                    <e-dropdownlist-fields text="titulo" value="id"></e-dropdownlist-fields>
+                                </ejs-dropdownlist>
+                                <button class="btnUnselect" onclick="LimpiarSeleccion(3)"><i class="fa fa-times"></i> </button>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                </section>
+            </div>
+            <a id="exportar" href="" target="_blank"></a>
+        </div>
+    </div>
+</div>
+
+@section PreScripts {
+    <script>
+        function LimpiarSeleccion(tipo) {
+            if (tipo == 1) {
+                let ddlEmpresa = document.getElementById("ddlEmpresa").ej2_instances[0];
+                ddlEmpresa.value = null;
+                let ddlArea = document.getElementById("ddlArea").ej2_instances[0];
+                ddlArea.value = null;
+            }
+
+            if (tipo == 2) {
+                let ddlArea = document.getElementById("ddlArea").ej2_instances[0];
+                ddlArea.value = null;
+            }
+
+            let ddlEngagement = document.getElementById("ddlEngagement").ej2_instances[0];
+            ddlEngagement.value = null;
+        }
+        function CambioEmpresa(args) {
+            let ddlEngagement = document.getElementById("ddlEngagement").ej2_instances[0];
+            if (args.itemData == null || args.itemData.id == 0) {
+                ddlEngagement.dataSource = JSON.parse('@Html.Raw(Json.Serialize(ViewBag.listaEngagement))');
+            } else {
+                $.ajax(
+                {
+                    type: "GET",
+                    url: '@Url.Action("GetListaByEmpresa", "Engagement")/' + args.value,
+                    success: function (data) {
+                        if (data.transaccion) {
+                            ddlEngagement.dataSource = data.dataLista;
+                            mensajeV1("Lista de Engagement cargada", msgInformacion)
+                        } else {
+                            mensajeV1(data.mensaje, msgAlerta);
+                        }
+                    },
+                    error: function () {
+                        mensajeV1('No se pudo conectar con el servicio', msgError);
+                    }
+                });
+            }
+
+        }
+
+    </script>
+
+}
+@section Scripts {
+
+    <script>
+        function toExcel() {
+            var desde = document.getElementById('desde').ej2_instances[0].value.toString();
+            var hasta = document.getElementById('hasta').ej2_instances[0].value.toString();
+
+            var posGMT = (desde.indexOf("GMT"));
+            desde = desde.substring(0, posGMT);
+            hasta = hasta.substring(0, hasta.indexOf("GMT"));
+
+            let ddlEmpresa = document.getElementById("ddlEmpresa").ej2_instances[0];
+            let ddlArea = document.getElementById("ddlArea").ej2_instances[0];
+            let ddlEngagement = document.getElementById("ddlEngagement").ej2_instances[0];
+
+            document.getElementById('exportar').href = '@Url.Action("RptPlaneacionEXCEL", "Reporte")/' + desde + '/' + hasta + '/' + ddlEmpresa.value + '/' + ddlArea.value + '/' + ddlEngagement.value;
+            document.getElementById('exportar').click();
+        }
+
+    </script>
+}

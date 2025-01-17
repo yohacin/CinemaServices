@@ -1,0 +1,609 @@
+﻿@{
+    ViewData["Title"] = "Engagement";
+    ViewData["Navbar-Title"] = "Engagement > Hoja de Trabajo";
+
+
+    List<object> commandsAll = new List<object>();
+    commandsAll.Add(new { type = "Save", buttonOption = new { iconCss = "e-icons e-save", cssClass = "e-flat" } });
+    //commandsAll.Add(new { type = "Edit", buttonOption = new { iconCss = "e-icons e-edit", cssClass = "e-flat" } });
+    commandsAll.Add(new { type = "Delete", buttonOption = new { iconCss = "e-icons e-delete", cssClass = "e-flat" } });
+
+
+    var DropDownList = new Syncfusion.EJ2.DropDowns.DropDownList()
+    {
+        DataSource = Model.listaEngagement,
+        Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings()
+        {
+            Value = "id",
+            Text = "titulo_engagement"
+        }
+    };
+
+    // var numParams = new { @params = new Syncfusion.EJ2.Inputs.NumericTextBox() { ValidateDecimalOnType = true, Decimals = 0, Format = "N" } };
+}
+@model wDualAssistence.Models.HojaTrabajoViewModel;
+
+@section Styles {
+    <style>
+        .spanIcon {
+            border-radius: 5px;
+            border-style: solid;
+            border-color: white;
+        }
+
+        .e-datepicker-style {
+            width: fit-content !important;
+        }
+    </style>
+}
+
+<div class="content-wrapper">
+    <div class="content">
+        <div class="panel panel-default">
+            <div class="panel-heading heading-primary">
+                <span class="capa_btn info">
+                    <button type="submit" class="btn btn-base crear" onclick="PeriodoAnterior()">
+                        <span class="fa span-button info"></span>
+                        <p class="text-button-primary">Peridodo anterior</p>
+                    </button>
+                </span>
+                <span class="capa_btn info">
+                    <button type="submit" class="btn btn-base crear" onclick="PeriodoSiguiente()">
+                        <span class="fa span-button info"></span>
+                        <p class="text-button-primary">Peridodo siguiente</p>
+                    </button>
+                </span>
+                semana de:
+                <ejs-datepicker id="semana" format="dd/MM/yyyy" locale="es" cssclass="e-datepicker-style" enabled="false"></ejs-datepicker>
+                <span class="capa_btn info">
+                    <button type="button" class="btn btn-base crear" data-toggle="modal" data-target="#modalNuevaFila">
+                        <span class="fa span-button info"></span>
+                        <p class="text-button-primary">Agregar Fila</p>
+                    </button>
+                </span>
+            </div>
+            <div class="panel-body">
+                <section class="content-body">
+                    @*<e-grid-column headerText=" " commands="commandsAll" width="30"></e-grid-column>*@
+                    <ejs-grid id="Grid" created="onCreateGrid" allowPaging="true" locale="es" gridLines="Both" actionComplete="actionComplete">
+                        <e-grid-editSettings allowAdding="false" allowDeleting="true" allowEditing="true" showDeleteConfirmDialog="true"></e-grid-editSettings>
+                        <e-grid-pagesettings pageSize="8"></e-grid-pagesettings>
+                        <e-grid-columns>
+
+                            <e-grid-column headerTextAlign="Center" textAlign="Center" template="#menuContextual" width="30" allowEditing="false"></e-grid-column>
+                            <e-grid-column field="id_ref" isPrimaryKey="true" visible="false" type="number"></e-grid-column>
+                            <e-grid-column field="id" visible="false" type="number"></e-grid-column>
+                            <e-grid-column field="fecha" visible="false" type="date"></e-grid-column>
+                            <e-grid-column field="id_engagement" visible="false"></e-grid-column>
+                            <e-grid-column field="titulo_engagement" headerText="Engagement" headerTextAlign="Center" textAlign="Left" width="150" allowEditing="false"></e-grid-column>
+                            <e-grid-column field="id_empresa" visible="false"></e-grid-column>
+                            <e-grid-column field="nombre_empresa" headerText="Nombre Cliente" type="string" headerTextAlign="Center" textAlign="Left" width="100" allowEditing="false"></e-grid-column>
+                            <e-grid-column field="id_tarea" visible="false"></e-grid-column>
+                            <e-grid-column field="nombre_tarea" headerText="Tarea" type="string" headerTextAlign="Center" textAlign="Left" width="120" allowEditing="false"></e-grid-column>
+                            <e-grid-column field="total" headerText="Total" type="number" headerTextAlign="Center" textAlign="Right" width="60" allowEditing="false"></e-grid-column>
+                            <e-grid-column field="lunes" headerText="LUN"></e-grid-column>
+                            <e-grid-column field="martes" headerText="MAR"></e-grid-column>
+                            <e-grid-column field="miercoles" headerText="MIE"></e-grid-column>
+                            <e-grid-column field="jueves" headerText="JUE"></e-grid-column>
+                            <e-grid-column field="viernes" headerText="VIE"></e-grid-column>
+                            <e-grid-column field="sabado" headerText="SAB"></e-grid-column>
+                            <e-grid-column field="domingo" headerText="DOM"></e-grid-column>
+                        </e-grid-columns>
+                    </ejs-grid>
+
+                </section>
+                <!--  -------------------- PASO DE PARAMETRO POST ----------------- -->
+                <form id="formPasoParametro" action='@Url.Action("Crear", "CategoriaTarea")' method="POST">
+                    <input type="hidden" id="id" name="id" value="0">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a id="modalELiminar" href="@Url.Action("MostrarModalEliminar", "Modal")" data-toggle="modal" data-target="#modalBusqueda" hidden></a>
+
+
+<partial name="_SeccionModal" />
+<ejs-contextmenu id="contextmenu" items="Model.menuItems" select="ejecutarAccion"></ejs-contextmenu>
+
+<script type="text/x-template" id="menuContextual">
+    <button class="boton-accion" onclick="abrirContextMenu(event, ${ id_engagement }, ${ id_tarea })">
+        <i class="fa fa-list-ul"></i>
+    </button>
+</script>
+
+<!--#region Modal para nueva contraseña -->
+<div class="modal fade" id="modalNuevaFila" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 style="margin: 0;"><span class="fa fa-lock"></span> Busqueda de Empleados</h3>
+            </div>
+            <div class="modal-body" style="padding:40px 50px;">
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-lg-10 col-md-10">
+                        <h4> Empresa:</h4>
+                        <div class="e-input-group e-small">
+                            <ejs-dropdownlist id="ddlEmpresa" dataSource="@Model.listaEmpresa"
+                                              placeholder="Seleccionar la empresa" popupHeight="220px" locale="es"
+                                              allowFiltering="true"
+                                              change="cambioDllEmpresa">
+                                <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                            </ejs-dropdownlist>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-lg-10 col-md-10">
+                        <h4> Engagement:</h4>
+                        <div class="e-input-group e-small">
+                            <ejs-dropdownlist id="ddlEngagement"
+                                              placeholder="Seleccionar el engagement" popupHeight="220px" locale="es"
+                                              allowFiltering="true"
+                                              change="cambioDllEngagement">
+                                <e-dropdownlist-fields text="titulo" value="id"></e-dropdownlist-fields>
+                            </ejs-dropdownlist>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-lg-10 col-md-10">
+                        <h4> Tarea:</h4>
+                        <div class="e-input-group e-small">
+                            <ejs-dropdownlist id="ddlTarea"
+                                              placeholder="Seleccionar la tarea" popupHeight="220px" locale="es"
+                                              allowFiltering="true">
+                                <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                            </ejs-dropdownlist>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <span class="capa_btn confirmar">
+                    <button id="btnCambiarContra" type="button" class="btn btn-base guardar" onclick="AgregarFila()">
+                        <span class="fa span-button confirmar"></span>
+                        <p class="text-button-primary">Agregar Fila</p>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--#endregion-->
+
+<script>
+
+    var oGrid;
+    var id_engagement = 0;
+    var id_tarea = 0;
+
+    function onCreateGrid() {
+        oGrid = document.getElementById('Grid').ej2_instances[0];
+
+        let dateInitial = document.getElementById("semana").ej2_instances[0].value;
+
+    }
+
+    function getMonday(d) {
+        d = new Date(d);
+        var day = d.getDay(),
+            diff = d.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
+        return new Date(d.setDate(diff));
+    }
+
+    $(document).ready(function () {
+
+        let dateInitial = getMonday(new Date()); // Mon Nov 08 2010
+        document.getElementById("semana").ej2_instances[0].value = dateInitial;
+        RefrecarColumnas(getMonday(new Date()));
+
+        GetDataSource();
+    });
+
+    function GetDataSource() {
+        let dateInitial = document.getElementById("semana").ej2_instances[0].value;
+        let fecha = dateInitial.getFullYear() + "-" + (dateInitial.getMonth() + 1) + "-" + dateInitial.getDate();
+        $.ajax(
+        {
+            type: "GET",
+            url: '@Url.Action("GetListaBySemana", "HojaTrabajo")/' + fecha,
+            success: function (data) {
+                //args.rowData.total = data.total;
+                var dataAux = [];
+                contadorFila = 0;
+                data.forEach(function (item) {
+                    if (item.lunes == 0)
+                        item.lunes = null;
+                    if (item.martes == 0)
+                        item.martes = null;
+                    if (item.miercoles == 0)
+                        item.miercoles = null;
+                    if (item.jueves == 0)
+                        item.jueves = null;
+                    if (item.viernes == 0)
+                        item.viernes = null;
+
+                    item.sabado = null;
+                    item.domingo = null;
+                    contadorFila++;
+                    item.id_ref = contadorFila;
+                    dataAux.push(item);
+                });
+
+                oGrid.dataSource = dataAux;
+                oGrid.refresh();
+                //mensajeV1('Cambios guardados', msgInformacion);
+            },
+            error: function () {
+                mensajeV1('No se pudo conectar con el servicio', msgError);
+            }
+        });
+    }
+
+    function ejecutarAccion(args) {
+        switch (args.item.id) {
+            case "0": // Nada
+                break;
+            case "1": // Eliminar
+                document.getElementById("modalELiminar").click();
+                break;
+            default:
+        }
+    }
+
+    function abrirContextMenu(ev, pid_engagement, pid_tarea) {
+        id_engagement = pid_engagement;
+        id_tarea = pid_tarea;
+        let x = ev.pageX;
+        let y = ev.pageY;
+        let contextMenuObj = document.getElementById("contextmenu").ej2_instances[0];
+        contextMenuObj.open(y, x);
+    }
+
+    function accionEliminar() {
+        console.log("Confirmo eliminar");
+        let dateInitial = document.getElementById("semana").ej2_instances[0].value;
+        let fecha = dateInitial.getFullYear() + "-" + (dateInitial.getMonth() + 1) + "-" + dateInitial.getDate();
+        $.ajax({
+            type: "DELETE",
+            url: '@Url.Action("Delete", "HojaTrabajo")/' + id_engagement + '/' + id_tarea + '/' + fecha,
+            success: function () {
+                mensajeV1("Tareas Eliminadas", msgOk);
+                //var grid = document.getElementById("Grid").ej2_instances[0];
+                //grid.refresh(); // refresh the Grid.
+                location.reload();
+            },
+            error: function () {
+                mensajeV1(errorServidor, msgError);
+            }
+        });
+    }
+
+
+</script>
+@section PreScripts{
+    <script>
+        function cambioDllEmpresa(agr) {
+
+            var ddlEngagement = document.getElementById('ddlEngagement').ej2_instances[0];
+            let dateInitial = document.getElementById("semana").ej2_instances[0].value;
+            let fecha = dateInitial.getFullYear() + "-" + (dateInitial.getMonth() + 1) + "-" + dateInitial.getDate();
+            if (agr.itemData == null || agr.itemData.id == 0) {
+                ddlEngagement.dataSource = [];
+            } else {
+                let id_empresa = agr.itemData.id;
+                $.ajax(
+                {
+                    type: "GET",
+                    url: '@Url.Action("GetListaByEmpresa", "Engagement")/' + id_empresa + '/' + fecha,
+                    success: function (data) {
+                        ddlEngagement.dataSource = data;
+                        if (!ddlEngagement.dataSource.length) { //si el arreglo es vacio
+                            mensajeV1("Esta empresa no tiene Engagement habilitados !", msgAlerta);
+                        } else {
+                            mensajeV1("Lista de Engagement Cargada", msgInformacion);
+                        }
+                    },
+                    error: function () {
+                        mensajeV1('No se pudo conectar con el servicio', msgError);
+                    }
+                });
+            }
+        }
+        function cambioDllEngagement(agr) {
+
+            var ddlTarea = document.getElementById('ddlTarea').ej2_instances[0];
+
+            if (agr.itemData == null || agr.itemData.id == 0) {
+                ddlTarea.dataSource = [];
+            } else {
+                let id_engagement = agr.itemData.id;
+                $.ajax(
+                {
+                    type: "GET",
+                        url: '@Url.Action("GetListaByEngagement", "Tarea")/' + id_engagement,
+                    success: function (data) {
+                        ddlTarea.dataSource = data;
+                        if (!ddlTarea.dataSource.length) { //si el arreglo es vacio
+                            mensajeV1("Este Engagement no tiene Tareas registradas !", msgAlerta);
+                        } else {
+                            mensajeV1("Lista de Tareas Cargada", msgInformacion);
+                        }
+                    },
+                    error: function () {
+                        mensajeV1('No se pudo conectar con el servicio', msgError);
+                    }
+                });
+            }
+        }
+    </script>
+    <script>
+        var contadorFila = 0;
+        function AgregarFila() {
+            let ddlEmpresa = document.getElementById("ddlEmpresa").ej2_instances[0];
+            let ddlEngagement = document.getElementById("ddlEngagement").ej2_instances[0];
+            let ddlTarea = document.getElementById("ddlTarea").ej2_instances[0];
+
+            if (ddlEmpresa.value == 0 || ddlEngagement.value == 0 || ddlTarea.value == 0) {
+                mensajeV1("Debe seleccionar los valores requeridos !", msgAlerta);
+                return;
+            }
+
+            let dateInitial = document.getElementById("semana").ej2_instances[0].value;
+            let fecha = dateInitial.getFullYear() + "-" + (dateInitial.getMonth() + 1) + "-" + dateInitial.getDate();
+            $.ajax(
+            {
+                type: "GET",
+                url: '@Url.Action("ExisteDetalle", "HojaTrabajo")/' + fecha + "/" + ddlEngagement.value + "/" + ddlTarea.value,
+                    success: function (data) {
+                    if (!data) {
+                        contadorFila++;
+                        oGrid.dataSource.push({
+                            id_ref: contadorFila,
+                            id: 0,
+                            id_empresa: ddlEmpresa.value,
+                            nombre_empresa: ddlEmpresa.text,
+                            id_engagement: ddlEngagement.value,
+                            titulo_engagement: ddlEngagement.text,
+                            id_tarea: ddlTarea.value,
+                            nombre_tarea: ddlTarea.text,
+                        });
+                        oGrid.refreshColumns();
+                        //ddlTarea.value = null;
+                        //ddlEngagement.value = null;
+                        ddlEmpresa.value = null;
+
+                        $("#modalNuevaFila").modal('hide');
+                    } else {
+                        ddlTarea.value = null;
+                        mensajeV1('Ya tiene agregado esa tarea en el detalla de la semana !', msgInformacion);
+                    }
+                },
+                error: function () {
+                    mensajeV1('No se pudo conectar con el servicio', msgError);
+                }
+            });
+
+
+
+        }
+    </script>
+
+    <script>
+        var valorLunes = 0;
+        var valorMartes = 0;
+        var valorMiercoles = 0;
+        var valorJueves = 0;
+        var valorViernes = 0;
+        function actionComplete(args) {
+            if (args.requestType === 'beginEdit') {
+                valorLunes = args.rowData.lunes;
+                valorMartes = args.rowData.martes;
+                valorMiercoles = args.rowData.miercoles;
+                valorJueves = args.rowData.jueves;
+                valorViernes = args.rowData.viernes;
+            }
+            if (args.requestType === 'save') {
+                let dateSemana = document.getElementById("semana").ej2_instances[0];
+                let dateInitial = new Date(dateSemana.value);
+                args.rowData.fecha = dateInitial.getFullYear() + "-" + (dateInitial.getMonth() + 1) + "-" + dateInitial.getDate();
+                let total = 0;
+                //---------------validar que los valores esten entre 0.25 y 8
+                if (args.rowData.lunes != null && (args.rowData.lunes < 0.25 || args.rowData.lunes > 8)) {
+                    args.rowData.lunes = null;
+                    args.rowData.total = total + 0;
+                    oGrid.refresh();
+                    mensajeV1("El valor debe ser entre 0.25 y 8", msgAlerta);
+                    return;
+                }
+                total += args.rowData.lunes;
+                if (args.rowData.martes != null && (args.rowData.martes < 0.25 || args.rowData.martes > 8)) {
+                    args.rowData.martes = null;
+                    args.rowData.total = total + 0;
+                    oGrid.refresh();
+                    mensajeV1("El valor debe ser entre 0.25 y 8", msgAlerta);
+                    return;
+                }
+                total += args.rowData.martes;
+                if (args.rowData.miercoles != null && (args.rowData.miercoles < 0.25 || args.rowData.miercoles > 8)) {
+                    args.rowData.miercoles = null;
+                    args.rowData.total = total + 0;
+                    oGrid.refresh();
+                    mensajeV1("El valor debe ser entre 0.25 y 8", msgAlerta);
+                    return;
+                }
+                total += args.rowData.miercoles;
+                if (args.rowData.jueves != null && (args.rowData.jueves < 0.25 || args.rowData.jueves > 8)) {
+                    args.rowData.jueves = null;
+                    args.rowData.total = total + 0;
+                    oGrid.refresh();
+                    mensajeV1("El valor debe ser entre 0.25 y 8", msgAlerta);
+                    return;
+                }
+                total += args.rowData.jueves;
+                if (args.rowData.viernes != null && (args.rowData.viernes < 0.25 || args.rowData.viernes > 8)) {
+                    args.rowData.viernes = null;
+                    args.rowData.total = total + 0;
+                    oGrid.refresh();
+                    mensajeV1("El valor debe ser entre 0.25 y 8", msgAlerta);
+                    return;
+                }
+                total += args.rowData.viernes;
+
+
+                $.ajax(
+                {
+                    type: "GET",
+                    url: '@Url.Action("Save", "HojaTrabajo")',
+                    data: args.rowData,
+                        success: function (data) {
+                            console.log(data);
+                            if (data.transaccion) {
+                                args.rowData.total = data.obj.total;
+                                //----- cambiar los valores de 0 a null
+                                if (data.obj.lunes == 0)
+                                    args.rowData.lunes = null;
+                                if (data.obj.martes == 0)
+                                    args.rowData.martes = null;
+                                if (data.obj.miercoles == 0)
+                                    args.rowData.miercoles = null;
+                                if (data.obj.jueves == 0)
+                                    args.rowData.jueves = null;
+                                if (data.obj.viernes == 0)
+                                    args.rowData.viernes = null;
+
+                                args.rowData.sabado = null;
+                                args.rowData.domingo = null;
+                                oGrid.refresh();
+                                mensajeV1('Cambios guardados', msgInformacion);
+                            } else {
+                                mensajeV1('ERROR: ' + data.mensaje, msgError);
+                                //----- cambiar los valores a su anterior valor
+                                args.rowData.lunes = valorLunes;
+                                args.rowData.martes = valorMartes;
+                                args.rowData.miercoles = valorMiercoles;
+                                args.rowData.jueves = valorJueves;
+                                args.rowData.viernes = valorViernes;
+
+                                args.rowData.sabado = null;
+                                args.rowData.domingo = null;
+                                args.rowData.total = valorLunes + valorMartes + valorMiercoles + valorJueves + valorViernes;
+                                oGrid.refresh();
+                            }
+                    },
+                    error: function () {
+                        mensajeV1('No se pudo conectar con el servicio', msgError);
+                    }
+                });
+
+            }
+            console.log(args.requestType);
+            if (args.requestType == "delete") {
+                console.log("Delete", args.rowData);
+                args.cancel = true;
+
+                //var grid = $("#BoardsGrid").ejGrid("instance");
+                ////alert("Delete id: " + id);
+
+                //if (confirm("Delete " + grid.getCurrentViewData()[index].Name) === true) {
+                //    //alert("Delete id: " + id);
+                //}
+                //else
+                //    args.cancel = true; //here you can prevent the delete action from grid
+
+            }
+
+        }
+    </script>
+
+}
+@section Scripts {
+
+    <script>
+
+        function PeriodoAnterior() {
+            let dateSemana = document.getElementById("semana").ej2_instances[0];
+            let dateInitial = new Date(dateSemana.value);
+
+            dateInitial = dateInitial.setDate(dateInitial.getDate() - 7);
+            dateSemana.value = getMonday(new Date(dateInitial));
+
+            RefrecarColumnas(getMonday(new Date(dateInitial)));
+            GetDataSource();
+            let ddlEmpresa = document.getElementById("ddlEmpresa").ej2_instances[0];
+            ddlEmpresa.value = null;
+        }
+
+        function PeriodoSiguiente() {
+            var dateSemana = document.getElementById("semana").ej2_instances[0];
+            var dateInitial = new Date(dateSemana.value);
+
+            dateInitial = dateInitial.setDate(dateInitial.getDate() + 7);
+            dateSemana.value = getMonday(new Date(dateInitial));
+            RefrecarColumnas(getMonday(new Date(dateInitial)));
+            GetDataSource();
+            let ddlEmpresa = document.getElementById("ddlEmpresa").ej2_instances[0];
+            ddlEmpresa.value = null;
+        }
+
+        function RefrecarColumnas(dateInitial) {
+
+            oGrid.columns.splice(11, 7);
+            let dateToday = new Date().setHours(0, 0, 0, 0);
+
+            let allowEditingLUN = (dateInitial >= dateToday);
+            oGrid.columns.push({ field: "lunes", headerText: "LU, " + dateInitial.getDate() + "/" + (dateInitial.getMonth() + 1), headerTextAlign: "Center", textAlign: "Right", width: "60", allowEditing: allowEditingLUN, type: "number" });
+
+            dateInitial = new Date(dateInitial.setDate(dateInitial.getDate() + 1));
+            let allowEditingMAR = (dateInitial >= dateToday);
+            oGrid.columns.push({ field: "martes", headerText: "MA, " + dateInitial.getDate() + "/" + (dateInitial.getMonth() + 1), headerTextAlign: "Center", textAlign: "Right", width: "60", allowEditing: allowEditingMAR, type: "number" });
+
+            dateInitial = (new Date(dateInitial.setDate(dateInitial.getDate() + 1)));
+            let allowEditingMIE = (dateInitial >= dateToday);
+            oGrid.columns.push({ field: "miercoles", headerText: "MI, " + dateInitial.getDate() + "/" + (dateInitial.getMonth() + 1), headerTextAlign: "Center", textAlign: "Right", width: "60", allowEditing: allowEditingMIE, type: "number" });
+
+            dateInitial = (new Date(dateInitial.setDate(dateInitial.getDate() + 1)));
+            let allowEditingJUE = (dateInitial >= dateToday);
+            oGrid.columns.push({ field: "jueves", headerText: "JU, " + dateInitial.getDate() + "/" + (dateInitial.getMonth() + 1), headerTextAlign: "Center", textAlign: "Right", width: "60", allowEditing: allowEditingJUE, type: "number" });
+
+            dateInitial = (new Date(dateInitial.setDate(dateInitial.getDate() + 1)));
+            let allowEditingVIE = (dateInitial >= dateToday);
+            oGrid.columns.push({
+                field: "viernes",
+                headerText: "VI, " + dateInitial.getDate() + "/" + (dateInitial.getMonth() + 1),
+                headerTextAlign: "Center",
+                textAlign: "Right",
+                width: "60",
+                allowEditing: allowEditingVIE,
+                type: "number"
+            });
+
+            dateInitial = (new Date(dateInitial.setDate(dateInitial.getDate() + 1)));
+            let allowEditingSAB = (dateInitial >= dateToday);
+            oGrid.columns.push({
+                field: "sabado",
+                headerText: "SA, " + dateInitial.getDate() + "/" + (dateInitial.getMonth() + 1),
+                headerTextAlign: "Center",
+                textAlign: "Right",
+                width: "60",
+                allowEditing: allowEditingSAB,
+                type: "number"
+            });
+
+            dateInitial = (new Date(dateInitial.setDate(dateInitial.getDate() + 1)));
+            let allowEditingDOM = (dateInitial >= dateToday);
+            oGrid.columns.push({ field: "domingo", headerText: "DO, " + dateInitial.getDate() + "/" + (dateInitial.getMonth() + 1), headerTextAlign: "Center", textAlign: "Right", width: "60", allowEditing: allowEditingDOM, type: "number" });
+
+            oGrid.refreshColumns();
+
+        }
+
+    </script>
+}
+

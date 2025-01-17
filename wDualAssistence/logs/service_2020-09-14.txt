@@ -1,0 +1,94 @@
+2020-09-14 15:43:35,092 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-14 16:22:29,996 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-14 16:30:23,196 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-14 16:33:52,316 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-14 16:44:00,606 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-14 16:44:27,597 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-14 16:47:21,632 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-14 16:59:32,238 [44] ERROR WebServices Business.Public.ConfigParametro - Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «public.ConfigParametro»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 444
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Business.Public.ConfigParametro.BuscarParametroById(Int64 pId) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\Arquitectura\Business\Public\ConfigParametro.cs:line 73 
+2020-09-14 16:59:32,452 [44] ERROR WebServices wDualAssistence.Controllers.Api.MovilController - Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «public.ConfigParametro»
+   at Business.Public.ConfigParametro.BuscarParametroById(Int64 pId) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\Arquitectura\Business\Public\ConfigParametro.cs:line 78
+   at wDualAssistence.Controllers.Api.MovilController.version() in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\wDualAssistence\Controllers\Api\MovilController.cs:line 43 
+2020-09-14 17:01:48,608 [49] ERROR WebServices Business.Public.ConfigParametro - Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «public.ConfigParametro»
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass161_0.<<ReadMessage>g__ReadMessageLong|0>d.MoveNext() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlConnector.cs:line 1032
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 444
+   at Npgsql.NpgsqlDataReader.NextResult() in /home/roji/projects/npgsql/src/Npgsql/NpgsqlDataReader.cs:line 332
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1219
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior) in /home/roji/projects/npgsql/src/Npgsql/NpgsqlCommand.cs:line 1130
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Business.Public.ConfigParametro.BuscarParametroById(Int64 pId) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\Arquitectura\Business\Public\ConfigParametro.cs:line 73 
+2020-09-14 17:01:48,672 [49] ERROR WebServices wDualAssistence.Controllers.Api.MovilController - Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «public.ConfigParametro»
+   at Business.Public.ConfigParametro.BuscarParametroById(Int64 pId) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\Arquitectura\Business\Public\ConfigParametro.cs:line 78
+   at wDualAssistence.Controllers.Api.MovilController.version() in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\wDualAssistence\Controllers\Api\MovilController.cs:line 43 
+2020-09-14 17:12:00,310 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-14 17:44:05,897 [61] ERROR WebServices wDualAssistence.Controllers.Api.EmpleadoController - System.ArgumentNullException: Value cannot be null.
+Parameter name: value
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value)
+   at wDualAssistence.Controllers.Api.EmpleadoController.obtenerEmpleado(String sJson) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpleadoController.cs:line 47 
+2020-09-14 17:47:33,331 [61] ERROR WebServices wDualAssistence.Controllers.Api.EmpleadoController - System.ArgumentNullException: Value cannot be null.
+Parameter name: value
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value)
+   at wDualAssistence.Controllers.Api.EmpleadoController.obtenerEmpleado(String sJson) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpleadoController.cs:line 47 
+2020-09-14 17:51:24,353 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-14 18:01:32,707 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-14 18:02:32,634 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-14 18:04:15,186 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-14 18:07:22,166 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-14 18:09:17,039 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-14 18:09:57,094 [12] ERROR WebServices wDualAssistence.Controllers.Api.EmpleadoController - System.ArgumentNullException: Value cannot be null.
+Parameter name: value
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value)
+   at wDualAssistence.Controllers.Api.EmpleadoController.obtenerEmpleado(String sJson) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpleadoController.cs:line 47 
+2020-09-14 18:09:58,117 [7] ERROR WebServices wDualAssistence.Controllers.Api.EmpleadoController - System.ArgumentNullException: Value cannot be null.
+Parameter name: value
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value)
+   at wDualAssistence.Controllers.Api.EmpleadoController.obtenerEmpleado(String sJson) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\wDualAssistence\Controllers\Api\EmpleadoController.cs:line 47 

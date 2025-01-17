@@ -1,0 +1,141 @@
+﻿@{
+    ViewData["Title"] = "Reporte";
+    ViewData["Navbar-Title"] = "Reporte > Avance de Engagement";
+
+    List<object> operators = new List<object>();
+    operators.Add(new { value = "contains", text = "contains" });
+    //var formatoFecha = new { type = "datetime", format = "dd-MMM-yyyy" };
+
+}
+@model wDualAssistence.Models.ViewModelBase;
+
+<style>
+    
+    .e-grid .e-rowcell {
+        white-space: pre-wrap !important;
+    }
+</style>
+
+
+<div class="content-wrapper">
+    <div class="content">
+        <div class="panel panel-default">
+            <div class="panel-heading heading-primary">
+                <span class="capa_btn info">
+                    <button type="submit" class="btn btn-base " onclick="toExcel()">
+                        <span class="fa span-button fa-file-excel-o"></span>
+                        <p class="text-button-primary">Descargar Reporte</p>
+                    </button>
+                </span>
+
+            </div>
+            <div class="panel-body">
+                <section class="content-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                            <h4> Desde:</h4>
+                            <div id="datetimepicker-control">
+                                <ejs-datepicker id="desde" placeholder="Selecione la fecha" format="dd/MM/yyyy" value="@DateTime.Now" locale="es"></ejs-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                            <h4> Hasta:</h4>
+                            <div id="datetimepicker-control">
+                                <ejs-datepicker id="hasta" placeholder="Selecione la fecha" format="dd/MM/yyyy" value="@DateTime.Now" locale="es"></ejs-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                            <br />
+                            <span class="capa_btn info">
+                                <button type="submit" class="btn btn-base crear" onclick="buscar()">
+                                    <span class="fa span-button fa-file-excel-o"></span>
+                                    <p class="text-button-primary">Buscar</p>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <br />
+
+                    <ejs-grid id="grid" dataSource="@ViewBag.lista" allowPaging="true" allowFiltering="true" locale="es" gridLines="Both">
+                        <e-grid-filterSettings type="Menu" mode="OnEnter" operators="@(new { stringOperator = operators })"></e-grid-filterSettings>
+                        <e-grid-pagesettings enableQueryString="true" pageSize="10"></e-grid-pagesettings>
+                        <e-grid-columns>
+                            <e-grid-column field="id_engagement" isPrimaryKey="true" visible="false"></e-grid-column>
+                            <e-grid-column field="nombre_empresa" headerText="EMPRESA" headerTextAlign="Center" textAlign="Left" width="60"></e-grid-column>
+                            <e-grid-column field="nombre_engagement" headerText="Engagement" headerTextAlign="Center" textAlign="Left" width="100"></e-grid-column>
+                            <e-grid-column field="desde" headerText="FECHA INICIO" headerTextAlign="Center" textAlign="Right" width="40" type="date" format="dd/MM/yyyy"></e-grid-column>
+                            <e-grid-column field="hasta" headerText="FECHA FIN" headerTextAlign="Center" textAlign="Right" width="40" type="date" format="dd/MM/yyyy"></e-grid-column>
+                            <e-grid-column field="horas_trabajo" headerText="Hrs. TRABAJO" headerTextAlign="Center" textAlign="Right" width="50"></e-grid-column>
+                            <e-grid-column field="horas_ejecutadas" headerText="Hrs. EJECUTADAS" headerTextAlign="Center" textAlign="Right" width="50"></e-grid-column>
+                            <e-grid-column field="porcentaje_avance" headerText="AVANCE [%]" headerTextAlign="Center" textAlign="Right" width="50"></e-grid-column>
+                        </e-grid-columns>
+                    </ejs-grid>
+
+
+                </section>
+            </div>
+            <a id="exportar" href="" target="_blank"></a>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        function toExcel() {
+            var desde = document.getElementById('desde').ej2_instances[0].value.toString();
+            var hasta = document.getElementById('hasta').ej2_instances[0].value.toString();
+
+            var posGMT = (desde.indexOf("GMT"));
+            desde = desde.substring(0, posGMT);
+            hasta = hasta.substring(0, hasta.indexOf("GMT"));
+
+            document.getElementById('exportar').href = '@Url.Action("RptAvanceEngagementEXCEL", "Reporte")/' + desde + '/' + hasta;
+            document.getElementById('exportar').click();
+        }
+
+        function buscar() {
+            var desde = document.getElementById('desde').ej2_instances[0].value.toString();
+            var hasta = document.getElementById('hasta').ej2_instances[0].value.toString();
+
+            var posGMT = (desde.indexOf("GMT"));
+            desde = desde.substring(0, posGMT);
+            hasta = hasta.substring(0, hasta.indexOf("GMT"));
+            onAjaxBegin();
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetListaAvanceEngagement", "Engagement")/' + desde + '/' + hasta,
+                success: function (data) {
+                    if (data.transaccion) {
+                        var ogrid = document.getElementById("grid").ej2_instances[0];
+                        //oGridUsuario.dataSource = data.contenido;
+                        ogrid.dataSource = [];
+                        data.contenido.forEach(function (item) {
+                            let res = item.desde.split("/");
+                            let desde = new Date(res[2] + "/" + res[1] + "/" + res[0]);
+
+                            let res2 = item.hasta.split("/");
+                            let hasta = new Date(res2[2] + "/" + res2[1] + "/" + res2[0]);
+
+                            item.desde = desde;
+                            item.hasta = hasta;
+                            ogrid.dataSource.push(item);
+                        });
+                        onAjaxComplete();
+                        ogrid.refresh();
+                    } else {
+                        onAjaxComplete();
+                        mensajeV1("Error:" + data.mensaje, msgError);
+                    }
+                },
+                error: function () {
+                    onAjaxComplete();
+                    mensajeV1(errorServidor, msgError);
+                }
+            });
+
+        }
+
+
+    </script>
+}

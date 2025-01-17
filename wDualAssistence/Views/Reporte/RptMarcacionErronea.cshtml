@@ -1,0 +1,124 @@
+﻿@{
+    ViewData["Title"] = "Reporte";
+    ViewData["Navbar-Title"] = "Reporte > Marcaciones Erroneas";
+
+    List<object> operators = new List<object>();
+    operators.Add(new { value = "contains", text = "contains" });
+    //var formatoFecha = new { type = "datetime", format = "dd-MMM-yyyy" };
+}
+@model wDualAssistence.Models.ViewModelBase;
+
+
+
+<div class="content-wrapper">
+    <div class="content">
+        <div class="panel panel-default">
+            <div class="panel-heading heading-primary">
+                <@* span class="capa_btn info">
+                    <button type="submit" class="btn btn-base crear" onclick="toExcel()">
+                        <span class="fa span-button fa-file-excel-o"></span>
+                        <p class="text-button-primary">Exportar</p>
+                    </button>
+                </span> *@
+            </div>
+            <div class="panel-body">
+                <section class="content-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                            <h4> Desde:</h4>
+                            <div id="datetimepicker-control">
+                                <ejs-datepicker id="desde" placeholder="Selecione la fecha" format="dd-MMM-yyyy" value="@DateTime.Now.AddDays(-1)" locale="es"></ejs-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                            <h4> Hasta:</h4>
+                            <div id="datetimepicker-control">
+                                <ejs-datepicker id="hasta" placeholder="Selecione la fecha" format="dd-MMM-yyyy" value="@DateTime.Now" locale="es"></ejs-datepicker>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
+                            <span class="capa_btn info">
+                                <button type="submit" class="btn btn-base crear" onclick="buscar()">
+                                    <span class="fa span-button fa-file-excel-o"></span>
+                                    <p class="text-button-primary">Buscar</p>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <ejs-grid id="grid" allowPaging="true" allowFiltering="true" locale="es" gridLines="Both">
+                        <e-grid-filterSettings type="Menu" mode="OnEnter" operators="@(new { stringOperator = operators })"></e-grid-filterSettings>
+                        <e-grid-pagesettings enableQueryString="true" pageSize="8"></e-grid-pagesettings>
+                        <e-grid-columns>
+                            <e-grid-column field="id" isPrimaryKey="true" visible="false" type="string" headerTextAlign="Center" textAlign="Left" width="140"></e-grid-column>
+                            <e-grid-column field="nombre_empleado" headerText="NOMBRE" headerTextAlign="Center" textAlign="Left" width="100"></e-grid-column>
+                            <e-grid-column field="turno" headerText="TURNO" headerTextAlign="Center" textAlign="Left" width="40"></e-grid-column>
+                            <e-grid-column field="_hora_string" headerText="FECHA / HORA" headerTextAlign="Center" textAlign="Left" width="40" allowFiltering="false"></e-grid-column>
+                        </e-grid-columns>
+                    </ejs-grid>
+
+                </section>
+            </div>
+            <a id="exportar" href="" target="_blank"></a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function toExcel() {
+            var desde = document.getElementById('desde').ej2_instances[0].value.toString();
+            var hasta = document.getElementById('hasta').ej2_instances[0].value.toString();
+
+            var posGMT = (desde.indexOf("GMT"));
+            desde = desde.substring(0, posGMT);
+            hasta = hasta.substring(0, hasta.indexOf("GMT"));
+
+            document.getElementById('exportar').href = '@Url.Action("RptPermanenciasEXCEL", "Reporte")/' + desde + '/' + hasta;
+            document.getElementById('exportar').click();
+        }
+
+        buscar();
+        function buscar() {
+            var desde = document.getElementById('desde').ej2_instances[0].value.toString();
+            var hasta = document.getElementById('hasta').ej2_instances[0].value.toString();
+
+            var posGMT = (desde.indexOf("GMT"));
+            desde = desde.substring(0, posGMT);
+            hasta = hasta.substring(0, hasta.indexOf("GMT"));
+            onAjaxBegin();
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetListaMarcacionErronea", "MarcacionErronea")/' + desde + '/' + hasta,
+                success: function (data) {
+                    if (data.transaccion) {
+                        var oGrid = document.getElementById("grid").ej2_instances[0];
+                        //oGridUsuario.dataSource = data.contenido;
+                        oGrid.dataSource = [];
+                        data.contenido.forEach(function (item) {
+                            //console.log(item);
+                            //var res = item.hora_marcacion.split("/");
+                            //item.hora_marcacion = new Date(res[2] + "-" + res[1] + "-" + res[0]);
+                            
+                            oGrid.dataSource.push(item);
+                        });
+                        onAjaxComplete();
+                        oGrid.refresh();
+                    } else {
+                        onAjaxComplete();
+                        mensajeV1("Error:" + data.mensaje, msgError);
+                    }
+                },
+                error: function () {
+                    onAjaxComplete();
+                    mensajeV1(errorServidor, msgError);
+                }
+            });
+
+        }
+
+    </script>
+}

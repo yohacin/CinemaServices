@@ -1,0 +1,47 @@
+﻿#todo {
+    font-family: Arial;
+    font-size: 17px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    page-break-inside: auto
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+.titulo {
+    background: #24428A;
+    color: white;
+    padding: 5px;
+}
+
+.subtitulo {
+    background: #F3C635;
+    color: black;
+}
+
+.tituloBlanco {
+    border: 1px solid white;
+    text-align: left;
+}
+
+tr {
+    page-break-inside: avoid;
+    page-break-after: auto
+}
+
+thead {
+    display: table-header-group
+}
+
+tfoot {
+    display: table-footer-group
+}
+
+/*#endregion */

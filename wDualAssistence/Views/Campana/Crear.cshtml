@@ -1,0 +1,1051 @@
+﻿
+@{
+    ViewData["Title"] = "Campañas";
+    ViewData["Navbar-Title"] = "Notificador > Crear Campaña";
+
+    List<object> filterColumns = new List<object>();
+    filterColumns.Add(new { field = "nombre", matchCase = false, @operator = "contains", predicate = "or", value = "" });
+    filterColumns.Add(new { field = "correo", matchCase = false, @operator = "contains", predicate = "or", value = "" });
+    filterColumns.Add(new { field = "telefono", matchCase = false, @operator = "contains", predicate = "or", value = "" });
+}
+
+@model wDualAssistence.Models.CampanaViewModel;
+
+@section Styles {
+    <style type="text/css">
+        .e-multi-select-wrapper .e-chips {
+            height: 22px;
+        }
+
+        .e-multi-select-wrapper .e-close-hooker::before {
+            top: 14px;
+        }
+
+        .select-plantilla {
+            visibility: hidden;
+        }
+
+        .right-container {
+            display: inline-block;
+            float: right;
+        }
+
+        .e-tooltip-wrap .e-arrow-tip-outer.e-tip-left {
+            border-right: 8px solid #ccc;
+        }
+
+        .e-tooltip-wrap .e-arrow-tip-inner.e-tip-left {
+            color: #fff;
+        }
+
+        .e-tooltip-wrap.e-popup {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+        }
+
+        .e-tooltip-wrap .e-tip-content {
+            max-height: 300px;
+            overflow-y: auto;
+            color: #333;
+        }
+
+        .contactos-grupo {
+            max-height: 300px;
+        }
+
+            .contactos-grupo ul {
+                width: 100%;
+                list-style: none;
+                padding-inline-start: 0;
+            }
+
+                .contactos-grupo ul li {
+                    border: solid 1px #ccc;
+                    position: relative;
+                    height: 56px;
+                    margin-bottom: -1px;
+                }
+
+            .contactos-grupo .list-resumen {
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .contactos-grupo .item-numero {
+                height: 100%;
+                display: inline-flex;
+                width: 30px;
+                border-right: 1px solid #ccc;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .contactos-grupo .item-contacto {
+                width: calc(100% - 30px);
+                height: 100%;
+                display: inline-flex;
+                flex-direction: column;
+                float: right;
+                padding: 2px 10px;
+            }
+
+        fieldset {
+            margin: 10px 0 0 0;
+        }
+
+            fieldset legend {
+                font-size: 13px;
+                padding: 4px 8px 2px 8px;
+            }
+    </style>
+}
+
+@{
+    List<object> commands = new List<object>();
+    commands.Add(new { type = "Details", buttonOption = new { iconCss = "e-icons e-search-icon", cssClass = "e-flat" } });
+    commands.Add(new { type = "Delete", buttonOption = new { iconCss = "e-icons e-delete", cssClass = "e-flat" } });
+}
+
+<div class="content-wrapper">
+    <div class="content">
+        <div class="panel panel-default">
+            <div class="panel-heading heading-primary">
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <span class="capa_btn volver">
+                            <button class="btn btn-base cancelar" type="button" onclick="irAListado()">
+                                <span class="fa span-button volver"></span>
+                                <p class="text-button-primary">VOLVER</p>
+                            </button>
+                        </span>
+
+                        <span class="capa_btn confirmar">
+                            <button type="submit" class="btn btn-base guardar" onclick="guardar()">
+                                <span class="fa span-button confirmar"></span>
+                                <p class="text-button-primary">Guardar</p>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        <div class="right-container">
+
+                            <label for="serverDateTime">Fecha y Hora del Servidor:</label>
+                            <input id="serverDateTime" type="datetime" style="max-width: 126px; text-align: center;" name="fechaServer" value="@Model.fechaHoraServidor" />
+                            <span class="capa_btn info">
+                                <button type="submit" class="btn btn-base actualizar" onclick="actualizarFechaHoraServidor()">
+                                    <span class="fa span-button info"></span>
+                                    <p class="text-button-primary">Actualizar</p>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel-body">
+                <section class="content">
+                    <form class="form-horizontal" asp-controller="Campana" asp-action="Post" autocomplete="off" data-ajax="true" data-ajax-method="POST"
+                          data-ajax-begin="onAjaxBegin" data-ajax-complete="onAjaxComplete" data-ajax-loading="#loading"
+                          data-ajax-success="fnSuccess(data)" data-ajax-failure="fnFailure(xhr, status, error)">
+
+                        <button id="btnGuardar" type="submit" style="display:none"></button>
+
+                        <input class="e-input" asp-for="eCampana.codigo_campana" type="hidden">
+                        <input class="e-input" asp-for="eCampana.id_empresa" type="hidden">
+                        <div class="row">
+                            <div class="col col-lg-5 col-md-12">
+                                <fieldset>
+                                    <legend>
+                                        <span class="fa fa-pencil-square-o"></span>
+                                        INFORMACIÓN DE LA CAMPAÑA
+                                    </legend>
+
+                                    <div class="row">
+                                        <div class="col col-lg-12 col-md-12">
+                                            <h4> Nombre Campaña:</h4>
+                                            <div class="e-input-group e-small">
+                                                <input class="e-input" asp-for="eCampana.nombre" type="text" value="@Model.eCampana.nombre">
+                                            </div>
+                                            <span asp-validation-for="eCampana.nombre" class="text-danger"></span>
+
+                                            <h4 style="display: none;"> Tipo Envío:</h4>
+                                            <div style="display: none;" class="e-input-group e-small">
+                                                <input class="e-input" asp-for="eCampana.tipo_envio" type="text" value="3">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col col-lg-3 col-md-12">
+                                            <h4> Correo:</h4>
+                                            <ejs-switch created="createdSwitchCorreo" ejs-for="eCampana.envio_correo" change="switchCorreo" value="@Model.eCampana.envio_correo" id="envioCorreo" onLabel="SI" offLabel="NO"></ejs-switch>
+                                        </div>
+
+                                        <div class="col col-lg-9 col-md-12 select-plantilla" id="selectPlantillaCorreo">
+                                            <h4> Plantilla Correo:</h4>
+                                            <ejs-dropdownlist id="templateCorreo"
+                                                              dataSource="@Model.eLstPlantillasCorreo"
+                                                              placeholder="Planilla Correo"
+                                                              ejs-for="eCampana.id_plantilla_correo"
+                                                              created="createSelectTemplateCorreo"
+                                                              popupHeight="220px">
+                                                <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                                            </ejs-dropdownlist>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" id="contenedorAsunto">
+                                        <div class="col col-lg-12 col-md-12">
+                                            <h4> Asunto Correo:</h4>
+                                            <div class="e-input-group e-small">
+                                                <input id="asuntoCorreo" class="e-input" asp-for="eCampana.nombre_remitente" type="text" value="@Model.eCampana.nombre_remitente">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="display: none;" class="row">
+                                        <div class="col col-lg-3 col-md-12">
+                                            <h4> Mensaje SMS:</h4>
+                                            <ejs-switch created="createdSwitchSMS" ejs-for="eCampana.envio_mensaje" change="switchSMS" value="@Model.eCampana.envio_mensaje" id="envioMensaje" onLabel="SI" offLabel="NO"></ejs-switch>
+                                        </div>
+
+                                        <div class="col col-lg-9 col-md-12 select-plantilla" id="selectPlantillaSMS">
+                                            <h4> Plantilla SMS:</h4>
+                                            <ejs-dropdownlist id="templateSMS"
+                                                              dataSource="@Model.eLstPlantillasSMS"
+                                                              placeholder="Planilla SMS"
+                                                              created="createSelectTemplateSMS"
+                                                              ejs-for="eCampana.id_plantilla_sms"
+                                                              popupHeight="220px">
+                                                <e-dropdownlist-fields text="nombre" value="id"></e-dropdownlist-fields>
+                                            </ejs-dropdownlist>
+                                        </div>
+                                    </div>
+
+
+                                    <h4 style="display: none;"> Tipo Mensaje:</h4>
+                                    <div style="display: none;" class="e-input-group e-small">
+                                        <input type="hidden" asp-for="eCampana.tipo_mensaje" value="1" />
+                                        <input type="hidden" asp-for="eCampana.contenido" value="" />
+                                    </div>
+
+
+                                    <h4 class="hidden"> Correo Remitente:</h4>
+                                    <div class="e-input-group e-small hidden">
+                                        <input class="e-input" asp-for="eCampana.correo_remitente" type="hidden" value="@Model.eCampana.correo_remitente">
+                                    </div>
+
+                                    <h4 class="hidden"> Contraseña Correo Remitente:</h4>
+                                    <div class="e-input-group e-small hidden">
+                                        <input class="e-input" asp-for="eCampana.contrasena_correo_remitente" type="hidden" value="@Model.eCampana.contrasena_correo_remitente">
+                                    </div>
+
+                                    <h4 class="hidden"> Enlace Informativo:</h4>
+                                    <div class="e-input-group e-small hidden">
+                                        <input class="e-input" asp-for="eCampana.enlace_informativo" type="hidden" value="@Model.eCampana.enlace_informativo">
+                                    </div>
+
+                                </fieldset>
+
+                                <fieldset>
+                                    <legend>
+                                        <span class="fa fa-gear"></span>
+                                        CONFIGURACIÓN DE LA CAMPAÑA
+                                    </legend>
+
+                                    <div class="row">
+                                        <div class="col col-lg-6 col-md-12">
+                                            <h4> Hora de Ejecución:</h4>
+                                            <div class="e-input-group e-small">
+                                                <ejs-timepicker value="@Model.eCampana.hora_ejecucion" id="horaEjecucion" locale="es" format="HH:mm" ejs-for="@Model.eCampana.hora_ejecucion" placeholder="Ingrese una hora"></ejs-timepicker>
+                                            </div>
+                                            <span asp-validation-for="@Model.eCampana.hora_ejecucion" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="col col-lg-6 col-md-12">
+                                            <h4> Periodo Indefinido:</h4>
+                                            <ejs-switch created="createdSwitchIndefinido"
+                                                        ejs-for="eCampana.indefinido"
+                                                        change="switchIndefinido"
+                                                        value="@Model.eCampana.indefinido"
+                                                        id="indefinido" onLabel="SI" offLabel="NO">
+
+                                            </ejs-switch>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col col-lg-6 col-md-12">
+                                            <h4> Fecha Inicial de Ejecución:</h4>
+                                            <div class="e-input-group e-small">
+                                                <input id="fechaInicialEjecucionH" type="hidden" asp-for="eCampana.fecha_inicial_ejecucion" />
+                                                <ejs-datepicker value="@Model.eCampana.fecha_inicial_ejecucion"
+                                                                id="fechaInicialEjecucion"
+                                                                locale="es"
+                                                                created="createdDatepickerFechaInicial"
+                                                                change="changeFechaInicial"
+                                                                placeholder="Seleccione una fecha"></ejs-datepicker>
+                                            </div>
+                                            <span asp-validation-for="@Model.eCampana.fecha_inicial_ejecucion" class="text-danger"></span>
+                                        </div>
+                                        <div class="col col-lg-6 col-md-12">
+                                            <h4> Fecha Final de Ejecución:</h4>
+                                            <div class="e-input-group e-small">
+                                                <input id="fechaFinalEjecucionH" type="hidden" asp-for="eCampana.fecha_final_ejecucion" value="" />
+                                                <ejs-datepicker created="createdDatepickerFechaFinal"
+                                                                value="@Model.eCampana.fecha_final_ejecucion"
+                                                                id="fechaFinalEjecucion"
+                                                                locale="es"
+                                                                change="changeFechaFinal"
+                                                                placeholder="Seleccione una fecha"></ejs-datepicker>
+                                            </div>
+                                            <span asp-validation-for="@Model.eCampana.fecha_final_ejecucion" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col col-lg-6 col-md-12" id="contenedorCantidadRepeticion">
+                                            <h4> Repetir Cada:</h4>
+                                            <div class="e-input-group e-small">
+                                                <input id="cantidadRepeticion" onchange="changeCantidadRepeticion(this, this.value)" class="e-input" asp-for="eCampana.cantidad_repeticion" type="number" value="@Model.eCampana.cantidad_repeticion">
+                                            </div>
+                                        </div>
+
+                                        <div class="col col-lg-12 col-md-12" id="contenedorTipoRepeticion">
+                                            <h4> Tipo Repeticion:</h4>
+                                            <div class="e-input-group e-small">
+                                                <ejs-dropdownlist id="tipoRepeticion"
+                                                                  value="@Model.eCampana.tipo_repeticion"
+                                                                  dataSource="@Model.eLstTipoRepeticion"
+                                                                  ejs-for="@Model.eCampana.tipo_repeticion"
+                                                                  placeholder="Tipo repetición" popupHeight="220px"
+                                                                  created="onCreateSelectTipoRepeticion"
+                                                                  change="changeTipoRepeticion">
+                                                    <e-dropdownlist-fields text="descripcion" value="valor_referencial"></e-dropdownlist-fields>
+                                                </ejs-dropdownlist>
+                                            </div>
+                                        </div>
+
+                                        <div class="col col-lg-6 col-md-12" id="contenedorDiasRepeticion" style="display: none;">
+                                            <h4> Dias repetición:</h4>
+                                            <div class="e-input-group e-small">
+                                                <ejs-multiselect id="diasRepeticion"
+                                                                 value="@Model.eCampana.sLstDiasRepeticion"
+                                                                 dataSource="@Model.eLstDiasRepeticion"
+                                                                 ejs-for="@Model.eCampana.sLstDiasRepeticion"
+                                                                 placeholder="Seleccione los dias" mode="CheckBox"
+                                                                 created="onCreateMultiselectDiasRepeticion"
+                                                                 showSelectAll="true" selectAllText="Seleccionar Todo"
+                                                                 unSelectAllText="Deseleccionar Todo"
+                                                                 enableSelectionOrder="false" popupWidth="180px"
+                                                                 change="changeDiasRepeticion">
+                                                    <e-multiselect-fields text="descripcion" value="valor_referencial"></e-multiselect-fields>
+                                                </ejs-multiselect>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </fieldset>
+
+                                <fieldset>
+                                    <legend>
+                                        <span class="fa  fa-cogs"></span>
+                                        CONFIGURACIÓN ADICIONAL
+                                    </legend>
+
+                                    <div class="row">
+                                        <div class="col col-lg-12 col-md-12">
+                                            <label style="text-align:justify;">En caso de error durante el envio de la notificación, se toma la siguiente configuración, donde se reintentará el envío una determinada cantidad de veces cada determinada cantidad de minutos.</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col col-lg-6 col-md-12">
+                                            <h4> Cantidad de Intentos:</h4>
+                                            <div class="e-input-group e-small">
+                                                <input class="e-input" asp-for="eCampana.cantidad_intentos" type="number" value="@Model.eCampana.cantidad_intentos">
+                                            </div>
+                                            <span asp-validation-for="eCampana.cantidad_intentos" class="text-danger"></span>
+                                        </div>
+                                        <div class="col col-lg-6 col-md-12">
+                                            <h4> Intervalo (Minutos):</h4>
+                                            <div class="e-input-group e-small">
+                                                <input class="e-input" asp-for="eCampana.intervalo_intentos" type="number" value="@Model.eCampana.intervalo_intentos">
+                                            </div>
+                                            <span asp-validation-for="eCampana.intervalo_intentos" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col col-lg-12 col-md-12">
+                                            <h4> Descripción de Campaña:</h4>
+                                            <div class="e-input-group e-small">
+                                                <textarea class="e-input" rows="3" asp-for="eCampana.descripcion">@Model.eCampana.descripcion</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col col-lg-7 col-md-12">
+                                <fieldset>
+                                    <legend>
+                                        <span class="fa fa-group"></span>
+                                        GRUPOS
+                                    </legend>
+                                    <h4> Grupos Disponibles:</h4>
+                                    <div class="row">
+                                        <div class="col col-lg-6 col-md-12">
+                                            <ejs-multiselect id="gruposDisponibles"
+                                                             allowFiltering="true"
+                                                             created="onCreatedSelectGruposDisponibles"
+                                                             dataSource="@Model.eLstGruposDisponibles"
+                                                             placeholder="Seleccione uno o más grupos"
+                                                             locale="es" close="onClosePopup"
+                                                             mode="CheckBox">
+                                                <e-multiselect-fields text="nombre" value="codigo_grupo">
+                                                </e-multiselect-fields>
+                                            </ejs-multiselect>
+
+
+                                        </div>
+
+                                        <div class="col col-lg-6 col-md-12">
+                                            <span class="capa_btn info">
+                                                <button type="button" class="btn btn-base agregar" onclick="asignarGrupos()">
+                                                    <span class="fa span-button"></span>
+                                                    <p class="text-button-primary">Agregar</p>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                    <h4> Listado de Grupos:</h4>
+                                    <input type="hidden" id="stringGruposAsignados" asp-for="eCampana.stringGruposAsignados" value="" />
+
+                                    <ejs-grid id="GridGruposAsignados"
+                                              created="onCreateGridGruposAsignados"
+                                              dataSource="@Model.eCampana.oLstGrupo"
+                                              allowPaging="true"
+                                              allowFiltering="false"
+                                              commandClick="commandClickGridGrupos"
+                                              locale="es"
+                                              gridLines="Both">
+                                        <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
+                                        <e-grid-editSettings allowAdding="true" allowDeleting="true"></e-grid-editSettings>
+                                        <e-grid-columns>
+                                            <e-grid-column field="codigo_grupo" visible="false" headerText="Código" headerTextAlign="Center" textAlign="Left" width="0" allowFiltering="true"></e-grid-column>
+                                            <e-grid-column field="nombre" headerText="Nombre" headerTextAlign="Center" textAlign="Left" width="50" allowFiltering="true"></e-grid-column>
+                                            <e-grid-column headerText="Tipo" template="#templateTipoGrupo" headerTextAlign="Center" textAlign="Left" width="25" allowFiltering="true"></e-grid-column>
+                                            <e-grid-column field="cantidad_contactos" visible="true" headerText="Nro Contactos" headerTextAlign="Center" textAlign="Center" width="20" allowFiltering="true"></e-grid-column>
+                                            <e-grid-column width="15" commands="commands" textAlign="Center"></e-grid-column>
+                                        </e-grid-columns>
+                                    </ejs-grid>
+                                </fieldset>
+
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Contactos -->
+<div id="modalContactos" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Contactos</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="border-bottom: 1px solid #007bcc; margin: 5px 0px">
+                    <div class="col-md-12 col-lg-12">
+                        <h4 class="readonly">Listado de Contactos</h4>
+                    </div>
+                </div>
+
+                <ejs-grid id="gridContactos"
+                          created="onCreateGridContactos"
+                          allowPaging="true"
+                          allowFiltering="true"
+                          locale="es-contactos"
+                          gridLines="Both">
+                    @*<e-data-manager url="/oData/Usuario" adaptor="ODataV4Adaptor" offline="false" crossdomain="true"></e-data-manager>*@
+                    <e-grid-pagesettings enableQueryString="true" pageSize="10"></e-grid-pagesettings>
+                    <e-grid-filtersettings showFilterBarStatus="false"></e-grid-filtersettings>
+                    <e-grid-columns>
+                        <e-grid-column field="nombre" filter="@(new {@operator = "contains", predicate = "or"})" headerText="NOMBRE" type="string" headerTextAlign="Center" textAlign="Left" width="40"></e-grid-column>
+                        <e-grid-column field="correo" filter="@(new {@operator = "contains", predicate = "or"})" headerText="CORREO" type="string" headerTextAlign="Center" textAlign="Left" width="40"></e-grid-column>
+                        <e-grid-column field="telefono" filter="@(new {@operator = "contains", predicate = "or"})" headerText="TELÉFONO" type="string" headerTextAlign="Center" textAlign="Left" width="20"></e-grid-column>
+                    </e-grid-columns>
+                </ejs-grid>
+
+            </div>
+            <div class="modal-footer">
+                <span class="capa_btn finalizar">
+                    <button class="btn btn-base cancelar" data-dismiss="modal" type="button">
+                        <span class="fa span-button finalizar"></span>
+                        <p class="text-button-primary">Cerrar</p>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- endregion -->
+
+
+@section PreScripts {
+    <script id="templateTipoGrupo" type="text/x-template">
+        <div class="">
+            ${if(tipo == '1')}
+            <p>Básico</p>
+            ${else}
+            <p>Avanzado (Consulta)</p>
+            ${/if}
+        </div>
+    </script>
+
+    <script type="text/javascript">
+        ej.base.L10n.load({
+            'es-contactos': {
+                'grid': {
+                    'EmptyRecord': 'No existen datos...',
+                    'GroupDropArea': ' Listadoasas sdasd asdasd asdasda ',
+                    'UnGroup': 'Klicken Sie hier, um die Gruppierung aufheben',
+                    'EmptyDataSourceError': 'DataSource darf bei der Erstauslastung nicht leer sein, da Spalten aus der dataSource im AutoGenerate Spaltenraster',
+                    'Item': 'Item',
+                    'Items': 'Items',
+                    "Clear": "Limpiar",
+                    "Filter": "Filtrar",
+                    'EnterValue': 'Ingrese la busqueda',
+                    'FilterButton': 'Filtrar',
+                    'ClearButton': 'Limpiar',
+                    'Search': 'Buscar',
+                    'SelectAll': 'Seleccionar Todo',
+                    'NoResult': 'No se encontraron coincidencias',
+                    'Add': 'Agregar',
+                    'Edit': 'Editar',
+                    'Update': 'Actualizar',
+                    'Delete': 'Eliminar',
+                    'Cancel': 'Cancelar',
+                    'SaveButton': 'Agregar',
+                    'CancelButton': 'Cancelar',
+                    'AddFormTitle': 'Agrega un nuevo registro',
+                    'EditFormTitle': 'Edita el registro '
+                },
+                'pager': {
+                    'currentPageInfo': '{0} de {1} Páginas',
+                    'totalItemsInfo': '({0} Contactos)',
+                    'firstPageTooltip': 'Primera pagina',
+                    'lastPageTooltip': 'Ultima pagina',
+                    'nextPageTooltip': 'Pagina siguiente',
+                    'previousPageTooltip': 'Pagina previa',
+                    'nextPagerTooltip': 'Siguiente Paginador',
+                    'previousPagerTooltip': 'Anterior Paginador'
+                }
+            }
+        });
+    </script>
+
+    <script type="text/javascript">
+
+        window.addEventListener('load', ev => {
+            console.log('cargado crear');
+        });
+
+        var gridContactos;
+        var gridGruposAsignados;
+        var selectGruposDisponibles;
+        var tooltipSelectGrupos;
+        var multiselectDiasRepeticion;
+        var selectTipoRepecition;
+
+        var selectTemplateCorreo;
+        var selectTemplateSMS;
+
+        var switchEnvioCorreo;
+        var switchEnvioMensaje;
+        var switchIndefinido;
+        var timepickerFechaInicial;
+        var timepickerFechaFinal;
+
+        const hora = 1;
+        const diario = 2
+        const semana = 3;
+        const mensual = 4;
+        const anual = 5;
+
+        function commandClickGridGrupos(args) {
+            console.debug('click command grid grupos', args);
+            let oGrupo = args.rowData;
+
+            if (args.commandColumn.type == 'Details') {
+                showModalContactos(oGrupo);
+            }
+        }
+
+        function showModalContactos(grupo) {
+
+            let filter = `$filter=codigo_grupo eq ${grupo.codigo_grupo}`;
+            let orderBy = `$orderby=nombre asc`;
+
+            /*gridContactos.dataSource = new ej.data.DataManager({
+                url: `/oData/Contacto?${encodeURI(filter)}&${encodeURI(orderBy)}`,
+                adaptor: new ej.data.ODataV4Adaptor(),
+                crossDomain: true,
+                offline: true
+            });*/
+            gridContactos.dataSource = [];
+            gridContactos.dataSource.push(grupo.oLstContactos);
+            gridContactos.refresh();
+            $('#modalContactos').modal("show");
+        }
+
+        function onCreateGridContactos() {
+            gridContactos = document.getElementById('gridContactos').ej2_instances[0];
+            console.log('created grid contactos', gridContactos);
+
+            /*let filterSettings = {
+                columns: [
+                    { field: 'nombre', matchCase: false, operator: 'contains', predicate: 'or', value: 'reims' },
+                    { field: 'correo', matchCase: false, operator: 'contains', predicate: 'or', value: 'Vins et alcools Chevalier' },
+                    { field: 'telefono', matchCase: false, operator: 'contains', predicate: 'or', value: '7777' }
+                ],
+                properties: {
+                    columns: [
+                        { field: 'nombre', matchCase: false, operator: 'contains', predicate: 'or', value: 'reims' },
+                        { field: 'correo', matchCase: false, operator: 'contains', predicate: 'or', value: 'Vins et alcools Chevalier' },
+                        { field: 'telefono', matchCase: false, operator: 'contains', predicate: 'or', value: '7777' }
+                    ]
+                }
+            };
+
+            gridContactos.filterSettings = filterSettings;*/
+            gridContactos.refresh();
+            //DataSource Usuario
+
+        }
+
+        function onCreatedSelectGruposDisponibles() {
+            selectGruposDisponibles = document.getElementById('gruposDisponibles').ej2_instances[0];
+            console.log('on create select grupos disponibles', selectGruposDisponibles);
+
+            tooltipSelectGrupos = new ej.popups.Tooltip({
+                content: 'Contenido Tooltip',
+                target: '.e-list-item',
+                position: 'RightCenter',
+                opensOn: 'Hover',
+                beforeRender: onBeforeRenderTooltip
+            });
+
+            tooltipSelectGrupos.appendTo('body');
+
+        }
+
+        function onCreatedTooltip() {
+            tooltipSelectGrupos = document.getElementById('tooltipSelectGrupos').ej2_instances[0];
+            console.log('created tooltip grupos', tooltipSelectGrupos);
+        }
+
+        function onBeforeRenderTooltip(args) {
+            //console.log('on before render tooltip', args);
+            //console.log('dataset', args.target.dataset);
+            console.debug('on before render tooltip', args);
+            let codigoGrupo = parseInt(args.target.dataset.value);
+            let grupo = selectGruposDisponibles.properties.dataSource.find(g => g.codigo_grupo == codigoGrupo);
+            let contactosGrupo = grupo.oLstContactos;
+
+            //Array.prototype.push.apply(contactosGrupo, contactosGrupo);
+
+            //console.log('contactos del grupo', contactosGrupo);
+
+            console.debug('datos grupo: ', grupo);
+            const tipoQuery = 2;
+
+            if (grupo.tipo == tipoQuery) {
+                this.content = `El grupo tiene contactos que se extraeran de una Consulta!`;
+                return;
+            }
+
+            if (contactosGrupo.length == 0) {
+                this.content = `El grupo no tiene contactos asignados!`;
+                return;
+            }
+
+
+            let contactosHtmlList =
+                `<li style="height: 30px; background: #0072cc; color: white;">
+                            <div class="list-resumen">
+                                <strong>${contactosGrupo.length} Contactos Asignados</strong>
+                            </div>
+                         </li>`;
+            contactosGrupo.forEach((contacto, index) => {
+                contactosHtmlList +=
+                    `<li>
+                                <div class="item-numero">${index + 1}</div>
+                                <div class="item-contacto">
+                                    <div class="nombre"><strong>Nombre:</strong> ${contacto.nombre}</div>
+                                    <div class="correo"><strong>Correo:</strong> ${contacto.correo}</div>
+                                    <div class="telefono"><strong>Teléfono:</strong> ${contacto.telefono}</div>
+                                </div>
+                             </li>`;
+            });
+
+            let contactosHtmlContainer = `<div class="contactos-grupo"><ul>${contactosHtmlList}</ul></div>`;
+
+            this.content = contactosHtmlContainer;
+        }
+
+        function onClosePopup(args) {
+            console.log('on popup grupos closed', args)
+            // Este evento si se cancela evita que el popup del dropdownlist se cierre
+            //args.cancel = true;
+        }
+
+        function obtenerFechaFormateada(fecha) {
+
+            let today = fecha;
+            let dd = today.getDate();
+
+            let mm = today.getMonth() + 1;
+            let yyyy = today.getFullYear();
+
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+            today = yyyy + '-' + mm + '-' + dd;
+            return today;
+        }
+
+        function changeFechaInicial(args) {
+            console.log('change fecha inicial', args);
+            let fechaInicialEjecucionH = document.getElementById('fechaInicialEjecucionH');
+            fechaInicialEjecucionH.value = obtenerFechaFormateada(args.value);
+            console.log('value hiden fecha inicial', fechaInicialEjecucionH);
+        }
+
+        function changeFechaFinal(args) {
+            console.log('change fecha final', args);
+            let fechaFinalEjecucionH = document.getElementById('fechaFinalEjecucionH');
+            fechaFinalEjecucionH.value = obtenerFechaFormateada(args.value);
+            console.log('value hiden fecha final', fechaFinalEjecucionH);
+        }
+
+        function onCreateGridGruposAsignados() {
+            gridGruposAsignados = document.getElementById("GridGruposAsignados").ej2_instances[0];
+        }
+
+        function onCreateMultiselectDiasRepeticion() {
+            multiselectDiasRepeticion = document.getElementById('diasRepeticion').ej2_instances[0];
+        }
+
+        function onCreateSelectTipoRepeticion() {
+            selectTipoRepecition = document.getElementById('tipoRepeticion').ej2_instances[0];
+            console.log('select tipo repeticion', selectTipoRepecition);
+
+            let contenedorDiasRepeticion = document.getElementById('contenedorDiasRepeticion');
+            let contenedorCantidadRepeticion = document.getElementById('contenedorCantidadRepeticion');
+
+            contenedorCantidadRepeticion.style.display = 'none'; // Se esta ocultando y poniendo siempre el valor 1
+            // Para no confundir con los tipos diario, mensual, anual; antes eran dias, meses, años
+
+            if (selectTipoRepecition.value == semana) {
+                contenedorDiasRepeticion.style.display = 'block';
+                contenedorCantidadRepeticion.style.display = 'none';
+
+                let contenedorTipoRepeticion = document.getElementById('contenedorTipoRepeticion');
+                contenedorTipoRepeticion.classList.replace('col-lg-12', 'col-lg-6');
+            }
+
+        }
+
+        function createSelectTemplateCorreo() {
+            selectTemplateCorreo = document.getElementById('templateCorreo').ej2_instances[0];
+            console.log('select template correo created', selectTemplateCorreo);
+        }
+
+        function createSelectTemplateSMS() {
+            selectTemplateSMS = document.getElementById('templateSMS').ej2_instances[0];
+            console.log('select template sms created', selectTemplateSMS);
+        }
+
+        function createdDatepickerFechaInicial() {
+            timepickerFechaInicial = document.getElementById('fechaInicialEjecucion').ej2_instances[0];
+            console.log('created timepicker fecha inicial', timepickerFechaInicial);
+
+            if (timepickerFechaInicial.value) {
+                let fechaInicialEjecucionH = document.getElementById('fechaInicialEjecucionH');
+                fechaInicialEjecucionH.value = obtenerFechaFormateada(timepickerFechaInicial.value);
+            }
+        }
+
+        function createdDatepickerFechaFinal() {
+            timepickerFechaFinal = document.getElementById('fechaFinalEjecucion').ej2_instances[0];
+            console.log('created timepicker fecha final', timepickerFechaFinal);
+
+            if (timepickerFechaFinal.value) {
+                let fechaFinalEjecucionH = document.getElementById('fechaFinalEjecucionH');
+                fechaFinalEjecucionH.value = obtenerFechaFormateada(timepickerFechaFinal.value);
+            }
+
+            if (switchIndefinido.checked) {
+                timepickerFechaFinal.enabled = false;
+            }
+        }
+
+        function createdSwitchIndefinido() {
+            switchIndefinido = document.getElementById('indefinido').ej2_instances[0];
+            console.log('created switch indefinido', switchIndefinido);
+
+        }
+
+        function createdSwitchCorreo() {
+            switchEnvioCorreo = document.getElementById('envioCorreo').ej2_instances[0];
+            console.log('created switch correo', switchEnvioCorreo);
+            if (switchEnvioCorreo.checked) {
+                estadoVisibilidad = 'visible';
+                displayAsunto = 'block';
+            } else {
+                estadoVisibilidad = 'hidden';
+                displayAsunto = 'none';
+            }
+
+            document.getElementById('selectPlantillaCorreo').style.visibility = estadoVisibilidad;
+            document.getElementById('contenedorAsunto').style.display = displayAsunto;
+        }
+
+        function createdSwitchSMS() {
+            switchEnvioMensaje = document.getElementById('envioMensaje').ej2_instances[0];
+            console.log('created switch sms', switchEnvioMensaje);
+            if (switchEnvioMensaje.checked) {
+                estadoVisibilidad = 'visible';
+            } else {
+                estadoVisibilidad = 'hidden';
+            }
+
+            document.getElementById('selectPlantillaSMS').style.visibility = estadoVisibilidad;
+        }
+
+        function switchIndefinido(switchConfig) {
+            console.log('change switch indefinido', switchConfig);
+
+            if (switchConfig.checked) {
+                timepickerFechaFinal.enabled = false;
+            } else {
+                timepickerFechaFinal.enabled = true;
+            }
+        }
+
+        function switchCorreo(switchConfig) {
+            if (switchConfig.checked) {
+                estadoVisibilidad = 'visible';
+                displayAsunto = 'block';
+            } else {
+                estadoVisibilidad = 'hidden';
+                displayAsunto = 'none';
+            }
+
+            document.getElementById('selectPlantillaCorreo').style.visibility = estadoVisibilidad;
+            document.getElementById('contenedorAsunto').style.display = displayAsunto;
+        }
+
+        function switchSMS(switchConfig) {
+            if (switchConfig.checked) {
+                estadoVisibilidad = 'visible';
+            } else {
+                estadoVisibilidad = 'hidden';
+            }
+
+            document.getElementById('selectPlantillaSMS').style.visibility = estadoVisibilidad;
+        }
+
+        function changeCantidadRepeticion(input, cantidadRepeticiones) {
+            if (cantidadRepeticiones < 0) {
+                input.value = 0;
+                return;
+            }
+            if (selectTipoRepecition.value == semana && multiselectDiasRepeticion.value) {
+                input.value = multiselectDiasRepeticion.value.length;
+                return;
+            }
+            if (selectTipoRepecition.value == semana && cantidadRepeticiones > 7) {
+                input.value = 7;
+                mensajeV1('La cantidad de repeticiones debe ser menor a 7', msgError);
+            }
+        }
+
+        function changeTipoRepeticion(event) {
+            console.log('change tipo repe', event);
+            console.log('select tipo repe', selectTipoRepecition);
+            let contenedorTipoRepeticion = document.getElementById('contenedorTipoRepeticion');
+            let contenedorDiasRepeticion = document.getElementById('contenedorDiasRepeticion');
+            let contenedorCantidadRepeticion = document.getElementById('contenedorCantidadRepeticion');
+
+            let cantidadRepeticion = document.getElementById('cantidadRepeticion');
+            if (event.value == semana) {
+
+                cantidadRepeticion.value = 1;
+                console.log(cantidadRepeticion);
+
+                contenedorCantidadRepeticion.style.display = 'none';
+                contenedorDiasRepeticion.style.display = 'block';
+                contenedorTipoRepeticion.classList.replace('col-lg-12', 'col-lg-6')
+            } else {
+                contenedorDiasRepeticion.style.display = 'none';
+                //contenedorCantidadRepeticion.style.display = 'block'; // ocultado
+            }
+
+            if (event.value == hora || event.value == diario || event.value == mensual || event.value == anual) {
+                cantidadRepeticion.value = 1;
+                contenedorTipoRepeticion.classList.replace('col-lg-6', 'col-lg-12')
+            }
+
+        }
+
+        function changeDiasRepeticion(event) {
+            console.log('change dias', event);
+            console.log('multiselect', multiselectDiasRepeticion);
+
+        }
+
+        function validarFechaFinalEjecucion() {
+            if (!switchIndefinido.checked && !timepickerFechaFinal.value) {
+                console.log('valor fecha final', timepickerFechaFinal);
+                let mensaje = 'Ingrese la fecha final de ejecución';
+                mensajeV1(mensaje, msgError);
+                throw mensaje;
+            }
+        }
+
+        function validarAsuntoCorreo() {
+            let asuntoCorreo = document.getElementById('asuntoCorreo');
+            if (switchEnvioCorreo.checked && !asuntoCorreo.value) {
+                console.log('correo checked', switchEnvioCorreo);
+                let mensaje = 'Ingrese el asunto para el correo';
+                mensajeV1(mensaje, msgError);
+                throw mensaje;
+            }
+        }
+
+        function validarGruposAsignados() {
+            let gruposAsignados = gridGruposAsignados.dataSource;
+            if (!gruposAsignados || gruposAsignados.length == 0) {
+                let mensaje = 'Seleccione al menos un grupo de usuarios';
+                mensajeV1(mensaje, msgError);
+                throw mensaje;
+            }
+        }
+
+        function validarPlantillaCorreo() {
+            console.log('select template correo', selectTemplateCorreo);
+            if (switchEnvioCorreo.checked && !selectTemplateCorreo.value) {
+                let mensaje = 'Seleccione una plantilla para correo';
+                mensajeV1(mensaje, msgError);
+                throw mensaje;
+            }
+        }
+
+        function validarPlantillaSMS() {
+            console.log('select template sms', selectTemplateSMS);
+            if (switchEnvioMensaje.checked && !selectTemplateSMS.value) {
+                let mensaje = 'Seleccione una plantilla para SMS';
+                mensajeV1(mensaje, msgError);
+                throw mensaje;
+            }
+        }
+
+        function prevalidacion() {
+            validarFechaFinalEjecucion();
+            validarAsuntoCorreo();
+            validarGruposAsignados();
+            validarPlantillaCorreo();
+            validarPlantillaSMS();
+        }
+    </script>
+}
+
+
+@section Scripts {
+    <script type="text/javascript">
+        function asignarGrupos() {
+            let checkListGrupos = document.getElementById('gruposDisponibles').ej2_instances[0];
+            console.log(checkListGrupos.dataSource);
+
+            if (checkListGrupos.value) {
+                console.log('valores seleccionados', checkListGrupos.value);
+
+                checkListGrupos.value.forEach(codigo_grupo => {
+                    let grupoYaAsignado = gridGruposAsignados.dataSource.find(g => g.codigo_grupo == codigo_grupo);
+
+                    if (!grupoYaAsignado) {
+
+                        let grupo = checkListGrupos.dataSource.find(g => g.codigo_grupo == codigo_grupo);
+                        gridGruposAsignados.dataSource.push(grupo);
+                    }
+                });
+                console.log('data nuevo', gridGruposAsignados.dataSource);
+                gridGruposAsignados.refresh();
+                checkListGrupos.value = null; // Reset select items
+            }
+
+        }
+
+        function irAListado() {
+            window.document.location.href = '@Url.Action("Listado","Campana")';
+        }
+
+        function fnSuccess(data) {
+            console.log('Success', data);
+            if (data.Result) {
+                mensajeV1(data.Msg, msgOk);
+                irAListado();
+            } else {
+                mensajeV1(data.Msg, msgError);
+            }
+        }
+
+        function fnFailure(xhr, status, error) {
+            console.log('Failure', xhr);
+            mensajeV1(error, msgError);
+        }
+
+        function setGruposAsignados() {
+            document.getElementById('stringGruposAsignados').value = JSON.stringify(gridGruposAsignados.dataSource);
+        }
+
+        function guardar() {
+            console.log('click en guardar');
+            prevalidacion();
+            setGruposAsignados();
+            document.getElementById("btnGuardar").click();
+        }
+
+        function actualizarFechaHoraServidor() {
+            $.ajax({
+            type: "GET",
+            url: '@Url.Action("GetFechaHoraServidor", "Campana")',
+                success: function (response) {
+                console.debug('Fecha hora servidor', response);
+                document.getElementById('serverDateTime').value = response.Data;
+            },
+            error: function (response) {
+                console.error(response.Excepcion);
+                mensajeV1(errorServidor, msgError);
+            }
+        });
+        }
+    </script>
+}

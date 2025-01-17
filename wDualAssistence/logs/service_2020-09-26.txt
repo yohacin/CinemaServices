@@ -1,0 +1,71 @@
+2020-09-26 09:57:48,097 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-26 10:18:27,768 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-26 10:47:41,453 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-26 10:48:04,389 [10] ERROR WebServices Business.Public.Marcacion - System.InvalidOperationException: The required column 'empleadoid' was not present in the results of a 'FromSql' operation.
+   at Microsoft.EntityFrameworkCore.Query.Sql.Internal.FromSqlNonComposedQuerySqlGenerator.CreateValueBufferFactory(IRelationalValueBufferFactoryFactory relationalValueBufferFactoryFactory, DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ShaperCommandContext.<NotifyReaderCreated>b__14_0(FactoryAndReader s)
+   at Microsoft.EntityFrameworkCore.Internal.NonCapturingLazyInitializer.EnsureInitialized[TParam,TValue](TValue& target, TParam param, Func`2 valueFactory)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ShaperCommandContext.NotifyReaderCreated(DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.Marcacion.listarMarcacionPorFecha(DateTime pFechaInicio, DateTime pFechaFin) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\Arquitectura\Business\Public\Marcacion.cs:line 411 
+2020-09-26 10:48:04,553 [10] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - System.InvalidOperationException: The required column 'empleadoid' was not present in the results of a 'FromSql' operation.
+   at Business.Public.Marcacion.listarMarcacionPorFecha(DateTime pFechaInicio, DateTime pFechaFin) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\Arquitectura\Business\Public\Marcacion.cs:line 426
+   at wDualAssistence.Controllers.Api.MarcacionController.listarMarcacionPorFecha(String fecha_inicio, String fecha_fin) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 206 
+2020-09-26 10:48:21,879 [7] ERROR WebServices Business.Public.Marcacion - System.InvalidOperationException: The required column 'empleadoid' was not present in the results of a 'FromSql' operation.
+   at Microsoft.EntityFrameworkCore.Query.Sql.Internal.FromSqlNonComposedQuerySqlGenerator.CreateValueBufferFactory(IRelationalValueBufferFactoryFactory relationalValueBufferFactoryFactory, DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ShaperCommandContext.<NotifyReaderCreated>b__14_0(FactoryAndReader s)
+   at Microsoft.EntityFrameworkCore.Internal.NonCapturingLazyInitializer.EnsureInitialized[TParam,TValue](TValue& target, TParam param, Func`2 valueFactory)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ShaperCommandContext.NotifyReaderCreated(DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.Marcacion.listarMarcacionPorFecha(DateTime pFechaInicio, DateTime pFechaFin) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\Arquitectura\Business\Public\Marcacion.cs:line 411 
+2020-09-26 10:48:21,939 [7] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - System.InvalidOperationException: The required column 'empleadoid' was not present in the results of a 'FromSql' operation.
+   at Business.Public.Marcacion.listarMarcacionPorFecha(DateTime pFechaInicio, DateTime pFechaFin) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\Arquitectura\Business\Public\Marcacion.cs:line 426
+   at wDualAssistence.Controllers.Api.MarcacionController.listarMarcacionPorFecha(String fecha_inicio, String fecha_fin) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 206 
+2020-09-26 10:50:05,918 [7] ERROR WebServices Business.Public.Marcacion - System.InvalidOperationException: The required column 'empleadoid' was not present in the results of a 'FromSql' operation.
+   at Microsoft.EntityFrameworkCore.Query.Sql.Internal.FromSqlNonComposedQuerySqlGenerator.CreateValueBufferFactory(IRelationalValueBufferFactoryFactory relationalValueBufferFactoryFactory, DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ShaperCommandContext.<NotifyReaderCreated>b__14_0(FactoryAndReader s)
+   at Microsoft.EntityFrameworkCore.Internal.NonCapturingLazyInitializer.EnsureInitialized[TParam,TValue](TValue& target, TParam param, Func`2 valueFactory)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ShaperCommandContext.NotifyReaderCreated(DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.Marcacion.listarMarcacionPorFecha(DateTime pFechaInicio, DateTime pFechaFin) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\Arquitectura\Business\Public\Marcacion.cs:line 411 
+2020-09-26 10:50:05,990 [7] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - System.InvalidOperationException: The required column 'empleadoid' was not present in the results of a 'FromSql' operation.
+   at Business.Public.Marcacion.listarMarcacionPorFecha(DateTime pFechaInicio, DateTime pFechaFin) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\Arquitectura\Business\Public\Marcacion.cs:line 426
+   at wDualAssistence.Controllers.Api.MarcacionController.listarMarcacionPorFecha(String fecha_inicio, String fecha_fin) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 206 
+2020-09-26 10:50:34,075 [24] ERROR WebServices Business.Public.Marcacion - System.InvalidOperationException: The required column 'empleadoid' was not present in the results of a 'FromSql' operation.
+   at Microsoft.EntityFrameworkCore.Query.Sql.Internal.FromSqlNonComposedQuerySqlGenerator.CreateValueBufferFactory(IRelationalValueBufferFactoryFactory relationalValueBufferFactoryFactory, DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ShaperCommandContext.<NotifyReaderCreated>b__14_0(FactoryAndReader s)
+   at Microsoft.EntityFrameworkCore.Internal.NonCapturingLazyInitializer.EnsureInitialized[TParam,TValue](TValue& target, TParam param, Func`2 valueFactory)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ShaperCommandContext.NotifyReaderCreated(DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded) in /home/roji/projects/EFCore.PG/src/EFCore.PG/Storage/Internal/NpgsqlExecutionStrategy.cs:line 51
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Business.Public.Marcacion.listarMarcacionPorFecha(DateTime pFechaInicio, DateTime pFechaFin) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\Arquitectura\Business\Public\Marcacion.cs:line 411 
+2020-09-26 10:50:34,138 [24] ERROR WebServices wDualAssistence.Controllers.Api.MarcacionController - System.InvalidOperationException: The required column 'empleadoid' was not present in the results of a 'FromSql' operation.
+   at Business.Public.Marcacion.listarMarcacionPorFecha(DateTime pFechaInicio, DateTime pFechaFin) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\Arquitectura\Business\Public\Marcacion.cs:line 426
+   at wDualAssistence.Controllers.Api.MarcacionController.listarMarcacionPorFecha(String fecha_inicio, String fecha_fin) in C:\RODRIGO\xDesarrollovs2017\w_DualAsistencia\wDualAssistence\Controllers\Api\MarcacionController.cs:line 206 
+2020-09-26 10:51:44,939 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-26 11:16:43,125 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-26 11:30:23,702 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 
+2020-09-26 11:47:49,433 [1] INFO  WebServices wDualAssistence.Program - Application - WebService starting 

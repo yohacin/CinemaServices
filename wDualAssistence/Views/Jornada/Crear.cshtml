@@ -1,0 +1,1083 @@
+﻿@model wDualAssistence.Models.JornadaViewModel;
+@using Syncfusion.EJ2.Schedule
+@{
+    List<ScheduleView> viewOption = new List<ScheduleView>()
+    {
+      new ScheduleView
+        {
+            Option = Syncfusion.EJ2.Schedule.View.WorkWeek,
+            StartHour = "00:00",
+            EndHour = "00:00",
+            DateFormat = "yyyy-MM-dd HH:mm",
+            TimeFormat = "HH:mm",
+            ShowWeekend = true,
+            WorkDays = new int[]{ 1, 2, 3, 4, 5, 6, 0 },
+            FirstDayOfWeek = 1,
+            ShowWeekNumber = false,
+            TimeScale = new ScheduleTimeScale(){Interval = 60, SlotCount=1}
+        }
+    };
+}
+
+
+
+@{
+    ViewData["Title"] = "Jornadas";
+    if (Model.eJornada.id != 0)
+    {
+        ViewData["Navbar-Title"] = "Recursos > Editar Jornada";
+    }
+    else
+    {
+        ViewData["Navbar-Title"] = "Recursos > Crear Jornada";
+    }
+}
+
+@section Styles {
+
+    <style>
+        .treeview-external-drag {
+            max-height: 480px;
+            overflow-y: auto;
+        }
+
+        .e-upload {
+            visibility: hidden !important;
+        }
+
+        #fotoActual {
+            width: 200px;
+            height: 200px;
+        }
+
+        /*#region Estilo Tabs*/
+        .e-content .e-item {
+            font-size: 12px;
+            padding: 10px;
+            text-align: justify;
+        }
+
+
+        .e-group:before {
+            content: '\f0c0';
+        }
+
+        .e-photo:before {
+            content: '\f03e';
+        }
+
+        .e-sitemap:before {
+            content: '\f0e8';
+        }
+
+        #tabUsuario {
+            padding-top: 10px;
+        }
+
+        /*#endregion*/
+
+        #nombre_usuario {
+            text-transform: uppercase;
+        }
+
+        .e-treeview .e-ul {
+            padding: 0 0 0 0px !important;
+        }
+
+        .e-level-1 {
+            background: #8888883d !IMPORTANT;
+            margin-top: 2px !IMPORTANT;
+        }
+
+        .e-level-2 {
+            background: white;
+        }
+
+        .searchTrue {
+            color: red !important;
+        }
+
+        .boton-accion {
+            float: right;
+            margin-top: -25px;
+            margin-bottom: 5px;
+        }
+
+        .node-item-cartelera {
+            width: 100%;
+            height: 56px;
+            border: solid 2px black;
+            display: block;
+            line-height: initial;
+        }
+
+            .node-item-cartelera .node-item-flex-container {
+                display: flex;
+                flex-direction:column;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                padding: 12px;
+            }
+
+        .e-treeview.e-interaction.e-fullrow-wrap .e-text-content {
+            padding: unset;
+        }
+
+        .e-treeview .e-ul {
+            padding: unset;
+        }
+
+        .e-treeview .e-list-item {
+            position: relative;
+            padding: unset;
+            margin: 2px 0;
+        }
+
+        .e-treeview .e-fullrow {
+            height: 100%;
+        }
+
+        .e-treeview .e-list-text {
+            width: 100%;
+            padding: unset;
+        }
+
+        .titulo-nodo{
+            font-size: 16px !important;
+            font-weight: bold;
+            margin:0 0 2px 0;
+        }
+        .descripcion-nodo {
+            white-space: break-spaces;
+            text-align: center;
+            margin: 0;
+            font-size: 16px !important;
+        }
+
+        .schedule-programaciones .e-work-cells {
+            position: relative;
+        }
+
+            .schedule-programaciones .e-work-cells .e-appointment-wrapper {
+                height: 100%;
+                width: 100%;
+                top: 0;
+            }
+
+                .schedule-programaciones .e-work-cells .e-appointment-wrapper .e-appointment {
+                    height: 100%;
+                    width: 100% !important;
+                    cursor: pointer;
+                }
+
+        .event-item-programacion {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 4px;
+        }
+
+            .event-item-programacion .titulo-evento {
+                margin: unset;
+                font-size: 16px !important;
+                font-weight: bolder;
+            }
+
+            .event-item-programacion .descripcion-evento {
+                white-space: break-spaces;
+                text-align: center;
+                font-size: 16px !important;
+                margin-bottom: unset;
+            }
+
+
+        .label-text {
+            font-weight: bold;
+        }
+
+        .e-small .e-input-group-icon.e-date-icon, *.e-control-wrapper.e-small .e-input-group-icon.e-date-icon, *.e-small .e-control-wrapper .e-input-group-icon.e-date-icon {
+            display: none;
+        }
+
+        .e-schedule .e-appointment{
+            display: flex;
+        }
+
+        .modal-footer{
+            padding:10px;
+        }
+    </style>
+}
+
+<div class="content-wrapper">
+    <section class="content">
+        <form id="frmUsuario" class="form-horizontal" asp-controller="Jornada" asp-action="Post" autocomplete="off" data-ajax="true" data-ajax-method="POST"
+              data-ajax-begin="onAjaxBegin" data-ajax-complete="onAjaxComplete" data-ajax-loading="#loading"
+              data-ajax-success="fnSuccess(data)" data-ajax-failure="fnFailure()">
+            <div class="panel panel-default">
+                <div class="panel-heading heading-primary">
+                    <span class="capa_btn volver">
+                        <button class="btn btn-base cancelar" type="button" onclick="irAListado()">
+                            <span class="fa span-button volver"></span>
+                            <p class="text-button-primary">VOLVER</p>
+                        </button>
+                    </span>
+                    <span class="capa_btn confirmar">
+                        <button class="btn btn-base guardar btn-submit" onclick="Guardar()">
+                            <span class="fa span-button confirmar"></span>
+                            <p class="text-button-primary">GUARDAR</p>
+                        </button>
+                    </span>
+                </div>
+                <div class="panel-body">
+                    <section class="content-body">
+                        <div class="row">
+
+                            <input type="hidden" asp-for="eJornada.id" />
+
+                            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                                <h4> <b style="color:red;">*</b>Nombre:</h4>
+                                <div class="e-input-group e-small">
+                                    <input class="e-input" asp-for="eJornada.nombre" type="text">
+                                </div>
+                                <span asp-validation-for="eJornada.nombre" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                                <h4> Descripción:</h4>
+                                <div class="e-input-group e-small">
+                                    <textarea class="e-input" asp-for="eJornada.descripcion" type="text"></textarea>
+                                </div>
+                                <span asp-validation-for="eJornada.descripcion" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col col-lg-2">
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <button type="button" class="btn btn-primary btn-lg" onclick="crearTurnoPlantillaOnClick()">Crear Turno Plantilla</button>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <ejs-treeview id="turnosPlantillaTreeView" allowDragAndDrop="true" dragArea=".content-wrapper"
+                                                      nodeTemplate="#treeNodeTemplate" nodeDragStop="onNodeDragStop" nodeClicked="nodeClicked"
+                                                      cssClass="treeview-external-drag">
+                                            <e-treeview-fields id="id" text="descripcion_turno"></e-treeview-fields>
+                                        </ejs-treeview>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col col-lg-10">
+                                <ejs-schedule id="schedule" locale="es" height="600" PopupOpen="cancelarModalPorDefecto"
+                                              eventClick="eventoOnClick" showTimeIndicator="false" readonly="true"
+                                              cssClass="e-droppable" selectedDate="new DateTime(2024, 1, 1)" ShowHeaderBar="false">
+                                    <e-schedule-views>
+                                        <e-schedule-view StartHour="06:00"
+                                                         EndHour="21:00"
+                                                         DateFormat="yyyy-MM-dd HH:mm"
+                                                         TimeFormat="HH:mm"
+                                                         ShowWeekend="true"
+                                                         WorkDays="new int[]{ 1, 2, 3, 4, 5, 6, 0 }"
+                                                         FirstDayOfWeek="1"
+                                                         TimeScale="new ScheduleTimeScale(){Interval = 60, SlotCount=1}"
+                                                         ShowWeekNumber="false" option="WorkWeek" eventTemplate="#eventoTemplate">
+                                        </e-schedule-view>
+                                    </e-schedule-views>
+                                </ejs-schedule>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <input type="hidden" asp-for="eJornada.detalleJSON" />
+            <input type="hidden" asp-for="eJornada.turnoPlantillaJSON" />
+        </form>
+
+    </section>
+</div>
+
+
+
+
+<div class="modal fade" id="modalturno" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 style="margin: 0;"><span class="fa fa-calendar"></span> TURNO:</h3>
+            </div>
+            <div class="modal-body" style="padding:40px 50px;">
+
+                <div class="row">
+                    <input id="id_modal" type="hidden" name="id_modal" value="" />
+                    <input id="fecha_evento" type="hidden" name="fecha_evento" value="" />
+
+                    <div class="col col-lg-6">
+                        <h4 class="text-center"><strong>ENTRADA</strong></h4>
+                        <div class="form-group">
+                            <label for="hora_entrada">Hora programada:</label>
+                            <ejs-timepicker id="hora_entrada" format="HH:mm" step="60"></ejs-timepicker>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inicio_marcacion_entrada">Inicio de marcación:</label>
+                            <ejs-timepicker id="inicio_marcacion_entrada" format="HH:mm" step="60"></ejs-timepicker>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fin_marcacion_entrada">Fin de marcación:</label>
+                            <ejs-timepicker id="fin_marcacion_entrada" format="HH:mm" step="60"></ejs-timepicker>
+                        </div>
+                    </div>
+
+                    <div class="col col-lg-6">
+                        <h4 class="text-center"><strong>SALIDA</strong></h4>
+                        <div class="form-group">
+                            <label for="hora_salida">Hora programada:</label>
+                            <ejs-timepicker id="hora_salida" format="HH:mm" step="60"></ejs-timepicker>
+                        </div>
+                        <div class="form-group">
+                            <label for="inicio_marcacion_entrada">Inicio de marcación:</label>
+                            <ejs-timepicker id="inicio_marcacion_salida" format="HH:mm" step="60"></ejs-timepicker>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fin_marcacion_entrada">Fin de marcación:</label>
+                            <ejs-timepicker id="fin_marcacion_salida" min="00" max="23" format="HH:mm" step="60"></ejs-timepicker>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button id="btnModalGuardarTurnoPlantilla" type="button" class="btn btn-primary">
+                    <span class="fa fa-check"></span> Aceptar
+                </button>
+                <button id="btnModalActualizarEvento" type="button" class="btn btn-primary">
+                    <span class="fa fa-check"></span> Aceptar
+                </button>
+                <button id="btnModalEliminarEvento" type="button" class="btn btn-danger">
+                    <span class="fa fa-trash"></span> Eliminar
+                </button>
+                <button id="btnModalActualizarTurnoPlantilla" type="button" class="btn btn-primary">
+                    <span class="fa fa-check"></span> Aceptar
+                </button>
+                <button id="btnModalEliminarTurnoPlantilla" type="button" class="btn btn-danger">
+                    <span class="fa fa-trash"></span> Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalConfirmarEliminar" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 style="margin: 0;"> ELIMINAR TURNO</h3>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas eliminar este turno?</p>
+                <input id="id_turno_eliminar" type="hidden" name="id_turno_eliminar" value="">
+            </div>
+            <div class="modal-footer">
+                <button id="btnConfirmarEliminarEvento" type="button" class="btn btn-danger" onclick="confirmarEliminacionEvento()">
+                    <span class="fa fa-trash"></span> Eliminar
+                </button>
+                <button id="btnConfirmarEliminarTurnoPlantilla" type="button" class="btn btn-danger" onclick="confirmarEliminacionTurnoPlantilla()">
+                    <span class="fa fa-trash"></span> Eliminar
+                </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section PreScripts {
+    <template id="treeNodeTemplate">
+        <div class="node-item-cartelera">
+            <div class="node-item-flex-container">
+                <p class="titulo-nodo">TURNO</p>
+                <p class="descripcion-nodo">${descripcion_turno}</p>
+            </div>
+        </div>
+    </template>
+
+    <template id="eventoTemplate">
+        <div class="event-item-programacion">
+            <p class="titulo-evento">TURNO</p>
+            <p class="descripcion-evento">${descripcion_turno}</p>
+        </div>
+    </template>
+    <script>
+
+        var turnosPlantilla = JSON.parse('@Html.Raw(Json.Serialize(Model.eJornada.listaTurnoPlantilla))');
+        var eventos = JSON.parse('@Html.Raw(Json.Serialize(Model.eJornada.listaDetalleJornada))');
+
+        document.getElementById('btnModalGuardarTurnoPlantilla').addEventListener('click', agregarTurnoPlantillaTreeView);
+        document.getElementById('btnModalActualizarEvento').addEventListener('click', btnModalActualizarEventoOnClick);
+        document.getElementById('btnModalEliminarEvento').addEventListener('click', btnModalEliminarEventoOnClick);
+        document.getElementById('btnModalActualizarTurnoPlantilla').addEventListener('click', btnModalActualizarTurnoPlantillaOnClick);
+        document.getElementById('btnModalEliminarTurnoPlantilla').addEventListener('click', btnModalEliminarTurnoPlantillaOnClick);
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Acceder a la instancia del TreeView y asignar el dataSource dinámicamente
+            let treeViewInstance = document.getElementById("turnosPlantillaTreeView").ej2_instances[0];
+            treeViewInstance.fields.dataSource = turnosPlantilla; // Asignar los datos
+            treeViewInstance.refresh(); // Refrescar el TreeView para que tome el nuevo dataSource
+
+            let scheduleObj = document.getElementById('schedule').ej2_instances[0];
+
+            scheduleObj.eventSettings = {
+                dataSource: eventos,
+                fields: {
+                    id: 'id',
+                    subject: { name: 'descripcion_turno' },
+                    startTime: { name: 'hora_entrada' },
+                    endTime: { name: 'hora_salida' }
+                }
+            };
+
+            scheduleObj.refresh();
+
+        });
+
+        function btnModalActualizarTurnoPlantillaOnClick(){
+            const hora_entrada = document.getElementById('hora_entrada').value;
+            const hora_salida = document.getElementById('hora_salida').value;
+            const inicio_marcacion_entrada = document.getElementById('inicio_marcacion_entrada').value;
+            const fin_marcacion_entrada = document.getElementById('fin_marcacion_entrada').value;
+            const inicio_marcacion_salida = document.getElementById('inicio_marcacion_salida').value;
+            const fin_marcacion_salida = document.getElementById('fin_marcacion_salida').value;
+            const idModal = document.getElementById('id_modal').value;
+
+            // Expresión regular para validar el formato HH:mm
+            let horaFormato = /^([0-1][0-9]|2[0-3]):([0-5][0-9])$/;
+
+            // Verificar que todos los campos sean obligatorios y estén en el formato correcto
+            if (!hora_entrada || !hora_salida || !inicio_marcacion_entrada
+                || !fin_marcacion_entrada || !inicio_marcacion_salida || !fin_marcacion_salida) {
+                mensajeV1("Todos los campos son obligatorios.", msgAlerta, 3500);
+                return;
+            }
+
+            // Validar que todos los campos tengan el formato HH:mm
+            if (!horaFormato.test(hora_entrada) || !horaFormato.test(hora_salida) ||
+                !horaFormato.test(inicio_marcacion_entrada) || !horaFormato.test(fin_marcacion_entrada) ||
+                !horaFormato.test(inicio_marcacion_salida) || !horaFormato.test(fin_marcacion_salida)) {
+                mensajeV1("Por favor, ingrese las horas en el formato correcto HH:mm.", msgAlerta, 3500);
+                return;
+            }
+
+            if (convertirAMinutos(hora_entrada) >= convertirAMinutos(hora_salida)) {
+                mensajeV1("La hora de entrada no puede ser mayor o igual a la hora de salida.", msgAlerta, 3500); return;
+            }
+
+            if (convertirAMinutos(inicio_marcacion_entrada) > convertirAMinutos(fin_marcacion_entrada)) {
+                mensajeV1("La hora del inicio de marcación de la entrada no puede ser mayor al fin de marcación.", msgAlerta, 3500); return;
+            }
+
+            if (convertirAMinutos(inicio_marcacion_salida) > convertirAMinutos(fin_marcacion_salida)) {
+                mensajeV1("La hora del inicio de marcación de la salida no puede ser mayor al fin de marcación.", msgAlerta, 3500); return;
+            }
+
+            if (convertirAMinutos(hora_entrada) < convertirAMinutos(inicio_marcacion_entrada) ||
+                convertirAMinutos(hora_entrada) > convertirAMinutos(fin_marcacion_entrada)) {
+                mensajeV1("La hora de entrada debe estar dentro del rango permitido de marcación de entrada.", msgAlerta, 3500); return;
+            }
+
+            if (convertirAMinutos(hora_salida) < convertirAMinutos(inicio_marcacion_salida) ||
+                convertirAMinutos(hora_salida) > convertirAMinutos(fin_marcacion_salida)) {
+                mensajeV1("La hora de salida debe estar dentro del rango permitido de marcación de salida.", msgAlerta, 3500); return;
+            }
+
+
+            var turnoActualizado = {
+                id: idModal,
+                id_jornada: 1,
+                hora_entrada: hora_entrada,
+                hora_salida: hora_salida,
+                inicio_marcacion_entrada: inicio_marcacion_entrada,
+                fin_marcacion_entrada: fin_marcacion_entrada,
+                inicio_marcacion_salida: inicio_marcacion_salida,
+                fin_marcacion_salida: fin_marcacion_salida,
+                descripcion_turno: `${hora_entrada} - ${hora_salida}`
+            };
+
+
+            if (guardarTurnoPlantilla(turnoActualizado)) {
+                actualizarTreeView();
+                limpiarModal();
+                ocultarModal();
+            }
+        }
+
+        function btnModalEliminarTurnoPlantillaOnClick(){
+            const id = document.getElementById('id_modal').value;
+            ocultarModal();
+            limpiarModal();
+            mostrarBotonesEliminarTurnoPlantilla();
+            mostrarModalConfirmacion(id);
+        }
+
+
+        // ###############################################
+        // ##         FUNCIONES CRUD PARA EVENTOS       ##
+        // ###############################################
+
+        function obtenerEventos() {
+            return eventos;
+        }
+
+        function obtenerEventoPorId(id) {
+            const numId = parseInt(id);
+            return eventos.find(x => x.id === numId);
+        }
+
+        function obtenerEventoAuxPorId(id) {
+            const numId = parseInt(id);
+            const eventoOriginal = eventos.find(x => x.id === numId);
+            let eventoAux = { ...eventoOriginal };
+            return eventoAux;
+        }
+
+        function guardarEvento(evento) {
+            if (hayConflicto(evento)) {
+                mensajeV1("Turno no válido. La hora de entrada y/o salida se solapan con las existentes.", msgAlerta, 3500);
+                return false;
+            }
+
+            evento.id = parseInt(evento.id);
+            const index = eventos.findIndex(x => x.id === evento.id);
+            if (index !== -1) {
+                eventos[index] = evento;
+            } else {
+                eventos.push(evento);
+            }
+            return true;
+        }
+
+        function eliminarEvento(id) {
+            const numId = parseInt(id);
+            const index = eventos.findIndex(x => x.id === numId);
+            if (index !== -1) {
+                eventos.splice(index, 1);
+            } else {
+                console.error(`Evento con id ${numId} no encontrado.`);
+            }
+        }
+
+        function hayConflicto(nuevoEvento) {
+            let scheduleObj = document.getElementById('schedule').ej2_instances[0];
+            const id = parseInt(nuevoEvento.id);
+
+            return scheduleObj.eventsData.some(evento => {
+                if (evento.id === id) {
+                    return false;
+                }
+
+                const entradaExistente = new Date(evento.hora_entrada);
+                const salidaExistente = new Date(evento.hora_salida);
+                const entradaNueva = new Date(nuevoEvento.hora_entrada);
+                const salidaNueva = new Date(nuevoEvento.hora_salida);
+
+                return (
+                    (entradaNueva >= entradaExistente && entradaNueva < salidaExistente) ||
+                    (salidaNueva > entradaExistente && salidaNueva <= salidaExistente) ||
+                    (entradaNueva <= entradaExistente && salidaNueva >= salidaExistente)
+                );
+            });
+        }
+
+
+        // ###############################################
+        // ##         FUNCIONES PARA EL MODAL           ##
+        // ###############################################
+
+        function mostrarModal() {
+            $("#modalturno").modal('show');
+        }
+
+        function ocultarModal() {
+            $("#modalturno").modal('hide');
+        }
+
+        function limpiarModal() {
+            document.getElementById('id_modal').value = "0";
+            document.getElementById('fecha_evento').value = "";
+            document.getElementById('hora_entrada').value = "";
+            document.getElementById('hora_salida').value = "";
+            document.getElementById('inicio_marcacion_entrada').value = "";
+            document.getElementById('fin_marcacion_entrada').value = "";
+            document.getElementById('inicio_marcacion_salida').value = "";
+            document.getElementById('fin_marcacion_salida').value = "";
+        }
+
+        function cargarEvento(evento){
+            let eventoAux = obtenerEventoAuxPorId(evento.id);
+            document.getElementById('id_modal').value = eventoAux.id;
+            document.getElementById('fecha_evento').value = eventoAux.hora_entrada;
+            document.getElementById('hora_entrada').value = obtenerHoraMinuto(eventoAux.hora_entrada);
+            document.getElementById('hora_salida').value = obtenerHoraMinuto(eventoAux.hora_salida);
+            document.getElementById('inicio_marcacion_entrada').value = obtenerHoraMinuto(eventoAux.inicio_marcacion_entrada);
+            document.getElementById('fin_marcacion_entrada').value = obtenerHoraMinuto(eventoAux.fin_marcacion_entrada);
+            document.getElementById('inicio_marcacion_salida').value = obtenerHoraMinuto(eventoAux.inicio_marcacion_salida);
+            document.getElementById('fin_marcacion_salida').value = obtenerHoraMinuto(eventoAux.fin_marcacion_salida);
+        }
+
+        function mostrarBotonesEditarEvento(){
+            document.getElementById("btnModalActualizarTurnoPlantilla").style.display = "none";
+            document.getElementById("btnModalEliminarTurnoPlantilla").style.display = "none";
+            document.getElementById("btnModalGuardarTurnoPlantilla").style.display = "none";
+            document.getElementById("btnModalActualizarEvento").style.display = "inline";
+            document.getElementById("btnModalEliminarEvento").style.display = "inline";
+        }
+
+        function mostrarBotonesNuevoTurnoPlantilla(){
+            document.getElementById("btnModalGuardarTurnoPlantilla").style.display = "inline";
+            document.getElementById("btnModalActualizarEvento").style.display = "none";
+            document.getElementById("btnModalEliminarEvento").style.display = "none";
+            document.getElementById("btnModalActualizarTurnoPlantilla").style.display = "none";
+            document.getElementById("btnModalEliminarTurnoPlantilla").style.display = "none";
+        }
+
+        function mostrarBotonesEditarTurnoPlantilla(){
+            document.getElementById("btnModalGuardarTurnoPlantilla").style.display = "none";
+            document.getElementById("btnModalActualizarEvento").style.display = "none";
+            document.getElementById("btnModalEliminarEvento").style.display = "none";
+            document.getElementById("btnModalActualizarTurnoPlantilla").style.display = "inline";
+            document.getElementById("btnModalEliminarTurnoPlantilla").style.display = "inline";
+        }
+
+        function btnModalActualizarEventoOnClick() {
+            const fecha_evento = document.getElementById('fecha_evento').value;
+            const inputHoraEntrada = document.getElementById('hora_entrada').value;
+            const inputHoraSalida = document.getElementById('hora_salida').value;
+            const inicioMarcacionEntrada = document.getElementById('inicio_marcacion_entrada').value;
+            const finMarcacionEntrada = document.getElementById('fin_marcacion_entrada').value;
+            const inicioMarcacionSalida = document.getElementById('inicio_marcacion_salida').value;
+            const finMarcacionSalida = document.getElementById('fin_marcacion_salida').value;
+            const idModal = document.getElementById('id_modal').value;
+
+            let horaFormato = /^([0-1][0-9]|2[0-3]):([0-5][0-9])$/;
+
+            if (!inputHoraEntrada || !inputHoraSalida || !inicioMarcacionEntrada || !finMarcacionEntrada ||
+                !inicioMarcacionSalida || !finMarcacionSalida || !fecha_evento) {
+                mensajeV1("Todos los campos son obligatorios.", msgAlerta, 3500);
+                return;
+            }
+
+            if (!horaFormato.test(inputHoraEntrada) || !horaFormato.test(inputHoraSalida) ||
+                !horaFormato.test(inicioMarcacionEntrada) || !horaFormato.test(finMarcacionEntrada) ||
+                !horaFormato.test(inicioMarcacionSalida) || !horaFormato.test(finMarcacionSalida)) {
+                mensajeV1("Por favor, ingrese las horas en el formato correcto HH:mm.", msgAlerta, 3500);
+                return;
+            }
+
+            if (convertirAMinutos(inputHoraEntrada) >= convertirAMinutos(inputHoraSalida)) {
+                mensajeV1("La hora de entrada no puede ser mayor o igual a la hora de salida.", msgAlerta, 3500); return;
+            }
+
+            if (convertirAMinutos(inicioMarcacionEntrada) > convertirAMinutos(finMarcacionEntrada)) {
+                mensajeV1("La hora del inicio de marcación entrada no puede ser mayor al fin de marcación.", msgAlerta, 3500); return;
+            }
+
+            if (convertirAMinutos(inicioMarcacionSalida) > convertirAMinutos(finMarcacionSalida)) {
+                mensajeV1("La hora del inicio de marcación salida no puede ser mayor al fin de marcación.", msgAlerta, 3500); return;
+            }
+
+            if (convertirAMinutos(inputHoraEntrada) < convertirAMinutos(inicioMarcacionEntrada) ||
+                convertirAMinutos(inputHoraEntrada) > convertirAMinutos(finMarcacionEntrada)) {
+                mensajeV1("La hora de entrada debe estar dentro del rango permitido de marcación de entrada.", msgAlerta, 3500); return;
+            }
+
+            if (convertirAMinutos(inputHoraSalida) < convertirAMinutos(inicioMarcacionSalida) ||
+                convertirAMinutos(inputHoraSalida) > convertirAMinutos(finMarcacionSalida)) {
+                mensajeV1("La hora de salida debe estar dentro del rango permitido de marcación de salida.", msgAlerta, 3500); return;
+            }
+
+            const fechaEvento = new Date(fecha_evento);
+            let eventoActualizado = {
+                id: idModal,
+                hora_entrada: crearDateTimeDesdeDate(fechaEvento, inputHoraEntrada),
+                hora_salida: crearDateTimeDesdeDate(fechaEvento, inputHoraSalida),
+                inicio_marcacion_entrada: crearDateTimeDesdeDate(fechaEvento, inicioMarcacionEntrada),
+                fin_marcacion_entrada: crearDateTimeDesdeDate(fechaEvento, finMarcacionEntrada),
+                inicio_marcacion_salida: crearDateTimeDesdeDate(fechaEvento, inicioMarcacionSalida),
+                fin_marcacion_salida: crearDateTimeDesdeDate(fechaEvento, finMarcacionSalida),
+                descripcion_turno: `${inputHoraEntrada} - ${inputHoraSalida}`
+            };
+
+            if (guardarEvento(eventoActualizado)) {
+                actualizarAgenda();
+                limpiarModal();
+                ocultarModal();
+            }
+
+        }
+
+        function btnModalEliminarEventoOnClick(){
+            const id = document.getElementById('id_modal').value;
+            ocultarModal();
+            limpiarModal();
+            mostrarBotonesEliminarEvento();
+            mostrarModalConfirmacion(id);
+        }
+
+        function mostrarBotonesEliminarEvento(){
+            document.getElementById("btnConfirmarEliminarEvento").style.display = "inline";
+            document.getElementById("btnConfirmarEliminarTurnoPlantilla").style.display = "none";
+        }
+        
+        function mostrarBotonesEliminarTurnoPlantilla(){
+            document.getElementById("btnConfirmarEliminarEvento").style.display = "none";
+            document.getElementById("btnConfirmarEliminarTurnoPlantilla").style.display = "inline";
+        }
+
+        function mostrarModalConfirmacion(id){
+            document.getElementById('id_turno_eliminar').value = id;
+            $("#modalConfirmarEliminar").modal('show');
+
+        }
+
+        function ocultarModalConfirmacion() {
+            $("#modalConfirmarEliminar").modal('hide');
+        }
+
+        function confirmarEliminacionEvento() {
+            const id_turno_eliminar = document.getElementById('id_turno_eliminar').value;
+            eliminarEvento(id_turno_eliminar);
+            actualizarAgenda();
+            ocultarModalConfirmacion();
+        }
+
+        function confirmarEliminacionTurnoPlantilla() {
+            const id_turno_eliminar = document.getElementById('id_turno_eliminar').value;
+            eliminarTurnoPlantilla(id_turno_eliminar);
+            actualizarTreeView();
+            ocultarModalConfirmacion();
+        }
+
+        function cancelarEliminacion() {
+            document.getElementById('id_turno_eliminar').value = "";
+            ocultarModalConfirmacion();
+        }
+
+        function cargarTurnoPlantilla(turno){
+            let turnoAux = obtenerTurnoPlantillaAuxPorId(turno.id);
+            document.getElementById('id_modal').value = turnoAux.id;
+            document.getElementById('fecha_evento').value = turnoAux.hora_entrada;
+            document.getElementById('hora_entrada').value = turnoAux.hora_entrada;
+            document.getElementById('hora_salida').value = turnoAux.hora_salida;
+            document.getElementById('inicio_marcacion_entrada').value = turnoAux.inicio_marcacion_entrada;
+            document.getElementById('fin_marcacion_entrada').value = turnoAux.fin_marcacion_entrada;
+            document.getElementById('inicio_marcacion_salida').value = turnoAux.inicio_marcacion_salida;
+            document.getElementById('fin_marcacion_salida').value = turnoAux.fin_marcacion_salida;
+        }
+
+        // ###############################################
+        // ##           CRUD TURNOS PLANTILLA           ##
+        // ###############################################
+        
+        function obtenerTurnosPlantilla() {
+            return turnosPlantilla;
+        }
+
+        function obtenerTurnoPlantillaPorId(id) {
+            const numId = parseInt(id);
+            return turnosPlantilla.find(x => x.id === numId);
+        }
+
+        function obtenerTurnoPlantillaAuxPorId(id) {
+            const numId = parseInt(id);
+            const turnoOriginal = turnosPlantilla.find(x => x.id === numId);
+            let turnoAux = { ...turnoOriginal };
+            return turnoAux;
+        }
+
+        function guardarTurnoPlantilla(turno) {
+            turno.id = parseInt(turno.id);
+            const index = turnosPlantilla.findIndex(x => x.id === turno.id);
+            if (index !== -1) {
+                turnosPlantilla[index] = turno;
+            } else {
+                turnosPlantilla.push(turno);
+            }
+            return true;
+        }
+
+        function eliminarTurnoPlantilla(id) {
+            const numId = parseInt(id);
+            const index = turnosPlantilla.findIndex(x => x.id === numId);
+            if (index !== -1) {
+                turnosPlantilla.splice(index, 1);
+            } else {
+                console.error(`Evento con id ${numId} no encontrado.`);
+            }
+        }
+
+
+        // ###############################################
+        // ##             FUNCIONES TREEVIEW            ##
+        // ###############################################
+
+        function crearTurnoPlantillaOnClick() {
+            limpiarModal();
+            mostrarBotonesNuevoTurnoPlantilla();
+            mostrarModal();
+        }
+
+        function agregarTurnoPlantillaTreeView() {
+            let hora_entrada = document.getElementById('hora_entrada').value;
+            let hora_salida = document.getElementById('hora_salida').value;
+            let inicio_marcacion_entrada = document.getElementById('inicio_marcacion_entrada').value;
+            let fin_marcacion_entrada = document.getElementById('fin_marcacion_entrada').value;
+            let inicio_marcacion_salida = document.getElementById('inicio_marcacion_salida').value;
+            let fin_marcacion_salida = document.getElementById('fin_marcacion_salida').value;
+
+            // Expresión regular para validar el formato HH:mm
+            let horaFormato = /^([0-1][0-9]|2[0-3]):([0-5][0-9])$/;
+
+            // Verificar que todos los campos sean obligatorios y estén en el formato correcto
+            if (!hora_entrada || !hora_salida || !inicio_marcacion_entrada
+                || !fin_marcacion_entrada || !inicio_marcacion_salida || !fin_marcacion_salida) {
+                    mensajeV1("Todos los campos son obligatorios.", msgAlerta, 3500);
+                    return;
+            }
+
+            // Validar que todos los campos tengan el formato HH:mm
+            if (!horaFormato.test(hora_entrada) || !horaFormato.test(hora_salida) ||
+                !horaFormato.test(inicio_marcacion_entrada) || !horaFormato.test(fin_marcacion_entrada) ||
+                !horaFormato.test(inicio_marcacion_salida) || !horaFormato.test(fin_marcacion_salida)) {
+                    mensajeV1("Por favor, ingrese las horas en el formato correcto HH:mm.", msgAlerta, 3500);
+                    return;
+            }
+
+            if (convertirAMinutos(hora_entrada) >= convertirAMinutos(hora_salida)) {
+                mensajeV1("La hora de entrada no puede ser mayor o igual a la hora de salida.", msgAlerta, 3500); return;
+            }
+
+            if (convertirAMinutos(inicio_marcacion_entrada) > convertirAMinutos(fin_marcacion_entrada)) {
+                mensajeV1("La hora del inicio de marcación de la entrada no puede ser mayor al fin de marcación.", msgAlerta, 3500); return;
+            }
+
+            if (convertirAMinutos(inicio_marcacion_salida) > convertirAMinutos(fin_marcacion_salida)) {
+                mensajeV1("La hora del inicio de marcación de la salida no puede ser mayor al fin de marcación.", msgAlerta, 3500); return;
+            }
+
+            if (convertirAMinutos(hora_entrada) < convertirAMinutos(inicio_marcacion_entrada) ||
+                convertirAMinutos(hora_entrada) > convertirAMinutos(fin_marcacion_entrada)) {
+                mensajeV1("La hora de entrada debe estar dentro del rango permitido de marcación de entrada.", msgAlerta, 3500); return;
+            }
+
+            if (convertirAMinutos(hora_salida) < convertirAMinutos(inicio_marcacion_salida) ||
+                convertirAMinutos(hora_salida) > convertirAMinutos(fin_marcacion_salida)) {
+                mensajeV1("La hora de salida debe estar dentro del rango permitido de marcación de salida.", msgAlerta, 3500); return;
+            }
+
+
+            var turno = {
+                id: new Date().getTime(),
+                id_jornada: 1,
+                hora_entrada: hora_entrada,
+                hora_salida: hora_salida,
+                inicio_marcacion_entrada: inicio_marcacion_entrada,
+                fin_marcacion_entrada: fin_marcacion_entrada,
+                inicio_marcacion_salida: inicio_marcacion_salida,
+                fin_marcacion_salida: fin_marcacion_salida,
+                descripcion_turno: `${hora_entrada} - ${hora_salida}`
+            };
+
+            guardarTurnoPlantilla(turno);
+
+            let treeViewInstance = document.getElementById("turnosPlantillaTreeView").ej2_instances[0];
+            treeViewInstance.refresh();
+
+            ocultarModal();
+        }
+
+        function onNodeDragStop(args) {
+            args.cancel = true;
+
+            const timestampEvento = args.target.dataset.date;
+            if (!timestampEvento) {
+                return;
+            }
+
+            const calendarioDestino = args.target.closest(".e-schedule.e-droppable");
+            if (!calendarioDestino) {
+                return;
+            }
+
+            const celdaCalendario = args.target.closest(".e-work-cells");
+            if (!celdaCalendario) {
+                Message.warn("Debe arrastrar la cartelera a una fecha valida");
+                return;
+            }
+
+            var turnoPlantillaCopia = obtenerCopiaTurnoPlantillaPorId(parseInt(args.draggedNodeData.id));
+            turnoPlantillaCopia.inicio_marcacion_entrada = crearDateTimeDesdeTimestamp(parseInt(timestampEvento), turnoPlantillaCopia.inicio_marcacion_entrada);
+            turnoPlantillaCopia.hora_entrada = crearDateTimeDesdeTimestamp(parseInt(timestampEvento), turnoPlantillaCopia.hora_entrada);
+            turnoPlantillaCopia.fin_marcacion_entrada = crearDateTimeDesdeTimestamp(parseInt(timestampEvento), turnoPlantillaCopia.fin_marcacion_entrada);
+            turnoPlantillaCopia.inicio_marcacion_salida = crearDateTimeDesdeTimestamp(parseInt(timestampEvento), turnoPlantillaCopia.inicio_marcacion_salida);
+            turnoPlantillaCopia.hora_salida = crearDateTimeDesdeTimestamp(parseInt(timestampEvento), turnoPlantillaCopia.hora_salida);
+            turnoPlantillaCopia.fin_marcacion_salida = crearDateTimeDesdeTimestamp(parseInt(timestampEvento), turnoPlantillaCopia.fin_marcacion_salida);
+
+
+            if (!guardarEvento(turnoPlantillaCopia)) {
+                return;
+            }
+
+            actualizarAgenda();
+        }
+
+        function nodeClicked(args) {
+            let turno = {
+                id : args.node.dataset.uid
+            };
+
+            cargarTurnoPlantilla(turno);
+            mostrarBotonesEditarTurnoPlantilla();
+            mostrarModal();
+        }
+
+
+
+        // ###############################################
+        // ##           FUNCIONES AUXILIARES            ##
+        // ###############################################
+
+        function convertirAMinutos(hora) {
+            let [h, m] = hora.split(':').map(Number); return h * 60 + m;
+        }
+
+        function obtenerHoraMinuto(fechaEvento) {
+            let horaCompleta;
+
+            if (typeof fechaEvento === "string") {
+                // Si es un string, asumimos que tiene formato "YYYY-MM-DD HH:mm:ss"
+                const partes = fechaEvento.split(" ");
+                horaCompleta = partes[1];
+            } else if (fechaEvento instanceof Date) {
+                // Si es un objeto Date, extraemos la hora y los minutos
+                const horas = fechaEvento.getHours().toString().padStart(2, "0");
+                const minutos = fechaEvento.getMinutes().toString().padStart(2, "0");
+                return `${horas}:${minutos}`;
+            } else {
+                console.log("obtenerHoraMinuto: El formato de fechaEvento no es válido");
+            }
+
+            const [horas, minutos] = horaCompleta.split(":");
+            return `${horas}:${minutos}`;
+        }
+
+        function eventoOnClick(args){
+            cargarEvento(args.event);
+            mostrarBotonesEditarEvento();
+            mostrarModal();
+        }
+
+        function cancelarModalPorDefecto(args) {
+            args.cancel = true;
+        }
+
+        const obtenerCopiaTurnoPlantillaPorId = (id) => {
+            const jornada = turnosPlantilla.find(jornada => jornada.id === id);
+            let copia = { ...jornada };
+            copia.id = new Date().getTime();
+            return copia;
+        };
+
+        function crearDateTimeDesdeTimestamp(timestamp, horaMinutos) {
+            const fecha = new Date(timestamp);
+            const [horas, minutos] = horaMinutos.split(':').map(Number);
+            fecha.setHours(horas, minutos, 0, 0);
+            return fecha;
+        }
+
+        function crearDateTimeDesdeDate(date, horaMinutos) {
+            let fecha = new Date(date.getTime());
+            let [horas, minutos] = horaMinutos.split(':').map(Number);
+            fecha.setHours(horas, minutos, 0, 0);
+            return fecha;
+        }
+
+        function actualizarAgenda() {
+            let scheduleObj = document.getElementById('schedule').ej2_instances[0];
+            scheduleObj.refresh();
+        }
+
+        function actualizarTreeView() {
+            let treeViewInstance = document.getElementById("turnosPlantillaTreeView").ej2_instances[0];
+            treeViewInstance.refresh(); 
+        }
+
+        function formatearFecha(date) {
+            const d = new Date(date);
+            const year = d.getFullYear();
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            const hours = String(d.getHours()).padStart(2, '0');
+            const minutes = String(d.getMinutes()).padStart(2, '0');
+            const seconds = String(d.getSeconds()).padStart(2, '0');
+            return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.000`;
+        }
+
+        function formatearEventos(){
+            eventos.forEach(evento => {
+                evento.hora_entrada = formatearFecha(evento.hora_entrada);
+                evento.hora_salida = formatearFecha(evento.hora_salida);
+                evento.inicio_marcacion_entrada = formatearFecha(evento.inicio_marcacion_entrada);
+                evento.fin_marcacion_entrada = formatearFecha(evento.fin_marcacion_entrada);
+                evento.inicio_marcacion_salida = formatearFecha(evento.inicio_marcacion_salida);
+                evento.fin_marcacion_salida = formatearFecha(evento.fin_marcacion_salida);
+            });
+
+        }
+
+        function Guardar(){
+            formatearEventos();
+            let eventosJSON = JSON.stringify(eventos);
+            let turnosPlantillaJSON = JSON.stringify(turnosPlantilla);
+            document.getElementById('eJornada_detalleJSON').value = eventosJSON;
+            document.getElementById('eJornada_turnoPlantillaJSON').value = turnosPlantillaJSON;
+        }
+    </script>
+
+
+}
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        function irAListado() {
+            window.document.location.href = '@Url.Action("Listado", "Jornada")';
+        }
+
+        //Despues del Submit del Form Principal
+        function fnSuccess(data) {
+            if (data.transaccion == true) {
+                mensajeV1("Transacción exitosa!", msgOk);
+                irAListado();
+            }
+            else
+                mensajeV1(data.mensaje, msgError);
+        }
+
+        function fnFailure() {
+            mensajeV1(errorServidor, msgOk);
+        }
+    </script>
+
+}

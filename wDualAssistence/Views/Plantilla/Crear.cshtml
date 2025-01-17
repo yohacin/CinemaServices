@@ -1,0 +1,1815 @@
+﻿
+@{
+    ViewData["Title"] = "Plantillas";
+    ViewData["Navbar-Title"] = "Notificador > Crear Plantilla";
+}
+
+@model wDualAssistence.Models.PlantillaViewModel;
+@using Syncfusion.EJ2.Navigations;
+
+@{
+    List<object> commands = new List<object>();
+    commands.Add(new { type = "Edit", buttonOption = new { iconCss = "e-icons e-edit", cssClass = "e-flat" } });
+    commands.Add(new { type = "Delete", buttonOption = new { iconCss = "e-icons e-delete", cssClass = "e-flat" } });
+}
+
+@{
+    List<object> commandsAdjuntos = new List<object>();
+    commandsAdjuntos.Add(new { type = "Edit", buttonOption = new { iconCss = "e-icons e-edit", cssClass = "e-flat" } });
+    commandsAdjuntos.Add(new { type = "Delete", buttonOption = new { iconCss = "e-icons e-delete", cssClass = "e-flat" } });
+    commandsAdjuntos.Add(new { type = "Save", buttonOption = new { iconCss = "e-icons e-update", cssClass = "e-flat" } });
+    commandsAdjuntos.Add(new { type = "Cancel", buttonOption = new { iconCss = "e-icons e-cancel-icon", cssClass = "e-flat" } });
+}
+
+@{
+    var headerQuery = new TabHeader { Text = "Diseñar Consulta BD", IconCss = "fa fa-table" };
+    var headerPlantilla = new TabHeader { Text = "Diseño de la Plantilla", IconCss = "fa fa-file-code-o" };
+    var headerAdjuntos = new TabHeader { Text = "Adjuntos", IconCss = "fa fa-file-o" };
+}
+
+@{
+    var uploaderSettings = new Syncfusion.EJ2.Inputs.UploaderAsyncSettings { SaveUrl = @Url.Content("~/File/GuardarAdjuntosPlantilla"), RemoveUrl = @Url.Content("~/File/EliminarAdjuntoPlantilla") };
+}
+
+@section Styles {
+
+    @* UPLOADER STYLES *@
+    <link href="~/css/style_adjuntos.css" asp-append-version="true" rel="stylesheet" />
+    <style type="text/css">
+        select {
+            padding-left: 3%;
+        }
+
+        .e-file-drop {
+            color: white !important;
+        }
+
+        .wrapper-upload {
+            height: max-content;
+        }
+
+        .estado {
+            display: inline;
+        }
+
+        div.wrapper-upload {
+            height: 68px;
+        }
+
+            div.wrapper-upload .row {
+                height: 100%
+            }
+
+        .e-file-select-wrap {
+            background: #3c3c3e;
+        }
+
+        .contenedor-icono {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            height: 100%;
+        }
+
+
+        .e-upload-files {
+            overflow-x: hidden;
+            overflow-y: auto;
+            max-height: 222px;
+        }
+
+            .e-upload-files li {
+                max-height: 72px;
+            }
+
+        .e-upload-progress-bar {
+            display: block;
+            background: #6daf6d !important;
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        .e-progress-inner-wrap {
+            display: block;
+            position: relative;
+            height: 8px;
+            width: 100%;
+        }
+
+        .e-progress-bar-text {
+            position: relative;
+            /*top: 6px;*/
+        }
+
+        .name-file {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+
+        .panel-collapse .panel-body {
+            visibility: visible;
+            height: auto;
+            font-size: 20px;
+        }
+
+        .contenedor-seguimientos {
+            text-align: left;
+        }
+
+        .estado-seguimiento {
+            border-radius: 4px;
+            text-align: center;
+            color: white;
+            background: #f89406;
+        }
+
+        /*#region Estilos del Componente para subir Archivos*/
+        #docs-spc .e-file-select-wrap {
+            /*border-radius: 50%;
+        height: 200px;
+        width: 200px;
+        background-image: linear-gradient(to bottom, #f1f1f1, #DBDBDB);
+        border: 1px dashed #7d7777;
+        display: inline-block;
+        position: sticky;
+        left: 30px;
+        top: 14px;*/
+            border-radius: 50%;
+            height: 200px;
+            width: 200px;
+            background-image: linear-gradient(to bottom, #f1f1f1, #DBDBDB);
+            border: 1px dashed #7d7777;
+            display: inline-block;
+            position: sticky;
+            top: 10%;
+        }
+
+        #docs-spc .e-upload {
+            border: 1px solid transparent !important;
+            display: flex;
+            justify-content: center;
+            justify-items: center;
+        }
+
+        #docs-spc .e-file-select-wrap .e-btn {
+            position: relative;
+            margin-top: 50px;
+            display: inline-block;
+        }
+
+        #docs-spc .e-file-select-wrap .e-file-drop {
+            color: #007bcc !important;
+            display: inline-block;
+            position: relative;
+            font-weight: bold;
+        }
+
+        #docs-spc .e-upload.e-lib.e-keyboard .e-upload-files {
+            display: inline-block;
+            position: sticky;
+            border: 1.5px dashed #ff6700;
+            right: 0;
+            left: calc(40% - 200px);
+            /* margin-right: 0; */
+            /* margin-left: calc(40% - 200px); */
+            width: 80%;
+            border-radius: 5px;
+            top: 10%;
+        }
+
+        @@media screen and (max-width: 1040px) {
+            #docs-spc .e-upload.e-lib.e-keyboard .e-upload-files {
+                margin-left: 0 !important;
+                width: 100%;
+                margin-top: 25px;
+            }
+
+            #docs-spc .e-file-select-wrap {
+                position: relative;
+            }
+        }
+        /*#endregion*/
+
+        /*#region Estilos para tipo de formatos en Archivos subidos*/
+        .fondoVerArchivo {
+            background-color: #e5e5e5;
+            width: auto;
+            height: 100px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .iconoArchivo {
+            font-size: 5em;
+            border-radius: 5px;
+            color: #fff;
+            padding: 5px;
+        }
+
+            .iconoArchivo.pdf {
+                background-color: darkred;
+            }
+
+            .iconoArchivo.word {
+                background-color: #12287f;
+            }
+
+            .iconoArchivo.excel {
+                background-color: green;
+            }
+
+            .iconoArchivo.powerpoint {
+                background-color: #ff6700;
+            }
+
+            .iconoArchivo.winrar {
+                background-color: gray;
+            }
+
+            .iconoArchivo.video {
+                background-color: #2babd5;
+            }
+
+            .iconoArchivo.imagen {
+                background-color: #cbb81b;
+            }
+        /*#endregion*/
+    </style>
+
+
+    <style type="text/css">
+        .e-richtexteditor .e-rte-hidden {
+            display: none;
+        }
+
+        .item-list {
+            width: 100%;
+            max-height: 408px;
+            overflow-y: auto;
+        }
+
+        .container-hidden {
+            display: none;
+        }
+
+        .item-option {
+            cursor: pointer;
+            width: 100%;
+            background: #ececec;
+            color: black;
+            border: 1px solid #d0d0d0;
+            border-left: none;
+            border-right: none;
+            border-top: none;
+            padding: 6px 8px;
+            margin: 0;
+        }
+
+        .contenedor-label {
+            display: inline-block;
+            position: relative;
+            height: 26px;
+            width: calc(100% - 104px);
+        }
+
+        .texto-parametro {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            margin-bottom: 0;
+        }
+
+            .texto-parametro i {
+                padding: 0 10px;
+                font-size: 15px;
+            }
+
+            .texto-parametro:hover {
+                color: red;
+                cursor: pointer;
+            }
+
+        .contenedor-tabla-prueba {
+            display: block;
+            position: relative;
+            width: 100%;
+            overflow-x: auto;
+            height: calc(100vh - 200px);
+        }
+
+        table.tabla-prueba, table.tabla-prueba th, table.tabla-prueba td {
+            border: 1px solid black;
+        }
+
+        .margin-btn {
+            margin: 2px 0 6px;
+        }
+
+        span.dropdown-style, span.dropdown-style input.e-input {
+            height: 28px !important;
+        }
+
+            span.dropdown-style span.e-input-group-icon {
+                min-height: 27px !important;
+            }
+
+        fieldset {
+            margin: 10px 0 0 0;
+        }
+
+            fieldset legend {
+                font-size: 13px;
+                padding: 4px 8px 2px 8px;
+            }
+    </style>
+}
+
+<div class="content-wrapper">
+    <div class="content">
+        <div class="panel panel-default">
+            <div class="panel-heading heading-primary">
+
+                <div class="row" style="display: flex; align-items: center;">
+                    <div class="col-lg-3" style="width: max-content;">
+                        <span class="capa_btn volver">
+                            <button class="btn btn-base cancelar" type="button" onclick="irAListado()">
+                                <span class="fa span-button volver"></span>
+                                <p class="text-button-primary">VOLVER</p>
+                            </button>
+                        </span>
+
+                        <span class="capa_btn confirmar">
+                            <button id="botonGuardar" type="submit" class="btn btn-base guardar" onclick="guardar()">
+                                <span class="fa span-button confirmar"></span>
+                                <p class="text-button-primary">Guardar</p>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="col-lg-2" style="width: max-content;">
+                        <h4> Nombre Plantilla:</h4>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="e-input-group e-small">
+                            <input id="nombrePlantilla" autofocus class="e-input" type="text" value="@Model.ePlantilla.nombre">
+                        </div>
+                    </div>
+                    <div class="col-lg-2" style="width: max-content;">
+                        <h4> Tipo:</h4>
+                    </div>
+                    <div class="col-lg-2">
+                        <ejs-dropdownlist id="tipo" cssClass="dropdown-style"
+                                          dataSource="@Model.oLstTipoPlantilla"
+                                          placeholder="Seleccione el Tipo"
+                                          ejs-for="ePlantilla.tipoPlantilla"
+                                          change="changeTipo"
+                                          created="selectTipoCreated"
+                                          popupHeight="220px">
+                            <e-dropdownlist-fields text="descripcion" value="valor_referencial"></e-dropdownlist-fields>
+                        </ejs-dropdownlist>
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel-body">
+                <section class="content">
+                    <form class="form-horizontal" asp-controller="Plantilla" asp-action="Post" autocomplete="off" data-ajax="true" data-ajax-method="POST"
+                          data-ajax-begin="onAjaxBegin" data-ajax-complete="onAjaxComplete" data-ajax-loading="#loading"
+                          data-ajax-success="fnSuccess(data)" data-ajax-failure="fnFailure()">
+
+                        <button id="btnGuardar" type="submit" style="display:none"></button>
+
+                        <input class="e-input" asp-for="ePlantilla.id" type="hidden">
+                        <input class="e-input" asp-for="ePlantilla.id_empresa" type="hidden">
+                        <input id="valorNombre" asp-for="ePlantilla.nombre" type="hidden">
+                        <input id="valorTipo" type="hidden" asp-for="ePlantilla.tipoPlantilla" />
+                        <input id="valorContenido" type="hidden" asp-for="ePlantilla.contenido" />
+
+                        <input id="valorSerializedQueries" type="hidden" asp-for="ePlantilla.serializedQueries" />
+                        <input id="valorSerializedAdjuntos" type="hidden" asp-for="ePlantilla.serializedAdjuntos" />
+
+                    </form>
+
+                    <ejs-tab id="tabContactos"
+                             cssClass="headerTab"
+                             selecting="onSelectTab"
+                             animation="ViewBag.animation">
+                        <e-tab-tabitems>
+                            <e-tab-tabitem header="@headerPlantilla" content="#datosPlantilla"></e-tab-tabitem>
+                            <e-tab-tabitem header="@headerQuery" content="#datosQuery"></e-tab-tabitem>
+                            <e-tab-tabitem header="@headerAdjuntos" content="#datosAdjuntos"></e-tab-tabitem>
+                        </e-tab-tabitems>
+                    </ejs-tab>
+                </section>
+
+                <div id="datosQuery" style="display:none;">
+                    <div class="row">
+                        <div class="col-12 col-lg-4 col-md-4">
+                            <div class="row">
+                                <fieldset>
+                                    <legend>
+                                        <span class="fa fa-list-alt"></span>
+                                        CONSULTAS A BASE DE DATOS
+                                    </legend>
+                                    <ejs-grid id="gridQueries"
+                                              created="onCreateGridQueries"
+                                              dataSource="@Model.ePlantilla.oLstQueries"
+                                              allowPaging="true"
+                                              allowFiltering="false"
+                                              commandClick="commandClickGridQueries"
+                                              locale="es"
+                                              gridLines="Both">
+                                        <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
+                                        <e-grid-editSettings allowAdding="true" allowDeleting="true"></e-grid-editSettings>
+                                        <e-grid-columns>
+                                            <e-grid-column field="nombre" headerText="Nombre Consulta" headerTextAlign="Center" textAlign="Left" width="20" allowFiltering="true"></e-grid-column>
+                                            <e-grid-column width="10" commands="commands" textAlign="Center"></e-grid-column>
+                                        </e-grid-columns>
+                                    </ejs-grid>
+                                </fieldset>
+
+                                <fieldset>
+                                    <legend>
+                                        <span class="fa fa-database"></span>
+                                        REGISTRO DE CONSULTA
+                                    </legend>
+                                    <form id="formQuery">
+                                        <div class="row">
+                                            <div class="col-12 col-lg-8" style="padding-left: 0;">
+                                                <h4> Nombre:</h4>
+                                                <div class="e-input-group e-small">
+                                                    <input class="e-input" type="text" name="nombre" required />
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-4" style="padding-right: 0;padding-left:0;">
+                                                <h4 style="visibility:hidden;"> Boton:</h4>
+                                                <span class="capa_btn info">
+                                                    <button id="botonAdicionarQuery" type="button" class="btn btn-base agregar" onclick="agregarQuery()">
+                                                        <span class="fa span-button"></span>
+                                                        <p class="text-button-primary">Añadir</p>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h4> Consulta:</h4>
+                                                <span class="capa_btn finalizar margin-btn">
+                                                    <button type="button" class="btn btn-base limpiar" onclick="limpiarQuery()">
+                                                        <span class="fa span-button finalizar"></span>
+                                                        <p class="text-button-primary">Limpiar</p>
+                                                    </button>
+                                                </span>
+                                                <span class="capa_btn info margin-btn">
+                                                    <button type="button" class="btn btn-base buscar" onclick="obtenerPreviewQuery()">
+                                                        <span class="fa span-button info"></span>
+                                                        <p class="text-button-primary">Ver Datos</p>
+                                                    </button>
+                                                </span>
+                                                <span class="capa_btn info">
+                                                    <button type="button" class="btn btn-base" onclick="mostrarModal('modalInfoConsulta')">
+                                                        <span class="fa fa-info span-button icono"></span>
+                                                    </button>
+                                                </span>
+                                                <div class="e-input-group e-small">
+                                                    <textarea id="query" class="e-input" rows="14" name="contenido" required></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-8 col-md-8">
+                            <fieldset>
+                                <legend>
+                                    <span class="fa fa-file-text"></span>
+                                    PREVISUALIZACIÓN DE DATOS
+                                </legend>
+                                <div id="contenedorPreview" class="contenedor-tabla-prueba">
+
+                                </div>
+                            </fieldset>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="datosPlantilla" style="display:none;">
+                    <div class="row">
+                        <div class="col-12 col-lg-5 col-md-5">
+                            <fieldset>
+                                <legend>
+                                    <span class="fa fa-user"></span>
+                                    PRUEBA DE PLANTILLA
+                                </legend>
+                                <div class="row">
+                                    <div class="col col-lg-6 col-md-12" id="contenedorCorreoPrueba" style="display:none;">
+                                        <h4> Correo de Prueba:</h4>
+                                        <div class="e-input-group e-small">
+                                            <input id="inputCorreoPrueba" class="e-input" type="text" value="yimmy.quispe@dualbiz.net">
+                                        </div>
+                                    </div>
+
+                                    <div class="col col-lg-6 col-md-12" id="contenedorSMSPrueba" style="display:none;">
+                                        <h4> Número de Prueba:</h4>
+                                        <div class="e-input-group e-small">
+                                            <input id="inputSMSPrueba" class="e-input" type="number">
+                                        </div>
+                                    </div>
+
+                                    <div class="col col-lg-6 col-md-12">
+                                        <h4 style="visibility:hidden;"> Enviar:</h4>
+                                        <span id="botonEnviarPrueba" style="display: none;" class="capa_btn info">
+                                            <button type="button" class="btn btn-base" onclick="probarPlantilla()">
+                                                <span class="fa fa-send span-button info"></span>
+                                                <p class="text-button-primary">Enviar</p>
+                                            </button>
+                                        </span>
+                                        <span class="capa_btn info">
+                                            <button type="button" class="btn btn-base" onclick="mostrarModal('modalInfoPrueba')">
+                                                <span class="fa fa-info span-button icono"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend>
+                                    <span class="fa fa-list"></span>
+                                    PARAMETROS DE CONSULTA
+                                </legend>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span class="capa_btn info margin-btn">
+                                            <button type="button" class="btn btn-base buscar" onclick="obtenerCampos()">
+                                                <span class="fa span-button info"></span>
+                                                <p class="text-button-primary">Obtener Datos Consultas</p>
+                                            </button>
+                                        </span>
+
+
+
+                                        <span class="capa_btn info">
+                                            <button type="button" class="btn btn-base" onclick="mostrarModal('modalInfoDatos')">
+                                                <span class="fa fa-info span-button icono"></span>
+                                            </button>
+                                        </span>
+
+                                        <div class="e-input-group e-small">
+                                            <div id="listCamposQuery" class="item-list">
+                                                Ingrese un query y obtenga los campos!
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                        </div>
+                        <div class="col col-lg-7 col-md-12">
+                            <fieldset>
+                                <legend>
+                                    <span class="fa fa-file-code-o"></span>
+                                    PLANTILLA DE CONTENIDO
+                                </legend>
+                                <div class="e-input-group e-small container-hidden" id="contenedorTexto">
+                                    <label><b style="color:red;">*</b>No exceder los 255 caracteres..</label> <span id="length-caracteres" class="length-caracteres">0</span>
+
+                                    <textarea id="textoContenido" class="e-input" rows="14" asp-for="ePlantilla.contenido" onchange="cambioSMS(this)">@Model.ePlantilla.contenido</textarea>
+                                </div>
+
+                                <div class="e-input-group e-small" id="contenedorEditor" style="display:none;">
+                                    <ejs-richtexteditor id="editorContenido"
+                                                        ejs-for="@Model.ePlantilla.contenido"
+                                                        value="@Model.ePlantilla.contenido"
+                                                        locale="es" created="EditorCreated"
+                                                        height="490px">
+                                        <e-richtexteditor-toolbarsettings items="@ViewBag.toolsBody"></e-richtexteditor-toolbarsettings>
+                                        <e-richtexteditor-insertimagesettings saveFormat="Base64"></e-richtexteditor-insertimagesettings>
+                                    </ejs-richtexteditor>
+                                </div>
+                            </fieldset>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="datosAdjuntos" style="display: none;">
+                    <div class="row">
+                        <div class="col-12 col-lg-5 col-md-5">
+                            <fieldset>
+                                <legend>
+                                    <span class="fa fa-user"></span>
+                                    CARGA DE ADJUNTOS
+                                </legend>
+                                <div class="row">
+                                    <ejs-uploader id="UploadFiles" removing="onFileRemove" locale="es"
+                                                  autoUpload="true" sequentialUpload="true" asyncSettings="@uploaderSettings"
+                                                  success="onUploadSuccess" failure="onUploadFailed" template="#uploaderTemplate"
+                                                  pausing="onPausing" selected="onSelectFiles" uploading="onBeforeUpload"
+                                                  progress="onFileUpload" created="onCreatedFileUploader"
+                                                  allowedExtensions=".png, .jpg, .jpeg, .pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .mp4, .wmv, .avi, .rar, .zip"
+                                                  files="ViewBag.documentos">
+                                    </ejs-uploader>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col col-lg-7 col-md-12">
+                            <fieldset>
+                                <legend>
+                                    <span class="fa fa-file-code-o"></span>
+                                    ADJUNTOS DE LA PLANTILLA
+                                </legend>
+                                <ejs-grid id="gridAdjuntos"
+                                          created="onCreateGridAdjuntos"
+                                          dataSource="@Model.ePlantilla.oLstAdjutos"
+                                          allowPaging="true"
+                                          allowFiltering="false"
+                                          commandClick="commandClickGridAdjuntos"
+                                          locale="es"
+                                          gridLines="Both">
+                                    <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
+                                    <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true"></e-grid-editSettings>
+                                    <e-grid-columns>
+                                        <e-grid-column field="id" isPrimaryKey="true" headerText="Id" headerTextAlign="Center" visible="false" textAlign="Left" width="0" allowFiltering="false"></e-grid-column>
+                                        <e-grid-column template="#templateTipoAdjunto" headerText="Tipo" allowEditing="false" headerTextAlign="Center" textAlign="Center" width="10" allowFiltering="true"></e-grid-column>
+                                        <e-grid-column field="alias" headerText="Nombre" validationRules="@(new { required=true})" headerTextAlign="Center" textAlign="Left" width="30" allowFiltering="true"></e-grid-column>
+                                        <e-grid-column template="#templateSize" visible="true" headerText="Tamaño" allowEditing="false" headerTextAlign="Center" textAlign="Right" width="10" allowFiltering="true"></e-grid-column>
+                                        <e-grid-column template="#templatePreview" visible="true" headerText="Ver" allowEditing="false" headerTextAlign="Center" textAlign="Right" width="25" allowFiltering="true"></e-grid-column>
+                                        <e-grid-column width="15" commands="commandsAdjuntos" textAlign="Center"></e-grid-column>
+                                    </e-grid-columns>
+                                </ejs-grid>
+                            </fieldset>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Info Prueba -->
+<div id="modalInfoPrueba" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Información</h4>
+            </div>
+            <div class="modal-body">
+
+                <p>Envie un mensaje o correo de prueba para visualizar el resultado final de diseño de la plantilla con los datos proporcionados!</p>
+                <p>En caso de tener consultas a base de datos asignadas, se sustituiran las palabras clave con la información proporcionada por la consulta.</p>
+
+            </div>
+            <div class="modal-footer">
+                <span class="capa_btn finalizar">
+                    <button class="btn btn-base cancelar" data-dismiss="modal" type="button">
+                        <span class="fa span-button finalizar"></span>
+                        <p class="text-button-primary">Cerrar</p>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- endregion -->
+<!-- Modal Info Consultas -->
+<div id="modalInfoConsulta" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Información</h4>
+            </div>
+            <div class="modal-body">
+
+                <p>Ingrese una consulta SQL para obtener los parametros de la plantilla.</p>
+                <p>Los datos proporcionados por la consulta, pueden ser interpretados en función de la columna como:</p>
+                <ul>
+                    <li><strong>texto</strong>: el valor se representará como texto simple</li>
+                    <li><strong>numérico</strong>: el valor se representará con formato numérico</li>
+                    <li><strong>fecha</strong>: el valor se representará con formato de fecha</li>
+                    <li><strong>tabla</strong>: el valor se representará con una tabla</li>
+                </ul>
+
+            </div>
+            <div class="modal-footer">
+                <span class="capa_btn finalizar">
+                    <button class="btn btn-base cancelar" data-dismiss="modal" type="button">
+                        <span class="fa span-button finalizar"></span>
+                        <p class="text-button-primary">Cerrar</p>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- endregion -->
+<!-- Modal Info Datos -->
+<div id="modalInfoDatos" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Información</h4>
+            </div>
+            <div class="modal-body">
+
+                <p>Ingrese una consulta SQL para obtener los parametros de la plantilla.</p>
+                <p>Los datos proporcionados por la consulta, pueden ser interpretados en función de la columna como:</p>
+                <ul>
+                    <li><strong>texto</strong>: el valor se representará como texto simple</li>
+                    <li><strong>numérico</strong>: el valor se representará con formato numérico</li>
+                    <li><strong>fecha</strong>: el valor se representará con formato de fecha</li>
+                    <li><strong>tabla</strong>: el valor se representará con una tabla</li>
+                </ul>
+
+            </div>
+            <div class="modal-footer">
+                <span class="capa_btn finalizar">
+                    <button class="btn btn-base cancelar" data-dismiss="modal" type="button">
+                        <span class="fa span-button finalizar"></span>
+                        <p class="text-button-primary">Cerrar</p>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- endregion -->
+
+<form id="formObtenerCamposQuery" asp-controller="Plantilla" asp-action="ObtenerCamposQuery" autocomplete="off" data-ajax="true" data-ajax-method="POST"
+      data-ajax-begin="onAjaxBegin" data-ajax-complete="onAjaxComplete" data-ajax-loading="#loading"
+      data-ajax-success="fnSuccessCampos(data)" data-ajax-failure="fnFailureCampos(xhr, status, error)">
+    <button id="btnObtenerCampos" type="submit" style="display:none"></button>
+    <input type="hidden" id="queryCampos" name="serializedQueries">
+</form>
+
+<form id="formObtenerPreviewQuery" asp-controller="Plantilla" asp-action="ObtenerPreviewQuery" autocomplete="off" data-ajax="true" data-ajax-method="POST"
+      data-ajax-begin="onAjaxBegin" data-ajax-complete="onAjaxComplete" data-ajax-loading="#loading"
+      data-ajax-success="fnSuccessPreview(data)" data-ajax-failure="fnFailurePreview(xhr, status, error)">
+    <button id="btnObtenerPreview" type="submit" style="display:none"></button>
+    <input type="hidden" id="queryPreview" name="query" value="0">
+</form>
+
+
+@section PreScripts {
+    @* UPLOADER TEMPLATE *@
+    <script type="text/x-template" id="uploaderTemplate">
+        <div class='wrapper-upload'>
+            <div class="row" style="display: flex; align-items: center;">
+                <div class="col-xs-2 col-sm-2 col-lg-2 col-md-2 contenedor-icono">
+                    ${getIconoTipoArchivo(type)}
+                    @*<span class='icon template-icons sf-icon-${type}'></span>*@
+                </div>
+                <div class="col-xs-10 col-sm-10 col-lg-10 col-md-10">
+                    <div class="name-file">
+                        <strong>Nombre: </strong> ${name}
+                    </div>
+                    <div class="size-file">
+                        <strong>Tamaño: </strong> ${redondear(data.size)} MB
+                    </div>
+                    <div class="status-file">
+                        <strong>Estado: </strong>
+                        <div class="estado">${status}</div>
+                    </div>
+                    <div class="progress-file">
+                        <span class="e-upload-progress-wrap" style="display: block; position: relative; height: max-content; width: 100%;">
+                            <span class="e-progress-inner-wrap">
+                                <progressbar class="e-upload-progress-bar e-upload-progress" value="0" max="100">
+                                </progressbar>
+                            </span>
+                            <span class="e-progress-bar-text"></span>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <span class='e-icons e-file-remove-btn' style="top: 56%;" title='Remove' onclick="onSelectFileRemove(`${name}`)"></span>
+    </script>
+
+    @* UPLOADER TEMPLATE FUNCTIONS *@
+    <script type="text/javascript">
+        window.redondear = (n) => (n / 1048576).toFixed(2);
+
+        window.getIconoTipoArchivo = (sTipo) => {
+
+            let sClaseSpan = `icon template-icons sf-icon-${sTipo}`;
+            let colorIcono = "gray";
+
+            switch (sTipo.toLowerCase()) {
+                case "pdf":
+                    sClaseSpan = `fa fa-file-pdf-o`;
+                    colorIcono = "darkred";
+                    break;
+                case "doc":
+                case "docx":
+                    sClaseSpan = `fa fa-file-word-o`;
+                    colorIcono = "#12287f";
+                    break;
+                case "xls":
+                case "xlsx":
+                    sClaseSpan = `fa fa-file-excel-o`;
+                    colorIcono = "green";
+                    break;
+                case "ppt":
+                case "pptx":
+                    sClaseSpan = `fa fa-file-powerpoint-o`;
+                    colorIcono = "#ff6700";
+                    break;
+                case "rar":
+                case "zip":
+                    sClaseSpan = `fa fa-file-zip-o`;
+                    colorIcono = "gray";
+                    break;
+                case "mp4":
+                case "avi":
+                case "wmv":
+                    sClaseSpan = `fa fa-file-movie-o`;
+                    colorIcono = "#2babd5";
+                    break;
+                default: //Imagenes
+                    sClaseSpan = `icon template-icons sf-icon-${sTipo}`;
+                    colorIcono = "#cbb81b";
+                    break;
+            }
+
+            let styleSpan = `background-color: ${colorIcono}; padding: 5px; font-size: 2em; color: white; border-radius: 5px; line-height: normal;`;
+            let spanIcono = `<span class='${sClaseSpan}' style='${styleSpan}'></span>`;
+
+            return spanIcono;
+        }
+    </script>
+
+    @* UPLOADER FUNCTIONS *@
+    <script type="text/javascript">
+        var btnSubmit = document.getElementById('botonGuardar'); // Cambiar por el id del boton guardar
+        var oUploaderDocumentos;
+        var longitudRutaRecurso = @Model.longitudRutaRecurso;
+        var lstFormatosValidos = @(Html.ToJson(Model.listaTipoArchivosPermitidos));
+        const adjuntosUrl = '@Model.adjuntosUrl';
+
+        function crearObjetoAdjunto(uploadedFile, dataResponse) {
+            let entityAdjunto = {};
+
+            let lastIndex = dataResponse.nombre.lastIndexOf('.');
+            let nombreLimpio = dataResponse.nombre.substring(0, lastIndex);
+
+            entityAdjunto.id = new Date().getTime();
+            entityAdjunto.id_plantilla = 0;
+            entityAdjunto.nombre = dataResponse.nombre;
+            //entityAdjunto.path = dataResponse.path; //guarda la ruta fisica
+            entityAdjunto.path = `${adjuntosUrl}${dataResponse.nombre}`;
+            entityAdjunto.mime = uploadedFile.rawFile.type;
+            entityAdjunto.extension = uploadedFile.type;
+            entityAdjunto.size = uploadedFile.size;
+            entityAdjunto.alias = nombreLimpio;
+
+            return entityAdjunto;
+        }
+
+        function onCreatedFileUploader() {
+            oUploaderDocumentos = document.getElementById('UploadFiles').ej2_instances[0];
+        }
+
+        function onSelectFiles(args) {
+
+            ////Validar archivos al arrastrar
+            //if (event.type === 'drop') {
+
+            //    let files = args.filesData;
+            //    let modifiedFiles = [];
+            //    for (let i = 0; i < files.length; i++) {
+            //        let file = files[i];
+            //        if (lstFormatosValidos.indexOf( file.type.toLowerCase() ) === -1) {
+            //            file.status = '¡ El tipo de archivo no esta permitido !';
+            //            file.statusCode = '0';
+            //        }
+            //        modifiedFiles.push(file);
+            //    }
+            //    args.isModified = true;
+            //    args.modifiedFilesData = modifiedFiles.concat(oUploaderDocumentos.filesData);
+            //}
+            let archivos = args.filesData.slice(0);
+
+            let archivosValidos = [];
+
+            console.debug('formatos validos: ', lstFormatosValidos);
+
+            for (let archivo of archivos) {
+                let formatoValido = lstFormatosValidos.find(formato => formato.extension == archivo.type.toLowerCase());
+
+                console.log("formatoValido", formatoValido);
+                if (formatoValido) {
+                    console.log("archivo valido...");
+                    let tamanoMax = formatoValido.tamano_max;
+                    let tamanoMaxBytes = tamanoMax * 1000000;
+                    if (archivo.size > tamanoMaxBytes) {
+                        mensajeV1(`El archivo supera el tamaño maximo permitido a ${tamanoMax}MB`, msgError);
+                        break;
+                    }
+                } else {
+                    mensajeV1('¡ Tipo de archivo no esta permitido !', msgError);
+                    break;
+                }
+
+                let longitudRutaCompleta = archivo.name.length + longitudRutaRecurso;
+
+                if (longitudRutaCompleta > 250) {
+                    mensajeV1('¡ El nombre del archivo es demasiado largo !', msgError);
+                    //args.cancel = true;
+                    break;
+                }
+
+                archivosValidos.push(archivo);
+            }
+
+            if (args.filesData.length != archivosValidos.length) {
+                args.filesData = archivosValidos;
+                args.modifiedFilesData = args.filesData;
+                args.isModified = true;
+            }
+
+            if (args.filesData.length > 0) {
+                args.cancel = false;
+            } else {
+                args.cancel = true;
+            }
+        }
+
+        // Se dispara cuando empieza a cargar el archivo
+        function onBeforeUpload(args) {
+            archivosSubidos = false;
+
+            btnSubmit.disabled = true;
+
+            let pesoEnBytes = args.fileData.size;
+
+            //if (args.fileData) {
+            //    args.fileData.name = args.fileData.name.replace(" ", "_");
+            //}
+
+            console.log('peso en bytes', pesoEnBytes);
+        }
+
+        function onFileRemove(args) {
+            oUploaderDocumentos.remove(args.filesData, false, true);
+        }
+
+        function onUploadSuccess(args) {
+            btnSubmit.disabled = false;
+            let li = this.uploadWrapper.querySelector('[data-file-name="' + args.file.name + '"]');
+            li.getElementsByClassName('estado')[0].textContent = args.statusText;
+
+            console.debug('on Success file: ', args);
+
+            let fileUploaded = args.file;
+
+            let response = JSON.parse(args.e.srcElement.responseText);
+            mensajeV1(response.Mensaje, msgOk);
+
+            let adjunto = crearObjetoAdjunto(fileUploaded, response.Data);
+
+            gridAdjuntos.dataSource.push(adjunto);
+            gridAdjuntos.refresh();
+        }
+
+        function onUploadFailed(args) {
+            mensajeV1("¡ No se pudo subir el archivo !", msgError);
+        }
+
+        // to update flag variable value for automatic pause and resume
+        function onPausing(args) {
+            if (args.event !== null && !navigator.onLine) {
+                isInteraction = true;
+            }
+            else {
+                isInteraction = false;
+            }
+        }
+
+        function onFileUpload(args) {
+            let li = this.uploadWrapper.querySelector('[data-file-name="' + args.file.name + '"]');
+            let progressValue = Math.round((args.e.loaded / args.e.total) * 100);
+
+            //li.getElementsByTagName('progress')[0].value = progressValue;
+            //li.getElementsByClassName('percent')[0].textContent = progressValue.toString() + " %";
+        }
+
+        function onSelectFileRemove(sNombre) {
+
+            let oArchivo = oUploaderDocumentos.filesData.find(function (element) {
+                return element.name == sNombre;
+            });
+
+            if (oArchivo) {
+                oUploaderDocumentos.remove(oArchivo, false, true);
+            }
+
+            console.log("oArchivo", oArchivo);
+            console.log("oUploaderDocumentos", oUploaderDocumentos);
+        }
+    </script>
+
+    @* GRID ADJUNTOS TEMPLATE *@
+    <script id="templateTipoAdjunto" type="text/x-template">
+        ${getIconoTipoArchivo(extension)}
+    </script>
+
+    <script id="templateSize" type="tex/x-templete">
+        ${redondear(size)} MB
+    </script>
+
+    <script id="templatePreview" type="text/x-template">
+        ${getPreviewTipoAdjunto(extension, nombre, alias)}
+    </script>
+
+    @* GRID ADJUNTOS TEMPLATE FUNCTIONS *@
+<script type="text/javascript">
+        function verAdjunto(adjuntoRuta) {
+            let url = window.location.origin + adjuntoRuta;
+            window.open(url, '_blank');
+        }
+
+    const urlBase = `@Url.Content("~/")`;
+
+        window.getPreviewTipoAdjunto = (tipo, nombre, alias) => {
+            const adjuntosUrl = '@Model.adjuntosUrl';
+            let url = `${urlBase}adjuntosPlantilla/${nombre}`;
+            let contenido;
+            switch (tipo) {
+                case "pdf":
+                    contenido =
+                        `<div class="fondoVerArchivo">
+                            <a download="${alias}" href="${url}" data-toggle="tooltip" data-placement="top" title="Descargar Archivo">
+                                <span class="fa fa-cloud-download iconoArchivo"></span>
+                            </a>
+                         </div>`;
+                    break;
+
+                case "doc":
+                case "docx":
+                    contenido =
+                        `<div class="fondoVerArchivo">
+                            <a download="${alias}" href="${url}" data-toggle="tooltip" data-placement="top" title="Descargar Archivo">
+                                <span class="fa fa-cloud-download iconoArchivo"></span>
+                            </a>
+                         </div>`;
+                    break;
+
+                case "xls":
+                case "xlsx":
+                    contenido =
+                        `<div class="fondoVerArchivo">
+                            <a download="${alias}" href="${url}" data-toggle="tooltip" data-placement="top" title="Descargar Archivo">
+                                <span class="fa fa-cloud-download iconoArchivo"></span>
+                            </a>
+                         </div>`;
+                    break;
+
+                case "ppt":
+                case "pptx":
+                    contenido =
+                        `<div class="fondoVerArchivo">
+                            <a download="${alias}" href="${url}" data-toggle="tooltip" data-placement="top" title="Descargar Archivo">
+                                <span class="fa fa-cloud-download iconoArchivo"></span>
+                            </a>
+                         </div>`;
+                    break;
+
+                case "rar":
+                case "zip":
+                    contenido =
+                        `<div class="fondoVerArchivo">
+                            <a download="${alias}" href="${url}" data-toggle="tooltip" data-placement="top" title="Descargar Archivo">
+                                <span class="fa fa-cloud-download iconoArchivo"></span>
+                            </a>
+                         </div>`;
+                    break;
+
+                case "mp4":
+                case "avi":
+                case "wmv":
+                    contenido =
+                        `<div class="fondoVerArchivo">
+                            <a download="${alias}" href="${url}" data-toggle="tooltip" data-placement="top" title="Descargar Archivo">
+                                <span class="fa fa-cloud-download iconoArchivo"></span>
+                            </a>
+                        </div>`;
+                    break;
+
+                default: //Imagenes
+                    contenido = `<img src="${url}" width="200" height="100" data-toggle="tooltip" data-placement="top" title="Ver Imagen"/>`;
+            }
+
+            return contenido;
+        }
+</script>
+
+    @* GRID ADJUNTOS FUNCTIONS *@
+    <script type="text/javascript">
+        var gridAdjuntos;
+
+        function onCreateGridAdjuntos() {
+            gridAdjuntos = document.getElementById('gridAdjuntos').ej2_instances[0];
+            console.debug('created grid adjuntos', gridAdjuntos);
+            if (gridAdjuntos.dataSource.length == 0) {
+                gridAdjuntos.dataSource = [];
+            }
+        }
+
+        function commandClickGridAdjuntos(args) {
+            console.debug('click command grid adjuntos: ', args);
+        }
+    </script>
+
+
+    <script type="text/javascript">
+
+        window.addEventListener('load', ev => {
+            console.log('cargado crear plantilla');
+
+        });
+
+        var editorContenido;
+        var selectTipo;
+        const tipoCorreo = 1;
+        const tipoSMS = 2;
+        const edicion = @(Model.ePlantilla.edicion ? "true" : "false");
+        var gridQueries;
+
+        function onCreateGridQueries() {
+            gridQueries = document.getElementById('gridQueries').ej2_instances[0];
+            console.debug('created grid queries: ', gridQueries);
+        }
+
+        function commandClickGridQueries(args) {
+            console.debug('action grid query', args);
+
+            if (args.commandColumn.type == 'Edit') {
+                let formQuery = document.getElementById('formQuery');
+
+                let query = args.rowData;
+
+                for (let input of formQuery.querySelectorAll('.e-input[name]')) {
+                    console.debug('input', input);
+                    input.value = query[input.name];
+                }
+
+                indexQuery = gridQueries.dataSource.indexOf(query);
+                cambiarTextoAccionQuery();
+                obtenerPreviewQuery();
+            }
+
+            if (args.commandColumn.type == 'Delete') {
+                let query = args.rowData;
+                let index = gridQueries.dataSource.indexOf(query);
+                gridQueries.dataSource.splice(index, 1);
+                gridQueries.refresh();
+                args.cancel = true;
+            }
+        }
+
+        function resizeRicheditor() {
+            setTimeout(() => {
+                document.getElementById('editorContenido').dispatchEvent(new Event('resize'));
+            }, 500)
+        }
+
+        function onSelectTab(args) {
+            console.debug('on select tab', args);
+            try {
+                if (args.selectingIndex == 0) {
+                    //validarNombrePlantila();
+                    //validarTipoPlantilla();
+
+                    resizeRicheditor();
+                }
+            } catch (e) {
+                args.cancel = true;
+            }
+
+        }
+
+        function selectTipoCreated() {
+            selectTipo = document.getElementById("tipo").ej2_instances[0];
+
+            console.log('select tipo created', selectTipo);
+            let botonEnviarPrueba = document.getElementById('botonEnviarPrueba');
+
+            /* Para deshabilitar selección tipo SMS */
+            selectTipo.value = tipoCorreo;
+            selectTipo.enabled = false;
+
+            if (selectTipo.value == tipoCorreo) {
+                document.getElementById('contenedorEditor').style.display = 'block';
+                document.getElementById('textoContenido').setAttribute('disabled', true);
+
+                document.getElementById('contenedorCorreoPrueba').style.display = 'block';
+                document.getElementById('contenedorSMSPrueba').style.display = 'none';
+                botonEnviarPrueba.style.display = 'inline-block';
+                botonEnviarPrueba.querySelector('p').innerText = 'Enviar Correo';
+                resizeRicheditor();
+            }
+
+            if (selectTipo.value == tipoSMS) {
+                document.getElementById('contenedorTexto').style.display = 'block';
+
+                document.getElementById('contenedorCorreoPrueba').style.display = 'none';
+                document.getElementById('contenedorSMSPrueba').style.display = 'block';
+                botonEnviarPrueba.style.display = 'inline-block';
+                botonEnviarPrueba.querySelector('p').innerText = 'Enviar SMS';
+            }
+
+
+
+            if (edicion) {
+                selectTipo.enabled = false;
+            }
+
+        }
+
+        function EditorCreated() {
+            editorContenido = document.getElementById("editorContenido").ej2_instances[0];
+        }
+
+        function changeTipo(event) {
+            console.log('change tipo', event);
+            let botonEnviarPrueba = document.getElementById('botonEnviarPrueba');
+            if (event.value == tipoCorreo) {
+                document.getElementById('contenedorEditor').style.display = 'block';
+                document.getElementById('contenedorTexto').style.display = 'none';
+                document.getElementById('textoContenido').setAttribute('disabled', true);
+
+                document.getElementById('contenedorCorreoPrueba').style.display = 'block';
+                document.getElementById('contenedorSMSPrueba').style.display = 'none';
+                botonEnviarPrueba.querySelector('p').innerText = 'Enviar Correo';
+                resizeRicheditor();
+            } else {
+                document.getElementById('contenedorEditor').style.display = 'none';
+                document.getElementById('contenedorTexto').style.display = 'block';
+                document.getElementById('textoContenido').removeAttribute('disabled');
+
+                document.getElementById('contenedorCorreoPrueba').style.display = 'none';
+                document.getElementById('contenedorSMSPrueba').style.display = 'block';
+                botonEnviarPrueba.querySelector('p').innerText = 'Enviar SMS';
+            }
+
+            botonEnviarPrueba.style.display = 'inline-block';
+        }
+
+
+        function agregarItemCorreo(item) {
+            console.log(editorContenido);
+            var textItem = item;
+            editorContenido.value = ((editorContenido.value == null) ? "" : editorContenido.value) + textItem;
+        }
+
+        function actualizarTipoParametro(key, type, idQuery) {
+
+            //let regExp = RegExp(`{${key}\\|\\d}`, 'g');
+            //let regExp = RegExp(`{${key}\\|\\[[a-z]*\\]}`, 'g');
+            let regExp = RegExp(`{${key}\\|\\[[a-z]*\\]\\|${idQuery}}`, 'g');
+            console.log(regExp);
+
+            let nuevaClaveTipo = `{${key}|${type}|${idQuery}}`;
+            console.log(nuevaClaveTipo);
+
+            if (selectTipo.value == tipoCorreo && editorContenido.value) {
+
+                editorContenido.value = editorContenido.value.replace(regExp, nuevaClaveTipo);
+                return;
+            }
+
+            let textAreaSMS = document.getElementById('textoContenido');
+            if (selectTipo.value == tipoSMS && textAreaSMS.value) {
+
+                textAreaSMS.value = textAreaSMS.value.replace(regExp, nuevaClaveTipo);
+                return;
+            }
+        }
+
+        function agregarItemSMS(item) {
+
+            let textAreaSMS = document.getElementById('textoContenido');
+            let cursorPosition = textAreaSMS.selectionStart;// $('#cabecera_template').prop("selectionStart");
+            console.log(cursorPosition);
+
+            if (textAreaSMS.value.length + item.length <= 255) {
+                let parte1 = textAreaSMS.value.substring(0, cursorPosition);
+                let parte2 = textAreaSMS.value.substring(cursorPosition, textAreaSMS.value.length);
+                textAreaSMS.value = parte1 + item + parte2;
+            } else {
+                mensajeV1("No existe espacio para introducir el texto", msgAlerta);
+            }
+        }
+
+        function cambioSMS(textArea) {
+            var lengh = textArea.value.length;
+            console.log("lengh", lengh);
+
+            document.getElementById('length-caracteres').innerHTML = 255 - lengh;
+            if (lengh >= 255) {
+                document.getElementById('length-caracteres').style.color = 'red';
+            } else {
+                document.getElementById('length-caracteres').style.color = 'green';
+            }
+        }
+
+        var indexQuery;
+
+        function validarFormulario(formElement) {
+            for (var input of formElement.querySelectorAll('.e-input[name')) {
+
+                if (!input.checkValidity()) {
+                    let mensaje = `Ingrese el campo ${input.name}!`;
+                    mensajeV1(mensaje, msgError);
+                    throw mensaje;
+                }
+            }
+        }
+
+        function cambiarTextoAccionQuery() {
+            let botonTexto = document.getElementById('botonAdicionarQuery').querySelector('p');
+
+            if (indexQuery > -1) {
+                botonTexto.innerText = 'EDITAR';
+            } else {
+                botonTexto.innerText = 'AÑADIR';
+            }
+        }
+
+        function limpiarPreview() {
+            let contenedorPreview = document.getElementById('contenedorPreview');
+            contenedorPreview.innerHTML = '';
+        }
+
+        function agregarQuery() {
+            let formQuery = document.getElementById('formQuery');
+            let query = Object.fromEntries(new FormData(formQuery));
+
+            validarFormulario(formQuery);
+
+            if (indexQuery > -1) {
+                gridQueries.dataSource[indexQuery] = query;
+                indexQuery = -1;
+            } else {
+                gridQueries.dataSource.push(query);
+                console.debug('gridQueries', gridQueries.dataSource);
+                console.debug('gridAdjuntos', gridAdjuntos.dataSource);
+            }
+
+            cambiarTextoAccionQuery();
+
+            gridQueries.refresh();
+            formQuery.reset();
+            limpiarPreview();
+        }
+    </script>
+}
+
+
+@section Scripts {
+    <script type="text/javascript">
+
+        const tipoTexto = {
+            value: 1,
+            text: 'Texto',
+            parameterType: '[texto]'
+        };
+
+        const tipoNumerico = {
+            value: 2,
+            text: 'Numérico',
+            parameterType: '[numerico]'
+        };
+
+        const tipoFecha = {
+            value: 3,
+            text: 'Fecha',
+            parameterType: '[fecha]'
+        };
+
+        const tipoTabla = {
+            value: 4,
+            text: 'Tabla',
+            parameterType: '[tabla]'
+        }
+
+        function mostrarModal(id) {
+            $(`#${id}`).modal("show");
+        }
+
+        function irAListado() {
+            window.document.location.href = '@Url.Action("Listado","Plantilla")';
+        }
+
+        function fnSuccess(data) {
+            console.log('succes');
+            if (data.Result) {
+                mensajeV1(data.Msg, msgOk);
+                irAListado();
+            } else {
+                mensajeV1(data.Msg, msgError);
+            }
+        }
+
+        function fnFailure(err) {
+            mensajeV1(err, msgError);
+        }
+
+        function guardar() {
+            console.log('click en guardar');
+            validarNombrePlantila();
+            validarTipoPlantilla();
+
+            setValoresInputsHeader();
+            setQueries();
+            setAdjuntos();
+            document.getElementById("btnGuardar").click();
+        }
+
+        function setQueries() {
+            document.getElementById('valorSerializedQueries').value = JSON.stringify(gridQueries.dataSource);
+        }
+
+        function setAdjuntos() {
+            document.getElementById('valorSerializedAdjuntos').value = JSON.stringify(gridAdjuntos.dataSource);
+        }
+
+        function setValoresInputsHeader() {
+            document.getElementById('valorNombre').value = document.getElementById('nombrePlantilla').value;
+            document.getElementById('valorTipo').value = selectTipo.value;
+
+            if (selectTipo.value == tipoCorreo) {
+                document.getElementById('valorContenido').value = editorContenido.value;
+            }
+
+            if (selectTipo.value == tipoSMS) {
+                document.getElementById('valorContenido').value = document.getElementById('textoContenido').value;
+            }
+
+
+        }
+
+        function limpiarPreview() {
+            let preview = document.getElementById('contenedorPreview');
+            preview.innerHTML = '';
+        }
+
+        function limpiarQuery() {
+            let query = document.getElementById('query');
+            query.value = '';
+
+            limpiarPreview();
+        }
+
+        function validarQuery() {
+            let query = document.getElementById('query');
+
+            if (query.value == undefined || query.value == "") {
+                limpiarPreview();
+                let mensaje = 'Ingrese un Query!';
+                mensajeV1(mensaje, msgError);
+                throw mensaje;
+            }
+        }
+
+        function validarQueries() {
+            if (gridQueries.dataSource.length == 0) {
+                let mensaje = 'No existe ninguna consulta a la base de datos!';
+                mensajeV1(mensaje, msgError);
+                throw mensaje;
+            }
+        }
+
+        function obtenerCampos() {
+            validarQueries();
+
+            let form = document.getElementById('formObtenerCamposQuery');
+
+            let queries = JSON.stringify(gridQueries.dataSource);
+
+            document.getElementById('queryCampos').value = queries;
+            let botonObtenerCampos = document.getElementById('btnObtenerCampos');
+            botonObtenerCampos.click();
+        }
+
+        function obtenerPreviewQuery() {
+            validarQuery();
+
+            let form = document.getElementById('formObtenerPreviewQuery');
+            let query = document.getElementById('query');
+            document.getElementById('queryPreview').value = query.value;
+
+            let botonObtenerPreview = document.getElementById('btnObtenerPreview');
+            botonObtenerPreview.click();
+        }
+
+        function addDropDownList(id, container, dataSource, placeHolder, fields, value = 0, width = '220px', change) {
+            let input = document.createElement('input');
+            input.setAttribute('id', id);
+
+            document.getElementById(container).appendChild(input);
+
+            let ejDropDownList = new ej.dropdowns.DropDownList({
+                dataSource: dataSource,
+                placeholder: placeHolder,
+                fields: fields,
+                value: value,
+                width: width,
+                change: change
+            });
+
+            ejDropDownList.appendTo(input);
+        }
+
+        function fnSuccessCampos(response) {
+            console.log('succes');
+            if (response) {
+                console.log(response);
+
+                let listCamposQuery = document.getElementById('listCamposQuery');
+                listCamposQuery.innerHTML = '';
+
+                if (response.Data) {
+                    let queries = response.Data;
+                    queries.forEach((query, indexQuery) => {
+                        let queryTemplate =
+                            `<div class="item-option">
+                                <div class="contenedor-label">
+                                    <label class="texto-parametro">
+                                        Nombre Consulta: ${query.nombre}
+                                    </label>
+                                </div>
+                             </div>`;
+
+                        listCamposQuery.insertAdjacentHTML("beforeend", queryTemplate);
+
+                        let claves = [];
+                        if (query.queryResults && query.queryResults.length > 0) {
+
+                            let fila = query.queryResults[0];
+
+                            claves = Object.keys(fila);
+
+                            console.log(claves);
+                        }
+
+                        let idQuery = `Q${query.id_query}`;
+
+                        claves.forEach((clave, index) => {
+                            let containerId = `parametro${indexQuery}${index}`;
+                            let dropdownId = `selectTipoParametro${indexQuery}${index}`;
+                            let dataSource = response.TiposParametro;
+                            let placeholder = 'Seleccione un tipo';
+                            let fields = { value: 'valor_referencial', text: 'descripcion' };
+                            let value = tipoTexto.value;
+                            let width = '100px';
+                            let onChange = args => {
+                                console.log(args);
+                                let container = args.element.parentNode.parentNode;
+                                let label = container.querySelector('label.texto-parametro');
+                                let parameterType;
+
+                                switch (args.value) {
+                                    case tipoNumerico.value:
+                                        parameterType = tipoNumerico.parameterType;
+                                        break;
+                                    case tipoFecha.value:
+                                        parameterType = tipoFecha.parameterType;
+                                        break;
+                                    case tipoTabla.value:
+                                        parameterType = tipoTabla.parameterType;
+                                        break;
+                                    default:
+                                        parameterType = tipoTexto.parameterType;
+                                }
+
+                                label.setAttribute('parameter-type', parameterType);
+
+                                actualizarTipoParametro(label.getAttribute('parameter-key'), label.getAttribute('parameter-type'), label.getAttribute('parameter-id'));
+                            };
+
+                            let template =
+                                `<div id="${containerId}" class="item-option">
+                                    <div class="contenedor-label">
+                                        <label id="label${indexQuery}${index}" parameter-type="${tipoTexto.parameterType}" parameter-key="${clave}" parameter-id="${idQuery}" class="texto-parametro" onclick="agregarCampo(this)">
+                                            <i class="fa fa-sign-in"></i>{${clave}}
+                                        </label>
+                                    </div>
+                                 </div>`;
+
+                            listCamposQuery.insertAdjacentHTML("beforeend", template);
+
+
+                            addDropDownList(dropdownId, containerId, dataSource, placeholder, fields, value, width, onChange);
+                        });
+                    });
+                }
+
+            } else {
+                mensajeV1(data.Msg, msgError);
+            }
+        }
+
+        function fnFailureCampos(xhr, status, error) {
+            let response = xhr.responseJSON;
+            console.error('Error Details: ', response.Exception);
+            mensajeV1(response.ErrorMessage, msgError);
+        }
+
+        function validarNombrePlantila() {
+            let nombrePlantilla = document.getElementById('nombrePlantilla')
+            if (!nombrePlantilla.value) {
+                let mensaje = 'Ingrese un Nombre de Plantilla';
+                mensajeV1(mensaje, msgError);
+                throw mensaje;
+            }
+        }
+
+        function validarTipoPlantilla() {
+            if (!(selectTipo.value == tipoCorreo || selectTipo.value == tipoSMS)) {
+                let mensaje = 'Seleccione un tipo de Plantilla';
+                mensajeV1(mensaje, msgError);
+                throw mensaje;
+            }
+        }
+
+        function agregarCampo(label) {
+            console.log('click label', label);
+
+            validarTipoPlantilla();
+
+            let parametro = `{${label.getAttribute('parameter-key')}|${label.getAttribute('parameter-type')}|${label.getAttribute('parameter-id')}}`;
+            if (selectTipo.value == tipoCorreo) {
+                agregarItemCorreo(parametro);
+                return;
+            }
+
+            if (selectTipo.value == tipoSMS) {
+                agregarItemSMS(parametro);
+                return;
+            }
+        }
+
+        function probarPlantilla() {
+            if (selectTipo.value == tipoCorreo) {
+                probarCorreo();
+                return;
+            }
+
+            if (selectTipo.value == tipoSMS) {
+                probarSMS();
+                return;
+            }
+
+            mensajeV1('Seleccione un tipo de Plantilla', msgError);
+        }
+
+
+        function probarCorreo() {
+            let correoPrueba = document.getElementById("inputCorreoPrueba").value;
+            let queryPrueba = document.getElementById('query').value;
+
+            let query1 =
+                `SELECT u.codigo_usuario, u.nombre, u.contrasena, u.correo, u.telefono
+                 FROM security.usuario u
+                 WHERE u.super_administrador = true`;
+
+            let query2 =
+                `SELECT (SELECT json_agg(usuario) FROM security.usuario) as json_detalle
+                 FROM security.usuario u
+                 WHERE u.super_administrador = true`;
+
+            console.log('correoPrueba', correoPrueba);
+            console.log('queryPrueba', queryPrueba);
+
+            if (correoPrueba.lenght < 3) {
+                mensajeV1("Introduzca un correo para mandar prueba del correo", msgError);
+                return;
+            }
+
+            let queries = [];
+
+            gridQueries.dataSource.forEach(query => {
+                queries.push(query.contenido);
+            });
+
+            let adjuntos = gridAdjuntos.dataSource;
+            console.debug('adjuntos: ', gridAdjuntos.dataSource);
+
+            onAjaxBegin();
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ProbarTemplateCorreo", "Plantilla")',
+                data: {
+                    correo: correoPrueba,
+                    plantilla: editorContenido.value,
+                    queries: queries,
+                    adjuntos: adjuntos
+                },
+                success: function (data) {
+                    onAjaxComplete();
+
+                    if (data.enviado == true) {
+                        mensajeV1("Prueba enviada! <p>si no recibe el correo en menos de 10 min, los parametros fueron incorrectos<p>", msgOk);
+                    }
+                    else {
+                        mensajeV1(data.mensaje, msgError);
+                    }
+                },
+                error: function () {
+                    onAjaxComplete();
+                    mensajeV1(errorServidor, msgError);
+                }
+            });
+
+        }
+
+        function probarSMS() {
+            let sms_prueba = document.getElementById("inputSMSPrueba").value;
+            if (sms_prueba.lenght < 3) {
+                mensajeV1("Introduzca un telefono para mandar prueba del SMS", msgError);
+                return;
+            }
+
+            onAjaxBegin();
+
+            let query1 =
+                `SELECT u.codigo_usuario, u.nombre, u.contrasena, u.correo, u.telefono
+                 FROM security.usuario u
+                 WHERE u.super_administrador = true`;
+
+            let query2 =
+                `SELECT (SELECT json_agg(usuario) FROM security.usuario) as json_detalle
+                 FROM security.usuario u
+                 WHERE u.super_administrador = true`;
+
+            let queries = [];
+
+            gridQueries.dataSource.forEach(query => {
+                queries.push(query.contenido);
+            });
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ProbarTemplateSMS", "Plantilla")',
+                data: {
+                    numero: sms_prueba,
+                    plantilla: document.getElementById("textoContenido").value,
+                    queries: queries
+                },
+                success: function (data) {
+                    onAjaxComplete();
+
+                    if (data.enviado == true) {
+                        mensajeV1("Prueba enviada! <p>si no recibe el SMS en menos de 10 min, los parametros fueron incorrectos<p>", msgOk);
+                    }
+                    else {
+                        mensajeV1('No se pudo enviar el mensaje!', msgError);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error al probar el envio de SMS: ', xhr);
+                    mensajeV1(error, msgError);
+                }
+            });
+
+        }
+
+        function fnSuccessPreview(response) {
+            console.log('succes preview query');
+            if (response) {
+                console.log(response);
+                let contenedorPreview = document.getElementById('contenedorPreview');
+                contenedorPreview.innerHTML = '';
+                contenedorPreview.insertAdjacentHTML("beforeend", response.Data);
+            } else {
+                mensajeV1(data.Msg, msgError);
+            }
+        }
+
+        function fnFailurePreview(xhr, status, error) {
+            let response = xhr.responseJSON;
+            console.error('Error Details: ', response.Exception);
+            limpiarPreview();
+            mensajeV1(response.ErrorMessage, msgError);
+        }
+
+    </script>
+}
