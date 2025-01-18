@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "M/pdw40EEDJ272MbJphc1d/Ruv8wYZrInTDG4FYif+FTqacrn9dVYM9vusl502fpKru9RGWCtGd5srVI/2oaCg==",
+  "success": true,
+  "projectFilePath": "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Entities/Entities.csproj",
+  "expectedPackageFiles": [
+    "/home/alcides/.nuget/packages/microsoft.aspnetcore.odata/8.0.8/microsoft.aspnetcore.odata.8.0.8.nupkg.sha512",
+    "/home/alcides/.nuget/packages/microsoft.bcl.asyncinterfaces/5.0.0/microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
+    "/home/alcides/.nuget/packages/microsoft.odata.core/7.9.4/microsoft.odata.core.7.9.4.nupkg.sha512",
+    "/home/alcides/.nuget/packages/microsoft.odata.edm/7.9.4/microsoft.odata.edm.7.9.4.nupkg.sha512",
+    "/home/alcides/.nuget/packages/microsoft.odata.modelbuilder/1.0.8/microsoft.odata.modelbuilder.1.0.8.nupkg.sha512",
+    "/home/alcides/.nuget/packages/microsoft.spatial/7.9.4/microsoft.spatial.7.9.4.nupkg.sha512",
+    "/home/alcides/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/home/alcides/.nuget/packages/system.componentmodel.annotations/4.6.0/system.componentmodel.annotations.4.6.0.nupkg.sha512",
+    "/home/alcides/.nuget/packages/system.runtime.compilerservices.unsafe/4.6.0/system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512",
+    "/home/alcides/.nuget/packages/system.text.encodings.web/4.7.2/system.text.encodings.web.4.7.2.nupkg.sha512",
+    "/home/alcides/.nuget/packages/system.text.json/4.6.0/system.text.json.4.6.0.nupkg.sha512",
+    "/home/alcides/.nuget/packages/microsoft.netcore.app.ref/6.0.36/microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
+    "/home/alcides/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.36/microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,363 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = wDualAssistence
+build_property.RootNamespace = wDualAssistence
+build_property.ProjectDir = /home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence
+build_property._RazorSourceGeneratorDebug = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Campana/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FtcGFuYS9DcmVhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Campana/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FtcGFuYS9MaXN0YWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/CategoriaTarea/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcmlhVGFyZWEvQ3JlYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/CategoriaTarea/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcmlhVGFyZWEvTGlzdGFkby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Configuracion/Parametros.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29uZmlndXJhY2lvbi9QYXJhbWV0cm9zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/ConfiguracionNotificador/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29uZmlndXJhY2lvbk5vdGlmaWNhZG9yL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Dashboard/DashboardPrincipal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL0Rhc2hib2FyZFByaW5jaXBhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Dashboard/DashboardPrincipalEmpleado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL0Rhc2hib2FyZFByaW5jaXBhbEVtcGxlYWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Dashboard/DashboardPrincipalMarcacionEmpleado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL0Rhc2hib2FyZFByaW5jaXBhbE1hcmNhY2lvbkVtcGxlYWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Dashboard/DashboardTareasEmpleado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL0Rhc2hib2FyZFRhcmVhc0VtcGxlYWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Dashboard/ModoIndependiente/DashboardPrincipalEmpleado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL01vZG9JbmRlcGVuZGllbnRlL0Rhc2hib2FyZFByaW5jaXBhbEVtcGxlYWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Dashboard/ModoIndependiente/DashboardPrincipalMarcacionEmpleado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL01vZG9JbmRlcGVuZGllbnRlL0Rhc2hib2FyZFByaW5jaXBhbE1hcmNhY2lvbkVtcGxlYWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/DiaFeriado/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGlhRmVyaWFkby9DcmVhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/DiaFeriado/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGlhRmVyaWFkby9MaXN0YWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/DiaFeriado/ModoIndependiente/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGlhRmVyaWFkby9Nb2RvSW5kZXBlbmRpZW50ZS9DcmVhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/DiaFeriado/ModoIndependiente/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGlhRmVyaWFkby9Nb2RvSW5kZXBlbmRpZW50ZS9MaXN0YWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Empleado/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW1wbGVhZG8vQ3JlYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Empleado/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW1wbGVhZG8vTGlzdGFkby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Empleado/ModoIndependiente/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW1wbGVhZG8vTW9kb0luZGVwZW5kaWVudGUvQ3JlYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Empleado/ModoIndependiente/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW1wbGVhZG8vTW9kb0luZGVwZW5kaWVudGUvTGlzdGFkby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Empresa/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW1wcmVzYS9DcmVhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Empresa/Engagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW1wcmVzYS9FbmdhZ2VtZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Empresa/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW1wcmVzYS9MaXN0YWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Empresa/ModoIndependiente/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW1wcmVzYS9Nb2RvSW5kZXBlbmRpZW50ZS9DcmVhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Empresa/ModoIndependiente/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW1wcmVzYS9Nb2RvSW5kZXBlbmRpZW50ZS9MaXN0YWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Engagement/AsociacionCalendar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW5nYWdlbWVudC9Bc29jaWFjaW9uQ2FsZW5kYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Engagement/AsociacionEmpleado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW5nYWdlbWVudC9Bc29jaWFjaW9uRW1wbGVhZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Engagement/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW5nYWdlbWVudC9DcmVhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Engagement/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW5nYWdlbWVudC9MaXN0YWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Engagement/Log.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW5nYWdlbWVudC9Mb2cuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/EngagementEmpleado/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW5nYWdlbWVudEVtcGxlYWRvL0NyZWFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/EngagementSolicitud/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW5nYWdlbWVudFNvbGljaXR1ZC9MaXN0YWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Excepcion/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXhjZXBjaW9uL0xpc3RhZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/FormatoMarcacionBiometrico/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRm9ybWF0b01hcmNhY2lvbkJpb21ldHJpY28vQ3JlYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/FormatoMarcacionBiometrico/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRm9ybWF0b01hcmNhY2lvbkJpb21ldHJpY28vTGlzdGFkby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Grupo/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR3J1cG8vQ3JlYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Grupo/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR3J1cG8vTGlzdGFkby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/HojaTrabajo/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9qYVRyYWJham8vTGlzdGFkby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/HojaTrabajo/ListadoOld.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9qYVRyYWJham8vTGlzdGFkb09sZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Home/Test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9UZXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Jornada/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSm9ybmFkYS9DcmVhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Jornada/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSm9ybmFkYS9MaXN0YWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Marcacion/ModoIndependiente/RegistroManual.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFyY2FjaW9uL01vZG9JbmRlcGVuZGllbnRlL1JlZ2lzdHJvTWFudWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Marcacion/RegistroManual.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFyY2FjaW9uL1JlZ2lzdHJvTWFudWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/MarcacionBiometrico/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFyY2FjaW9uQmlvbWV0cmljby9DcmVhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/MarcacionBiometrico/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFyY2FjaW9uQmlvbWV0cmljby9MaXN0YWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/MarcacionBiometrico/VerDetalle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFyY2FjaW9uQmlvbWV0cmljby9WZXJEZXRhbGxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Perfil/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGVyZmlsL0NyZWFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Perfil/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGVyZmlsL0xpc3RhZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Plantilla/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGxhbnRpbGxhL0NyZWFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Plantilla/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGxhbnRpbGxhL0xpc3RhZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Reporte/ModoIndependiente/RptMarcaciones.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0ZS9Nb2RvSW5kZXBlbmRpZW50ZS9ScHRNYXJjYWNpb25lcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Reporte/ModoIndependiente/RptPermanencias.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0ZS9Nb2RvSW5kZXBlbmRpZW50ZS9ScHRQZXJtYW5lbmNpYXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Reporte/RptAvanceEngagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0ZS9ScHRBdmFuY2VFbmdhZ2VtZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Reporte/RptMarcacionErronea.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0ZS9ScHRNYXJjYWNpb25FcnJvbmVhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Reporte/RptMarcaciones.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0ZS9ScHRNYXJjYWNpb25lcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Reporte/RptPermanencias.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0ZS9ScHRQZXJtYW5lbmNpYXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Reporte/RptPlaneacion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0ZS9ScHRQbGFuZWFjaW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Reporte/RptSeguimientoTarea.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0ZS9ScHRTZWd1aW1pZW50b1RhcmVhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Shared/_ControlSidebar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Db250cm9sU2lkZWJhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Shared/_CookieConsentPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Db29raWVDb25zZW50UGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Shared/_CSS.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19DU1MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Shared/_Footer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Gb290ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Shared/_HeaderNavbar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19IZWFkZXJOYXZiYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Shared/_JS.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19KUy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Shared/_JSMessageV1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19KU01lc3NhZ2VWMS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Shared/_LayoutCollapse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXRDb2xsYXBzZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Shared/_LayoutFixed.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXRGaXhlZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Shared/_LayoutSlider.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXRTbGlkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Shared/_LayoutTop.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXRUb3AuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Shared/_LeftNavigation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MZWZ0TmF2aWdhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Shared/_ModalBus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Nb2RhbEJ1cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Shared/_SeccionModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19TZWNjaW9uTW9kYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Sucursal/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3VjdXJzYWwvQ3JlYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Sucursal/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3VjdXJzYWwvTGlzdGFkby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Tarea/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGFyZWEvQ3JlYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Tarea/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGFyZWEvTGlzdGFkby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Test/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVzdC9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Usuario/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXN1YXJpby9DcmVhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/Usuario/Listado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXN1YXJpby9MaXN0YWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/wDualAssistence/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

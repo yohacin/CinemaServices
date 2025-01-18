@@ -1,0 +1,250 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Business/Business.csproj": {}
+  },
+  "projects": {
+    "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Business/Business.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Business/Business.csproj",
+        "projectName": "Business",
+        "projectPath": "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Business/Business.csproj",
+        "packagesPath": "/home/alcides/.nuget/packages/",
+        "outputPath": "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Business/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/alcides/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Data/Data.csproj": {
+                "projectPath": "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Data/Data.csproj"
+              },
+              "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Entities/Entities.csproj": {
+                "projectPath": "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Entities/Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.112/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Data/Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Data/Data.csproj",
+        "projectName": "Data",
+        "projectPath": "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Data/Data.csproj",
+        "packagesPath": "/home/alcides/.nuget/packages/",
+        "outputPath": "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Data/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/alcides/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Entities/Entities.csproj": {
+                "projectPath": "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Entities/Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.33, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.33, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.33, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[6.0.29, )"
+            },
+            "log4net": {
+              "target": "Package",
+              "version": "[2.0.14, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.112/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Entities/Entities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Entities/Entities.csproj",
+        "projectName": "Entities",
+        "projectPath": "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Entities/Entities.csproj",
+        "packagesPath": "/home/alcides/.nuget/packages/",
+        "outputPath": "/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Entities/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/alcides/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.OData": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.112/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

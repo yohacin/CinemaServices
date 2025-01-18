@@ -1,0 +1,16 @@
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/_dll/net6.0/Data.deps.json
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/_dll/net6.0/Data.runtimeconfig.json
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/_dll/net6.0/Data.dll
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/_dll/net6.0/Data.pdb
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Data/obj/Debug/net6.0/Data.csproj.AssemblyReference.cache
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Data/obj/Debug/net6.0/Data.GeneratedMSBuildEditorConfig.editorconfig
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Data/obj/Debug/net6.0/Data.AssemblyInfoInputs.cache
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Data/obj/Debug/net6.0/Data.AssemblyInfo.cs
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Data/obj/Debug/net6.0/Data.csproj.CoreCompileInputs.cache
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Data/obj/Debug/net6.0/Data.sourcelink.json
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Data/obj/Debug/net6.0/Data.csproj.CopyComplete
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Data/obj/Debug/net6.0/Data.dll
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Data/obj/Debug/net6.0/refint/Data.dll
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Data/obj/Debug/net6.0/Data.pdb
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Data/obj/Debug/net6.0/Data.genruntimeconfig.cache
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Data/obj/Debug/net6.0/ref/Data.dll

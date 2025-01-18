@@ -1,0 +1,14 @@
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/_dll/net6.0/Business.deps.json
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/_dll/net6.0/Business.dll
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/_dll/net6.0/Business.pdb
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Business/obj/Debug/net6.0/Business.csproj.AssemblyReference.cache
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Business/obj/Debug/net6.0/Business.GeneratedMSBuildEditorConfig.editorconfig
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Business/obj/Debug/net6.0/Business.AssemblyInfoInputs.cache
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Business/obj/Debug/net6.0/Business.AssemblyInfo.cs
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Business/obj/Debug/net6.0/Business.csproj.CoreCompileInputs.cache
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Business/obj/Debug/net6.0/Business.sourcelink.json
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Business/obj/Debug/net6.0/Business.csproj.CopyComplete
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Business/obj/Debug/net6.0/Business.dll
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Business/obj/Debug/net6.0/refint/Business.dll
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Business/obj/Debug/net6.0/Business.pdb
+/home/alcides/Desktop/CinemaServicesDemo/CinemaServices/Arquitectura/Business/obj/Debug/net6.0/ref/Business.dll

@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Busine
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{A39FB98A-C5DB-4287-90AD-AD164730345A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wDualAssistence", "..\wDualAssistence\wDualAssistence.csproj", "{5DED4269-06AD-438E-BFEF-8F6F105017A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A39FB98A-C5DB-4287-90AD-AD164730345A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A39FB98A-C5DB-4287-90AD-AD164730345A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A39FB98A-C5DB-4287-90AD-AD164730345A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DED4269-06AD-438E-BFEF-8F6F105017A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DED4269-06AD-438E-BFEF-8F6F105017A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DED4269-06AD-438E-BFEF-8F6F105017A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DED4269-06AD-438E-BFEF-8F6F105017A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
